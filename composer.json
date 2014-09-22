@@ -1,0 +1,20 @@
+{
+	"name": "codekanzlei/cake-cktools",
+	"description": "codekanzlei Tools & Utilities collection",
+	"license": "MIT",
+	"type": "cakephp-plugin",
+	"extra": {
+    	"installer-name": "CkTools"
+	},
+	"require": {
+		"composer/installers": "*"
+	},
+	"require-dev": {
+		"cakephp/cakephp": "3.0.x-dev"
+	},
+	"autoload": {
+		"psr-4": {
+		"CkTools\\": "src"
+		}
+	}
+}
