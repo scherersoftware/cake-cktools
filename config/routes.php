@@ -1,6 +1,6 @@
 <?php
 use Cake\Routing\Router;
 
-Router::plugin('CkTools', function($routes) {
+Router::plugin('CkTools', function ($routes) {
 	$routes->fallbacks();
 });
