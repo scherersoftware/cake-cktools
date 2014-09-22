@@ -9,17 +9,21 @@ trait TableUtilitiesTrait {
  * @param mixed $primaryKey The primary key
  * @param string $field field name
  * @param string $value string value
- * @return bool
+ * @return bool True if the row was affected
  */
 	public function updateField($primaryKey, $field, $value = null) {
-		return $this->query()
+		$query = $this->query()
 			->update()
 			->set([
 				$field => $value
 			])
 			->where([
 				$this->primaryKey() => $primaryKey
-			])
-			->execute();
+			]);
+
+		$statement = $query->execute();
+		$success = $statement->rowCount() > 0;
+		$statement->closeCursor();
+		return $success;
 	}
 }
