@@ -57,7 +57,7 @@ class UserToken {
 		}
 		$tokenData = $this->decryptToken($token);
 		$tokenExpiration = $tokenData['generated'] + $tokenData['validForSeconds'];
-		return $tokenExpiration >= time();
+		return $tokenExpiration < time();
 	}
 
 /**
