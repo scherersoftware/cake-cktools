@@ -1,3 +1,4 @@
+<?php $this->set('loadCkEditor', true) ?>
 
 <?= $this->Form->create($systemContent, ['horizontal' => true]) ?>
 	<fieldset>
@@ -8,6 +9,16 @@
 			]);
 			echo $this->Form->input('notes', [
 				'label' => __('system_content.notes')
+			]);
+
+			echo $this->Form->input('title', [
+				'label' => __('system_content.title')
+			]);
+
+			echo $this->Form->input('content', [
+				'label' => __('system_content.content'),
+				'type' => 'textarea',
+				'class' => 'wysiwyg'
 			]);
 		?>
 	</fieldset>

@@ -16,6 +16,8 @@ class SystemContent extends Entity {
 	protected $_accessible = [
 		'identifier' => true,
 		'notes' => true,
+		'title' => true,
+		'content' => true
 	];
 
 }

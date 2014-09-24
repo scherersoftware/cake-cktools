@@ -21,6 +21,11 @@ class SystemContentsTable extends Table {
 		$this->displayField('id');
 		$this->primaryKey('id');
 		$this->addBehavior('Timestamp');
+
+		$this->addBehavior('Translate', ['fields' => [
+			'title',
+			'content'
+		]]);
 	}
 
 /**
@@ -36,8 +41,30 @@ class SystemContentsTable extends Table {
 			->validatePresence('identifier', 'create')
 			->notEmpty('identifier')
 			->allowEmpty('notes');
-
 		return $validator;
 	}
 
+/**
+ * Find a content by its string identifier
+ *
+ * @param string $identifier identifier to look for
+ * @param string $locale will override the locale of TranslateBehavior temporarily
+ * @return SystemContent
+ */
+	public function getByIdentifier($identifier, $locale = null) {
+		if ($locale) {
+			$oldLocale = $this->locale();
+			$this->locale($locale);
+		}
+
+		$res = $this->find()->where([
+			'identifier' => $identifier
+		])->first();
+
+		if ($locale) {
+			$this->locale($oldLocale);
+		}
+
+		return $res;
+	}
 }

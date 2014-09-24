@@ -32,7 +32,8 @@ class SystemContentsController extends AppController {
 			$config['beforeFilter']($this, $config);
 		}
 
-		$this->loadModel('SystemContents');
+		$this->loadModel('CkTools.SystemContents');
+		$this->SystemContents->locale('eng'); # hard-coded for now
 		parent::beforeFilter($event);
 	}
 
@@ -75,6 +76,7 @@ class SystemContentsController extends AppController {
 			}
 		}
 		$this->set(compact('systemContent'));
+		return $this->render('form');
 	}
 
 /**
@@ -98,6 +100,7 @@ class SystemContentsController extends AppController {
 			}
 		}
 		$this->set(compact('systemContent'));
+		return $this->render('form');
 	}
 
 /**
