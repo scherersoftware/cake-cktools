@@ -1,0 +1,9 @@
+<?php
+$config = [
+	'CkTools' => [
+		'SystemContents' => [
+			'layout' => 'default',
+			'beforeFilter' => function ($controller, $config) {}
+		]
+	]
+];
