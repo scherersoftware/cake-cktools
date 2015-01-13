@@ -38,7 +38,7 @@ class SystemContentsTable extends Table {
 		$validator
 			->add('id', 'valid', ['rule' => 'uuid'])
 			->allowEmpty('id', 'create')
-			->validatePresence('identifier', 'create')
+			->requirePresence('identifier', 'create')
 			->notEmpty('identifier')
 			->allowEmpty('notes');
 		return $validator;
