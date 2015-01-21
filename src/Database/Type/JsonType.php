@@ -4,6 +4,18 @@ namespace CkTools\Database\Type;
 use Cake\Database\Driver;
 use Cake\Database\Type;
 
+/**
+ * Usage: 
+ * In config/bootstrap.php, add
+ * 		Type::map('json', '\CkTools\Database\Type\JsonType');
+ * 
+ * In your Table::initialize(), use 
+ * 		$this->schema()->columnType('your_field', 'json');
+ * 
+ * to map the field to a JsonType
+ *
+ * @package CkTools
+ */
 class JsonType extends Type {
 
 /**
