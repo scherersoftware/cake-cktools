@@ -4,6 +4,7 @@ namespace CkTools\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Network\Response;
+use Cake\Utility\Hash;
 use CkTools\Lib\ApiReturnCode;
 
 /**
@@ -34,6 +35,27 @@ class ApiComponent extends Component
      * @var Response
      */
     protected $_response = null;
+
+    /**
+     * Maps return codes to HTTP status codes
+     *
+     * @var array
+     */
+    protected $_statusCodeMapping = [];
+
+    /**
+     * Constructor hook method.
+     *
+     * Implement this method to avoid having to overwrite
+     * the constructor and call parent.
+     *
+     * @param array $config The configuration settings provided to this component.
+     * @return void
+     */
+    public function initialize(array $config)
+    {
+        $this->_statusCodeMapping = ApiReturnCode::getStatusCodeMapping();
+    }
 
     /**
      * Should be called in the controller's beforeFilter callback
@@ -80,8 +102,12 @@ class ApiComponent extends Component
      * @param array $data Data for the 'data' key
      * @return Response
      */
-    public function response($httpStatusCode = 200, $returnCode = ApiReturnCode::SUCCESS, array $data = [])
+    public function response($returnCode = ApiReturnCode::SUCCESS, array $data = [], $httpStatusCode = null)
     {
+        if (!$httpStatusCode) {
+            $httpStatusCode = $this->getHttpStatusForReturnCode($returnCode);
+        }
+
         $response = $this->getResponse();
         $response->statusCode($httpStatusCode);
 
@@ -93,6 +119,56 @@ class ApiComponent extends Component
         $response->body(json_encode($responseData));
 
         return $response;
+    }
+
+    /**
+     * Returns the appropriate HTTP Status code for the given return code.
+     *
+     * @param string $returnCode Return Code
+     * @return int
+     */
+    public function getHttpStatusForReturnCode($returnCode)
+    {
+        if (!isset($this->_statusCodeMapping[$returnCode])) {
+            throw new \Exception("Return code {$returnCode} is not mapped to any HTTP Status Code.");
+        }
+        return $this->_statusCodeMapping[$returnCode];
+    }
+
+    /**
+     * Obtain the status code mapping
+     *
+     * @return array
+     */
+    public function getStatusCodeMapping()
+    {
+        return $this->_statusCodeMapping;
+    }
+
+    /**
+     * Map a return code to a status code
+     *
+     * @param string $returnCode Return Code
+     * @param int $httpStatusCode The HTTP Status code to use for the given return code
+     * @return void
+     */
+    public function mapStatusCode($returnCode, $httpStatusCode)
+    {
+        // Trigger initialization of $_statusCodeMapping
+        $this->getStatusCodeMapping();
+        $this->_statusCodeMapping[$returnCode] = $httpStatusCode;
+    }
+
+    /**
+     * Map return codes to HTTP Status codes
+     *
+     * @param array $codes Array with the return code as key and the HTTP Status code as value
+     * @return void
+     */
+    public function mapStatusCodes(array $codes)
+    {
+        $this->getStatusCodeMapping();
+        $this->_statusCodeMapping = Hash::merge($this->getStatusCodeMapping(), $codes);
     }
 
     /**

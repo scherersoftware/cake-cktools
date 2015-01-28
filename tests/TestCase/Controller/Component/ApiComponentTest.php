@@ -63,7 +63,7 @@ class ApiComponentTest extends TestCase
         $data = [
             'foo' => 'bar'
         ];
-        $response = $this->Api->response($httpStatus, $code, $data);
+        $response = $this->Api->response($code, $data, $httpStatus);
 
         $this->assertEquals($response->type(), 'application/json');
         $this->assertEquals($response->statusCode(), $httpStatus);
@@ -71,5 +71,30 @@ class ApiComponentTest extends TestCase
         $decoded = json_decode($response->body(), true);
         $this->assertEquals($decoded['data'], $data);
         $this->assertEquals($decoded['code'], $code);
+    }
+
+    /**
+     * Test getHttpStatusForReturnCode(), mapStatusCode() and mapStatusCodes()
+     *
+     * @return void
+     */
+    public function testStatusCodeMapping()
+    {
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode(ApiReturnCode::SUCCESS), 200);
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode(ApiReturnCode::NOT_AUTHENTICATED), 403);
+
+        $this->Api->mapStatusCode('foobar', 123);
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode('foobar'), 123);
+
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode(ApiReturnCode::NOT_AUTHENTICATED), 403);
+
+        $this->Api->mapStatusCodes([
+            'code1' => 111,
+            'code2' => 222
+        ]);
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode('code1'), 111);
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode('code2'), 222);
+
+        $this->assertEquals($this->Api->getHttpStatusForReturnCode(ApiReturnCode::NOT_AUTHENTICATED), 403);
     }
 }
