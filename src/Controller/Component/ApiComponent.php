@@ -62,4 +62,14 @@ class ApiComponent extends Component
 
         return $response;
     }
+
+    /**
+     * Generates a unique API token
+     *
+     * @return string
+     */
+    public function generateApiToken()
+    {
+        return bin2hex(openssl_random_pseudo_bytes(16));
+    }
 }
