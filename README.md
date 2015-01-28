@@ -1,6 +1,43 @@
 codekanzlei CakePHP 3 Toolkit
 =============================
 
+## Setting up an Api
+
+You can create a plugin, e.g. "Api" to include all your API controller code. 
+
+To make sure we always return errors in the api as JSON, include this to your App's or Plugin's bootstrap.php:
+
+    if (substr(env('REQUEST_URI'), 0, 5) === '/api/') {
+        $errorHandler = new \CkTools\Error\ApiErrorHandler([
+            'exceptionRenderer' => '\CkTools\Error\ApiExceptionRenderer'
+        ]);
+        $errorHandler->register();
+    }
+
+Load the ApiComponent in your AppController's `initialize()` callback:
+
+    $this->loadComponent('CkTools.Api');
+
+In your AppController's `beforeFilter()` callback call 
+
+    $this->Api->setup();
+
+In a controller, your API endpoint controller action could look like this:
+
+    public function hello_world()
+    {
+        $this->request->allowMethod('get');
+        return $this->Api->response(200, ApiReturnCode::SUCCESS, [
+            'hello' => 'world'
+        ]);
+    }
+
+This call will return an `application/json` response with the HTTP Status Code `200` and the following body:
+
+    {"code": "success","data":{"hello":"world"}}
+
+
+## License
 
 The MIT License (MIT)
 
