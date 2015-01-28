@@ -3,6 +3,7 @@ namespace CkTools\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
+use Cake\Network\Response;
 use CkTools\Lib\ApiReturnCode;
 
 /**
@@ -28,6 +29,13 @@ class ApiComponent extends Component
     protected $_defaultConfig = [];
 
     /**
+     * Holds the Response object
+     *
+     * @var Response
+     */
+    protected $_response = null;
+
+    /**
      * Should be called in the controller's beforeFilter callback
      *
      * @return void
@@ -41,6 +49,30 @@ class ApiComponent extends Component
     }
 
     /**
+     * Returns the response object to modify
+     *
+     * @return Response
+     */
+    public function getResponse()
+    {
+        if ($this->_response) {
+            return $this->_response;
+        }
+        return $this->_registry->getController()->response;
+    }
+
+    /**
+     * Set the response object for manipulation by response()
+     *
+     * @param Response $response Response object to manipulate
+     * @return void
+     */
+    public function setResponse(Response $response)
+    {
+        $this->_response = $response;
+    }
+
+    /**
      * Returns a standartized JSON response
      *
      * @param int $httpStatusCode HTTP Status Code to send
@@ -50,7 +82,7 @@ class ApiComponent extends Component
      */
     public function response($httpStatusCode = 200, $returnCode = ApiReturnCode::SUCCESS, array $data = [])
     {
-        $response = $this->_registry->getController()->response;
+        $response = $this->getResponse();
         $response->statusCode($httpStatusCode);
 
         $responseData = [
