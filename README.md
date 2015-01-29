@@ -3,7 +3,8 @@ codekanzlei CakePHP 3 Toolkit
 
 ## Setting up an Api
 
-You can create a plugin, e.g. "Api" to include all your API controller code. 
+You can create a plugin, e.g. "Api" to include all your API controller code. If you have an Api plugin,
+make sure you set 'bootstrap' => true when loading the plugin in your bootstrap.
 
 To make sure we always return errors in the api as JSON, include this to your App's or Plugin's bootstrap.php:
 
@@ -16,6 +17,7 @@ To make sure we always return errors in the api as JSON, include this to your Ap
 
 Load the ApiComponent in your AppController's `initialize()` callback:
 
+    $this->loadComponent('RequestHandler');
     $this->loadComponent('CkTools.Api');
 
 In your AppController's `beforeFilter()` callback call 
