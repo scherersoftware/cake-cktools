@@ -1,4 +1,12 @@
 <?php
+use Cake\Core\Configure;
+use Cake\Core\Plugin;
+
+Configure::write('App.paths.locales', array_merge(
+    Configure::read('App.paths.locales'),
+    [Plugin::path('CkTools')]
+));
+
 $config = array(
     'eu_countries' => array(
         'be',
