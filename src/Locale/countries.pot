@@ -1,0 +1,1016 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-01-22 17:33+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Config/countries.php:31;103
+msgid "de"
+msgstr ""
+
+#: Config/countries.php:32;81
+msgid "be"
+msgstr ""
+
+#: Config/countries.php:33;94
+msgid "bg"
+msgstr ""
+
+#: Config/countries.php:34;281
+msgid "cz"
+msgstr ""
+
+#: Config/countries.php:35;102
+msgid "dk"
+msgstr ""
+
+#: Config/countries.php:36;112
+msgid "ee"
+msgstr ""
+
+#: Config/countries.php:37;146
+msgid "ie"
+msgstr ""
+
+#: Config/countries.php:38;257
+msgid "es"
+msgstr ""
+
+#: Config/countries.php:39;118
+msgid "fr"
+msgstr ""
+
+#: Config/countries.php:40;149
+msgid "it"
+msgstr ""
+
+#: Config/countries.php:41;304
+msgid "cy"
+msgstr ""
+
+#: Config/countries.php:42;178
+msgid "lv"
+msgstr ""
+
+#: Config/countries.php:43;183
+msgid "lt"
+msgstr ""
+
+#: Config/countries.php:44;184
+msgid "lu"
+msgstr ""
+
+#: Config/countries.php:45;305
+msgid "hu"
+msgstr ""
+
+#: Config/countries.php:46;191
+msgid "mt"
+msgstr ""
+
+#: Config/countries.php:47;214
+msgid "nl"
+msgstr ""
+
+#: Config/countries.php:48;223
+msgid "at"
+msgstr ""
+
+#: Config/countries.php:49;233
+msgid "pl"
+msgstr ""
+
+#: Config/countries.php:50;234
+msgid "pt"
+msgstr ""
+
+#: Config/countries.php:51;238
+msgid "ro"
+msgstr ""
+
+#: Config/countries.php:52;255
+msgid "si"
+msgstr ""
+
+#: Config/countries.php:53;254
+msgid "sk"
+msgstr ""
+
+#: Config/countries.php:54;117
+msgid "fi"
+msgstr ""
+
+#: Config/countries.php:55;246
+msgid "se"
+msgstr ""
+
+#: Config/countries.php:57;307
+msgid "af"
+msgstr ""
+
+#: Config/countries.php:58;308
+msgid "eg"
+msgstr ""
+
+#: Config/countries.php:59;309
+msgid "ax"
+msgstr ""
+
+#: Config/countries.php:60;310
+msgid "al"
+msgstr ""
+
+#: Config/countries.php:61;311
+msgid "dz"
+msgstr ""
+
+#: Config/countries.php:62;312
+msgid "as"
+msgstr ""
+
+#: Config/countries.php:63
+msgid "vi"
+msgstr ""
+
+#: Config/countries.php:64
+msgid "ad"
+msgstr ""
+
+#: Config/countries.php:65
+msgid "ao"
+msgstr ""
+
+#: Config/countries.php:66
+msgid "ai"
+msgstr ""
+
+#: Config/countries.php:67
+msgid "aq"
+msgstr ""
+
+#: Config/countries.php:68
+msgid "ag"
+msgstr ""
+
+#: Config/countries.php:69
+msgid "gq"
+msgstr ""
+
+#: Config/countries.php:70
+msgid "ar"
+msgstr ""
+
+#: Config/countries.php:71
+msgid "am"
+msgstr ""
+
+#: Config/countries.php:72
+msgid "aw"
+msgstr ""
+
+#: Config/countries.php:73
+msgid "ac"
+msgstr ""
+
+#: Config/countries.php:74
+msgid "az"
+msgstr ""
+
+#: Config/countries.php:75
+msgid "et"
+msgstr ""
+
+#: Config/countries.php:76
+msgid "au"
+msgstr ""
+
+#: Config/countries.php:77
+msgid "bs"
+msgstr ""
+
+#: Config/countries.php:78
+msgid "bh"
+msgstr ""
+
+#: Config/countries.php:79
+msgid "bd"
+msgstr ""
+
+#: Config/countries.php:80
+msgid "bb"
+msgstr ""
+
+#: Config/countries.php:82
+msgid "bz"
+msgstr ""
+
+#: Config/countries.php:83
+msgid "bj"
+msgstr ""
+
+#: Config/countries.php:84
+msgid "bm"
+msgstr ""
+
+#: Config/countries.php:85
+msgid "bt"
+msgstr ""
+
+#: Config/countries.php:86
+msgid "bo"
+msgstr ""
+
+#: Config/countries.php:87
+msgid "ba"
+msgstr ""
+
+#: Config/countries.php:88
+msgid "bw"
+msgstr ""
+
+#: Config/countries.php:89
+msgid "bv"
+msgstr ""
+
+#: Config/countries.php:90
+msgid "br"
+msgstr ""
+
+#: Config/countries.php:91
+msgid "vg"
+msgstr ""
+
+#: Config/countries.php:92
+msgid "io"
+msgstr ""
+
+#: Config/countries.php:93
+msgid "bn"
+msgstr ""
+
+#: Config/countries.php:95
+msgid "bf"
+msgstr ""
+
+#: Config/countries.php:96
+msgid "bi"
+msgstr ""
+
+#: Config/countries.php:97
+msgid "cl"
+msgstr ""
+
+#: Config/countries.php:98
+msgid "cn"
+msgstr ""
+
+#: Config/countries.php:99
+msgid "ck"
+msgstr ""
+
+#: Config/countries.php:100
+msgid "cr"
+msgstr ""
+
+#: Config/countries.php:101
+msgid "ci"
+msgstr ""
+
+#: Config/countries.php:104
+msgid "sh"
+msgstr ""
+
+#: Config/countries.php:105
+msgid "dg"
+msgstr ""
+
+#: Config/countries.php:106
+msgid "dm"
+msgstr ""
+
+#: Config/countries.php:107
+msgid "do"
+msgstr ""
+
+#: Config/countries.php:108
+msgid "dj"
+msgstr ""
+
+#: Config/countries.php:109
+msgid "ec"
+msgstr ""
+
+#: Config/countries.php:110
+msgid "sv"
+msgstr ""
+
+#: Config/countries.php:111
+msgid "er"
+msgstr ""
+
+#: Config/countries.php:113
+msgid "eu"
+msgstr ""
+
+#: Config/countries.php:114
+msgid "fk"
+msgstr ""
+
+#: Config/countries.php:115
+msgid "fo"
+msgstr ""
+
+#: Config/countries.php:116
+msgid "fj"
+msgstr ""
+
+#: Config/countries.php:119
+msgid "gf"
+msgstr ""
+
+#: Config/countries.php:120
+msgid "pf"
+msgstr ""
+
+#: Config/countries.php:121
+msgid "tf"
+msgstr ""
+
+#: Config/countries.php:122
+msgid "ga"
+msgstr ""
+
+#: Config/countries.php:123
+msgid "gm"
+msgstr ""
+
+#: Config/countries.php:124
+msgid "ge"
+msgstr ""
+
+#: Config/countries.php:125
+msgid "gh"
+msgstr ""
+
+#: Config/countries.php:126
+msgid "gi"
+msgstr ""
+
+#: Config/countries.php:127
+msgid "gd"
+msgstr ""
+
+#: Config/countries.php:128
+msgid "gr"
+msgstr ""
+
+#: Config/countries.php:129
+msgid "gl"
+msgstr ""
+
+#: Config/countries.php:130
+msgid "gp"
+msgstr ""
+
+#: Config/countries.php:131
+msgid "gu"
+msgstr ""
+
+#: Config/countries.php:132
+msgid "gt"
+msgstr ""
+
+#: Config/countries.php:133
+msgid "gg"
+msgstr ""
+
+#: Config/countries.php:134
+msgid "gn"
+msgstr ""
+
+#: Config/countries.php:135
+msgid "gw"
+msgstr ""
+
+#: Config/countries.php:136
+msgid "gy"
+msgstr ""
+
+#: Config/countries.php:137
+msgid "ht"
+msgstr ""
+
+#: Config/countries.php:138
+msgid "hm"
+msgstr ""
+
+#: Config/countries.php:139
+msgid "hn"
+msgstr ""
+
+#: Config/countries.php:140
+msgid "hk"
+msgstr ""
+
+#: Config/countries.php:141
+msgid "in"
+msgstr ""
+
+#: Config/countries.php:142
+msgid "id"
+msgstr ""
+
+#: Config/countries.php:143
+msgid "im"
+msgstr ""
+
+#: Config/countries.php:144
+msgid "iq"
+msgstr ""
+
+#: Config/countries.php:145
+msgid "ir"
+msgstr ""
+
+#: Config/countries.php:147
+msgid "is"
+msgstr ""
+
+#: Config/countries.php:148
+msgid "il"
+msgstr ""
+
+#: Config/countries.php:150
+msgid "jm"
+msgstr ""
+
+#: Config/countries.php:151
+msgid "jp"
+msgstr ""
+
+#: Config/countries.php:152
+msgid "ye"
+msgstr ""
+
+#: Config/countries.php:153
+msgid "je"
+msgstr ""
+
+#: Config/countries.php:154
+msgid "jo"
+msgstr ""
+
+#: Config/countries.php:155
+msgid "ky"
+msgstr ""
+
+#: Config/countries.php:156
+msgid "kh"
+msgstr ""
+
+#: Config/countries.php:157
+msgid "cm"
+msgstr ""
+
+#: Config/countries.php:158
+msgid "ca"
+msgstr ""
+
+#: Config/countries.php:159
+msgid "ic"
+msgstr ""
+
+#: Config/countries.php:160
+msgid "cv"
+msgstr ""
+
+#: Config/countries.php:161
+msgid "kz"
+msgstr ""
+
+#: Config/countries.php:162
+msgid "qa"
+msgstr ""
+
+#: Config/countries.php:163
+msgid "ke"
+msgstr ""
+
+#: Config/countries.php:164
+msgid "kg"
+msgstr ""
+
+#: Config/countries.php:165
+msgid "ki"
+msgstr ""
+
+#: Config/countries.php:166
+msgid "cc"
+msgstr ""
+
+#: Config/countries.php:167
+msgid "co"
+msgstr ""
+
+#: Config/countries.php:168
+msgid "km"
+msgstr ""
+
+#: Config/countries.php:169
+msgid "cd"
+msgstr ""
+
+#: Config/countries.php:170
+msgid "cg"
+msgstr ""
+
+#: Config/countries.php:171
+msgid "kp"
+msgstr ""
+
+#: Config/countries.php:172
+msgid "kr"
+msgstr ""
+
+#: Config/countries.php:173
+msgid "hr"
+msgstr ""
+
+#: Config/countries.php:174
+msgid "cu"
+msgstr ""
+
+#: Config/countries.php:175
+msgid "kw"
+msgstr ""
+
+#: Config/countries.php:176
+msgid "la"
+msgstr ""
+
+#: Config/countries.php:177
+msgid "ls"
+msgstr ""
+
+#: Config/countries.php:179
+msgid "lb"
+msgstr ""
+
+#: Config/countries.php:180
+msgid "lr"
+msgstr ""
+
+#: Config/countries.php:181
+msgid "ly"
+msgstr ""
+
+#: Config/countries.php:182
+msgid "li"
+msgstr ""
+
+#: Config/countries.php:185
+msgid "mo"
+msgstr ""
+
+#: Config/countries.php:186
+msgid "mg"
+msgstr ""
+
+#: Config/countries.php:187
+msgid "mw"
+msgstr ""
+
+#: Config/countries.php:188
+msgid "my"
+msgstr ""
+
+#: Config/countries.php:189
+msgid "mv"
+msgstr ""
+
+#: Config/countries.php:190
+msgid "ml"
+msgstr ""
+
+#: Config/countries.php:192
+msgid "ma"
+msgstr ""
+
+#: Config/countries.php:193
+msgid "mh"
+msgstr ""
+
+#: Config/countries.php:194
+msgid "mq"
+msgstr ""
+
+#: Config/countries.php:195
+msgid "mr"
+msgstr ""
+
+#: Config/countries.php:196
+msgid "mu"
+msgstr ""
+
+#: Config/countries.php:197
+msgid "yt"
+msgstr ""
+
+#: Config/countries.php:198
+msgid "mk"
+msgstr ""
+
+#: Config/countries.php:199
+msgid "mx"
+msgstr ""
+
+#: Config/countries.php:200
+msgid "fm"
+msgstr ""
+
+#: Config/countries.php:201
+msgid "md"
+msgstr ""
+
+#: Config/countries.php:202
+msgid "mc"
+msgstr ""
+
+#: Config/countries.php:203
+msgid "mn"
+msgstr ""
+
+#: Config/countries.php:204
+msgid "ms"
+msgstr ""
+
+#: Config/countries.php:205
+msgid "mz"
+msgstr ""
+
+#: Config/countries.php:206
+msgid "mm"
+msgstr ""
+
+#: Config/countries.php:207
+msgid "na"
+msgstr ""
+
+#: Config/countries.php:208
+msgid "nr"
+msgstr ""
+
+#: Config/countries.php:209
+msgid "np"
+msgstr ""
+
+#: Config/countries.php:210
+msgid "nc"
+msgstr ""
+
+#: Config/countries.php:211
+msgid "nz"
+msgstr ""
+
+#: Config/countries.php:212
+msgid "nt"
+msgstr ""
+
+#: Config/countries.php:213
+msgid "ni"
+msgstr ""
+
+#: Config/countries.php:215
+msgid "an"
+msgstr ""
+
+#: Config/countries.php:216
+msgid "ne"
+msgstr ""
+
+#: Config/countries.php:217
+msgid "ng"
+msgstr ""
+
+#: Config/countries.php:218
+msgid "nu"
+msgstr ""
+
+#: Config/countries.php:219
+msgid "mp"
+msgstr ""
+
+#: Config/countries.php:220
+msgid "nf"
+msgstr ""
+
+#: Config/countries.php:221
+msgid "no"
+msgstr ""
+
+#: Config/countries.php:222
+msgid "om"
+msgstr ""
+
+#: Config/countries.php:224
+msgid "pk"
+msgstr ""
+
+#: Config/countries.php:225
+msgid "ps"
+msgstr ""
+
+#: Config/countries.php:226
+msgid "pw"
+msgstr ""
+
+#: Config/countries.php:227
+msgid "pa"
+msgstr ""
+
+#: Config/countries.php:228
+msgid "pg"
+msgstr ""
+
+#: Config/countries.php:229
+msgid "py"
+msgstr ""
+
+#: Config/countries.php:230
+msgid "pe"
+msgstr ""
+
+#: Config/countries.php:231
+msgid "ph"
+msgstr ""
+
+#: Config/countries.php:232
+msgid "pn"
+msgstr ""
+
+#: Config/countries.php:235
+msgid "pr"
+msgstr ""
+
+#: Config/countries.php:236
+msgid "re"
+msgstr ""
+
+#: Config/countries.php:237
+msgid "rw"
+msgstr ""
+
+#: Config/countries.php:239
+msgid "ru"
+msgstr ""
+
+#: Config/countries.php:240
+msgid "sb"
+msgstr ""
+
+#: Config/countries.php:241
+msgid "zm"
+msgstr ""
+
+#: Config/countries.php:242
+msgid "ws"
+msgstr ""
+
+#: Config/countries.php:243
+msgid "sm"
+msgstr ""
+
+#: Config/countries.php:244
+msgid "st"
+msgstr ""
+
+#: Config/countries.php:245
+msgid "sa"
+msgstr ""
+
+#: Config/countries.php:247
+msgid "ch"
+msgstr ""
+
+#: Config/countries.php:248
+msgid "sn"
+msgstr ""
+
+#: Config/countries.php:249
+msgid "cs"
+msgstr ""
+
+#: Config/countries.php:250
+msgid "sc"
+msgstr ""
+
+#: Config/countries.php:251
+msgid "sl"
+msgstr ""
+
+#: Config/countries.php:252
+msgid "zw"
+msgstr ""
+
+#: Config/countries.php:253
+msgid "sg"
+msgstr ""
+
+#: Config/countries.php:256
+msgid "so"
+msgstr ""
+
+#: Config/countries.php:258
+msgid "lk"
+msgstr ""
+
+#: Config/countries.php:259
+msgid "kn"
+msgstr ""
+
+#: Config/countries.php:260
+msgid "lc"
+msgstr ""
+
+#: Config/countries.php:261
+msgid "pm"
+msgstr ""
+
+#: Config/countries.php:262
+msgid "vc"
+msgstr ""
+
+#: Config/countries.php:263
+msgid "za"
+msgstr ""
+
+#: Config/countries.php:264
+msgid "sd"
+msgstr ""
+
+#: Config/countries.php:265
+msgid "gs"
+msgstr ""
+
+#: Config/countries.php:266
+msgid "sr"
+msgstr ""
+
+#: Config/countries.php:267
+msgid "sj"
+msgstr ""
+
+#: Config/countries.php:268
+msgid "sz"
+msgstr ""
+
+#: Config/countries.php:269
+msgid "sy"
+msgstr ""
+
+#: Config/countries.php:270
+msgid "tj"
+msgstr ""
+
+#: Config/countries.php:271
+msgid "tw"
+msgstr ""
+
+#: Config/countries.php:272
+msgid "tz"
+msgstr ""
+
+#: Config/countries.php:273
+msgid "th"
+msgstr ""
+
+#: Config/countries.php:274
+msgid "tl"
+msgstr ""
+
+#: Config/countries.php:275
+msgid "tg"
+msgstr ""
+
+#: Config/countries.php:276
+msgid "tk"
+msgstr ""
+
+#: Config/countries.php:277
+msgid "to"
+msgstr ""
+
+#: Config/countries.php:278
+msgid "tt"
+msgstr ""
+
+#: Config/countries.php:279
+msgid "ta"
+msgstr ""
+
+#: Config/countries.php:280
+msgid "td"
+msgstr ""
+
+#: Config/countries.php:282
+msgid "tn"
+msgstr ""
+
+#: Config/countries.php:283
+msgid "tr"
+msgstr ""
+
+#: Config/countries.php:284
+msgid "tm"
+msgstr ""
+
+#: Config/countries.php:285
+msgid "tc"
+msgstr ""
+
+#: Config/countries.php:286
+msgid "tv"
+msgstr ""
+
+#: Config/countries.php:287
+msgid "ug"
+msgstr ""
+
+#: Config/countries.php:288
+msgid "ua"
+msgstr ""
+
+#: Config/countries.php:289
+msgid "su"
+msgstr ""
+
+#: Config/countries.php:290
+msgid "uy"
+msgstr ""
+
+#: Config/countries.php:291
+msgid "uz"
+msgstr ""
+
+#: Config/countries.php:292
+msgid "vu"
+msgstr ""
+
+#: Config/countries.php:293
+msgid "va"
+msgstr ""
+
+#: Config/countries.php:294
+msgid "ve"
+msgstr ""
+
+#: Config/countries.php:295
+msgid "ae"
+msgstr ""
+
+#: Config/countries.php:296
+msgid "us"
+msgstr ""
+
+#: Config/countries.php:297
+msgid "gb"
+msgstr ""
+
+#: Config/countries.php:298
+msgid "vn"
+msgstr ""
+
+#: Config/countries.php:299
+msgid "wf"
+msgstr ""
+
+#: Config/countries.php:300
+msgid "cx"
+msgstr ""
+
+#: Config/countries.php:301
+msgid "by"
+msgstr ""
+
+#: Config/countries.php:302
+msgid "eh"
+msgstr ""
+
+#: Config/countries.php:303
+msgid "cf"
+msgstr ""
+
+#: Config/countries.php:306
+msgid "me"
+msgstr ""
+

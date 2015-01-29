@@ -1,0 +1,1013 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: countries\n"
+"POT-Creation-Date: 2015-01-22 17:33+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Config/countries.php:31;103
+msgid "de"
+msgstr "Germany"
+
+#: Config/countries.php:32;81
+msgid "be"
+msgstr "Belgium"
+
+#: Config/countries.php:33;94
+msgid "bg"
+msgstr "Bulgaria"
+
+#: Config/countries.php:34;281
+msgid "cz"
+msgstr "Czech Republic"
+
+#: Config/countries.php:35;102
+msgid "dk"
+msgstr "Denmark"
+
+#: Config/countries.php:36;112
+msgid "ee"
+msgstr "Estonia"
+
+#: Config/countries.php:37;146
+msgid "ie"
+msgstr "Ireland"
+
+#: Config/countries.php:38;257
+msgid "es"
+msgstr "Spain"
+
+#: Config/countries.php:39;118
+msgid "fr"
+msgstr "France"
+
+#: Config/countries.php:40;149
+msgid "it"
+msgstr "Italy"
+
+#: Config/countries.php:41;304
+msgid "cy"
+msgstr "Cyprus"
+
+#: Config/countries.php:42;178
+msgid "lv"
+msgstr "Latvia"
+
+#: Config/countries.php:43;183
+msgid "lt"
+msgstr "Lithuania"
+
+#: Config/countries.php:44;184
+msgid "lu"
+msgstr "Luxembourg"
+
+#: Config/countries.php:45;305
+msgid "hu"
+msgstr "Hungary"
+
+#: Config/countries.php:46;191
+msgid "mt"
+msgstr "Malta"
+
+#: Config/countries.php:47;214
+msgid "nl"
+msgstr "Netherlands"
+
+#: Config/countries.php:48;223
+msgid "at"
+msgstr "Austria"
+
+#: Config/countries.php:49;233
+msgid "pl"
+msgstr "Poland"
+
+#: Config/countries.php:50;234
+msgid "pt"
+msgstr "Portugal"
+
+#: Config/countries.php:51;238
+msgid "ro"
+msgstr "Romania"
+
+#: Config/countries.php:52;255
+msgid "si"
+msgstr "Slovenia"
+
+#: Config/countries.php:53;254
+msgid "sk"
+msgstr "Slovakia"
+
+#: Config/countries.php:54;117
+msgid "fi"
+msgstr "Finland"
+
+#: Config/countries.php:55;246
+msgid "se"
+msgstr "Sweden"
+
+#: Config/countries.php:57;307
+msgid "af"
+msgstr "Afghanistan"
+
+#: Config/countries.php:58;308
+msgid "eg"
+msgstr "Egypt"
+
+#: Config/countries.php:59;309
+msgid "ax"
+msgstr "Åland Islands"
+
+#: Config/countries.php:60;310
+msgid "al"
+msgstr "Albania"
+
+#: Config/countries.php:61;311
+msgid "dz"
+msgstr "Algeria"
+
+#: Config/countries.php:62;312
+msgid "as"
+msgstr "American Samoa"
+
+#: Config/countries.php:63
+msgid "vi"
+msgstr "Virgin Islands, U.s."
+
+#: Config/countries.php:64
+msgid "ad"
+msgstr "Andorra"
+
+#: Config/countries.php:65
+msgid "ao"
+msgstr "Angola"
+
+#: Config/countries.php:66
+msgid "ai"
+msgstr "Anguilla"
+
+#: Config/countries.php:67
+msgid "aq"
+msgstr "Antarctica"
+
+#: Config/countries.php:68
+msgid "ag"
+msgstr "Antigua And Barbuda"
+
+#: Config/countries.php:69
+msgid "gq"
+msgstr "Equatorial Guinea"
+
+#: Config/countries.php:70
+msgid "ar"
+msgstr "Argentina"
+
+#: Config/countries.php:71
+msgid "am"
+msgstr "Armenia"
+
+#: Config/countries.php:72
+msgid "aw"
+msgstr "Aruba"
+
+#: Config/countries.php:73
+msgid "ac"
+msgstr "Ascension"
+
+#: Config/countries.php:74
+msgid "az"
+msgstr "Azerbaijan"
+
+#: Config/countries.php:75
+msgid "et"
+msgstr "Ethiopia"
+
+#: Config/countries.php:76
+msgid "au"
+msgstr "Australia"
+
+#: Config/countries.php:77
+msgid "bs"
+msgstr "Bahamas"
+
+#: Config/countries.php:78
+msgid "bh"
+msgstr "Bahrain"
+
+#: Config/countries.php:79
+msgid "bd"
+msgstr "Bangladesh"
+
+#: Config/countries.php:80
+msgid "bb"
+msgstr "Barbados"
+
+#: Config/countries.php:82
+msgid "bz"
+msgstr "Belize"
+
+#: Config/countries.php:83
+msgid "bj"
+msgstr "Benin"
+
+#: Config/countries.php:84
+msgid "bm"
+msgstr "Bermuda"
+
+#: Config/countries.php:85
+msgid "bt"
+msgstr "Bhutan"
+
+#: Config/countries.php:86
+msgid "bo"
+msgstr "Bolivia"
+
+#: Config/countries.php:87
+msgid "ba"
+msgstr "Bosnia And Herzegovina"
+
+#: Config/countries.php:88
+msgid "bw"
+msgstr "Botswana"
+
+#: Config/countries.php:89
+msgid "bv"
+msgstr "Bouvet Island"
+
+#: Config/countries.php:90
+msgid "br"
+msgstr "Brazil"
+
+#: Config/countries.php:91
+msgid "vg"
+msgstr "Virgin Islands, British"
+
+#: Config/countries.php:92
+msgid "io"
+msgstr "British Indian Ocean Territory"
+
+#: Config/countries.php:93
+msgid "bn"
+msgstr "Brunei Darussalam"
+
+#: Config/countries.php:95
+msgid "bf"
+msgstr "Burkina Faso"
+
+#: Config/countries.php:96
+msgid "bi"
+msgstr "Burundi"
+
+#: Config/countries.php:97
+msgid "cl"
+msgstr "Chile"
+
+#: Config/countries.php:98
+msgid "cn"
+msgstr "China"
+
+#: Config/countries.php:99
+msgid "ck"
+msgstr "Cook Islands"
+
+#: Config/countries.php:100
+msgid "cr"
+msgstr "Costa Rica"
+
+#: Config/countries.php:101
+msgid "ci"
+msgstr "CÔte D'ivoire"
+
+#: Config/countries.php:104
+msgid "sh"
+msgstr "Saint Helena"
+
+#: Config/countries.php:105
+msgid "dg"
+msgstr "Diego Garcia"
+
+#: Config/countries.php:106
+msgid "dm"
+msgstr "Dominica"
+
+#: Config/countries.php:107
+msgid "do"
+msgstr "Dominican Republic"
+
+#: Config/countries.php:108
+msgid "dj"
+msgstr "Djibouti"
+
+#: Config/countries.php:109
+msgid "ec"
+msgstr "Ecuador"
+
+#: Config/countries.php:110
+msgid "sv"
+msgstr "El Salvador"
+
+#: Config/countries.php:111
+msgid "er"
+msgstr "Eritrea"
+
+#: Config/countries.php:113
+msgid "eu"
+msgstr "European Union"
+
+#: Config/countries.php:114
+msgid "fk"
+msgstr "Falkland Islands (malvinas)"
+
+#: Config/countries.php:115
+msgid "fo"
+msgstr "Faroe Islands"
+
+#: Config/countries.php:116
+msgid "fj"
+msgstr "Fiji"
+
+#: Config/countries.php:119
+msgid "gf"
+msgstr "French Guiana"
+
+#: Config/countries.php:120
+msgid "pf"
+msgstr "French Polynesia"
+
+#: Config/countries.php:121
+msgid "tf"
+msgstr "French Southern Territories"
+
+#: Config/countries.php:122
+msgid "ga"
+msgstr "Gabon"
+
+#: Config/countries.php:123
+msgid "gm"
+msgstr "Gambia"
+
+#: Config/countries.php:124
+msgid "ge"
+msgstr "Georgia"
+
+#: Config/countries.php:125
+msgid "gh"
+msgstr "Ghana"
+
+#: Config/countries.php:126
+msgid "gi"
+msgstr "Gibraltar"
+
+#: Config/countries.php:127
+msgid "gd"
+msgstr "Grenada"
+
+#: Config/countries.php:128
+msgid "gr"
+msgstr "Greece"
+
+#: Config/countries.php:129
+msgid "gl"
+msgstr "Greenland"
+
+#: Config/countries.php:130
+msgid "gp"
+msgstr "Guadeloupe"
+
+#: Config/countries.php:131
+msgid "gu"
+msgstr "Guam"
+
+#: Config/countries.php:132
+msgid "gt"
+msgstr "Guatemala"
+
+#: Config/countries.php:133
+msgid "gg"
+msgstr "Guernsey"
+
+#: Config/countries.php:134
+msgid "gn"
+msgstr "Guinea"
+
+#: Config/countries.php:135
+msgid "gw"
+msgstr "Guinea-bissau"
+
+#: Config/countries.php:136
+msgid "gy"
+msgstr "Guyana"
+
+#: Config/countries.php:137
+msgid "ht"
+msgstr "Haiti"
+
+#: Config/countries.php:138
+msgid "hm"
+msgstr "Heard Island And Mcdonald Islands"
+
+#: Config/countries.php:139
+msgid "hn"
+msgstr "Honduras"
+
+#: Config/countries.php:140
+msgid "hk"
+msgstr "Hong Kong"
+
+#: Config/countries.php:141
+msgid "in"
+msgstr "India"
+
+#: Config/countries.php:142
+msgid "id"
+msgstr "Indonesia"
+
+#: Config/countries.php:143
+msgid "im"
+msgstr "Isle Of Man"
+
+#: Config/countries.php:144
+msgid "iq"
+msgstr "Iraq"
+
+#: Config/countries.php:145
+msgid "ir"
+msgstr "Iran, Islamic Republic Of"
+
+#: Config/countries.php:147
+msgid "is"
+msgstr "Iceland"
+
+#: Config/countries.php:148
+msgid "il"
+msgstr "Israel"
+
+#: Config/countries.php:150
+msgid "jm"
+msgstr "Jamaica"
+
+#: Config/countries.php:151
+msgid "jp"
+msgstr "Japan"
+
+#: Config/countries.php:152
+msgid "ye"
+msgstr "Yemen"
+
+#: Config/countries.php:153
+msgid "je"
+msgstr "Jersey"
+
+#: Config/countries.php:154
+msgid "jo"
+msgstr "Jordan"
+
+#: Config/countries.php:155
+msgid "ky"
+msgstr "Cayman Islands"
+
+#: Config/countries.php:156
+msgid "kh"
+msgstr "Cambodia"
+
+#: Config/countries.php:157
+msgid "cm"
+msgstr "Cameroon"
+
+#: Config/countries.php:158
+msgid "ca"
+msgstr "Canada"
+
+#: Config/countries.php:159
+msgid "ic"
+msgstr "Canary Islands"
+
+#: Config/countries.php:160
+msgid "cv"
+msgstr "Cape Verde"
+
+#: Config/countries.php:161
+msgid "kz"
+msgstr "Kazakhstan"
+
+#: Config/countries.php:162
+msgid "qa"
+msgstr "Qatar"
+
+#: Config/countries.php:163
+msgid "ke"
+msgstr "Kenya"
+
+#: Config/countries.php:164
+msgid "kg"
+msgstr "Kyrgyzstan"
+
+#: Config/countries.php:165
+msgid "ki"
+msgstr "Kiribati"
+
+#: Config/countries.php:166
+msgid "cc"
+msgstr "Cocos (keeling) Islands"
+
+#: Config/countries.php:167
+msgid "co"
+msgstr "Colombia"
+
+#: Config/countries.php:168
+msgid "km"
+msgstr "Comoros"
+
+#: Config/countries.php:169
+msgid "cd"
+msgstr "Congo, The Democratic Republic Of The"
+
+#: Config/countries.php:170
+msgid "cg"
+msgstr "Congo"
+
+#: Config/countries.php:171
+msgid "kp"
+msgstr "Korea, Democratic People's Republic Of"
+
+#: Config/countries.php:172
+msgid "kr"
+msgstr "Korea, Republic Of"
+
+#: Config/countries.php:173
+msgid "hr"
+msgstr "Croatia"
+
+#: Config/countries.php:174
+msgid "cu"
+msgstr "Cuba"
+
+#: Config/countries.php:175
+msgid "kw"
+msgstr "Kuwait"
+
+#: Config/countries.php:176
+msgid "la"
+msgstr "Lao People's Democratic Republic"
+
+#: Config/countries.php:177
+msgid "ls"
+msgstr "Lesotho"
+
+#: Config/countries.php:179
+msgid "lb"
+msgstr "Lebanon"
+
+#: Config/countries.php:180
+msgid "lr"
+msgstr "Liberia"
+
+#: Config/countries.php:181
+msgid "ly"
+msgstr "Libyan Arab Jamahiriya"
+
+#: Config/countries.php:182
+msgid "li"
+msgstr "Liechtenstein"
+
+#: Config/countries.php:185
+msgid "mo"
+msgstr "Macao"
+
+#: Config/countries.php:186
+msgid "mg"
+msgstr "Madagascar"
+
+#: Config/countries.php:187
+msgid "mw"
+msgstr "Malawi"
+
+#: Config/countries.php:188
+msgid "my"
+msgstr "Malaysia"
+
+#: Config/countries.php:189
+msgid "mv"
+msgstr "Maldives"
+
+#: Config/countries.php:190
+msgid "ml"
+msgstr "Mali"
+
+#: Config/countries.php:192
+msgid "ma"
+msgstr "Morocco"
+
+#: Config/countries.php:193
+msgid "mh"
+msgstr "Marshall Islands"
+
+#: Config/countries.php:194
+msgid "mq"
+msgstr "Martinique"
+
+#: Config/countries.php:195
+msgid "mr"
+msgstr "Mauritania"
+
+#: Config/countries.php:196
+msgid "mu"
+msgstr "Mauritius"
+
+#: Config/countries.php:197
+msgid "yt"
+msgstr "Mayotte"
+
+#: Config/countries.php:198
+msgid "mk"
+msgstr "Macedonia, The Former Yugoslav Republic Of"
+
+#: Config/countries.php:199
+msgid "mx"
+msgstr "Mexico"
+
+#: Config/countries.php:200
+msgid "fm"
+msgstr "Micronesia, Federated States Of"
+
+#: Config/countries.php:201
+msgid "md"
+msgstr "Moldova"
+
+#: Config/countries.php:202
+msgid "mc"
+msgstr "Monaco"
+
+#: Config/countries.php:203
+msgid "mn"
+msgstr "Mongolia"
+
+#: Config/countries.php:204
+msgid "ms"
+msgstr "Montserrat"
+
+#: Config/countries.php:205
+msgid "mz"
+msgstr "Mozambique"
+
+#: Config/countries.php:206
+msgid "mm"
+msgstr "Myanmar"
+
+#: Config/countries.php:207
+msgid "na"
+msgstr "Namibia"
+
+#: Config/countries.php:208
+msgid "nr"
+msgstr "Nauru"
+
+#: Config/countries.php:209
+msgid "np"
+msgstr "Nepal"
+
+#: Config/countries.php:210
+msgid "nc"
+msgstr "New Caledonia"
+
+#: Config/countries.php:211
+msgid "nz"
+msgstr "New Zealand"
+
+#: Config/countries.php:212
+msgid "nt"
+msgstr "Saudi?Iraqi neutral zone"
+
+#: Config/countries.php:213
+msgid "ni"
+msgstr "Nicaragua"
+
+#: Config/countries.php:215
+msgid "an"
+msgstr "Netherlands Antilles"
+
+#: Config/countries.php:216
+msgid "ne"
+msgstr "Niger"
+
+#: Config/countries.php:217
+msgid "ng"
+msgstr "Nigeria"
+
+#: Config/countries.php:218
+msgid "nu"
+msgstr "Niue"
+
+#: Config/countries.php:219
+msgid "mp"
+msgstr "Northern Mariana Islands"
+
+#: Config/countries.php:220
+msgid "nf"
+msgstr "Norfolk Island"
+
+#: Config/countries.php:221
+msgid "no"
+msgstr "Norway"
+
+#: Config/countries.php:222
+msgid "om"
+msgstr "Oman"
+
+#: Config/countries.php:224
+msgid "pk"
+msgstr "Pakistan"
+
+#: Config/countries.php:225
+msgid "ps"
+msgstr "Palestinian Territory, Occupied"
+
+#: Config/countries.php:226
+msgid "pw"
+msgstr "Palau"
+
+#: Config/countries.php:227
+msgid "pa"
+msgstr "Panama"
+
+#: Config/countries.php:228
+msgid "pg"
+msgstr "Papua New Guinea"
+
+#: Config/countries.php:229
+msgid "py"
+msgstr "Paraguay"
+
+#: Config/countries.php:230
+msgid "pe"
+msgstr "Peru"
+
+#: Config/countries.php:231
+msgid "ph"
+msgstr "Philippines"
+
+#: Config/countries.php:232
+msgid "pn"
+msgstr "Pitcairn"
+
+#: Config/countries.php:235
+msgid "pr"
+msgstr "Puerto Rico"
+
+#: Config/countries.php:236
+msgid "re"
+msgstr "RÉunion"
+
+#: Config/countries.php:237
+msgid "rw"
+msgstr "Rwanda"
+
+#: Config/countries.php:239
+msgid "ru"
+msgstr "Russian Federation"
+
+#: Config/countries.php:240
+msgid "sb"
+msgstr "Solomon Islands"
+
+#: Config/countries.php:241
+msgid "zm"
+msgstr "Zambia"
+
+#: Config/countries.php:242
+msgid "ws"
+msgstr "Samoa"
+
+#: Config/countries.php:243
+msgid "sm"
+msgstr "San Marino"
+
+#: Config/countries.php:244
+msgid "st"
+msgstr "Sao Tome And Principe"
+
+#: Config/countries.php:245
+msgid "sa"
+msgstr "Saudi Arabia"
+
+#: Config/countries.php:247
+msgid "ch"
+msgstr "Switzerland"
+
+#: Config/countries.php:248
+msgid "sn"
+msgstr "Senegal"
+
+#: Config/countries.php:249
+msgid "cs"
+msgstr "Serbien und Montenegro"
+
+#: Config/countries.php:250
+msgid "sc"
+msgstr "Seychelles"
+
+#: Config/countries.php:251
+msgid "sl"
+msgstr "Sierra Leone"
+
+#: Config/countries.php:252
+msgid "zw"
+msgstr "Zimbabwe"
+
+#: Config/countries.php:253
+msgid "sg"
+msgstr "Singapore"
+
+#: Config/countries.php:256
+msgid "so"
+msgstr "Somalia"
+
+#: Config/countries.php:258
+msgid "lk"
+msgstr "Sri Lanka"
+
+#: Config/countries.php:259
+msgid "kn"
+msgstr "Saint Kitts And Nevis"
+
+#: Config/countries.php:260
+msgid "lc"
+msgstr "Saint Lucia"
+
+#: Config/countries.php:261
+msgid "pm"
+msgstr "Saint Pierre And Miquelon"
+
+#: Config/countries.php:262
+msgid "vc"
+msgstr "Saint Vincent And The Grenadines"
+
+#: Config/countries.php:263
+msgid "za"
+msgstr "South Africa"
+
+#: Config/countries.php:264
+msgid "sd"
+msgstr "Sudan"
+
+#: Config/countries.php:265
+msgid "gs"
+msgstr "South Georgia And The South Sandwich Islands"
+
+#: Config/countries.php:266
+msgid "sr"
+msgstr "Suriname"
+
+#: Config/countries.php:267
+msgid "sj"
+msgstr "Svalbard And Jan Mayen"
+
+#: Config/countries.php:268
+msgid "sz"
+msgstr "Swaziland"
+
+#: Config/countries.php:269
+msgid "sy"
+msgstr "Syrian Arab Republic"
+
+#: Config/countries.php:270
+msgid "tj"
+msgstr "Tajikistan"
+
+#: Config/countries.php:271
+msgid "tw"
+msgstr "Taiwan"
+
+#: Config/countries.php:272
+msgid "tz"
+msgstr "Tanzania, United Republic Of"
+
+#: Config/countries.php:273
+msgid "th"
+msgstr "Thailand"
+
+#: Config/countries.php:274
+msgid "tl"
+msgstr "Timor-leste"
+
+#: Config/countries.php:275
+msgid "tg"
+msgstr "Togo"
+
+#: Config/countries.php:276
+msgid "tk"
+msgstr "Tokelau"
+
+#: Config/countries.php:277
+msgid "to"
+msgstr "Tonga"
+
+#: Config/countries.php:278
+msgid "tt"
+msgstr "Trinidad And Tobago"
+
+#: Config/countries.php:279
+msgid "ta"
+msgstr "Tristan da Cunha"
+
+#: Config/countries.php:280
+msgid "td"
+msgstr "Chad"
+
+#: Config/countries.php:282
+msgid "tn"
+msgstr "Tunisia"
+
+#: Config/countries.php:283
+msgid "tr"
+msgstr "Turkey"
+
+#: Config/countries.php:284
+msgid "tm"
+msgstr "Turkmenistan"
+
+#: Config/countries.php:285
+msgid "tc"
+msgstr "Turks And Caicos Islands"
+
+#: Config/countries.php:286
+msgid "tv"
+msgstr "Tuvalu"
+
+#: Config/countries.php:287
+msgid "ug"
+msgstr "Uganda"
+
+#: Config/countries.php:288
+msgid "ua"
+msgstr "Ukraine"
+
+#: Config/countries.php:289
+msgid "su"
+msgstr "Soviet Union"
+
+#: Config/countries.php:290
+msgid "uy"
+msgstr "Uruguay"
+
+#: Config/countries.php:291
+msgid "uz"
+msgstr "Uzbekistan"
+
+#: Config/countries.php:292
+msgid "vu"
+msgstr "Vanuatu"
+
+#: Config/countries.php:293
+msgid "va"
+msgstr "Holy See (vatican City State)"
+
+#: Config/countries.php:294
+msgid "ve"
+msgstr "Venezuela"
+
+#: Config/countries.php:295
+msgid "ae"
+msgstr "United Arab Emirates"
+
+#: Config/countries.php:296
+msgid "us"
+msgstr "United States"
+
+#: Config/countries.php:297
+msgid "gb"
+msgstr "United Kingdom"
+
+#: Config/countries.php:298
+msgid "vn"
+msgstr "Viet Nam"
+
+#: Config/countries.php:299
+msgid "wf"
+msgstr "Wallis And Futuna"
+
+#: Config/countries.php:300
+msgid "cx"
+msgstr "Christmas Island"
+
+#: Config/countries.php:301
+msgid "by"
+msgstr "Belarus"
+
+#: Config/countries.php:302
+msgid "eh"
+msgstr "Western Sahara"
+
+#: Config/countries.php:303
+msgid "cf"
+msgstr "Central African Republic"
+
+#: Config/countries.php:306
+msgid "me"
+msgstr "Montenegro"
