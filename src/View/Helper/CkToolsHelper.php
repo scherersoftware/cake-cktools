@@ -2,6 +2,8 @@
 namespace CkTools\View\Helper;
 
 use Cake\Core\Configure;
+use Cake\Utility\Hash;
+use Cake\Utility\Text;
 use Cake\View\Helper;
 
 class CkToolsHelper extends Helper
@@ -34,5 +36,22 @@ class CkToolsHelper extends Helper
         }
         $countries = Configure::read('countries');
         return isset($countries[$country]) ? $countries[$country] : $country;
+    }
+
+    /**
+     * Render a datepicker input to be processed by DatePicker.js
+     *
+     * @param string $field Field Name
+     * @param array $options Options
+     * @return string
+     */
+    public function datepickerInput($field, array $options = [])
+    {
+        $options = Hash::merge([
+            'type' => 'date',
+            'locale' => 'foo'
+        ], $options);
+        
+        return $this->Form->input($field, $options);
     }
 }
