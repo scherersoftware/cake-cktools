@@ -7,7 +7,8 @@
     	"installer-name": "CkTools"
 	},
 	"require": {
-		"cakephp/plugin-installer": "*"
+		"cakephp/plugin-installer": "*",
+        "facebook/php-sdk-v4": "4.1.*@dev"
 	},
 	"require-dev": {
 		"cakephp/cakephp": "3.0.x-dev"
