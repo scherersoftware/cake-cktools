@@ -25,7 +25,7 @@
 </table>
 
 <p><?= $this->Paginator->counter() ?></p>
-<?= $this->Bootstrap->pagination() ?>
+<?= $this->Paginator->numbers() ?>
 
 <div class="actions">
 	<h3><?= __('lists.actions') ?></h3>
