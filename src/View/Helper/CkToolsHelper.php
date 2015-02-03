@@ -48,10 +48,9 @@ class CkToolsHelper extends Helper
     public function datepickerInput($field, array $options = [])
     {
         $options = Hash::merge([
-            'type' => 'date',
-            'locale' => 'foo'
+            'type' => 'date'
         ], $options);
-        
+
         return $this->Form->input($field, $options);
     }
 }
