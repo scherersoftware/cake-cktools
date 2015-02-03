@@ -14,7 +14,7 @@ use Facebook\GraphUser;
 /**
  * Facebook component
  */
-class FacebookComponent extends Component
+class FacebookAuthComponent extends Component
 {
     /**
      * Default configuration.
