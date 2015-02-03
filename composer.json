@@ -8,7 +8,7 @@
 	},
 	"require": {
 		"cakephp/plugin-installer": "*",
-        "facebook/php-sdk-v4": "4.1.*@dev"
+        "facebook/php-sdk-v4": "4.0.*"
 	},
 	"require-dev": {
 		"cakephp/cakephp": "3.0.x-dev"
@@ -17,5 +17,7 @@
 		"psr-4": {
 		"CkTools\\": "src"
 		}
-	}
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
