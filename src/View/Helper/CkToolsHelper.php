@@ -13,12 +13,22 @@ class CkToolsHelper extends Helper
     /**
      * Returns a map of countries with their translations
      *
+     * @param array $countryCodes If an array of country codes is given,
+     *                            a map of just these will be returned
      * @return array
      */
-    public function countries()
+    public function countries(array $countryCodes = null)
     {
         if (!Configure::read('countries')) {
             Configure::load('CkTools.countries');
+        }
+        if ($countryCodes) {
+            $countries = Configure::read('countries');
+            $subset = [];
+            foreach ($countryCodes as $countryCode) {
+                $subset[$countryCode] = isset($countries[$countryCode]) ? $countries[$countryCode] : $countryCode;
+            }
+            return $subset;
         }
         return Configure::read('countries');
     }
