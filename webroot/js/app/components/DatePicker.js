@@ -27,11 +27,17 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             // Update the selects to the correct values after a datepicker change
             $picker.on('dp.change', function(e) {
                 var $container = $(e.currentTarget).parents('.form-group');
-                this._updateSelects($container, e.date);
+                this._updateSelects($container, e.date, $(e.currentTarget));
             }.bind(this));
         }.bind(this));
     },
-    _updateSelects: function($selectContainer, date) {
+    _updateSelects: function($selectContainer, date, input) {
+		if (input.find('input').val().length == 0) {
+			$selectContainer.find('select.form-control option[selected="selected"]').each(function(i, el) {
+				$(el).removeAttr("selected");
+			 });
+			 return null;
+		}
         $selectContainer.find('select.form-control').each(function(i, el) {
             var $select = $(el);
             if($select.attr('name').indexOf('[year]') > -1) {
