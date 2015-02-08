@@ -1,10 +1,9 @@
 App.Components.DatePickerComponent = Frontend.Component.extend({
     setup: function($elements) {
-
         $elements.each(function(i, element) {
             var $container = $(element);
-            var $selectContainer = $container.find('select.form-control:first').parent();
-            $container.find('select.form-control').hide();
+            var $selectContainer = $container.find('select:first').parent();
+            $container.find('select').hide();
 
             var pickerMarkup = '<div class="input-group date"><input type="text" class="form-control"/><span class="input-group-addon"><i class="fa fa-calendar-o"></i></span></div>';
             $selectContainer.append(pickerMarkup);
@@ -32,13 +31,13 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
         }.bind(this));
     },
     _updateSelects: function($selectContainer, date, input) {
-		if (input.find('input').val().length == 0) {
-			$selectContainer.find('select.form-control option[selected="selected"]').each(function(i, el) {
-				$(el).removeAttr("selected");
-			 });
-			 return null;
-		}
-        $selectContainer.find('select.form-control').each(function(i, el) {
+        if (input.find('input').val().length == 0) {
+            $selectContainer.find('select option[selected="selected"]').each(function(i, el) {
+                $(el).removeAttr("selected");
+            });
+            return null;
+        }
+        $selectContainer.find('select').each(function(i, el) {
             var $select = $(el);
             if($select.attr('name').indexOf('[year]') > -1) {
                 $select.val(date.year());
@@ -59,7 +58,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
     },
     _getDateFromSelects: function($selectContainer) {
         var date = moment();
-        $selectContainer.find('select.form-control').each(function(i, el) {
+        $selectContainer.find('select').each(function(i, el) {
             var $select = $(el);
             var val = parseInt($select.val(), 10);
             if($select.attr('name').indexOf('[year]') > -1) {
