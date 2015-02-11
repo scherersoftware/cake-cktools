@@ -63,4 +63,49 @@ class CkToolsHelper extends Helper
 
         return $this->Form->input($field, $options);
     }
+
+
+    /**
+     * Creates a mailto link.
+     *
+     * @param string $email Address to send to
+     * @param array $options Aside from the standard HtmlHelper::link() options, the
+     *                       following keys are accepted:
+     *                          - caption - if the display text should differ from the $email parameter
+     *                          - body - will be urlencoded into the link
+     *                          - subject - will be urlencoded into the link
+     * @return string
+     */
+    public function mailtoLink($email, array $options = [])
+    {
+        $options = Hash::merge([
+            'body' => null,
+            'subject' => null,
+            'caption' => null
+        ], $options);
+
+        $body = $options['body'];
+        $subject = $options['subject'];
+        $caption = $options['caption'];
+        unset($options['body'], $options['subject'], $options['caption']);
+
+        $href = 'mailto:' . $email;
+
+        $queryData = [];
+        if ($subject) {
+            $queryData['subject'] = $subject;
+        }
+        if ($body) {
+            $queryData['body'] = $body;
+        }
+
+        if (!empty($queryData)) {
+            $href .= '?' . http_build_query($queryData);
+        }
+
+        if (!$caption) {
+            $caption = $email;
+        }
+        return $this->Html->link($caption, $href, $options);
+    }
 }
