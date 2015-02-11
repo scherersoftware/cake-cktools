@@ -2,6 +2,7 @@
 namespace CkTools\View\Helper;
 
 use Cake\Core\Configure;
+use Cake\Datasource\EntityInterface;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Cake\View\Helper;
@@ -107,5 +108,73 @@ class CkToolsHelper extends Helper
             $caption = $email;
         }
         return $this->Html->link($caption, $href, $options);
+    }
+
+    /**
+     * Renders an edit button
+     *
+     * @param EntityInterface $entity Entity to take the ID from
+     * @param array $options Config options
+     * @return string
+     */
+    public function editButton(EntityInterface $entity, array $options = [])
+    {
+        $options = Hash::merge([
+            'url' => null,
+            'title' => __('lists.edit'),
+            'icon' => 'fa fa-pencil',
+            'escape' => false,
+            'class' => 'btn btn-default btn-xs btn-edit'
+        ], $options);
+
+        $url = $options['url'];
+        $title = $options['title'];
+        $icon = $options['icon'];
+        unset($options['url'], $options['title'], $options['icon']);
+        if (!$url) {
+            $url = [
+                'action' => 'edit',
+                $entity->id
+            ];
+        }
+        if ($icon) {
+            $title = '<i class="' . $icon . '"></i> ' . $title;
+            $options['escape'] = false;
+        }
+        return $this->Html->link($title, $url, $options);
+    }
+
+    /**
+     * Renders a details button
+     *
+     * @param EntityInterface $entity Entity to take the ID from
+     * @param array $options Config options
+     * @return string
+     */
+    public function viewButton(EntityInterface $entity, array $options = [])
+    {
+        $options = Hash::merge([
+            'url' => null,
+            'title' => __('lists.view'),
+            'icon' => 'fa fa-eye',
+            'escape' => false,
+            'class' => 'btn btn-default btn-xs btn-edit'
+        ], $options);
+
+        $url = $options['url'];
+        $title = $options['title'];
+        $icon = $options['icon'];
+        unset($options['url'], $options['title'], $options['icon']);
+        if (!$url) {
+            $url = [
+                'action' => 'view',
+                $entity->id
+            ];
+        }
+        if ($icon) {
+            $title = '<i class="' . $icon . '"></i> ' . $title;
+            $options['escape'] = false;
+        }
+        return $this->Html->link($title, $url, $options);
     }
 }
