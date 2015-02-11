@@ -8,7 +8,7 @@ use Cake\View\Helper;
 
 class CkToolsHelper extends Helper
 {
-    public $helpers = ['Form'];
+    public $helpers = ['Html', 'Form'];
 
     /**
      * Returns a map of countries with their translations
