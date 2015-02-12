@@ -133,6 +133,7 @@ class CkToolsHelper extends Helper
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
             $url = [
+                'controller' => $entity->source(),
                 'action' => 'edit',
                 $entity->id
             ];
@@ -167,6 +168,7 @@ class CkToolsHelper extends Helper
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
             $url = [
+                'controller' => $entity->source(),
                 'action' => 'view',
                 $entity->id
             ];
