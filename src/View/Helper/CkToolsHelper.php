@@ -158,7 +158,6 @@ class CkToolsHelper extends Helper
             'url' => null,
             'title' => __('lists.view'),
             'icon' => 'fa fa-eye',
-            'escape' => false,
             'class' => 'btn btn-default btn-xs btn-edit'
         ], $options);
 
@@ -173,6 +172,33 @@ class CkToolsHelper extends Helper
                 $entity->id
             ];
         }
+        if ($icon) {
+            $title = '<i class="' . $icon . '"></i> ' . $title;
+            $options['escape'] = false;
+        }
+        return $this->Html->link($title, $url, $options);
+    }
+
+    /**
+     * Renders an add button
+     *
+     * @param string $title Link Caption
+     * @param array $options Additional Options
+     * @return string
+     */
+    public function addButton($title, array $options = [])
+    {
+        $options = Hash::merge([
+            'title' => __('lists.add'),
+            'url' => [
+                'action' => 'add'
+            ],
+            'icon' => 'fa fa-plus',
+            'class' => 'btn btn-default btn-xs btn-add'
+        ], $options);
+        $url = $options['url'];
+        $icon = $options['icon'];
+        unset($options['url'], $options['icon']);
         if ($icon) {
             $title = '<i class="' . $icon . '"></i> ' . $title;
             $options['escape'] = false;
