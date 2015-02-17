@@ -186,21 +186,46 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-    public function addButton($title, array $options = [])
+    public function addButton($title = null, array $options = [])
     {
+        if (!$title) {
+            $title = __('lists.add');
+        }
         $options = Hash::merge([
-            'title' => __('lists.add'),
-            'url' => [
-                'action' => 'add'
-            ],
+            'url' => null,
             'icon' => 'fa fa-plus',
             'class' => 'btn btn-default btn-xs btn-add'
         ], $options);
         $url = $options['url'];
+        if (!$url) {
+            $url = ['action' => 'add'];
+        }
         $icon = $options['icon'];
         unset($options['url'], $options['icon']);
         if ($icon) {
             $title = '<i class="' . $icon . '"></i> ' . $title;
+            $options['escape'] = false;
+        }
+        return $this->Html->link($title, $url, $options);
+    }
+
+    /**
+     * Renders a button
+     *
+     * @param string $title Title to display
+     * @param string|array $url URL to point to
+     * @param array $options Additional Options
+     * @return string
+     */
+    public function button($title, $url = null, array $options = [])
+    {
+        $options = Hash::merge([
+            'icon' => 'arrow-right',
+            'class' => 'btn btn-default btn-xs'
+        ], $options);
+        
+        if ($options['icon']) {
+            $title = '<i class="fa fa-' . $options['icon'] . '"></i> ' . $title;
             $options['escape'] = false;
         }
         return $this->Html->link($title, $url, $options);
