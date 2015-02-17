@@ -221,9 +221,11 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'icon' => 'arrow-right',
-            'class' => 'btn btn-default btn-xs'
+            'class' => 'btn btn-default btn-xs',
+            'additionalClasses' => ''
         ], $options);
-        
+
+        $options['class'] .= ' ' . $options['additionalClasses'];
         if ($options['icon']) {
             $title = '<i class="fa fa-' . $options['icon'] . '"></i> ' . $title;
             $options['escape'] = false;
