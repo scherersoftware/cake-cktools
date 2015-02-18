@@ -156,8 +156,6 @@ class ApiComponent extends Component
      */
     public function mapStatusCode($returnCode, $httpStatusCode)
     {
-        // Trigger initialization of $_statusCodeMapping
-        $this->getStatusCodeMapping();
         $this->_statusCodeMapping[$returnCode] = $httpStatusCode;
     }
 
@@ -169,7 +167,6 @@ class ApiComponent extends Component
      */
     public function mapStatusCodes(array $codes)
     {
-        $this->getStatusCodeMapping();
         $this->_statusCodeMapping = Hash::merge($this->getStatusCodeMapping(), $codes);
     }
 
