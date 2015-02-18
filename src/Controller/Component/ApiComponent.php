@@ -27,7 +27,9 @@ class ApiComponent extends Component
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+    protected $_defaultConfig = [
+        'jsonEncodeOptions' => JSON_UNESCAPED_SLASHES
+    ];
 
     /**
      * Holds the Response object
@@ -116,7 +118,7 @@ class ApiComponent extends Component
             'data' => $data
         ];
         $response->type('json');
-        $response->body(json_encode($responseData));
+        $response->body(json_encode($responseData, $this->config('jsonEncodeOptions')));
 
         return $response;
     }
