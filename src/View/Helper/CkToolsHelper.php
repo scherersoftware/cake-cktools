@@ -217,7 +217,7 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-    public function button($title, $url = null, array $options = [])
+    public function button($title, $url = false, array $options = [])
     {
         $options = Hash::merge([
             'icon' => 'arrow-right',
@@ -230,6 +230,7 @@ class CkToolsHelper extends Helper
             $title = '<i class="fa fa-' . $options['icon'] . '"></i> ' . $title;
             $options['escape'] = false;
         }
+        unset($options['additionalClasses'], $options['icon']);
         return $this->Html->link($title, $url, $options);
     }
 }
