@@ -38,6 +38,42 @@ This call will return an `application/json` response with the HTTP Status Code `
 
     {"code": "success","data":{"hello":"world"}}
 
+## Create a PDF using CakePHP Views
+
+CkTools includes a simple wrapper for the MPDF (http://www.mpdf1.com/mpdf/index.php) library.
+
+Usage (in this example in the controller, but you can use this wherever you want):
+
+    use CkTools\Lib\PdfGenerator;
+
+    $pdfGenerator = new PdfGenerator([
+        'pdfSourceFile' => '/path/to/your/template.pdf' // optional
+    ]);
+    $pdfGenerator->render('my_element', [
+        'viewVars' => [
+            'foo' => 'bar'
+        ],
+        'target' => PdfGenerator::TARGET_BROWSER,
+        'cssFile' => '/path/to/your/styles.css',
+        'cssStyles' => 'body { font-size: 20px }'
+    ]);
+
+In `Template/Element/my_element.ctp` you have the passed viewVars and the $mpdf variable for manipulating the PDF.
+
+    <?php $this->start('my_block') ?>
+        <div class="foo"><?= $foo ?></div> 
+    <?php $this->end() ?>
+
+    <?php
+    $mpdf->SetHeader('My Document Title');
+    $mpdf->Bookmark('Start of the document');
+    $mpdf->WriteHTML($this->fetch('my_block'));
+
+    // Add a new page
+    $mpdf->AddPage();
+    $mpdf->WriteHTML("This is page 2");
+    ?>
+
 
 ## License
 
