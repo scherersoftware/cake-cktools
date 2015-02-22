@@ -25,6 +25,9 @@ class PdfGenerator
     // write the PDF to a file
     const TARGET_FILE = 'file';
 
+    // Will return the rendered PDF's binary data
+    const TARGET_BINARY = 'binary';
+
     protected $_defaultConfig = [
         'helpers' => ['Html'],
         'viewParams' => [],
@@ -124,7 +127,7 @@ class PdfGenerator
             'filename' => 'pdf.pdf'
         ], $options);
 
-        // mPDF throws lots of notices, sadly
+        // mPDF throws lots of notices, sadly. There is no way around this.
         $oldErrorReporing = error_reporting();
         error_reporting(0);
 
@@ -143,6 +146,10 @@ class PdfGenerator
                 break;
             case self::TARGET_FILE:
                 $mpdf->Output($options['filename'], 'F');
+                error_reporting($oldErrorReporing);
+                break;
+            case self::TARGET_BINARY:
+                $pdf = $mpdf->Output('', 'S');
                 error_reporting($oldErrorReporing);
                 break;
             default:
