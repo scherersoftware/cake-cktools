@@ -233,4 +233,26 @@ class CkToolsHelper extends Helper
         unset($options['additionalClasses'], $options['icon']);
         return $this->Html->link($title, $url, $options);
     }
+
+    /**
+     * Render a <dl>
+     *
+     * @param array $data Keys and Values
+     * @param array $options Additional Options
+     * @return string
+     */
+    public function definitionList($data, array $options = [])
+    {
+        $options = Hash::merge([
+            'class' => 'dl-horizontal',
+            'escape' => true
+        ], $options);
+        $ret = '<dl class="' . $options['class'] . '">';
+        foreach ($data as $key => $value) {
+            $ret .= '<dt>' . $key . '</dt>';
+            $ret .= '<dd>' . ($options['escape'] ? h($value) : $value) . '</dd>';
+        }
+        $ret .= '</dl>';
+        return $ret;
+    }
 }
