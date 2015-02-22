@@ -1,22 +1,23 @@
 {
-	"name": "codekanzlei/cake-cktools",
-	"description": "codekanzlei Tools & Utilities collection",
-	"license": "MIT",
-	"type": "cakephp-plugin",
-	"extra": {
-    	"installer-name": "CkTools"
-	},
-	"require": {
-		"cakephp/plugin-installer": "*",
-        "facebook/php-sdk-v4": "4.0.*"
-	},
-	"require-dev": {
-		"cakephp/cakephp": "3.0.x-dev"
-	},
-	"autoload": {
-		"psr-4": {
-		"CkTools\\": "src"
-		}
+    "name": "codekanzlei/cake-cktools",
+    "description": "codekanzlei Tools & Utilities collection",
+    "license": "MIT",
+    "type": "cakephp-plugin",
+    "extra": {
+        "installer-name": "CkTools"
+    },
+    "require": {
+        "cakephp/plugin-installer": "*",
+        "facebook/php-sdk-v4": "4.0.*",
+        "mpdf/mpdf": "dev-master"
+    },
+    "require-dev": {
+        "cakephp/cakephp": "3.0.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+        "CkTools\\": "src"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
