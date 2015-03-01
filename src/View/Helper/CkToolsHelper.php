@@ -259,10 +259,10 @@ class CkToolsHelper extends Helper
     /**
      * Renders a nested list
      *
-     * Usage: 
+     * Usage:
      *     $tree = $this->Posts->find('threaded');
      *     echo $this->CkTools->nestedList($tree, '<a href="{{url}}">{{title}}</a>');
-     * 
+     *
      * @param array $data Nested array
      * @param string $content String template for each node
      * @param int $level Depth
