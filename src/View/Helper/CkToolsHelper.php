@@ -255,4 +255,58 @@ class CkToolsHelper extends Helper
         $ret .= '</dl>';
         return $ret;
     }
+
+    /**
+     * Renders a nested list
+     *
+     * Usage: 
+     *     $tree = $this->Posts->find('threaded');
+     *     echo $this->CkTools->nestedList($tree, '<a href="{{url}}">{{title}}</a>');
+     * 
+     * @param array $data Nested array
+     * @param string $content String template for each node
+     * @param int $level Depth
+     * @param array $isActiveCallback Will be passed the record
+     * @return string
+     */
+    public function nestedList($data, $content, $level = 0, $isActiveCallback = null)
+    {
+        $tabs = "\n" . str_repeat("	", ($level * 2));
+        $liTabs = $tabs . "	";
+
+        $output = $tabs . '<ul>';
+        foreach ($data as $n => $record) {
+            $liClasses = array();
+            $liContent = $content;
+            if ($isActiveCallback != null) {
+                $additionalArguments = !empty($isActiveCallback['arguments']) ? $isActiveCallback['arguments'] : array();
+                $isActive = call_user_func_array($isActiveCallback['callback'], array(&$record, $additionalArguments));
+                if ($isActive) {
+                    $liClasses[] = 'active';
+                }
+            }
+        
+            // find the model variables
+            preg_match_all("/\{\{([a-z0-9\._]+)\}\}/i", $liContent, $matches);
+            if (!empty($matches)) {
+                $variables = array_unique($matches[1]);
+                foreach ($variables as $n => $modelField) {
+                    $liContent = str_replace('{{' . $modelField . '}}', $record[$modelField], $liContent);
+                }
+            }
+            if (!empty($record['children'])) {
+                $liClasses[] = 'has-children';
+            }
+
+            $output .= $liTabs . '<li class="' . implode(' ', $liClasses) . '">' . $liContent;
+            if (isset($record['children'][0])) {
+                $output .= $this->nestedList($record['children'], $content, ($level + 1), $isActiveCallback);
+                $output .= $liTabs . '</li>';
+            } else {
+                $output .= '</li>';
+            }
+        }
+        $output .= $tabs . '</ul>';
+        return $output;
+    }
 }
