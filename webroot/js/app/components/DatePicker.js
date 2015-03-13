@@ -14,6 +14,14 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                 format = 'DD.MM.YYYY HH:mm';
             }
 
+            $selectContainer.find('input[type=text]').blur(function (e) {
+                // if only day and month were entered, make sure the current year is used.
+                if (e.currentTarget.value.substring(6) == '0000') {
+                    e.currentTarget.value = e.currentTarget.value.substring(0, 6) + moment().year();
+                    $(e.currentTarget).trigger('change');
+                }
+            });
+
             var $picker = $selectContainer.find('.input-group.date');
             $picker.datetimepicker({
                 format: format,
