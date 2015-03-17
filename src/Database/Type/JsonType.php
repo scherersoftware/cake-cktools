@@ -35,6 +35,20 @@ class JsonType extends Type
     }
 
     /**
+     * Convert request data into an array
+     *
+     * @param mixed $value Request Data
+     * @return mixed
+     */
+    public function marshal($value)
+    {
+        if (is_array($value) || $value === null) {
+            return $value;
+        }
+        return json_decode($value, true);
+    }
+
+    /**
      * from PHP to database conversion
      *
      * @param array|string $value   the value
