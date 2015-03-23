@@ -10,6 +10,7 @@ class ApiReturnCode
     const NOT_AUTHORIZED = 'not_authorized';
     const VALIDATION_FAILED = 'validation_failed';
     const NOT_FOUND = 'not_found';
+    const INTERNAL_ERROR = 'internal_error';
 
     /**
      * Maps return codes to HTTP Status Codes
@@ -25,7 +26,8 @@ class ApiReturnCode
             self::INVALID_PARAMS => 400,
             self::NOT_AUTHORIZED => 403,
             self::NOT_FOUND => 404,
-            self::VALIDATION_FAILED => 400
+            self::VALIDATION_FAILED => 400,
+            self::INTERNAL_ERROR => 500
         ];
     }
 }
