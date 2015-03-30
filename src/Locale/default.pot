@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-30 08:41+0000\n"
+"POT-Creation-Date: 2015-03-30 08:46+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -50,20 +50,6 @@ msgstr ""
 msgid "forms.actions"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:32
-msgid "lists.delete"
-msgstr ""
-
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:32
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:25
-msgid "lists.really_delete"
-msgstr ""
-
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:34
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:26
-msgid "lists.back_to_list"
-msgstr ""
-
 #: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:1
 msgid "system_contents.headline"
 msgstr ""
@@ -78,33 +64,11 @@ msgstr ""
 msgid "system_content.modified"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:9;31
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:22
-msgid "lists.actions"
-msgstr ""
-
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:20
-msgid "lists.edit"
-msgstr ""
-
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:33
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:27
-msgid "system_contents.add"
-msgstr ""
-
 #: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:1
 msgid "system_contents.view"
 msgstr ""
 
 #: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:4
 msgid "system_content.id"
-msgstr ""
-
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:24
-msgid "system_contents.edit"
-msgstr ""
-
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:25
-msgid "system_contents.delete"
 msgstr ""
 
