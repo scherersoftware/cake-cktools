@@ -1,0 +1,28 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-03-30 08:41+0000\n"
+"PO-Revision-Date: 2015-03-30 10:42+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team:  <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.4\n"
+"Language: en_US\n"
+
+#: /Users/cleptric/Sites/curveup_backend/View/Helper/CkToolsHelper.php:124
+msgid "edit"
+msgstr "Edit"
+
+#: /Users/cleptric/Sites/curveup_backend/View/Helper/CkToolsHelper.php:159
+msgid "view"
+msgstr "View"
+
+#: /Users/cleptric/Sites/curveup_backend/View/Helper/CkToolsHelper.php:192
+msgid "add"
+msgstr "Add"

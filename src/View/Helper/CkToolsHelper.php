@@ -121,7 +121,7 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'url' => null,
-            'title' => __('lists.edit'),
+            'title' => __d('cktools', 'edit'),
             'icon' => 'fa fa-pencil',
             'escape' => false,
             'class' => 'btn btn-default btn-xs btn-edit'
@@ -156,7 +156,7 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'url' => null,
-            'title' => __('lists.view'),
+            'title' => __d('cktools', 'view'),
             'icon' => 'fa fa-eye',
             'class' => 'btn btn-default btn-xs btn-edit'
         ], $options);
@@ -189,7 +189,7 @@ class CkToolsHelper extends Helper
     public function addButton($title = null, array $options = [])
     {
         if (!$title) {
-            $title = __('lists.add');
+            $title = __d('cktools', 'add');
         }
         $options = Hash::merge([
             'url' => null,

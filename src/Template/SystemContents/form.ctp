@@ -29,8 +29,8 @@
 	<h3><?= __('forms.actions') ?></h3>
 	<ul>
 		<?php if($this->request->action == 'edit'): ?>
-			<li><?= $this->Form->postLink(__('lists.delete'), ['action' => 'delete', $systemContent->id], ['confirm' => __('lists.really_delete')]) ?></li>
+			<li><?= $this->Form->postLink(__d('lists', delete'), ['action' => 'delete', $systemContent->id], ['confirm' => __d('lists', really_delete')]) ?></li>
 		<?php endif; ?>
-		<li><?= $this->Html->link(__('lists.back_to_list'), ['action' => 'index']) ?></li>
+		<li><?= $this->Html->link(__d('lists', back_to_list'), ['action' => 'index']) ?></li>
 	</ul>
 </div>

@@ -1,0 +1,110 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-03-30 08:41+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /Users/cleptric/Sites/curveup_backend/Controller/SystemContentsController.php:77;102
+msgid "crud.save_successful"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Controller/SystemContentsController.php:80;105
+msgid "crud.validation_failed"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:5
+msgid "system_contents.form"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:8
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:5
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:7
+msgid "system_content.identifier"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:11
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:10
+msgid "system_content.notes"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:15
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:6
+msgid "system_content.title"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:19
+msgid "system_content.content"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:29
+msgid "forms.actions"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:32
+msgid "lists.delete"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:32
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:25
+msgid "lists.really_delete"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:34
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:26
+msgid "lists.back_to_list"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:1
+msgid "system_contents.headline"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:7
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:13
+msgid "system_content.created"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:8
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:16
+msgid "system_content.modified"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:9;31
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:22
+msgid "lists.actions"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:20
+msgid "lists.edit"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:33
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:27
+msgid "system_contents.add"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:1
+msgid "system_contents.view"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:4
+msgid "system_content.id"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:24
+msgid "system_contents.edit"
+msgstr ""
+
+#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:25
+msgid "system_contents.delete"
+msgstr ""
+
