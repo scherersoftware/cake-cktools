@@ -2,6 +2,11 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
     setup: function($elements) {
         $elements.each(function(i, element) {
             var $container = $(element);
+
+            if ($container.data('datePickerApplied')) {
+                return;
+            }
+
             var $selectContainer = $container.find('select:first').parent();
             $container.find('select').hide();
 
@@ -36,6 +41,8 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                 var $container = $(e.currentTarget).parents('.form-group');
                 this._updateSelects($container, e.date, $(e.currentTarget));
             }.bind(this));
+
+            $container.data('datePickerApplied', true);
         }.bind(this));
     },
     _updateSelects: function($selectContainer, date, input) {
