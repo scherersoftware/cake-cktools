@@ -3,6 +3,7 @@ namespace CkTools\View\Helper;
 
 use Cake\Core\Configure;
 use Cake\Datasource\EntityInterface;
+use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Cake\View\Helper;
@@ -208,6 +209,30 @@ class CkToolsHelper extends Helper
         }
         return $this->Html->link($title, $url, $options);
     }
+
+    /**
+     * Renders form buttons
+     *
+     * @return void
+     */
+        public function formButtons(array $options = [])
+        {
+            $url = ['action' => 'index'];
+            $options = Hash::merge([
+                'useReferer' => false
+            ], $options);
+
+            if(!empty($options['useReferer'])) {
+                $url = Router::parse(parse_url(getenv('HTTP_REFERER'), PHP_URL_PATH));
+            }
+            
+            $formButtons = '<div class="submit-group">';
+            $formButtons .= '<hr>';
+            $formButtons .= $this->Form->button(__('forms.save'), ['class' => 'btn-success']);
+            $formButtons .= $this->Html->link(__d('cktools', 'cancel'), $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+            $formButtons .= '</div>';
+            return $formButtons;
+        }
 
     /**
      * Renders a button

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-30 08:46+0000\n"
+"POT-Creation-Date: 2015-04-22 12:05+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,15 +14,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /Users/cleptric/Sites/curveup_backend/View/Helper/CkToolsHelper.php:124
+#: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:125
 msgid "edit"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/View/Helper/CkToolsHelper.php:159
+#: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:160
 msgid "view"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/View/Helper/CkToolsHelper.php:192
+#: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:193
 msgid "add"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:232
+msgid "cancel"
 msgstr ""
 

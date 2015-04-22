@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-03-30 08:46+0000\n"
+"POT-Creation-Date: 2015-04-22 12:05+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,61 +14,65 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /Users/cleptric/Sites/curveup_backend/Controller/SystemContentsController.php:77;102
+#: /Users/cleptric/Sites/bo_backend//Controller/SystemContentsController.php:77;102
 msgid "crud.save_successful"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Controller/SystemContentsController.php:80;105
+#: /Users/cleptric/Sites/bo_backend//Controller/SystemContentsController.php:80;105
 msgid "crud.validation_failed"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:5
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/form.ctp:5
 msgid "system_contents.form"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:8
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:5
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:7
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/form.ctp:8
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/index.ctp:5
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/view.ctp:7
 msgid "system_content.identifier"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:11
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:10
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/form.ctp:11
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/view.ctp:10
 msgid "system_content.notes"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:15
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:6
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/form.ctp:15
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/index.ctp:6
 msgid "system_content.title"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:19
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/form.ctp:19
 msgid "system_content.content"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/form.ctp:29
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/form.ctp:29
 msgid "forms.actions"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:1
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/index.ctp:1
 msgid "system_contents.headline"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:7
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:13
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/index.ctp:7
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/view.ctp:13
 msgid "system_content.created"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/index.ctp:8
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:16
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/index.ctp:8
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/view.ctp:16
 msgid "system_content.modified"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:1
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/view.ctp:1
 msgid "system_contents.view"
 msgstr ""
 
-#: /Users/cleptric/Sites/curveup_backend/Template/SystemContents/view.ctp:4
+#: /Users/cleptric/Sites/bo_backend//Template/SystemContents/view.ctp:4
 msgid "system_content.id"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:231
+msgid "forms.save"
 msgstr ""
 
