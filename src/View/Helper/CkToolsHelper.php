@@ -222,8 +222,13 @@ class CkToolsHelper extends Helper
                 'useReferer' => false
             ], $options);
 
-            if(!empty($options['useReferer'])) {
-                $url = Router::parse(parse_url(getenv('HTTP_REFERER'), PHP_URL_PATH));
+            if(!empty($options['useReferer']) && $this->request->referer() != '/') {
+                $referer = parse_url($this->request->referer());
+                $url = $referer['path'] . '?';
+                if(!empty($referer['query'])) {
+                    $url .= $referer['query'];
+                }
+                $url = Router::parse($url);
             }
             
             $formButtons = '<div class="submit-group">';
