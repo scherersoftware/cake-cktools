@@ -7,8 +7,8 @@ use Cake\Core\Plugin;
     [Plugin::path('CkTools') . 'src/Locale/']
 ));*/
 
-$config = array(
-    'eu_countries' => array(
+$config = [
+    'eu_countries' => [
         'be',
         'bg',
         'cz',
@@ -34,8 +34,8 @@ $config = array(
         'sk',
         'fi',
         'se',
-    ),
-    'countries' => array(
+    ],
+    'countries' => [
         'af' => __d('countries', 'af'),
         'eg' => __d('countries', 'eg'),
         'ax' => __d('countries', 'ax'),
@@ -291,5 +291,5 @@ $config = array(
         'al' => __d('countries', 'al'),
         'dz' => __d('countries', 'dz'),
         'as' => __d('countries', 'as'),
-    )
-);
+    ]
+];
