@@ -46,7 +46,8 @@ class PdfGenerator
         // Path to a PDF file to render the view on
         'pdfSourceFile' => null,
         'cssFile' => null,
-        'cssStyles' => null
+        'cssStyles' => null,
+        'mpdfConfigurationCallback' => null
     ];
 
     /**
@@ -86,6 +87,9 @@ class PdfGenerator
     {
         $c = $this->_config['mpdfSettings'];
         $mpdf = new mPDF($c['mode'], $c['format'], $c['font_size'], $c['font'], $c['margin_left'], $c['margin_right'], $c['margin_top'], $c['margin_bottom'], $c['margin_header'], $c['margin_footer']);
+        if (is_callable($this->_config['mpdfConfigurationCallback'])) {
+            $this->_config['mpdfConfigurationCallback']($mpdf);
+        }
 
         if ($this->_config['pdfSourceFile']) {
             $mpdf->SetImportUse();
