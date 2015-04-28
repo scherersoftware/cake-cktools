@@ -140,7 +140,7 @@ class CkToolsHelper extends Helper
             ];
         }
         if ($icon) {
-            $title = '<i class="' . $icon . '"></i> ' . $title;
+            $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
         return $this->Html->link($title, $url, $options);
@@ -174,7 +174,7 @@ class CkToolsHelper extends Helper
             ];
         }
         if ($icon) {
-            $title = '<i class="' . $icon . '"></i> ' . $title;
+            $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
         return $this->Html->link($title, $url, $options);
@@ -204,7 +204,7 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['icon']);
         if ($icon) {
-            $title = '<i class="' . $icon . '"></i> ' . $title;
+            $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
         return $this->Html->link($title, $url, $options);
