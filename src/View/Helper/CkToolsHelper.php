@@ -222,13 +222,8 @@ class CkToolsHelper extends Helper
                 'useReferer' => false
             ], $options);
 
-            if (!empty($options['useReferer']) && $this->request->referer() != '/') {
-                $referer = parse_url($this->request->referer());
-                $url = $referer['path'] . '?';
-                if (!empty($referer['query'])) {
-                    $url .= $referer['query'];
-                }
-                $url = Router::parse($url);
+            if(!empty($options['useReferer']) && $this->request->referer() != '/') {
+                $url = $this->request->referer();
             }
             
             $formButtons = '<div class="submit-group">';
@@ -250,9 +245,9 @@ class CkToolsHelper extends Helper
         public function button($title, $url = false, array $options = [])
         {
             $options = Hash::merge([
-            'icon' => 'arrow-right',
-            'class' => 'btn btn-default btn-xs',
-            'additionalClasses' => ''
+                'icon' => 'arrow-right',
+                'class' => 'btn btn-default btn-xs',
+                'additionalClasses' => ''
             ], $options);
 
             $options['class'] .= ' ' . $options['additionalClasses'];
@@ -274,8 +269,8 @@ class CkToolsHelper extends Helper
         public function definitionList($data, array $options = [])
         {
             $options = Hash::merge([
-            'class' => 'dl-horizontal',
-            'escape' => true
+                'class' => 'dl-horizontal',
+                'escape' => true
             ], $options);
             $ret = '<dl class="' . $options['class'] . '">';
             foreach ($data as $key => $value) {
