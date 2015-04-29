@@ -222,10 +222,10 @@ class CkToolsHelper extends Helper
                 'useReferer' => false
             ], $options);
 
-            if(!empty($options['useReferer']) && $this->request->referer() != '/') {
+            if (!empty($options['useReferer']) && $this->request->referer() != '/') {
                 $url = $this->request->referer();
             }
-            
+
             $formButtons = '<div class="submit-group">';
             $formButtons .= '<hr>';
             $formButtons .= $this->Form->button(__('forms.save'), ['class' => 'btn-success']);
@@ -310,7 +310,7 @@ class CkToolsHelper extends Helper
                         $liClasses[] = 'active';
                     }
                 }
-        
+
                 // find the model variables
                 preg_match_all("/\{\{([a-z0-9\._]+)\}\}/i", $liContent, $matches);
                 if (!empty($matches)) {
