@@ -228,7 +228,7 @@ class CkToolsHelper extends Helper
 
             $formButtons = '<div class="submit-group">';
             $formButtons .= '<hr>';
-            $formButtons .= $this->Form->button(__('forms.save'), ['class' => 'btn-success']);
+            $formButtons .= $this->Form->button(__d('cktools', 'save'), ['class' => 'btn-success']);
             $formButtons .= $this->Html->link(__d('cktools', 'cancel'), $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
             $formButtons .= '</div>';
             return $formButtons;

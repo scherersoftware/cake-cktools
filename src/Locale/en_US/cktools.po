@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-04-22 11:50+0200\n"
-"PO-Revision-Date: 2015-04-22 12:02+0100\n"
+"POT-Creation-Date: 2015-04-30 10:47+0200\n"
+"PO-Revision-Date: 2015-04-30 10:55+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team:  <EMAIL@ADDRESS>\n"
 "Language: en_US\n"
@@ -26,6 +26,10 @@ msgstr "View"
 #: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:193
 msgid "add"
 msgstr "Add"
+
+#: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:231
+msgid "save"
+msgstr "save"
 
 #: /Users/cleptric/Sites/bo_backend//View/Helper/CkToolsHelper.php:232
 msgid "cancel"
