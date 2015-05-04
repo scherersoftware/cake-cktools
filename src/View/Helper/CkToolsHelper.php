@@ -211,6 +211,41 @@ class CkToolsHelper extends Helper
     }
 
     /**
+     * Renders an delete button
+     *
+     * @param string $title Link Caption
+     * @param array $options Additional Options
+     * @return string
+     */
+    public function deleteButton($title = null, array $options = [])
+    {
+        $options = Hash::merge([
+            'url' => null,
+            'title' => __d('cktools', 'delete'),
+            'icon' => 'fa fa-trash-o',
+            'class' => 'btn btn-danger btn-xs',
+            'confirm' => __d('cktools', 'delete_confirmation')
+        ], $options);
+
+        $url = $options['url'];
+        $title = $options['title'];
+        $icon = $options['icon'];
+        unset($options['url'], $options['title'], $options['icon']);
+        if (!$url) {
+            $url = [
+                'controller' => $entity->source(),
+                'action' => 'delete',
+                $entity->id
+            ];
+        }
+        if ($icon) {
+            $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
+            $options['escape'] = false;
+        }
+        return $this->Html->link($title, $url, $options);
+    }
+
+    /**
      * Renders form buttons
      *
      * @return void
