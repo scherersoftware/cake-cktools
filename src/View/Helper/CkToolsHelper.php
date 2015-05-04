@@ -213,11 +213,11 @@ class CkToolsHelper extends Helper
     /**
      * Renders an delete button
      *
-     * @param string $title Link Caption
-     * @param array $options Additional Options
+     * @param EntityInterface $entity Entity to take the ID from
+     * @param array $options Config options
      * @return string
      */
-    public function deleteButton($title = null, array $options = [])
+    public function deleteButton(EntityInterface $entity, array $options = [])
     {
         $options = Hash::merge([
             'url' => null,
