@@ -6,7 +6,7 @@
 			<th><?= $this->Paginator->sort('title', __('system_content.title')) ?></th>
 			<th><?= $this->Paginator->sort('created', __('system_content.created')) ?></th>
 			<th><?= $this->Paginator->sort('modified', __('system_content.modified')) ?></th>
-			<th class="actions"><?= __d('lists', actions') ?></th>
+			<th class="actions"><?= __d('lists', 'actions') ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,7 +17,7 @@
 			<td><?= h($systemContent->created) ?></td>
 			<td><?= h($systemContent->modified) ?></td>
 			<td class="actions">
-				<?= $this->Html->link(__d('lists', edit'), ['action' => 'edit', $systemContent->id]) ?>
+				<?= $this->Html->link(__d('lists', 'edit'), ['action' => 'edit', $systemContent->id]) ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
@@ -28,7 +28,7 @@
 <?= $this->Paginator->numbers() ?>
 
 <div class="actions">
-	<h3><?= __d('lists', actions') ?></h3>
+	<h3><?= __d('lists', 'actions') ?></h3>
 	<ul>
 		<li><?= $this->Html->link(__('system_contents.add'), ['action' => 'add']) ?></li>
 	</ul>
