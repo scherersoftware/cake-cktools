@@ -254,7 +254,8 @@ class CkToolsHelper extends Helper
         {
             $url = ['action' => 'index'];
             $options = Hash::merge([
-                'useReferer' => false
+                'useReferer' => false,
+                'cancelButton' => true
             ], $options);
 
             if (!empty($options['useReferer']) && $this->request->referer() != '/') {
@@ -264,7 +265,9 @@ class CkToolsHelper extends Helper
             $formButtons = '<div class="submit-group">';
             $formButtons .= '<hr>';
             $formButtons .= $this->Form->button(__d('cktools', 'save'), ['class' => 'btn-success']);
-            $formButtons .= $this->Html->link(__d('cktools', 'cancel'), $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+            if ($options['cancelButton']) {
+                $formButtons .= $this->Html->link(__d('cktools', 'cancel'), $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+            }
             $formButtons .= '</div>';
             return $formButtons;
         }
