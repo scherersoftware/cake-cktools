@@ -32,7 +32,17 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                 format: format,
                 sideBySide: true,
                 locale: this.Controller.getVar('locale') || 'en',
-                date: this._getDateFromSelects($container)
+                date: this._getDateFromSelects($container),
+                icons: {
+                    time: 'fa fa-clock',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-chevron-up',
+                    down: 'fa fa-chevron-down',
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-calendar-o',
+                    clear: 'fa fa-trash'
+                }
             });
 
 
