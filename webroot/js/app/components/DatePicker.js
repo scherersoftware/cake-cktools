@@ -30,6 +30,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             var $picker = $selectContainer.find('.input-group.date');
             $picker.datetimepicker({
                 format: format,
+                focusOnShow: !this.Controller.getVar('isMobile'),
                 sideBySide: true,
                 locale: this.Controller.getVar('locale') || 'en',
                 date: this._getDateFromSelects($container),
