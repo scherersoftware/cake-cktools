@@ -224,7 +224,8 @@ class CkToolsHelper extends Helper
             'title' => __d('cktools', 'delete'),
             'icon' => 'fa fa-trash-o',
             'class' => 'btn btn-danger btn-xs',
-            'confirm' => __d('cktools', 'delete_confirmation')
+            'confirm' => __d('cktools', 'delete_confirmation'),
+            'usePostLink' => false
         ], $options);
 
         $url = $options['url'];
@@ -242,7 +243,11 @@ class CkToolsHelper extends Helper
             $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
-        return $this->Html->link($title, $url, $options);
+        if ($options['usePostLink']) {
+            return $this->Form->postLink($title, $url, $options);
+        } else {
+            return $this->Html->link($title, $url, $options);
+        }
     }
 
     /**
