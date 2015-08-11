@@ -133,8 +133,10 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
+            list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'controller' => $entity->source(),
+                'plugin' => $plugin,
+                'controller' => $controller,
                 'action' => 'edit',
                 $entity->id
             ];
@@ -167,8 +169,10 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
+            list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'controller' => $entity->source(),
+                'plugin' => $plugin,
+                'controller' => $controller,
                 'action' => 'view',
                 $entity->id
             ];
@@ -233,8 +237,10 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
+            list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'controller' => $entity->source(),
+                'plugin' => $plugin,
+                'controller' => $controller,
                 'action' => 'delete',
                 $entity->id
             ];
