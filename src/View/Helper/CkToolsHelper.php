@@ -135,7 +135,7 @@ class CkToolsHelper extends Helper
         if (!$url) {
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $plugin,
+                'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'edit',
                 $entity->id
@@ -171,7 +171,7 @@ class CkToolsHelper extends Helper
         if (!$url) {
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $plugin,
+                'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'view',
                 $entity->id
@@ -239,7 +239,7 @@ class CkToolsHelper extends Helper
         if (!$url) {
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $plugin,
+                'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'delete',
                 $entity->id
