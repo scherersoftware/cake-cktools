@@ -34,12 +34,14 @@ class SortableBehavior extends Behavior
      *
      * @return void
      */
-    public function restoreSorting()
+    public function restoreSorting(array $scope = [])
     {
         $records = $this->_table->find()
             ->select($this->_table->primaryKey(), $this->config('sortField'))
-            ->order($this->config('defaultOrder'))
-            ->all();
+            ->order($this->config('defaultOrder'));
+        if (!empty($scope)) {
+            $records->where($scope);
+        }
 
         foreach ($records as $n => $entity) {
             $sort = ($n + 1);
@@ -83,13 +85,24 @@ class SortableBehavior extends Behavior
                 $this->_table->primaryKey() => $entityId
             ]);
         } else {
+            $decrementScope = $scope;
+            $query = $this->_table->query()->update();
+            $query->set([
+                $this->config('sortField') => $query->newExpr($this->config('sortField') . ' - 1')
+            ]);
+            $decrementScope[$this->config('sortField')] = $entitySort;
+            $decrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
+            $query->where($decrementScope);
+            $query->execute();
+
+            $incrementScope = $scope;
             $query = $this->_table->query()->update();
             $query->set([
                 $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
             ]);
-            $scope[$this->config('sortField') . ' >='] = $entitySort;
-            $scope[$this->_table->primaryKey() . ' !='] = $entityId;
-            $query->where($scope);
+            $incrementScope[$this->config('sortField') . ' >='] = $entitySort;
+            $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
+            $query->where($incrementScope);
             $query->execute();
         }
     }

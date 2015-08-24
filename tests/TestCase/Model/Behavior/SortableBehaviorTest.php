@@ -215,6 +215,60 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(4, $records[3]->sorting);
     }
 
+    /**
+     * testIncrementSortingEndOnExistingRecord
+     *
+     * @return void
+     */
+    public function testIncrementSortingEndOnExistingRecord()
+    {
+        $this->__createRecords(3);
+        
+        $this->News->addBehavior('CkTools.Sortable', [
+            'sortField' => 'sorting',
+            'defaultOrder' => ['sorting ASC']
+        ]);
+        
+        $secondRecord = $this->News->get(2);
+        $secondRecord->sorting = 3;
+        $this->News->save($secondRecord);
+        
+        $savedRecord = $this->News->get(2);
+        $this->assertEquals(3, $savedRecord->sorting);
+
+        $this->assertEquals(1, $this->News->get(1)->sorting);
+        $this->assertEquals(2, $this->News->get(3)->sorting);
+    }
+
+
+    /**
+     * testDecrementSortingEndOnExistingRecord
+     *
+     * @return void
+     */
+    public function testDecrementSortingEndOnExistingRecord()
+    {
+        $this->__createRecords(3);
+        
+        $this->News->addBehavior('CkTools.Sortable', [
+            'sortField' => 'sorting',
+            'defaultOrder' => ['sorting ASC']
+        ]);
+        
+        $secondRecord = $this->News->get(2);
+        $secondRecord->sorting = 1;
+        $this->News->save($secondRecord);
+
+        $this->assertEquals(1, $this->News->get(2)->sorting);
+        $this->assertEquals(2, $this->News->get(1)->sorting);
+        $this->assertEquals(3, $this->News->get(3)->sorting);
+    }
+
+    /**
+     * testColumnScoping
+     *
+     * @return void
+     */
     public function testColumnScoping()
     {
         // Both scopes have their own sorting
