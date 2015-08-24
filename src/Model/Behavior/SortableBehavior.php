@@ -13,6 +13,8 @@ use Cake\Utility\Hash;
 class SortableBehavior extends Behavior
 {
 
+    private $__originalSortValue;
+
     /**
      * Default configuration.
      *
@@ -54,6 +56,18 @@ class SortableBehavior extends Behavior
     }
 
     /**
+     * beforeSave Event
+     *
+     * @param Event $event Event
+     * @param Entity $entity Record
+     * @return void
+     */
+    public function beforeSave(Event $event, Entity $entity)
+    {
+        $this->__originalSortValue = $entity->getOriginal('sorting');
+    }
+
+    /**
      * afterSave Event
      *
      * @param Event $event Event
@@ -85,25 +99,37 @@ class SortableBehavior extends Behavior
                 $this->_table->primaryKey() => $entityId
             ]);
         } else {
-            $decrementScope = $scope;
-            $query = $this->_table->query()->update();
-            $query->set([
-                $this->config('sortField') => $query->newExpr($this->config('sortField') . ' - 1')
-            ]);
-            $decrementScope[$this->config('sortField')] = $entitySort;
-            $decrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
-            $query->where($decrementScope);
-            $query->execute();
-
-            $incrementScope = $scope;
-            $query = $this->_table->query()->update();
-            $query->set([
-                $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
-            ]);
-            $incrementScope[$this->config('sortField') . ' >='] = $entitySort;
-            $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
-            $query->where($incrementScope);
-            $query->execute();
+            if ($this->__originalSortValue < $entity->sorting) {
+                $decrementScope = $scope;
+                $query = $this->_table->query()->update();
+                $query->set([
+                    $this->config('sortField') => $query->newExpr($this->config('sortField') . ' - 1')
+                ]);
+                $decrementScope[$this->config('sortField')] = $entitySort;
+                $decrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
+                $query->where($decrementScope);
+                $query->execute();
+            } else if ($this->__originalSortValue > $entity->sorting){
+                $incrementScope = $scope;
+                $query = $this->_table->query()->update();
+                $query->set([
+                    $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
+                ]);
+                $incrementScope[$this->config('sortField')] = $entitySort;
+                $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
+                $query->where($incrementScope);
+                $query->execute();
+            } else if ($this->__originalSortValue == $entity->sorting) {
+                $incrementScope = $scope;
+                $query = $this->_table->query()->update();
+                $query->set([
+                    $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
+                ]);
+                $incrementScope[$this->config('sortField') . ' >='] = $entitySort;
+                $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
+                $query->where($incrementScope);
+                $query->execute();
+            }
         }
     }
 
