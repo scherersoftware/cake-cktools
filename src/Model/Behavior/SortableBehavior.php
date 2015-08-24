@@ -5,6 +5,7 @@ use Cake\Event\Event;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
 use Cake\ORM\Table;
+use Cake\Utility\Hash;
 
 /**
  * Sortable behavior
@@ -59,16 +60,21 @@ class SortableBehavior extends Behavior
      */
     public function afterSave(Event $event, Entity $entity)
     {
+        $fields = array_merge([
+            $this->_table->primaryKey(),
+            $this->config('sortField')
+        ], $this->config('columnScope'));
         $savedEntity = $this->_table->get($entity->get($this->_table->primaryKey()), [
-            'fields' => [$this->_table->primaryKey(), $this->config('sortField')]
+            'fields' => $fields
         ]);
         $scope = $this->config('scope');
+
         foreach ($this->config('columnScope') as $column) {
             $scope[$column] = $savedEntity->get($column);
         }
         $entitySort = $savedEntity->{$this->config('sortField')};
         $entityId = $entity->get($this->_table->primaryKey());
-        
+
         if (empty($entitySort)) {
             $nextSortValue = $this->getNextSortValue($scope);
             $this->_table->updateAll([
@@ -81,10 +87,9 @@ class SortableBehavior extends Behavior
             $query->set([
                 $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
             ]);
-            $query->where([
-                $this->config('sortField') . ' >=' => $entitySort,
-                $this->_table->primaryKey() . ' !=' => $entityId
-            ]);
+            $scope[$this->config('sortField') . ' >='] = $entitySort;
+            $scope[$this->_table->primaryKey() . ' !='] = $entityId;
+            $query->where($scope);
             $query->execute();
         }
     }
@@ -98,8 +103,9 @@ class SortableBehavior extends Behavior
     public function getNextSortValue(array $scope = [])
     {
         $query = $this->_table->query();
-        if (!empty($this->config('scope'))) {
-            $query->where($this->config('scope'));
+        $scope = Hash::merge($this->config('scope'), $scope);
+        if (!empty($scope)) {
+            $query->where($scope);
         }
         $query->select([
             'maxSort' => $query->func()->max($this->config('sortField'))
