@@ -34,7 +34,7 @@ class SortableBehaviorTest extends TestCase
     public function tearDown()
     {
         unset($this->News);
-
+        TableRegistry::remove('CkTools.News');
         parent::tearDown();
     }
 
@@ -271,7 +271,6 @@ class SortableBehaviorTest extends TestCase
      */
     public function testColumnScoping()
     {
-        $this->markTestSkipped('The "Sortable" alias has already been loaded with the following config');
         // Both scopes have their own sorting
         $this->__createRecords(2, 'scope1');
         $this->__createRecords(2, 'scope2');

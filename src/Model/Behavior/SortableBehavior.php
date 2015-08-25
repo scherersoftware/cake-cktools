@@ -13,6 +13,11 @@ use Cake\Utility\Hash;
 class SortableBehavior extends Behavior
 {
 
+    /**
+     * Stores the original value of sortField in beforeSave for later comparisons.
+     *
+     * @var string|int
+     */
     private $__originalSortValue;
 
     /**
@@ -99,7 +104,7 @@ class SortableBehavior extends Behavior
                 $this->_table->primaryKey() => $entityId
             ]);
         } else {
-            if ($this->__originalSortValue < $entity->sorting) {
+            if ($this->__originalSortValue < $entitySort) {
                 $decrementScope = $scope;
                 $query = $this->_table->query()->update();
                 $query->set([
@@ -109,7 +114,7 @@ class SortableBehavior extends Behavior
                 $decrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
                 $query->where($decrementScope);
                 $query->execute();
-            } else if ($this->__originalSortValue > $entity->sorting){
+            } else if ($this->__originalSortValue > $entitySort){
                 $incrementScope = $scope;
                 $query = $this->_table->query()->update();
                 $query->set([
@@ -119,7 +124,7 @@ class SortableBehavior extends Behavior
                 $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
                 $query->where($incrementScope);
                 $query->execute();
-            } else if ($this->__originalSortValue == $entity->sorting) {
+            } else if ($this->__originalSortValue == $entitySort) {
                 $incrementScope = $scope;
                 $query = $this->_table->query()->update();
                 $query->set([
@@ -131,6 +136,7 @@ class SortableBehavior extends Behavior
                 $query->execute();
             }
         }
+        $this->__originalSortValue = null;
     }
 
     /**
