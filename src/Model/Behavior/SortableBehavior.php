@@ -69,7 +69,7 @@ class SortableBehavior extends Behavior
      */
     public function beforeSave(Event $event, Entity $entity)
     {
-        $this->__originalSortValue = $entity->getOriginal('sorting');
+        $this->__originalSortValue = $entity->getOriginal($this->config('sortField'));
     }
 
     /**
@@ -120,7 +120,7 @@ class SortableBehavior extends Behavior
                 $query->set([
                     $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
                 ]);
-                $incrementScope[$this->config('sortField')] = $entitySort;
+                $incrementScope[$this->config('sortField') . ' >='] = $entitySort;
                 $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
                 $query->where($incrementScope);
                 $query->execute();

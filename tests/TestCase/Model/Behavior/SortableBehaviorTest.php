@@ -265,6 +265,30 @@ class SortableBehaviorTest extends TestCase
     }
 
     /**
+     * testDecrementSortingEndOnLastRecord
+     *
+     * @return void
+     */
+    public function testDecrementSortingEndOnLastRecord()
+    {
+        $this->__createRecords(3);
+        
+        $this->News->addBehavior('CkTools.Sortable', [
+            'sortField' => 'sorting',
+            'defaultOrder' => ['sorting ASC']
+        ]);
+        
+        $secondRecord = $this->News->get(3);
+        $secondRecord->sorting = 1;
+        $this->News->save($secondRecord);
+
+        $this->assertEquals(1, $this->News->get(3)->sorting);
+        $this->assertEquals(2, $this->News->get(1)->sorting);
+        $this->assertEquals(3, $this->News->get(2)->sorting);
+    }
+
+
+    /**
      * testColumnScoping
      *
      * @return void
