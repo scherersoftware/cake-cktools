@@ -74,6 +74,38 @@ In `Template/Element/my_element.ctp` you have the passed viewVars and the $mpdf 
     $mpdf->WriteHTML("This is page 2");
     ?>
 
+## TinyMCE and Moxiemanager
+
+### TinyMCE
+
+To use TinyMCE with Moxiemanager, a really good media manager, CkTools provides a CakePHP-friendly integration.
+
+Setup:
+
+- Load the `CkTools.TinyMce` helper in your controller
+- Load the `TinyMce` and `MoxmanPicker` Components in your JS controller
+- In your app configuration, configure Moxiemanager's parameters:
+
+```
+    'CkTools' => [
+        'moxiemanager' => [
+            'general.license' => '<your-license-key>',
+            'filesystem.rootpath' => WWW_ROOT . 'files',
+            'general.language' => 'en'
+        ]
+    ]
+```
+
+- In your app_controller.js or respective PageController, call `this.TinyMce.initComponents()`
+- In your view or layout, call `$this->TinyMce->includeAssets();`
+- Add a "tinymce" class to your textarea
+
+### File Picker
+
+The TinyMce helper provides a wrapper for FormHelper::input() and will generate an input field with a button to choose a file from Moxiemanager. The relative path of the chosen file will be set as the value of the text field.
+
+    $this->TinyMce->picker('field_name', ['label' => 'My File Picker']);
+
 
 ## License
 
