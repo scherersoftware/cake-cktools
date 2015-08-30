@@ -80,6 +80,8 @@ In `Template/Element/my_element.ctp` you have the passed viewVars and the $mpdf 
 
 To use TinyMCE with Moxiemanager, a really good media manager, CkTools provides a CakePHP-friendly integration.
 
+Be aware that you need to purchase a license for Moxiemanager on http://www.moxiemanager.com/getit/ before using it outside your dev environment!
+
 Setup:
 
 - Load the `CkTools.TinyMce` helper in your controller
