@@ -114,7 +114,7 @@ class SortableBehavior extends Behavior
                 $decrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
                 $query->where($decrementScope);
                 $query->execute();
-            } else if ($this->__originalSortValue > $entitySort){
+            } elseif ($this->__originalSortValue > $entitySort) {
                 $incrementScope = $scope;
                 $query = $this->_table->query()->update();
                 $query->set([
@@ -124,7 +124,7 @@ class SortableBehavior extends Behavior
                 $incrementScope[$this->_table->primaryKey() . ' !='] = $entityId;
                 $query->where($incrementScope);
                 $query->execute();
-            } else if ($this->__originalSortValue == $entitySort) {
+            } elseif ($this->__originalSortValue == $entitySort) {
                 $incrementScope = $scope;
                 $query = $this->_table->query()->update();
                 $query->set([
