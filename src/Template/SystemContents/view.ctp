@@ -19,11 +19,11 @@
 </dl>
 
 <div class="actions">
-	<h3><?= __d('lists', actions'); ?></h3>
+	<h3><?= __d('lists', 'actions'); ?></h3>
 	<ul>
 		<li><?= $this->Html->link(__('system_contents.edit'), ['action' => 'edit', $systemContent->id]) ?> </li>
-		<li><?= $this->Form->postLink(__('system_contents.delete'), ['action' => 'delete', $systemContent->id], ['confirm' => __d('lists', really_delete')]) ?></li>
-		<li><?= $this->Html->link(__d('lists', back_to_list'), ['action' => 'index']) ?> </li>
+		<li><?= $this->Form->postLink(__('system_contents.delete'), ['action' => 'delete', $systemContent->id], ['confirm' => __d('lists', 'really_delete')]) ?></li>
+		<li><?= $this->Html->link(__d('lists', 'back_to_list'), ['action' => 'index']) ?> </li>
 		<li><?= $this->Html->link(__('system_contents.add'), ['action' => 'add']) ?> </li>
 	</ul>
 </div>
