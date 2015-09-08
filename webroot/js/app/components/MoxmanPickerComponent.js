@@ -11,9 +11,10 @@ App.Components.MoxmanPickerComponent = Frontend.Component.extend({
     },
     setDefaultConfig: function() {
         this.defaultConfig = {
-            relative_urls: false,
+            relative_urls: true,
             remove_script_host: true,
-            path: '/files/'
+            path: '/files/',
+            document_base_url: '/files/'
         };
     },
     initPickers: function() {
