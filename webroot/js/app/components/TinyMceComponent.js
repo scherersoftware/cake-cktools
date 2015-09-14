@@ -33,7 +33,7 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
             external_plugins: {
                 'moxiemanager': '/ck_tools/js/vendor/moxiemanager/plugin.js'
             },
-            relative_urls: true,
+            relative_urls: false,
             remove_script_host: true,
             document_base_url: '/files/'
         };
