@@ -5,7 +5,7 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
     startup: function() {
     },
     initComponents: function() {
-        if (this._componentsInitialized) {
+        if (this._componentsInitialized || !window.moxman) {
             return;
         }
         moxman.Env.apiPageName = '/../../../../moxiemanager/api';
