@@ -261,27 +261,27 @@ class CkToolsHelper extends Helper
      *
      * @return void
      */
-        public function formButtons(array $options = [])
-        {
-            $url = ['action' => 'index'];
-            $options = Hash::merge([
-                'useReferer' => false,
-                'cancelButton' => true
-            ], $options);
+    public function formButtons(array $options = [])
+    {
+        $url = ['action' => 'index'];
+        $options = Hash::merge([
+            'useReferer' => false,
+            'cancelButton' => true
+        ], $options);
 
-            if (!empty($options['useReferer']) && $this->request->referer() != '/') {
-                $url = $this->request->referer();
-            }
-
-            $formButtons = '<div class="submit-group">';
-            $formButtons .= '<hr>';
-            $formButtons .= $this->Form->button(__d('cktools', 'save'), ['class' => 'btn-success']);
-            if ($options['cancelButton']) {
-                $formButtons .= $this->Html->link(__d('cktools', 'cancel'), $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
-            }
-            $formButtons .= '</div>';
-            return $formButtons;
+        if (!empty($options['useReferer']) && $this->request->referer() != '/') {
+            $url = $this->request->referer();
         }
+
+        $formButtons = '<div class="submit-group">';
+        $formButtons .= '<hr>';
+        $formButtons .= $this->Form->button(__d('cktools', 'save'), ['class' => 'btn-success']);
+        if ($options['cancelButton']) {
+            $formButtons .= $this->Html->link(__d('cktools', 'cancel'), $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+        }
+        $formButtons .= '</div>';
+        return $formButtons;
+    }
 
     /**
      * Renders a button
@@ -291,22 +291,22 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-        public function button($title, $url = false, array $options = [])
-        {
-            $options = Hash::merge([
-                'icon' => 'arrow-right',
-                'class' => 'btn btn-default btn-xs',
-                'additionalClasses' => ''
-            ], $options);
+    public function button($title, $url = false, array $options = [])
+    {
+        $options = Hash::merge([
+            'icon' => 'arrow-right',
+            'class' => 'btn btn-default btn-xs',
+            'additionalClasses' => ''
+        ], $options);
 
-            $options['class'] .= ' ' . $options['additionalClasses'];
-            if ($options['icon']) {
-                $title = '<i class="fa fa-' . $options['icon'] . '"></i> ' . $title;
-                $options['escape'] = false;
-            }
-            unset($options['additionalClasses'], $options['icon']);
-            return $this->Html->link($title, $url, $options);
+        $options['class'] .= ' ' . $options['additionalClasses'];
+        if ($options['icon']) {
+            $title = '<i class="fa fa-' . $options['icon'] . '"></i> ' . $title;
+            $options['escape'] = false;
         }
+        unset($options['additionalClasses'], $options['icon']);
+        return $this->Html->link($title, $url, $options);
+    }
 
     /**
      * Render a <dl>
@@ -315,20 +315,20 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-        public function definitionList($data, array $options = [])
-        {
-            $options = Hash::merge([
-                'class' => 'dl-horizontal',
-                'escape' => true
-            ], $options);
-            $ret = '<dl class="' . $options['class'] . '">';
-            foreach ($data as $key => $value) {
-                $ret .= '<dt>' . $key . '</dt>';
-                $ret .= '<dd>' . ($options['escape'] ? h($value) : $value) . '</dd>';
-            }
-            $ret .= '</dl>';
-            return $ret;
+    public function definitionList($data, array $options = [])
+    {
+        $options = Hash::merge([
+            'class' => 'dl-horizontal',
+            'escape' => true
+        ], $options);
+        $ret = '<dl class="' . $options['class'] . '">';
+        foreach ($data as $key => $value) {
+            $ret .= '<dt>' . $key . '</dt>';
+            $ret .= '<dd>' . ($options['escape'] ? h($value) : $value) . '</dd>';
         }
+        $ret .= '</dl>';
+        return $ret;
+    }
 
     /**
      * Renders a nested list
@@ -343,44 +343,44 @@ class CkToolsHelper extends Helper
      * @param array $isActiveCallback Will be passed the record
      * @return string
      */
-        public function nestedList($data, $content, $level = 0, $isActiveCallback = null)
-        {
-            $tabs = "\n" . str_repeat("	", ($level * 2));
-            $liTabs = $tabs . "	";
+    public function nestedList($data, $content, $level = 0, $isActiveCallback = null)
+    {
+        $tabs = "\n" . str_repeat("	", ($level * 2));
+        $liTabs = $tabs . "	";
 
-            $output = $tabs . '<ul>';
-            foreach ($data as $n => $record) {
-                $liClasses = [];
-                $liContent = $content;
-                if ($isActiveCallback != null) {
-                    $additionalArguments = !empty($isActiveCallback['arguments']) ? $isActiveCallback['arguments'] : [];
-                    $isActive = call_user_func_array($isActiveCallback['callback'], [&$record, $additionalArguments]);
-                    if ($isActive) {
-                        $liClasses[] = 'active';
-                    }
-                }
-
-                // find the model variables
-                preg_match_all("/\{\{([a-z0-9\._]+)\}\}/i", $liContent, $matches);
-                if (!empty($matches)) {
-                    $variables = array_unique($matches[1]);
-                    foreach ($variables as $n => $modelField) {
-                        $liContent = str_replace('{{' . $modelField . '}}', $record[$modelField], $liContent);
-                    }
-                }
-                if (!empty($record['children'])) {
-                    $liClasses[] = 'has-children';
-                }
-
-                $output .= $liTabs . '<li class="' . implode(' ', $liClasses) . '">' . $liContent;
-                if (isset($record['children'][0])) {
-                    $output .= $this->nestedList($record['children'], $content, ($level + 1), $isActiveCallback);
-                    $output .= $liTabs . '</li>';
-                } else {
-                    $output .= '</li>';
+        $output = $tabs . '<ul>';
+        foreach ($data as $n => $record) {
+            $liClasses = [];
+            $liContent = $content;
+            if ($isActiveCallback != null) {
+                $additionalArguments = !empty($isActiveCallback['arguments']) ? $isActiveCallback['arguments'] : [];
+                $isActive = call_user_func_array($isActiveCallback['callback'], [&$record, $additionalArguments]);
+                if ($isActive) {
+                    $liClasses[] = 'active';
                 }
             }
-            $output .= $tabs . '</ul>';
-            return $output;
+
+            // find the model variables
+            preg_match_all("/\{\{([a-z0-9\._]+)\}\}/i", $liContent, $matches);
+            if (!empty($matches)) {
+                $variables = array_unique($matches[1]);
+                foreach ($variables as $n => $modelField) {
+                    $liContent = str_replace('{{' . $modelField . '}}', $record[$modelField], $liContent);
+                }
+            }
+            if (!empty($record['children'])) {
+                $liClasses[] = 'has-children';
+            }
+
+            $output .= $liTabs . '<li class="' . implode(' ', $liClasses) . '">' . $liContent;
+            if (isset($record['children'][0])) {
+                $output .= $this->nestedList($record['children'], $content, ($level + 1), $isActiveCallback);
+                $output .= $liTabs . '</li>';
+            } else {
+                $output .= '</li>';
+            }
         }
+        $output .= $tabs . '</ul>';
+        return $output;
+    }
 }
