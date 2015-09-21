@@ -47,7 +47,7 @@ class TinyMceHelper extends Helper
         $options['class'] .= ' mox-picker';
 
         $options = Hash::merge([
-            'append' => $this->Html->link(__('tinymce.pick_file'), '#', ['class' => 'mox-picker-btn'])
+            'append' => $this->Html->link(__d('tinymce', 'pick_file'), '#', ['class' => 'mox-picker-btn'])
         ], $options);
 
         $picker = $this->Form->input($fieldName, $options);

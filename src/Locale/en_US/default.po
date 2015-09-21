@@ -1,87 +1,84 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-09-21 17:09+0200\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
-"Last-Translator: NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-09-21 17:11+0200\n"
+"PO-Revision-Date: 2015-09-21 17:11+0200\n"
+"Last-Translator: \n"
+"Language-Team: EMAIL@ADDRESS\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: Controller/SystemContentsController.php:77;102
 msgid "crud.save_successful"
-msgstr ""
+msgstr "Data have been saved successfully.\t"
 
 #: Controller/SystemContentsController.php:80;105
 msgid "crud.validation_failed"
-msgstr ""
+msgstr "Validation has failed."
 
 #: Template/SystemContents/form.ctp:5
 msgid "system_contents.form"
-msgstr ""
+msgstr "Form"
 
-#: Template/SystemContents/form.ctp:8
-#: Template/SystemContents/index.ctp:5
+#: Template/SystemContents/form.ctp:8 Template/SystemContents/index.ctp:5
 #: Template/SystemContents/view.ctp:7
 msgid "system_content.identifier"
-msgstr ""
+msgstr "Identifier"
 
-#: Template/SystemContents/form.ctp:11
-#: Template/SystemContents/view.ctp:10
+#: Template/SystemContents/form.ctp:11 Template/SystemContents/view.ctp:10
 msgid "system_content.notes"
-msgstr ""
+msgstr "Notes"
 
-#: Template/SystemContents/form.ctp:15
-#: Template/SystemContents/index.ctp:6
+#: Template/SystemContents/form.ctp:15 Template/SystemContents/index.ctp:6
 msgid "system_content.title"
-msgstr ""
+msgstr "Title"
 
 #: Template/SystemContents/form.ctp:19
 msgid "system_content.content"
-msgstr ""
+msgstr "Content"
 
 #: Template/SystemContents/form.ctp:29
 msgid "forms.actions"
-msgstr ""
+msgstr "Actions"
 
 #: Template/SystemContents/index.ctp:1
 msgid "system_contents.headline"
-msgstr ""
+msgstr "Headline"
 
-#: Template/SystemContents/index.ctp:7
-#: Template/SystemContents/view.ctp:13
+#: Template/SystemContents/index.ctp:7 Template/SystemContents/view.ctp:13
 msgid "system_content.created"
-msgstr ""
+msgstr "created"
 
-#: Template/SystemContents/index.ctp:8
-#: Template/SystemContents/view.ctp:16
+#: Template/SystemContents/index.ctp:8 Template/SystemContents/view.ctp:16
 msgid "system_content.modified"
-msgstr ""
+msgstr "modified"
 
-#: Template/SystemContents/index.ctp:33
-#: Template/SystemContents/view.ctp:27
+#: Template/SystemContents/index.ctp:33 Template/SystemContents/view.ctp:27
 msgid "system_contents.add"
-msgstr ""
+msgstr "add"
 
 #: Template/SystemContents/view.ctp:1
 msgid "system_contents.view"
-msgstr ""
+msgstr "view"
 
 #: Template/SystemContents/view.ctp:4
 msgid "system_content.id"
-msgstr ""
+msgstr "ID"
 
 #: Template/SystemContents/view.ctp:24
 msgid "system_contents.edit"
-msgstr ""
+msgstr "edit"
 
 #: Template/SystemContents/view.ctp:25
 msgid "system_contents.delete"
-msgstr ""
+msgstr "delete"
 
+#~ msgid "CkTools.pick_file"
+#~ msgstr "choose file"
