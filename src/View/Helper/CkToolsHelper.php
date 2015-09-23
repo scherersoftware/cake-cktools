@@ -396,6 +396,6 @@ class CkToolsHelper extends Helper
             'icon' => 'fa fa-arrow-left',
             'class' => 'btn btn-default btn-xs'
         ], $options);
-        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('cktools', 'history_back_button') . '</button>';
+        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('cktools', 'history_back_button') . '</div>';
     }
 }
