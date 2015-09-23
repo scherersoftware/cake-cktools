@@ -1,0 +1,39 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2015-09-23 17:45+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:32
+msgid "delete"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:32
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:25
+msgid "really_delete"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:34
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:26
+msgid "back_to_list"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:9;31
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:22
+msgid "actions"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:20
+msgid "edit"
+msgstr ""
+

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-09-21 17:09+0200\n"
+"POT-Creation-Date: 2015-09-23 17:45+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,74 +14,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Controller/SystemContentsController.php:77;102
+#: /Users/cleptric/Sites/bo_backend/Controller/SystemContentsController.php:77;102
 msgid "crud.save_successful"
 msgstr ""
 
-#: Controller/SystemContentsController.php:80;105
+#: /Users/cleptric/Sites/bo_backend/Controller/SystemContentsController.php:80;105
 msgid "crud.validation_failed"
 msgstr ""
 
-#: Template/SystemContents/form.ctp:5
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:5
 msgid "system_contents.form"
 msgstr ""
 
-#: Template/SystemContents/form.ctp:8
-#: Template/SystemContents/index.ctp:5
-#: Template/SystemContents/view.ctp:7
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:8
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:5
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:7
 msgid "system_content.identifier"
 msgstr ""
 
-#: Template/SystemContents/form.ctp:11
-#: Template/SystemContents/view.ctp:10
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:11
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:10
 msgid "system_content.notes"
 msgstr ""
 
-#: Template/SystemContents/form.ctp:15
-#: Template/SystemContents/index.ctp:6
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:15
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:6
 msgid "system_content.title"
 msgstr ""
 
-#: Template/SystemContents/form.ctp:19
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:19
 msgid "system_content.content"
 msgstr ""
 
-#: Template/SystemContents/form.ctp:29
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/form.ctp:29
 msgid "forms.actions"
 msgstr ""
 
-#: Template/SystemContents/index.ctp:1
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:1
 msgid "system_contents.headline"
 msgstr ""
 
-#: Template/SystemContents/index.ctp:7
-#: Template/SystemContents/view.ctp:13
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:7
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:13
 msgid "system_content.created"
 msgstr ""
 
-#: Template/SystemContents/index.ctp:8
-#: Template/SystemContents/view.ctp:16
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:8
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:16
 msgid "system_content.modified"
 msgstr ""
 
-#: Template/SystemContents/index.ctp:33
-#: Template/SystemContents/view.ctp:27
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/index.ctp:33
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:27
 msgid "system_contents.add"
 msgstr ""
 
-#: Template/SystemContents/view.ctp:1
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:1
 msgid "system_contents.view"
 msgstr ""
 
-#: Template/SystemContents/view.ctp:4
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:4
 msgid "system_content.id"
 msgstr ""
 
-#: Template/SystemContents/view.ctp:24
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:24
 msgid "system_contents.edit"
 msgstr ""
 
-#: Template/SystemContents/view.ctp:25
+#: /Users/cleptric/Sites/bo_backend/Template/SystemContents/view.ctp:25
 msgid "system_contents.delete"
 msgstr ""
 

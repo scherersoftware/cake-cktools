@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-05-04 10:06+0200\n"
+"POT-Creation-Date: 2015-09-23 17:45+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -18,27 +18,31 @@ msgstr ""
 msgid "edit"
 msgstr ""
 
-#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:160
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:162
 msgid "view"
 msgstr ""
 
-#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:193
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:197
 msgid "add"
 msgstr ""
 
-#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:224
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:228
 msgid "delete"
 msgstr ""
 
-#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:227
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:231
 msgid "delete_confirmation"
 msgstr ""
 
-#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:266
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:278
 msgid "save"
 msgstr ""
 
-#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:267
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:280
 msgid "cancel"
+msgstr ""
+
+#: /Users/cleptric/Sites/bo_backend/View/Helper/CkToolsHelper.php:399
+msgid "history_back_button"
 msgstr ""
 

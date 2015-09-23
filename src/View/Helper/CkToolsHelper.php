@@ -383,4 +383,19 @@ class CkToolsHelper extends Helper
         $output .= $tabs . '</ul>';
         return $output;
     }
+
+    /**
+     * Renders a div with an onclick-hanlder, which uses the history API of the Browser
+     *
+     * @return string
+     */
+    public function historyBackButton(array $options = [])
+    {
+        //FIXME: Add detection for IE8 & IE9 and create fallback
+        $options = Hash::merge([
+            'icon' => 'fa fa-arrow-left',
+            'class' => 'btn btn-default btn-xs'
+        ], $options);
+        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('cktools', 'history_back_button') . '</button>';
+    }
 }
