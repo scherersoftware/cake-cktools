@@ -65,6 +65,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
         }
         $selectContainer.find('select').each(function(i, el) {
             var $select = $(el);
+            var previousValue = $select.val();
             if($select.attr('name').indexOf('[year]') > -1) {
                 $select.val(date.year());
             }
@@ -79,6 +80,9 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             }
             if($select.attr('name').indexOf('[minute]') > -1) {
                 $select.val(date.format('mm'));
+            }
+            if (previousValue != $select.val()) {
+                $select.change();
             }
         });
     },
