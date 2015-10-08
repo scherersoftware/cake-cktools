@@ -324,7 +324,7 @@ class CkToolsHelper extends Helper
         $ret = '<dl class="' . $options['class'] . '">';
         foreach ($data as $key => $value) {
             $ret .= '<dt>' . $key . '</dt>';
-            $ret .= '<dd>' . ($options['escape'] ? h($value) : $value) . '</dd>';
+            $ret .= '<dd>' . (empty($value) ? "&nbsp;"  : ($options['escape'] ? h($value) : $value)) . '</dd>';
         }
         $ret .= '</dl>';
         return $ret;
