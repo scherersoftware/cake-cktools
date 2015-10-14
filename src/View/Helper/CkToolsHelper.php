@@ -324,7 +324,7 @@ class CkToolsHelper extends Helper
         $ret = '<dl class="' . $options['class'] . '">';
         foreach ($data as $key => $value) {
             $ret .= '<dt>' . $key . '</dt>';
-            $ret .= '<dd>' . (empty($value) ? "&nbsp;"  : ($options['escape'] ? h($value) : $value)) . '</dd>';
+            $ret .= '<dd>' . (empty($value) ? '&nbsp;' : ($options['escape'] ? h($value) : $value)) . '</dd>';
         }
         $ret .= '</dl>';
         return $ret;
@@ -397,5 +397,58 @@ class CkToolsHelper extends Helper
             'class' => 'btn btn-default btn-xs'
         ], $options);
         return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('cktools', 'history_back_button') . '</div>';
+    }
+
+    /**
+     * Display an array in human-readable format and provide options to toggle
+     * its display
+     *
+     * @param array $data Data to display
+     * @param array $options Options:
+     *                       - expanded: Whether the data should be shown by default
+     *                       - expandLinkText: Link text for toggling the content
+     * @return string
+     */
+    public function displayStructuredData(array $data, array $options = [])
+    {
+        $options = Hash::merge([
+            'expanded' => true,
+            'expandLinkText' => __('utility.toggle_content')
+        ], $options);
+        
+        if (!$options['expanded']) {
+            $id = 'dsd-' . uniqid();
+            $out = $this->Html->link($options['expandLinkText'], 'javascript:', [
+                'type' => 'button',
+                'data-toggle' => 'collapse',
+                'aria-expanded' => 'false',
+                'aria-controls' => $id,
+                'data-target' => '#' . $id
+            ]);
+            $out .= '<div class="collapse" id="' . $id . '">' . $this->arrayToUnorderedList($data) . '</div>';
+        } else {
+            $out = $this->arrayToUnorderedList($data);
+        }
+        return $out;
+    }
+
+    /**
+     * Converts an array to a <ul>, recursively
+     *
+     * @param array $array Data
+     * @return string
+     */
+    public function arrayToUnorderedList(array $array)
+    {
+        $out = '<ul>';
+        foreach ($array as $key => $elem) {
+            if (!is_array($elem)) {
+                $out = $out . "<li><span>{$key}: [{$elem}]</span></li>";
+            } else {
+                $out = $out . "<li><span>{$key}</span>" . $this->arrayToUnorderedList($elem) . '</li>';
+            }
+        }
+        $out = $out . '</ul>';
+        return $out;
     }
 }
