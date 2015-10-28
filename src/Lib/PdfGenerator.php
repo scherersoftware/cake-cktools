@@ -28,6 +28,9 @@ class PdfGenerator
     // Will return the rendered PDF's binary data
     const TARGET_BINARY = 'binary';
 
+    // Will download the file to the browser
+    const TARGET_DOWNLOAD = 'download';
+
     protected $_defaultConfig = [
         'helpers' => ['Html'],
         'viewParams' => [],
@@ -137,12 +140,16 @@ class PdfGenerator
 
         $mpdf = $this->_preparePdf();
         $options['viewVars']['mpdf'] = $mpdf;
-        $this->_getView()->element($viewFile, $options['viewVars']);
+        $mpdf->WriteHTML($this->_getView()->element($viewFile, $options['viewVars']));
 
         switch ($options['target']) {
             case self::TARGET_RETURN:
                 error_reporting($oldErrorReporing);
                 return $mpdf;
+                break;
+            case self::TARGET_DOWNLOAD:
+                $mpdf->Output($options['filename'], 'D');
+                error_reporting($oldErrorReporing);
                 break;
             case self::TARGET_BROWSER:
                 $mpdf->Output($options['filename'], 'I');
@@ -153,7 +160,7 @@ class PdfGenerator
                 error_reporting($oldErrorReporing);
                 break;
             case self::TARGET_BINARY:
-                $pdf = $mpdf->Output('', 'S');
+                return $mpdf->Output('', 'S');
                 error_reporting($oldErrorReporing);
                 break;
             default:
