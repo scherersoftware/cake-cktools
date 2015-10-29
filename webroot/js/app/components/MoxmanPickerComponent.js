@@ -30,7 +30,9 @@ App.Components.MoxmanPickerComponent = Frontend.Component.extend({
         $picker_btn.on('click', function(ev) {
             ev.preventDefault();
             var config = $.extend({}, this.defaultConfig, {
-                fields: $picker_btn.parents('.input-group').find('.mox-picker').attr('id'),
+                oninsert: function(args) {
+                    $picker_btn.parents('.input-group').find('.mox-picker').val(args.focusedFile.path);
+                }
             });
             moxman.browse(config);
         }.bind(this));
