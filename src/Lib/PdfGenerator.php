@@ -84,21 +84,16 @@ class PdfGenerator
     /**
      * Instanciate and configure the MPDF instance
      *
+     * @param string|array $viewFile    One or more view files
+     * @param array        $viewVars    View variables
      * @return MPDF
      */
-    protected function _preparePdf()
+    protected function _preparePdf($viewFile, $viewVars)
     {
         $c = $this->_config['mpdfSettings'];
         $mpdf = new mPDF($c['mode'], $c['format'], $c['font_size'], $c['font'], $c['margin_left'], $c['margin_right'], $c['margin_top'], $c['margin_bottom'], $c['margin_header'], $c['margin_footer']);
         if (is_callable($this->_config['mpdfConfigurationCallback'])) {
             $this->_config['mpdfConfigurationCallback']($mpdf);
-        }
-
-        if ($this->_config['pdfSourceFile']) {
-            $mpdf->SetImportUse();
-            $pagecount = $mpdf->SetSourceFile($this->_config['pdfSourceFile']);
-            $tplId = $mpdf->ImportPage($pagecount);
-            $mpdf->SetPageTemplate($tplId);
         }
 
         $styles = '';
@@ -111,20 +106,46 @@ class PdfGenerator
         if (!empty($styles)) {
             $mpdf->WriteHTML($styles, 1);
         }
+
+        if ($this->_config['pdfSourceFile']) {
+            $mpdf->SetImportUse();
+            $pagecount = $mpdf->SetSourceFile($this->_config['pdfSourceFile']);
+            if ($pagecount > 1) {
+                for ($i = 0; $i <= $pagecount; ++$i) {
+                    // Import next page from the pdfSourceFile
+                    $pageNumber = $i + 1;
+                    if ($pageNumber <= $pagecount) {
+                        $importPage = $mpdf->ImportPage($pageNumber);
+                        $mpdf->UseTemplate($importPage);
+                        if (is_array($viewFile) && isset($viewFile[$i])) {
+                            $mpdf->WriteHTML($this->_getView()->element($viewFile[$i], $viewVars));
+                        }
+                    }
+
+                    if ($i < $pagecount) {
+                        $mpdf->AddPage();
+                    }
+                }
+            } else {
+                $tplId = $mpdf->ImportPage($pagecount);
+                $mpdf->SetPageTemplate($tplId);
+            }
+        }
+
         return $mpdf;
     }
 
     /**
      * Render a view file
      *
-     * @param string $viewFile Path to the View file to render
-     * @param array $options Options
-     *                  - target
-     *                      - TARGET_RETURN: Return the MPDF instance
-     *                      - TARGET_BROWSER: Send the rendered PDF file to the browser
-     *                      - TARGET_FILE: Save the PDF to the given file
-     *                  - viewVars: Variables to pass to the $viewFile
-     *                  - filename: Used with TARGET_BROWSER and TARGET_FILE
+     * @param string|array  $viewFile Path to the View file to render or array with multiple
+     * @param array         $options Options
+     *                      - target
+     *                          - TARGET_RETURN: Return the MPDF instance
+     *                          - TARGET_BROWSER: Send the rendered PDF file to the browser
+     *                          - TARGET_FILE: Save the PDF to the given file
+     *                      - viewVars: Variables to pass to the $viewFile
+     *                      - filename: Used with TARGET_BROWSER and TARGET_FILE
      * @return void
      */
     public function render($viewFile, array $options = [])
@@ -138,9 +159,12 @@ class PdfGenerator
         $oldErrorReporing = error_reporting();
         error_reporting(0);
 
-        $mpdf = $this->_preparePdf();
+        $mpdf = $this->_preparePdf($viewFile, $options['viewVars']);
         $options['viewVars']['mpdf'] = $mpdf;
-        $mpdf->WriteHTML($this->_getView()->element($viewFile, $options['viewVars']));
+
+        if (!is_array($viewFile)) {
+            $mpdf->WriteHTML($this->_getView()->element($viewFile, $options['viewVars']));
+        }
 
         switch ($options['target']) {
             case self::TARGET_RETURN:
