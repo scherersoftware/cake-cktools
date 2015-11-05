@@ -122,7 +122,7 @@ class PdfGenerator
                         }
                     }
 
-                    if ($i < $pagecount) {
+                    if ($pageNumber < $pagecount) {
                         $mpdf->AddPage();
                     }
                 }
