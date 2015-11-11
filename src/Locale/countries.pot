@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-01-22 17:33+0100\n"
+"POT-Creation-Date: 2015-11-11 12:27+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,1003 +14,999 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: Config/countries.php:31;103
-msgid "de"
-msgstr ""
-
-#: Config/countries.php:32;81
-msgid "be"
-msgstr ""
-
-#: Config/countries.php:33;94
-msgid "bg"
-msgstr ""
-
-#: Config/countries.php:34;281
-msgid "cz"
-msgstr ""
-
-#: Config/countries.php:35;102
-msgid "dk"
-msgstr ""
-
-#: Config/countries.php:36;112
-msgid "ee"
-msgstr ""
-
-#: Config/countries.php:37;146
-msgid "ie"
-msgstr ""
-
-#: Config/countries.php:38;257
-msgid "es"
-msgstr ""
-
-#: Config/countries.php:39;118
-msgid "fr"
-msgstr ""
-
-#: Config/countries.php:40;149
-msgid "it"
-msgstr ""
-
-#: Config/countries.php:41;304
-msgid "cy"
-msgstr ""
-
-#: Config/countries.php:42;178
-msgid "lv"
-msgstr ""
-
-#: Config/countries.php:43;183
-msgid "lt"
-msgstr ""
-
-#: Config/countries.php:44;184
-msgid "lu"
-msgstr ""
-
-#: Config/countries.php:45;305
-msgid "hu"
-msgstr ""
-
-#: Config/countries.php:46;191
-msgid "mt"
-msgstr ""
-
-#: Config/countries.php:47;214
-msgid "nl"
-msgstr ""
-
-#: Config/countries.php:48;223
-msgid "at"
-msgstr ""
-
-#: Config/countries.php:49;233
-msgid "pl"
-msgstr ""
-
-#: Config/countries.php:50;234
-msgid "pt"
-msgstr ""
-
-#: Config/countries.php:51;238
-msgid "ro"
-msgstr ""
-
-#: Config/countries.php:52;255
-msgid "si"
-msgstr ""
-
-#: Config/countries.php:53;254
-msgid "sk"
-msgstr ""
-
-#: Config/countries.php:54;117
-msgid "fi"
-msgstr ""
-
-#: Config/countries.php:55;246
-msgid "se"
-msgstr ""
-
-#: Config/countries.php:57;307
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:39;288
 msgid "af"
 msgstr ""
 
-#: Config/countries.php:58;308
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:40;289
 msgid "eg"
 msgstr ""
 
-#: Config/countries.php:59;309
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:41;290
 msgid "ax"
 msgstr ""
 
-#: Config/countries.php:60;310
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:42;291
 msgid "al"
 msgstr ""
 
-#: Config/countries.php:61;311
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:43;292
 msgid "dz"
 msgstr ""
 
-#: Config/countries.php:62;312
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:44;293
 msgid "as"
 msgstr ""
 
-#: Config/countries.php:63
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:45
 msgid "vi"
 msgstr ""
 
-#: Config/countries.php:64
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:46
 msgid "ad"
 msgstr ""
 
-#: Config/countries.php:65
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:47
 msgid "ao"
 msgstr ""
 
-#: Config/countries.php:66
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:48
 msgid "ai"
 msgstr ""
 
-#: Config/countries.php:67
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:49
 msgid "aq"
 msgstr ""
 
-#: Config/countries.php:68
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:50
 msgid "ag"
 msgstr ""
 
-#: Config/countries.php:69
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:51
 msgid "gq"
 msgstr ""
 
-#: Config/countries.php:70
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:52
 msgid "ar"
 msgstr ""
 
-#: Config/countries.php:71
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:53
 msgid "am"
 msgstr ""
 
-#: Config/countries.php:72
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:54
 msgid "aw"
 msgstr ""
 
-#: Config/countries.php:73
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:55
 msgid "ac"
 msgstr ""
 
-#: Config/countries.php:74
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:56
 msgid "az"
 msgstr ""
 
-#: Config/countries.php:75
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:57
 msgid "et"
 msgstr ""
 
-#: Config/countries.php:76
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:58
 msgid "au"
 msgstr ""
 
-#: Config/countries.php:77
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:59
 msgid "bs"
 msgstr ""
 
-#: Config/countries.php:78
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:60
 msgid "bh"
 msgstr ""
 
-#: Config/countries.php:79
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:61
 msgid "bd"
 msgstr ""
 
-#: Config/countries.php:80
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:62
 msgid "bb"
 msgstr ""
 
-#: Config/countries.php:82
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:63
+msgid "be"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:64
 msgid "bz"
 msgstr ""
 
-#: Config/countries.php:83
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:65
 msgid "bj"
 msgstr ""
 
-#: Config/countries.php:84
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:66
 msgid "bm"
 msgstr ""
 
-#: Config/countries.php:85
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:67
 msgid "bt"
 msgstr ""
 
-#: Config/countries.php:86
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:68
 msgid "bo"
 msgstr ""
 
-#: Config/countries.php:87
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:69
 msgid "ba"
 msgstr ""
 
-#: Config/countries.php:88
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:70
 msgid "bw"
 msgstr ""
 
-#: Config/countries.php:89
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:71
 msgid "bv"
 msgstr ""
 
-#: Config/countries.php:90
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:72
 msgid "br"
 msgstr ""
 
-#: Config/countries.php:91
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:73
 msgid "vg"
 msgstr ""
 
-#: Config/countries.php:92
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:74
 msgid "io"
 msgstr ""
 
-#: Config/countries.php:93
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:75
 msgid "bn"
 msgstr ""
 
-#: Config/countries.php:95
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:76
+msgid "bg"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:77
 msgid "bf"
 msgstr ""
 
-#: Config/countries.php:96
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:78
 msgid "bi"
 msgstr ""
 
-#: Config/countries.php:97
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:79
 msgid "cl"
 msgstr ""
 
-#: Config/countries.php:98
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:80
 msgid "cn"
 msgstr ""
 
-#: Config/countries.php:99
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:81
 msgid "ck"
 msgstr ""
 
-#: Config/countries.php:100
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:82
 msgid "cr"
 msgstr ""
 
-#: Config/countries.php:101
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:83
 msgid "ci"
 msgstr ""
 
-#: Config/countries.php:104
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:84
+msgid "dk"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:85
+msgid "de"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:86
 msgid "sh"
 msgstr ""
 
-#: Config/countries.php:105
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:87
 msgid "dg"
 msgstr ""
 
-#: Config/countries.php:106
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:88
 msgid "dm"
 msgstr ""
 
-#: Config/countries.php:107
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:89
 msgid "do"
 msgstr ""
 
-#: Config/countries.php:108
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:90
 msgid "dj"
 msgstr ""
 
-#: Config/countries.php:109
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:91
 msgid "ec"
 msgstr ""
 
-#: Config/countries.php:110
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:92
 msgid "sv"
 msgstr ""
 
-#: Config/countries.php:111
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:93
 msgid "er"
 msgstr ""
 
-#: Config/countries.php:113
-msgid "eu"
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:94
+msgid "ee"
 msgstr ""
 
-#: Config/countries.php:114
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:95
 msgid "fk"
 msgstr ""
 
-#: Config/countries.php:115
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:96
 msgid "fo"
 msgstr ""
 
-#: Config/countries.php:116
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:97
 msgid "fj"
 msgstr ""
 
-#: Config/countries.php:119
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:98
+msgid "fi"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:99
+msgid "fr"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:100
 msgid "gf"
 msgstr ""
 
-#: Config/countries.php:120
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:101
 msgid "pf"
 msgstr ""
 
-#: Config/countries.php:121
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:102
 msgid "tf"
 msgstr ""
 
-#: Config/countries.php:122
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:103
 msgid "ga"
 msgstr ""
 
-#: Config/countries.php:123
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:104
 msgid "gm"
 msgstr ""
 
-#: Config/countries.php:124
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:105
 msgid "ge"
 msgstr ""
 
-#: Config/countries.php:125
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:106
 msgid "gh"
 msgstr ""
 
-#: Config/countries.php:126
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:107
 msgid "gi"
 msgstr ""
 
-#: Config/countries.php:127
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:108
 msgid "gd"
 msgstr ""
 
-#: Config/countries.php:128
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:109
 msgid "gr"
 msgstr ""
 
-#: Config/countries.php:129
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:110
 msgid "gl"
 msgstr ""
 
-#: Config/countries.php:130
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:111
 msgid "gp"
 msgstr ""
 
-#: Config/countries.php:131
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:112
 msgid "gu"
 msgstr ""
 
-#: Config/countries.php:132
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:113
 msgid "gt"
 msgstr ""
 
-#: Config/countries.php:133
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:114
 msgid "gg"
 msgstr ""
 
-#: Config/countries.php:134
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:115
 msgid "gn"
 msgstr ""
 
-#: Config/countries.php:135
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:116
 msgid "gw"
 msgstr ""
 
-#: Config/countries.php:136
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:117
 msgid "gy"
 msgstr ""
 
-#: Config/countries.php:137
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:118
 msgid "ht"
 msgstr ""
 
-#: Config/countries.php:138
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:119
 msgid "hm"
 msgstr ""
 
-#: Config/countries.php:139
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:120
 msgid "hn"
 msgstr ""
 
-#: Config/countries.php:140
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:121
 msgid "hk"
 msgstr ""
 
-#: Config/countries.php:141
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:122
 msgid "in"
 msgstr ""
 
-#: Config/countries.php:142
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:123
 msgid "id"
 msgstr ""
 
-#: Config/countries.php:143
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:124
 msgid "im"
 msgstr ""
 
-#: Config/countries.php:144
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:125
 msgid "iq"
 msgstr ""
 
-#: Config/countries.php:145
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:126
 msgid "ir"
 msgstr ""
 
-#: Config/countries.php:147
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:127
+msgid "ie"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:128
 msgid "is"
 msgstr ""
 
-#: Config/countries.php:148
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:129
 msgid "il"
 msgstr ""
 
-#: Config/countries.php:150
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:130
+msgid "it"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:131
 msgid "jm"
 msgstr ""
 
-#: Config/countries.php:151
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:132
 msgid "jp"
 msgstr ""
 
-#: Config/countries.php:152
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:133
 msgid "ye"
 msgstr ""
 
-#: Config/countries.php:153
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:134
 msgid "je"
 msgstr ""
 
-#: Config/countries.php:154
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:135
 msgid "jo"
 msgstr ""
 
-#: Config/countries.php:155
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:136
 msgid "ky"
 msgstr ""
 
-#: Config/countries.php:156
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:137
 msgid "kh"
 msgstr ""
 
-#: Config/countries.php:157
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:138
 msgid "cm"
 msgstr ""
 
-#: Config/countries.php:158
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:139
 msgid "ca"
 msgstr ""
 
-#: Config/countries.php:159
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:140
 msgid "ic"
 msgstr ""
 
-#: Config/countries.php:160
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:141
 msgid "cv"
 msgstr ""
 
-#: Config/countries.php:161
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:142
 msgid "kz"
 msgstr ""
 
-#: Config/countries.php:162
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:143
 msgid "qa"
 msgstr ""
 
-#: Config/countries.php:163
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:144
 msgid "ke"
 msgstr ""
 
-#: Config/countries.php:164
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:145
 msgid "kg"
 msgstr ""
 
-#: Config/countries.php:165
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:146
 msgid "ki"
 msgstr ""
 
-#: Config/countries.php:166
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:147
 msgid "cc"
 msgstr ""
 
-#: Config/countries.php:167
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:148
 msgid "co"
 msgstr ""
 
-#: Config/countries.php:168
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:149
 msgid "km"
 msgstr ""
 
-#: Config/countries.php:169
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:150
 msgid "cd"
 msgstr ""
 
-#: Config/countries.php:170
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:151
 msgid "cg"
 msgstr ""
 
-#: Config/countries.php:171
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:152
 msgid "kp"
 msgstr ""
 
-#: Config/countries.php:172
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:153
 msgid "kr"
 msgstr ""
 
-#: Config/countries.php:173
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:154
 msgid "hr"
 msgstr ""
 
-#: Config/countries.php:174
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:155
 msgid "cu"
 msgstr ""
 
-#: Config/countries.php:175
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:156
 msgid "kw"
 msgstr ""
 
-#: Config/countries.php:176
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:157
 msgid "la"
 msgstr ""
 
-#: Config/countries.php:177
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:158
 msgid "ls"
 msgstr ""
 
-#: Config/countries.php:179
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:159
+msgid "lv"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:160
 msgid "lb"
 msgstr ""
 
-#: Config/countries.php:180
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:161
 msgid "lr"
 msgstr ""
 
-#: Config/countries.php:181
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:162
 msgid "ly"
 msgstr ""
 
-#: Config/countries.php:182
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:163
 msgid "li"
 msgstr ""
 
-#: Config/countries.php:185
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:164
+msgid "lt"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:165
+msgid "lu"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:166
 msgid "mo"
 msgstr ""
 
-#: Config/countries.php:186
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:167
 msgid "mg"
 msgstr ""
 
-#: Config/countries.php:187
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:168
 msgid "mw"
 msgstr ""
 
-#: Config/countries.php:188
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:169
 msgid "my"
 msgstr ""
 
-#: Config/countries.php:189
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:170
 msgid "mv"
 msgstr ""
 
-#: Config/countries.php:190
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:171
 msgid "ml"
 msgstr ""
 
-#: Config/countries.php:192
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:172
+msgid "mt"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:173
 msgid "ma"
 msgstr ""
 
-#: Config/countries.php:193
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:174
 msgid "mh"
 msgstr ""
 
-#: Config/countries.php:194
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:175
 msgid "mq"
 msgstr ""
 
-#: Config/countries.php:195
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:176
 msgid "mr"
 msgstr ""
 
-#: Config/countries.php:196
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:177
 msgid "mu"
 msgstr ""
 
-#: Config/countries.php:197
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:178
 msgid "yt"
 msgstr ""
 
-#: Config/countries.php:198
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:179
 msgid "mk"
 msgstr ""
 
-#: Config/countries.php:199
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:180
 msgid "mx"
 msgstr ""
 
-#: Config/countries.php:200
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:181
 msgid "fm"
 msgstr ""
 
-#: Config/countries.php:201
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:182
 msgid "md"
 msgstr ""
 
-#: Config/countries.php:202
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:183
 msgid "mc"
 msgstr ""
 
-#: Config/countries.php:203
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:184
 msgid "mn"
 msgstr ""
 
-#: Config/countries.php:204
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:185
 msgid "ms"
 msgstr ""
 
-#: Config/countries.php:205
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:186
 msgid "mz"
 msgstr ""
 
-#: Config/countries.php:206
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:187
 msgid "mm"
 msgstr ""
 
-#: Config/countries.php:207
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:188
 msgid "na"
 msgstr ""
 
-#: Config/countries.php:208
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:189
 msgid "nr"
 msgstr ""
 
-#: Config/countries.php:209
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:190
 msgid "np"
 msgstr ""
 
-#: Config/countries.php:210
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:191
 msgid "nc"
 msgstr ""
 
-#: Config/countries.php:211
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:192
 msgid "nz"
 msgstr ""
 
-#: Config/countries.php:212
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:193
 msgid "nt"
 msgstr ""
 
-#: Config/countries.php:213
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:194
 msgid "ni"
 msgstr ""
 
-#: Config/countries.php:215
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:195
+msgid "nl"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:196
 msgid "an"
 msgstr ""
 
-#: Config/countries.php:216
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:197
 msgid "ne"
 msgstr ""
 
-#: Config/countries.php:217
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:198
 msgid "ng"
 msgstr ""
 
-#: Config/countries.php:218
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:199
 msgid "nu"
 msgstr ""
 
-#: Config/countries.php:219
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:200
 msgid "mp"
 msgstr ""
 
-#: Config/countries.php:220
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:201
 msgid "nf"
 msgstr ""
 
-#: Config/countries.php:221
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:202
 msgid "no"
 msgstr ""
 
-#: Config/countries.php:222
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:203
 msgid "om"
 msgstr ""
 
-#: Config/countries.php:224
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:204
+msgid "at"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:205
 msgid "pk"
 msgstr ""
 
-#: Config/countries.php:225
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:206
 msgid "ps"
 msgstr ""
 
-#: Config/countries.php:226
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:207
 msgid "pw"
 msgstr ""
 
-#: Config/countries.php:227
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:208
 msgid "pa"
 msgstr ""
 
-#: Config/countries.php:228
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:209
 msgid "pg"
 msgstr ""
 
-#: Config/countries.php:229
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:210
 msgid "py"
 msgstr ""
 
-#: Config/countries.php:230
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:211
 msgid "pe"
 msgstr ""
 
-#: Config/countries.php:231
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:212
 msgid "ph"
 msgstr ""
 
-#: Config/countries.php:232
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:213
 msgid "pn"
 msgstr ""
 
-#: Config/countries.php:235
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:214
+msgid "pl"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:215
+msgid "pt"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:216
 msgid "pr"
 msgstr ""
 
-#: Config/countries.php:236
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:217
 msgid "re"
 msgstr ""
 
-#: Config/countries.php:237
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:218
 msgid "rw"
 msgstr ""
 
-#: Config/countries.php:239
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:219
+msgid "ro"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:220
 msgid "ru"
 msgstr ""
 
-#: Config/countries.php:240
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:221
 msgid "sb"
 msgstr ""
 
-#: Config/countries.php:241
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:222
 msgid "zm"
 msgstr ""
 
-#: Config/countries.php:242
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:223
 msgid "ws"
 msgstr ""
 
-#: Config/countries.php:243
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:224
 msgid "sm"
 msgstr ""
 
-#: Config/countries.php:244
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:225
 msgid "st"
 msgstr ""
 
-#: Config/countries.php:245
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:226
 msgid "sa"
 msgstr ""
 
-#: Config/countries.php:247
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:227
+msgid "se"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:228
 msgid "ch"
 msgstr ""
 
-#: Config/countries.php:248
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:229
 msgid "sn"
 msgstr ""
 
-#: Config/countries.php:249
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:230
 msgid "cs"
 msgstr ""
 
-#: Config/countries.php:250
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:231
 msgid "sc"
 msgstr ""
 
-#: Config/countries.php:251
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:232
 msgid "sl"
 msgstr ""
 
-#: Config/countries.php:252
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:233
 msgid "zw"
 msgstr ""
 
-#: Config/countries.php:253
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:234
 msgid "sg"
 msgstr ""
 
-#: Config/countries.php:256
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:235
+msgid "sk"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:236
+msgid "si"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:237
 msgid "so"
 msgstr ""
 
-#: Config/countries.php:258
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:238
+msgid "es"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:239
 msgid "lk"
 msgstr ""
 
-#: Config/countries.php:259
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:240
 msgid "kn"
 msgstr ""
 
-#: Config/countries.php:260
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:241
 msgid "lc"
 msgstr ""
 
-#: Config/countries.php:261
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:242
 msgid "pm"
 msgstr ""
 
-#: Config/countries.php:262
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:243
 msgid "vc"
 msgstr ""
 
-#: Config/countries.php:263
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:244
 msgid "za"
 msgstr ""
 
-#: Config/countries.php:264
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:245
 msgid "sd"
 msgstr ""
 
-#: Config/countries.php:265
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:246
 msgid "gs"
 msgstr ""
 
-#: Config/countries.php:266
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:247
 msgid "sr"
 msgstr ""
 
-#: Config/countries.php:267
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:248
 msgid "sj"
 msgstr ""
 
-#: Config/countries.php:268
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:249
 msgid "sz"
 msgstr ""
 
-#: Config/countries.php:269
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:250
 msgid "sy"
 msgstr ""
 
-#: Config/countries.php:270
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:251
 msgid "tj"
 msgstr ""
 
-#: Config/countries.php:271
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:252
 msgid "tw"
 msgstr ""
 
-#: Config/countries.php:272
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:253
 msgid "tz"
 msgstr ""
 
-#: Config/countries.php:273
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:254
 msgid "th"
 msgstr ""
 
-#: Config/countries.php:274
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:255
 msgid "tl"
 msgstr ""
 
-#: Config/countries.php:275
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:256
 msgid "tg"
 msgstr ""
 
-#: Config/countries.php:276
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:257
 msgid "tk"
 msgstr ""
 
-#: Config/countries.php:277
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:258
 msgid "to"
 msgstr ""
 
-#: Config/countries.php:278
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:259
 msgid "tt"
 msgstr ""
 
-#: Config/countries.php:279
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:260
 msgid "ta"
 msgstr ""
 
-#: Config/countries.php:280
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:261
 msgid "td"
 msgstr ""
 
-#: Config/countries.php:282
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:262
+msgid "cz"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:263
 msgid "tn"
 msgstr ""
 
-#: Config/countries.php:283
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:264
 msgid "tr"
 msgstr ""
 
-#: Config/countries.php:284
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:265
 msgid "tm"
 msgstr ""
 
-#: Config/countries.php:285
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:266
 msgid "tc"
 msgstr ""
 
-#: Config/countries.php:286
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:267
 msgid "tv"
 msgstr ""
 
-#: Config/countries.php:287
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:268
 msgid "ug"
 msgstr ""
 
-#: Config/countries.php:288
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:269
 msgid "ua"
 msgstr ""
 
-#: Config/countries.php:289
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:270
 msgid "su"
 msgstr ""
 
-#: Config/countries.php:290
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:271
 msgid "uy"
 msgstr ""
 
-#: Config/countries.php:291
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:272
 msgid "uz"
 msgstr ""
 
-#: Config/countries.php:292
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:273
 msgid "vu"
 msgstr ""
 
-#: Config/countries.php:293
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:274
 msgid "va"
 msgstr ""
 
-#: Config/countries.php:294
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:275
 msgid "ve"
 msgstr ""
 
-#: Config/countries.php:295
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:276
 msgid "ae"
 msgstr ""
 
-#: Config/countries.php:296
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:277
 msgid "us"
 msgstr ""
 
-#: Config/countries.php:297
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:278
 msgid "gb"
 msgstr ""
 
-#: Config/countries.php:298
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:279
 msgid "vn"
 msgstr ""
 
-#: Config/countries.php:299
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:280
 msgid "wf"
 msgstr ""
 
-#: Config/countries.php:300
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:281
 msgid "cx"
 msgstr ""
 
-#: Config/countries.php:301
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:282
 msgid "by"
 msgstr ""
 
-#: Config/countries.php:302
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:283
 msgid "eh"
 msgstr ""
 
-#: Config/countries.php:303
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:284
 msgid "cf"
 msgstr ""
 
-#: Config/countries.php:306
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:285
+msgid "cy"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:286
+msgid "hu"
+msgstr ""
+
+#: /Users/fuco/Sites/l4b_backend//config/countries.php:287
 msgid "me"
 msgstr ""
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-09-21 17:11+0200\n"
-"PO-Revision-Date: 2015-09-21 17:11+0200\n"
+"POT-Creation-Date: 2015-11-11 12:28+0100\n"
+"PO-Revision-Date: 2015-11-11 12:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: en_US\n"
@@ -15,70 +15,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: Controller/SystemContentsController.php:77;102
+#: /Users/fuco/Sites/l4b_backend//src/Controller/SystemContentsController.php:77;102
 msgid "crud.save_successful"
 msgstr "Data have been saved successfully.\t"
 
-#: Controller/SystemContentsController.php:80;105
+#: /Users/fuco/Sites/l4b_backend//src/Controller/SystemContentsController.php:80;105
 msgid "crud.validation_failed"
 msgstr "Validation has failed."
 
-#: Template/SystemContents/form.ctp:5
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:5
 msgid "system_contents.form"
 msgstr "Form"
 
-#: Template/SystemContents/form.ctp:8 Template/SystemContents/index.ctp:5
-#: Template/SystemContents/view.ctp:7
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:8
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:5
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:7
 msgid "system_content.identifier"
 msgstr "Identifier"
 
-#: Template/SystemContents/form.ctp:11 Template/SystemContents/view.ctp:10
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:11
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:10
 msgid "system_content.notes"
 msgstr "Notes"
 
-#: Template/SystemContents/form.ctp:15 Template/SystemContents/index.ctp:6
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:15
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:6
 msgid "system_content.title"
 msgstr "Title"
 
-#: Template/SystemContents/form.ctp:19
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:19
 msgid "system_content.content"
 msgstr "Content"
 
-#: Template/SystemContents/form.ctp:29
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:29
 msgid "forms.actions"
 msgstr "Actions"
 
-#: Template/SystemContents/index.ctp:1
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:1
 msgid "system_contents.headline"
 msgstr "Headline"
 
-#: Template/SystemContents/index.ctp:7 Template/SystemContents/view.ctp:13
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:7
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:13
 msgid "system_content.created"
 msgstr "created"
 
-#: Template/SystemContents/index.ctp:8 Template/SystemContents/view.ctp:16
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:8
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:16
 msgid "system_content.modified"
 msgstr "modified"
 
-#: Template/SystemContents/index.ctp:33 Template/SystemContents/view.ctp:27
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:33
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:27
 msgid "system_contents.add"
 msgstr "add"
 
-#: Template/SystemContents/view.ctp:1
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:1
 msgid "system_contents.view"
 msgstr "view"
 
-#: Template/SystemContents/view.ctp:4
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:4
 msgid "system_content.id"
 msgstr "ID"
 
-#: Template/SystemContents/view.ctp:24
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:24
 msgid "system_contents.edit"
 msgstr "edit"
 
-#: Template/SystemContents/view.ctp:25
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:25
 msgid "system_contents.delete"
 msgstr "delete"
+
+#: /Users/fuco/Sites/l4b_backend//src/View/Helper/CkToolsHelper.php:416
+msgid "utility.toggle_content"
+msgstr "toggle content"
 
 #~ msgid "CkTools.pick_file"
 #~ msgstr "choose file"

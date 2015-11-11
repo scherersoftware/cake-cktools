@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-09-21 17:10+0200\n"
-"PO-Revision-Date: 2015-09-21 17:10+0200\n"
+"POT-Creation-Date: 2015-11-11 12:28+0100\n"
+"PO-Revision-Date: 2015-11-11 12:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: EMAIL@ADDRESS\n"
 "Language: de_DE\n"
@@ -15,70 +15,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: Controller/SystemContentsController.php:77;102
+#: /Users/fuco/Sites/l4b_backend//src/Controller/SystemContentsController.php:77;102
 msgid "crud.save_successful"
 msgstr "Das Speichern war erfolgreich"
 
-#: Controller/SystemContentsController.php:80;105
+#: /Users/fuco/Sites/l4b_backend//src/Controller/SystemContentsController.php:80;105
 msgid "crud.validation_failed"
 msgstr "Die Daten sind nicht korrekt."
 
-#: Template/SystemContents/form.ctp:5
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:5
 msgid "system_contents.form"
 msgstr "Formular"
 
-#: Template/SystemContents/form.ctp:8 Template/SystemContents/index.ctp:5
-#: Template/SystemContents/view.ctp:7
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:8
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:5
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:7
 msgid "system_content.identifier"
 msgstr "Beziechner"
 
-#: Template/SystemContents/form.ctp:11 Template/SystemContents/view.ctp:10
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:11
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:10
 msgid "system_content.notes"
 msgstr "Notizen"
 
-#: Template/SystemContents/form.ctp:15 Template/SystemContents/index.ctp:6
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:15
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:6
 msgid "system_content.title"
 msgstr "Titel"
 
-#: Template/SystemContents/form.ctp:19
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:19
 msgid "system_content.content"
 msgstr "Inhalt"
 
-#: Template/SystemContents/form.ctp:29
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/form.ctp:29
 msgid "forms.actions"
 msgstr "Aktionen"
 
-#: Template/SystemContents/index.ctp:1
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:1
 msgid "system_contents.headline"
 msgstr "Überschrift"
 
-#: Template/SystemContents/index.ctp:7 Template/SystemContents/view.ctp:13
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:7
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:13
 msgid "system_content.created"
 msgstr "erstellt"
 
-#: Template/SystemContents/index.ctp:8 Template/SystemContents/view.ctp:16
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:8
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:16
 msgid "system_content.modified"
 msgstr "bearbeitet"
 
-#: Template/SystemContents/index.ctp:33 Template/SystemContents/view.ctp:27
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/index.ctp:33
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:27
 msgid "system_contents.add"
 msgstr "hinzufügen"
 
-#: Template/SystemContents/view.ctp:1
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:1
 msgid "system_contents.view"
 msgstr "ansehen"
 
-#: Template/SystemContents/view.ctp:4
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:4
 msgid "system_content.id"
 msgstr "ID"
 
-#: Template/SystemContents/view.ctp:24
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:24
 msgid "system_contents.edit"
 msgstr "bearbeiten"
 
-#: Template/SystemContents/view.ctp:25
+#: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:25
 msgid "system_contents.delete"
 msgstr "löschen"
+
+#: /Users/fuco/Sites/l4b_backend//src/View/Helper/CkToolsHelper.php:416
+msgid "utility.toggle_content"
+msgstr "ein-/ausblenden"
 
 #~ msgid "CkTools.pick_file"
 #~ msgstr "Datei wählen"
