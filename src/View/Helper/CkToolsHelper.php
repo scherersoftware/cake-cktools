@@ -413,7 +413,7 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'expanded' => true,
-            'expandLinkText' => __('utility.toggle_content')
+            'expandLinkText' => __d('cktools', 'utility.toggle_content')
         ], $options);
         
         if (!$options['expanded']) {

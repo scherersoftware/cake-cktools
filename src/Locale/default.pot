@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-11-11 12:27+0100\n"
+"POT-Creation-Date: 2015-11-11 12:56+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -83,9 +83,5 @@ msgstr ""
 
 #: /Users/fuco/Sites/l4b_backend//src/Template/SystemContents/view.ctp:25
 msgid "system_contents.delete"
-msgstr ""
-
-#: /Users/fuco/Sites/l4b_backend//src/View/Helper/CkToolsHelper.php:416
-msgid "utility.toggle_content"
 msgstr ""
 
