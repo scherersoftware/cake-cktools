@@ -223,6 +223,7 @@
 .bootstrap-datetimepicker-widget table th {
   text-align: center;
   border-radius: 4px;
+  -ms-behavior: url(/js/vendor/PIE.htc);
 }
 .bootstrap-datetimepicker-widget table th {
   height: 20px;
@@ -330,6 +331,7 @@
   margin: 2px 1.5px;
   cursor: pointer;
   border-radius: 4px;
+  -ms-behavior: url(/js/vendor/PIE.htc);
 }
 .bootstrap-datetimepicker-widget table td span:hover {
   background: #eeeeee;
