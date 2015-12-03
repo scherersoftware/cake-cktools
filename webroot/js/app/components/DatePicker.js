@@ -25,6 +25,11 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                     e.currentTarget.value = e.currentTarget.value.substring(0, 6) + moment().year();
                     $(e.currentTarget).trigger('change');
                 }
+                // Year was entered in short form, prepend "20"
+                else if (e.currentTarget.value.substr(6, 2) == '00') {
+                    e.currentTarget.value = e.currentTarget.value.substring(0, 6) + '20' + e.currentTarget.value.substr(8, 2);
+                    $(e.currentTarget).trigger('change');
+                }
             });
 
             var $picker = $selectContainer.find('.input-group.date');
