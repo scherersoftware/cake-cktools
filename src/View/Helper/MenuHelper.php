@@ -192,9 +192,12 @@ class MenuHelper extends Helper
         unset($mainData, $subData);
         
         //set active status
+        if (empty($this->_controllerActive)) {
+            $this->_controllerActive = $this->_currentUrl['controller'];
+        }
         foreach ($config as $mainItem => &$mainData) {
             $mainData['active'] = '';
-            if (!empty($mainData['url']) && $this->_actionActive) {
+            if (!empty($mainData['url']) && !empty($this->_actionActive)) {
                 if ($mainData['url']['controller'] == $this->_controllerActive && $mainData['url']['action'] == $this->_actionActive) {
                     $mainData['active'] = true;
                 }
@@ -205,14 +208,13 @@ class MenuHelper extends Helper
             if (!empty($mainData['children'])) {
                 foreach ($mainData['children'] as $subItem => &$subData) {
                     $subData['active'] = '';
-                    if (!empty($subData['url']) && $this->_actionActive) {
+                    if (!empty($subData['url']) && !empty($this->_actionActive)) {
                         if ($subData['url']['controller'] == $this->_controllerActive && $subData['url']['action'] == $this->_actionActive) {
                             $subData['active'] = true;
                             $mainData['active'] = true;
                         }
                     } 
                     elseif (!empty($subData['url']) && $subData['url']['controller'] == $this->_controllerActive) {
-                        $subData['active'] = true;
                         $mainData['active'] = true;
                     }
                 }
