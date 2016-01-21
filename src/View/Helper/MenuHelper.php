@@ -37,6 +37,21 @@ class MenuHelper extends Helper
      */
     protected $_currentUrl;
 
+
+    /**
+     * flag indicating active status of a controller item
+     *
+     * @var bool
+     */
+    protected $_controllerActive = false;
+
+    /**
+     * flag indicating active status of a action item
+     *
+     * @var bool
+     */
+    protected $_actionActive = false;
+
     /**
      * Configures the instance
      *
@@ -138,7 +153,7 @@ class MenuHelper extends Helper
                 continue;
             }
 
-            $mainData['active'] = (isset($mainData['url']) && $this->_isItemActive($mainData));
+            $this->_isItemActive($mainData);
 
             $visibleChildCount = 0;
             if (!empty($mainData['children'])) {
@@ -154,8 +169,7 @@ class MenuHelper extends Helper
                     $allowed = (!isset($subData['url']) || (isset($subData['url']) && $this->Auth->urlAllowed($subData['url'])));
 
                     if ($allowed) {
-                        $subData['active'] = $this->_isItemActive($subData);
-                        if ($subData['active']) {
+                        if ($this->_isItemActive($subData)) {
                             $activeChildCount++;
                         }
                     } else {
@@ -168,11 +182,6 @@ class MenuHelper extends Helper
                         $subData['active'] = false;
                     }
                 }
-
-                // if any of the children is active, make the main item active too
-                if ($activeChildCount > 0) {
-                    $mainData['active'] = true;
-                }
             }
 
             // if the main item has no displayable children, remove it.
@@ -181,7 +190,36 @@ class MenuHelper extends Helper
             }
         }
         unset($mainData, $subData);
-
+        
+        //set active status
+        if (empty($this->_controllerActive)) {
+            $this->_controllerActive = $this->_currentUrl['controller'];
+        }
+        foreach ($config as $mainItem => &$mainData) {
+            $mainData['active'] = '';
+            if (!empty($mainData['url']) && !empty($this->_actionActive)) {
+                if ($mainData['url']['controller'] == $this->_controllerActive && $mainData['url']['action'] == $this->_actionActive) {
+                    $mainData['active'] = true;
+                }
+            } 
+            elseif (!empty($mainData['url']) && $mainData['url']['controller'] == $this->_controllerActive) {
+                $mainData['active'] = true;
+            }
+            if (!empty($mainData['children'])) {
+                foreach ($mainData['children'] as $subItem => &$subData) {
+                    $subData['active'] = '';
+                    if (!empty($subData['url']) && !empty($this->_actionActive)) {
+                        if ($subData['url']['controller'] == $this->_controllerActive && $subData['url']['action'] == $this->_actionActive) {
+                            $subData['active'] = true;
+                            $mainData['active'] = true;
+                        }
+                    } 
+                    elseif (!empty($subData['url']) && $subData['url']['controller'] == $this->_controllerActive) {
+                        $mainData['active'] = true;
+                    }
+                }
+            }
+        }
         return $config;
     }
 
@@ -210,6 +248,9 @@ class MenuHelper extends Helper
      */
     protected function _isItemActive($item)
     {
+        if (empty($item['url'])) {
+            return false;
+        }
         $current = $this->_currentUrl;
         if (!empty($item['url']['plugin'])) {
             if ($item['url']['plugin'] != $current['plugin']) {
@@ -217,9 +258,12 @@ class MenuHelper extends Helper
             }
         }
         if ($item['url']['controller'] == $current['controller'] && $item['url']['action'] == $current['action']) {
+            $this->_controllerActive = $current['controller'];
+            $this->_actionActive = $item['url']['action'];
             return true;
         }
-        if ($item['url']['controller'] == $current['controller']) {
+        if ($item['url']['controller'] == $current['controller'] && !empty($this->_actionActive)) {
+            $this->_controllerActive = $current['controller'];
             return true;
         }
         return false;
