@@ -415,7 +415,7 @@ class CkToolsHelper extends Helper
             'expanded' => true,
             'expandLinkText' => __d('cktools', 'utility.toggle_content')
         ], $options);
-        
+
         if (!$options['expanded']) {
             $id = 'dsd-' . uniqid();
             $out = $this->Html->link($options['expandLinkText'], 'javascript:', [
@@ -443,7 +443,7 @@ class CkToolsHelper extends Helper
         $out = '<ul>';
         foreach ($array as $key => $elem) {
             if (!is_array($elem)) {
-                $out = $out . "<li><span>{$key}: {$elem}</span></li>";
+                $out = $out . "<li><span>{$key}: " . htmlspecialchars($elem) . "</span></li>";
             } else {
                 $out = $out . "<li><span>{$key}</span>" . $this->arrayToUnorderedList($elem) . '</li>';
             }
