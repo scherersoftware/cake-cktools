@@ -66,7 +66,6 @@ class ApiComponent extends Component
      */
     public function setup()
     {
-        $this->RequestHandler->addInputType('json', ['json_decode', true]);
         $this->RequestHandler->prefers('json');
         // Force a JSON response regardless of extension
         // $this->RequestHandler->renderAs($this->_registry->getController(), 'json');
