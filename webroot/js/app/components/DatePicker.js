@@ -28,7 +28,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             $selectContainer.find('input[type=text]').blur(function (e) {
                 // if only day and month were entered, make sure the current year is used.
                 if (e.currentTarget.value.substring(6) == '0000') {
-                    e.currentTarget.value = e.currentTarget.value.substring(0, 6) + moment().year();
+                    e.currentTarget.value = e.currentTarget.value.substring(0, 6) + new Date().getFullYear();
                     $(e.currentTarget).trigger('change');
                 }
                 // Year was entered in short form, prepend "20"
@@ -56,7 +56,6 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                     clear: 'fa fa-trash'
                 }
             });
-
 
             // Update the selects to the correct values after a datepicker change
             $picker.on('dp.change', function(e) {
@@ -98,24 +97,25 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
         });
     },
     _getDateFromSelects: function($selectContainer) {
-        var date = moment();
+        var date = new Date();
+        
         $selectContainer.find('select').each(function(i, el) {
             var $select = $(el);
             var val = parseInt($select.val(), 10);
             if($select.attr('name').indexOf('[year]') > -1) {
-                date.year(val);
+                date.setFullYear(val);
             }
             if($select.attr('name').indexOf('[month]') > -1) {
-                date.month(val - 1);
+                date.setMonth(val - 1);
             }
             if($select.attr('name').indexOf('[day]') > -1) {
-                date.date(val);
+                date.setDate(val);
             }
             if($select.attr('name').indexOf('[hour]') > -1) {
-                date.hour(val);
+                date.setHours(val);
             }
             if($select.attr('name').indexOf('[minute]') > -1) {
-                date.minute(val);
+                date.setMinutes(val);
             }
         });
         return date;
