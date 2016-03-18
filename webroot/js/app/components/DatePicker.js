@@ -8,7 +8,13 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             }
 
             var $selectContainer = $container.find('select:first').parent();
-            $container.find('select').hide();
+            // Check if the new Markup structure of CakePHP is present and react accordingly
+            if ($selectContainer.hasClass('year')) {
+                $selectContainer = $selectContainer.parent().parent();
+                $selectContainer.find('ul.list-inline').hide();
+            } else {
+                $container.find('select').hide();
+            }
 
             var pickerMarkup = '<div class="input-group date"><input type="text" class="form-control"/><span class="input-group-addon"><i class="fa fa-calendar-o"></i></span></div>';
             $selectContainer.append(pickerMarkup);
