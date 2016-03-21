@@ -1,4 +1,4 @@
-CakePHP 3 Cake-CkTools
+CakePHP 3 cake-cktools
 ======================
 
 ##Requirements
