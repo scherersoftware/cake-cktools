@@ -89,7 +89,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testNewRecord()
     {
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
@@ -101,7 +101,7 @@ class SortableBehaviorTest extends TestCase
         $this->News->save($entity);
 
         $savedEntity = $this->News->get($entity->id);
-        $this->assertEquals(4, $savedEntity->sorting);
+        $this->assertEquals(6, $savedEntity->sorting);
         
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
@@ -110,7 +110,7 @@ class SortableBehaviorTest extends TestCase
         $this->News->save($entity);
 
         $savedEntity = $this->News->get($entity->id);
-        $this->assertEquals(5, $savedEntity->sorting);
+        $this->assertEquals(7, $savedEntity->sorting);
     }
 
     /**
@@ -120,7 +120,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testOverrideSortingInBetween()
     {
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
@@ -140,11 +140,23 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(1, $records[0]->id);
         $this->assertEquals(1, $records[0]->sorting);
 
+        $this->assertEquals(6, $records[1]->id);
+        $this->assertEquals(2, $records[1]->sorting);
+
         $this->assertEquals(2, $records[2]->id);
         $this->assertEquals(3, $records[2]->sorting);
 
         $this->assertEquals(3, $records[3]->id);
         $this->assertEquals(4, $records[3]->sorting);
+
+        $this->assertEquals(4, $records[4]->id);
+        $this->assertEquals(5, $records[4]->sorting);
+
+        $this->assertEquals(5, $records[5]->id);
+        $this->assertEquals(6, $records[5]->sorting);
+
+
+        
     }
 
     /**
@@ -154,7 +166,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testOverrideSortingBegin()
     {
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
@@ -179,6 +191,15 @@ class SortableBehaviorTest extends TestCase
 
         $this->assertEquals(3, $records[3]->id);
         $this->assertEquals(4, $records[3]->sorting);
+
+        $this->assertEquals(4, $records[4]->id);
+        $this->assertEquals(5, $records[4]->sorting);
+        
+        $this->assertEquals(5, $records[5]->id);
+        $this->assertEquals(6, $records[5]->sorting);
+
+        $this->assertEquals(6, $records[0]->id);
+        $this->assertEquals(1, $records[0]->sorting);
     }
 
     /**
@@ -188,7 +209,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testOverrideSortingEnd()
     {
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
@@ -196,12 +217,12 @@ class SortableBehaviorTest extends TestCase
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
-            'sorting' => 3
+            'sorting' => 5
         ]);
         $this->News->save($entity);
 
         $savedEntity = $this->News->get($entity->id);
-        $this->assertEquals(3, $savedEntity->sorting);
+        $this->assertEquals(5, $savedEntity->sorting);
 
         $records = $this->News->find()->order(['sorting' => 'ASC'])->toArray();
 
@@ -211,8 +232,17 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(2, $records[1]->id);
         $this->assertEquals(2, $records[1]->sorting);
 
-        $this->assertEquals(3, $records[3]->id);
+        $this->assertEquals(3, $records[2]->id);
+        $this->assertEquals(3, $records[2]->sorting);
+
+        $this->assertEquals(4, $records[3]->id);
         $this->assertEquals(4, $records[3]->sorting);
+
+        $this->assertEquals(6, $records[4]->id);
+        $this->assertEquals(5, $records[4]->sorting);
+
+        $this->assertEquals(5, $records[5]->id);
+        $this->assertEquals(6, $records[5]->sorting);
     }
 
     /**
@@ -222,7 +252,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testIncrementSortingEndOnExistingRecord()
     {
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
@@ -230,16 +260,32 @@ class SortableBehaviorTest extends TestCase
         ]);
         
         $secondRecord = $this->News->get(2);
-        $secondRecord->sorting = 3;
+        $secondRecord->sorting = 5;
         $this->News->save($secondRecord);
         
         $savedRecord = $this->News->get(2);
-        $this->assertEquals(3, $savedRecord->sorting);
+        $this->assertEquals(5, $savedRecord->sorting);
 
         $this->assertEquals(1, $this->News->get(1)->sorting);
         $this->assertEquals(2, $this->News->get(3)->sorting);
-    }
+        $this->assertEquals(3, $this->News->get(4)->sorting);
+        $this->assertEquals(4, $this->News->get(5)->sorting);
+        $this->assertEquals(5, $this->News->get(2)->sorting);
 
+
+        $secondRecord = $this->News->get(3);
+        $secondRecord->sorting = 4;
+        $this->News->save($secondRecord);
+        
+        $savedRecord = $this->News->get(3);
+        $this->assertEquals(4, $savedRecord->sorting);
+
+        $this->assertEquals(1, $this->News->get(1)->sorting);
+        $this->assertEquals(5, $this->News->get(2)->sorting);
+        $this->assertEquals(4, $this->News->get(3)->sorting);
+        $this->assertEquals(2, $this->News->get(4)->sorting);
+        $this->assertEquals(3, $this->News->get(5)->sorting);
+    }
 
     /**
      * testDecrementSortingEndOnExistingRecord
@@ -248,8 +294,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testDecrementSortingEndOnExistingRecord()
     {
-        $this->markTestSkipped('Need to be fixed');
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
@@ -263,6 +308,8 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(1, $this->News->get(2)->sorting);
         $this->assertEquals(2, $this->News->get(1)->sorting);
         $this->assertEquals(3, $this->News->get(3)->sorting);
+        $this->assertEquals(4, $this->News->get(4)->sorting);
+        $this->assertEquals(5, $this->News->get(5)->sorting);
     }
 
     /**
@@ -272,7 +319,7 @@ class SortableBehaviorTest extends TestCase
      */
     public function testDecrementSortingEndOnLastRecord()
     {
-        $this->__createRecords(3);
+        $this->__createRecords(5);
         
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
@@ -286,6 +333,19 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(1, $this->News->get(3)->sorting);
         $this->assertEquals(2, $this->News->get(1)->sorting);
         $this->assertEquals(3, $this->News->get(2)->sorting);
+        $this->assertEquals(4, $this->News->get(4)->sorting);
+        $this->assertEquals(5, $this->News->get(5)->sorting);
+        
+        
+        $secondRecord = $this->News->get(4);
+        $secondRecord->sorting = 2;
+        $this->News->save($secondRecord);
+
+        $this->assertEquals(1, $this->News->get(3)->sorting);
+        $this->assertEquals(3, $this->News->get(1)->sorting);
+        $this->assertEquals(4, $this->News->get(2)->sorting);
+        $this->assertEquals(2, $this->News->get(4)->sorting);
+        $this->assertEquals(5, $this->News->get(5)->sorting);
     }
 
 
