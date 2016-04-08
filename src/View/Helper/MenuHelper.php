@@ -3,7 +3,7 @@ namespace CkTools\View\Helper;
 
 use Cake\Core\Configure;
 use Cake\Routing\Router;
-use Cake\Utility\String;
+use Cake\Utility\Text;
 use Cake\View\Helper;
 use Cake\View\View;
 
@@ -81,25 +81,25 @@ class MenuHelper extends Helper
             if (!empty($mainData['children'])) {
                 $children = '';
                 foreach ($mainData['children'] as $child) {
-                    $children .= String::insert($this->_defaultConfig['templates']['item'], [
+                    $children .= Text::insert($this->_defaultConfig['templates']['item'], [
                         'class' => $child['active'] ? 'active' : '',
                         'title' => $child['title'],
-                        'icon' => isset($child['icon']) ? String::insert($this->_defaultConfig['templates']['icon'], ['icon' => $child['icon']]) : '',
+                        'icon' => isset($child['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $child['icon']]) : '',
                         'href' => isset($child['url']) ? Router::url($child['url']) : '',
                         'childrenArrow' => '',
                         'childrenContainer' => '',
                         'liclass' => ''
                     ]);
                 }
-                $childrenContainer = String::insert($this->_defaultConfig['templates']['childrenContainer'], [
+                $childrenContainer = Text::insert($this->_defaultConfig['templates']['childrenContainer'], [
                     'children' => $children
                 ]);
             }
-            $out .= String::insert($this->_defaultConfig['templates']['item'], [
+            $out .= Text::insert($this->_defaultConfig['templates']['item'], [
                 'class' => $mainData['active'] ? 'active' : '',
                 'liclass' => $mainData['active'] ? 'active' : '',
                 'title' => '<span class="mm-text">' . $mainData['title'] . '</span>',
-                'icon' => isset($mainData['icon']) ? String::insert($this->_defaultConfig['templates']['icon'], ['icon' => $mainData['icon']]) : '',
+                'icon' => isset($mainData['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $mainData['icon']]) : '',
                 'href' => isset($mainData['url']) ? Router::url($mainData['url']) : '',
                 'childrenArrow' => !empty($mainData['children']) ? $this->_defaultConfig['templates']['childrenArrow'] : '',
                 'childrenContainer' => $childrenContainer
