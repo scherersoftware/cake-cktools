@@ -108,7 +108,9 @@ class SortableBehavior extends Behavior
                 $currentScope = $scope;
                 $currentScope[] = "{$this->config('sortField')} <" . $this->__originalSortValue;
                 $currentScope[] = "{$this->config('sortField')} >=" . $entitySort;
-                $currentScope[] = $this->_table->primaryKey() . '!=' . $entity->id;
+                $currentScope[] = [
+                    $this->_table->primaryKey() . ' !=' => $entity->id
+                ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
@@ -121,7 +123,9 @@ class SortableBehavior extends Behavior
                 $currentScope = $scope;
                 $currentScope[] = "{$this->config('sortField')} >" . $this->__originalSortValue;
                 $currentScope[] = "{$this->config('sortField')} <=" . $entitySort;
-                $currentScope[] = $this->_table->primaryKey() . '!=' . $entity->id;
+                $currentScope[] = [
+                    $this->_table->primaryKey() . ' !=' => $entity->id
+                ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
@@ -133,7 +137,9 @@ class SortableBehavior extends Behavior
             } elseif ($entitySort == $this->__originalSortValue) {
                 $currentScope = $scope;
                 $currentScope[] = "{$this->config('sortField')} >=" . $entitySort;
-                $currentScope[] = $this->_table->primaryKey() . '!=' . $entity->id;
+                $currentScope[] = [
+                    $this->_table->primaryKey() . ' !=' => $entity->id
+                ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
