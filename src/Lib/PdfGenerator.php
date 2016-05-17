@@ -75,9 +75,9 @@ class PdfGenerator
     protected function _getView()
     {
         $view = new View();
-        $view->webroot = null;
-        $view->helpers = $this->config('helpers');
-        $view->params = $this->config('viewParams');
+        foreach ($this->config('helpers') as $helper) {
+            $view->loadHelper($helper);
+        }
         return $view;
     }
 
