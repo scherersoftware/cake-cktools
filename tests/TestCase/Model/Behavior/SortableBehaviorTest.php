@@ -102,7 +102,7 @@ class SortableBehaviorTest extends TestCase
 
         $savedEntity = $this->News->get($entity->id);
         $this->assertEquals(6, $savedEntity->sorting);
-        
+
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1'
@@ -154,9 +154,6 @@ class SortableBehaviorTest extends TestCase
 
         $this->assertEquals(5, $records[5]->id);
         $this->assertEquals(6, $records[5]->sorting);
-
-
-        
     }
 
     /**
@@ -194,7 +191,7 @@ class SortableBehaviorTest extends TestCase
 
         $this->assertEquals(4, $records[4]->id);
         $this->assertEquals(5, $records[4]->sorting);
-        
+
         $this->assertEquals(5, $records[5]->id);
         $this->assertEquals(6, $records[5]->sorting);
 
@@ -253,16 +250,16 @@ class SortableBehaviorTest extends TestCase
     public function testIncrementSortingEndOnExistingRecord()
     {
         $this->__createRecords(5);
-        
+
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
         ]);
-        
+
         $secondRecord = $this->News->get(2);
         $secondRecord->sorting = 5;
         $this->News->save($secondRecord);
-        
+
         $savedRecord = $this->News->get(2);
         $this->assertEquals(5, $savedRecord->sorting);
 
@@ -276,7 +273,7 @@ class SortableBehaviorTest extends TestCase
         $secondRecord = $this->News->get(3);
         $secondRecord->sorting = 4;
         $this->News->save($secondRecord);
-        
+
         $savedRecord = $this->News->get(3);
         $this->assertEquals(4, $savedRecord->sorting);
 
@@ -295,12 +292,12 @@ class SortableBehaviorTest extends TestCase
     public function testDecrementSortingEndOnExistingRecord()
     {
         $this->__createRecords(5);
-        
+
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
         ]);
-        
+
         $secondRecord = $this->News->get(2);
         $secondRecord->sorting = 1;
         $this->News->save($secondRecord);
@@ -320,12 +317,12 @@ class SortableBehaviorTest extends TestCase
     public function testDecrementSortingEndOnLastRecord()
     {
         $this->__createRecords(5);
-        
+
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC']
         ]);
-        
+
         $secondRecord = $this->News->get(3);
         $secondRecord->sorting = 1;
         $this->News->save($secondRecord);
@@ -335,8 +332,8 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(3, $this->News->get(2)->sorting);
         $this->assertEquals(4, $this->News->get(4)->sorting);
         $this->assertEquals(5, $this->News->get(5)->sorting);
-        
-        
+
+
         $secondRecord = $this->News->get(4);
         $secondRecord->sorting = 2;
         $this->News->save($secondRecord);
@@ -359,7 +356,7 @@ class SortableBehaviorTest extends TestCase
         // Both scopes have their own sorting
         $this->__createRecords(2, 'scope1');
         $this->__createRecords(2, 'scope2');
-        
+
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'columnScope' => ['field1']
@@ -388,7 +385,7 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(1, $scope2Records[0]->sorting);
         $this->assertEquals(4, $scope2Records[2]->id);
         $this->assertEquals(3, $scope2Records[2]->sorting);
-    
+
         // Test the same with a new entity without sorting info
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
@@ -397,7 +394,7 @@ class SortableBehaviorTest extends TestCase
         $this->News->save($entity);
         $savedEntity = $this->News->get($entity->id);
         $this->assertEquals(3, $savedEntity->sorting);
-        
+
         // Make sure scope2 is as expected
         $scope2Records = $this->News->find()->where(['field1' => 'scope2'])->order(['sorting' => 'ASC'])->toArray();
         $this->assertEquals(3, $scope2Records[0]->id);
