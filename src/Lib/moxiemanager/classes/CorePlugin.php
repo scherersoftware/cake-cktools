@@ -350,6 +350,11 @@ class MOXMAN_CorePlugin implements MOXMAN_IPlugin, MOXMAN_ICommandHandler, MOXMA
 		}
 
 		if ($fromThumbnailFile->exists()) {
+			// If the thumbnail exists in this step, its probably trash.
+			if ($toThumbnailFile->exists()) {
+				$toThumbnailFile->delete();
+			}
+
 			$fromThumbnailFile->copyTo($toThumbnailFile);
 			$this->fireThumbnailTargetFileAction(MOXMAN_Vfs_FileActionEventArgs::COPY, $fromThumbnailFile, $toThumbnailFile);
 			return true;
@@ -389,6 +394,23 @@ class MOXMAN_CorePlugin implements MOXMAN_IPlugin, MOXMAN_ICommandHandler, MOXMA
 	}
 
 	/**
+	 * Converts a list of files to a JSON serializable object.
+	 *
+	 * @param Array $files Files array to convert into JSON format.
+	 * @param Boolean $meta State if the meta data should be returned or not.
+	 * @return Array JSON serializable object.
+	 */
+	public static function filesToJson($files, $meta = false) {
+		$json = array();
+
+		foreach ($files as $file) {
+			$json[] = self::fileToJson($file, $meta);
+		}
+
+		return $json;
+	}
+
+	/**
 	 * Converts a file instance to a JSON serializable object.
 	 *
 	 * @param MOXMAN_Vfs_IFile $file File to convert into JSON format.
@@ -402,6 +424,13 @@ class MOXMAN_CorePlugin implements MOXMAN_IPlugin, MOXMAN_ICommandHandler, MOXMA
 		$editFilter = MOXMAN_Vfs_CombinedFileFilter::createFromConfig($config, "edit");
 		$viewFilter = MOXMAN_Vfs_CombinedFileFilter::createFromConfig($config, "view");
 
+		$configuredFilter = new MOXMAN_Vfs_BasicFileFilter();
+		$configuredFilter->setIncludeDirectoryPattern($config->get('filesystem.include_directory_pattern'));
+		$configuredFilter->setExcludeDirectoryPattern($config->get('filesystem.exclude_directory_pattern'));
+		$configuredFilter->setIncludeFilePattern($config->get('filesystem.include_file_pattern'));
+		$configuredFilter->setExcludeFilePattern($config->get('filesystem.exclude_file_pattern'));
+		$configuredFilter->setIncludeExtensions($config->get('filesystem.extensions'));
+
 		$result = (object) array(
 			"path" => $file->getPublicPath(),
 			"size" => $file->getSize(),
@@ -413,6 +442,7 @@ class MOXMAN_CorePlugin implements MOXMAN_IPlugin, MOXMAN_ICommandHandler, MOXMA
 			"canRename" => $renameFilter->accept($file),
 			"canView" => $file->isFile() && $viewFilter->accept($file),
 			"canPreview" => $file->isFile() && MOXMAN_Media_ImageAlter::canEdit($file),
+			"visible" => $configuredFilter->accept($file),
 			"exists" => $file->exists()
 		);
 

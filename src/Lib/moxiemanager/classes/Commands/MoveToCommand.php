@@ -104,6 +104,7 @@ class MOXMAN_Commands_MoveToCommand extends MOXMAN_Commands_BaseCommand {
 				$toFile = MOXMAN_Util_FileUtils::uniqueFile($args->getTargetFile());
 			} else if ($resolution == "overwrite") {
 				MOXMAN::getPluginManager()->get("core")->deleteFile($toFile);
+				$this->fireFileAction(MOXMAN_Vfs_FileActionEventArgs::DELETE, $toFile);
 			} else {
 				throw new MOXMAN_Exception(
 					"To file already exist: " . $toFile->getPublicPath(),

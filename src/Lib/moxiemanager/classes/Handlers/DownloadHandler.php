@@ -56,6 +56,14 @@ class MOXMAN_Handlers_DownloadHandler implements MOXMAN_Http_IHandler {
 		// Combine files to zip
 		foreach ($names as $name) {
 			$fromFile = MOXMAN::getFile(MOXMAN_Util_PathUtils::combine($path, $name));
+
+			if (!$filter->accept($fromFile)) {
+				throw new MOXMAN_Exception(
+					"Invalid file name for: " . $fromFile->getPublicPath(),
+					MOXMAN_Exception::INVALID_FILE_NAME
+				);
+			}
+
 			$this->addZipFiles($fromFile, $fromFile->getParent(), $filter, $zipWriter);
 		}
 

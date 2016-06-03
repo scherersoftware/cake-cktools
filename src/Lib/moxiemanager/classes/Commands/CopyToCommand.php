@@ -77,6 +77,14 @@ class MOXMAN_Commands_CopyToCommand extends MOXMAN_Commands_BaseCommand {
 			);
 		}
 
+		$filter = MOXMAN_Vfs_BasicFileFilter::createFromConfig($config);
+		if (!$filter->accept($toFile, $fromFile->isFile())) {
+			throw new MOXMAN_Exception(
+				"Invalid file name for: " . $toFile->getPublicPath(),
+				MOXMAN_Exception::INVALID_FILE_NAME
+			);
+		}
+
 		// Fire before file action event
 		$args = new MOXMAN_Vfs_FileActionEventArgs(MOXMAN_Vfs_FileActionEventArgs::COPY, $fromFile);
 		$args->setTargetFile($toFile);
@@ -90,6 +98,7 @@ class MOXMAN_Commands_CopyToCommand extends MOXMAN_Commands_BaseCommand {
 				$toFile = MOXMAN_Util_FileUtils::uniqueFile($args->getTargetFile());
 			} else if ($resolution == "overwrite") {
 				MOXMAN::getPluginManager()->get("core")->deleteFile($toFile);
+				$this->fireFileAction(MOXMAN_Vfs_FileActionEventArgs::DELETE, $toFile);
 			}
 		}
 

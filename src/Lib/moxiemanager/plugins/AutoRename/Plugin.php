@@ -48,7 +48,7 @@ class MOXMAN_AutoRename_Plugin implements MOXMAN_IPlugin {
 		$name = $file->getName();
 		$orgname = $name;
 		$ext = MOXMAN_Util_PathUtils::getExtension($path);
-		$name = preg_replace("/\.". $ext ."$/i", "", $name);
+		$name = preg_replace("/\.". preg_quote($ext) ."$/i", "", $name);
 
 		$name = str_replace(array('\'', '"'), '', $name);
 		$name = htmlentities($name, ENT_QUOTES, 'UTF-8');

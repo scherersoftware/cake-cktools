@@ -13,54 +13,74 @@ if (session_id() == '') {
  * This class handles MoxieManager SessionAuthenticator stuff.
  */
 class MOXMAN_ExternalAuthenticator_Plugin implements MOXMAN_Auth_IAuthenticator {
+    const AUTH_USER = "moxiemanager.auth.user";
+
 	public function authenticate(MOXMAN_Auth_User $user) {
 		$config = MOXMAN::getConfig();
-		$configPrefix = "moxiemanager";
-		$authUserKey = "moxiemanager.auth.user";
+        $this->validateConfig($config);
+		$json = $this->getJson($config);
+        $this->updateUserAndConfig($this->parseJson($json), $user, $config);
+        $this->cacheJsonResult($json);
 
-		// Use cached auth state valid for 5 minutes
-		if (isset($_SESSION["moxiemanager.authtime"]) && (time() - $_SESSION["moxiemanager.authtime"]) < 60 * 5) {
-			// Extend config with session prefixed sessions
-			$sessionConfig = array();
-			if ($configPrefix) {
-				foreach ($_SESSION as $key => $value) {
-					if (strpos($key, $configPrefix) === 0) {
-						$sessionConfig[substr($key, strlen($configPrefix) + 1)] = $value;
-					}
-				}
-			}
+		return true;
+	}
 
-			$config->extend($sessionConfig);
-
-			if (isset($_SESSION[$authUserKey])) {
-				$config->replaceVariable("user", $_SESSION[$authUserKey]);
-				$user->setName($_SESSION[$authUserKey]);
-			}
-
-			return true;
-		}
-
-		$secretKey = $config->get("ExternalAuthenticator.secret_key");
+    private function validateConfig(MOXMAN_Util_Config $config) {
+        $secretKey = $config->get("ExternalAuthenticator.secret_key");
 		$authUrl = $config->get("ExternalAuthenticator.external_auth_url");
 
 		if (!$secretKey || !$authUrl) {
 			throw new MOXMAN_Exception("No key/url set for ExternalAuthenticator, check config.");
 		}
+    }
 
-		// Build url
+    private function cacheJsonResult($json) {
+		$_SESSION["moxiemanager.auth.time"] = time();
+        $_SESSION["moxiemanager.auth.json"] = $json;
+    }
+
+    private function updateUserAndConfig($result, MOXMAN_Auth_User $user, MOXMAN_Util_Config $config) {
+		if ($result["user"]) {
+			$config->replaceVariable("user", $result["user"]);
+			$user->setName($result["user"]);
+		}
+
+        $config->extend($result["config"]);
+    }
+
+    private function getJson(MOXMAN_Util_Config $config) {
+        $json = "";
+
+        // Use cached auth state valid for 5 minutes
+		if (isset($_SESSION["moxiemanager.auth.time"]) && (time() - $_SESSION["moxiemanager.auth.time"]) < 60 * 5) {
+            $json = $_SESSION["moxiemanager.auth.json"];
+		}
+
+        if (!$json) {
+            $json = $this->sendRequest($config);
+        }
+
+        return $json;
+    }
+
+    private function sendRequest(MOXMAN_Util_Config $config) {
+        $secretKey = $config->get("ExternalAuthenticator.secret_key");
+		$authUrl = $config->get("ExternalAuthenticator.external_auth_url");
+        $url = "";
+        $defaultPort = 80;
+
 		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") {
 			$url = "https://";
-		} else {
-			$url = "http://";
+			$defaultPort = 443;
 		}
 
 		$url .= $_SERVER['HTTP_HOST'];
 
-		if ($_SERVER['SERVER_PORT'] != 80) {
-			$url .= ':' . $_SERVER['SERVER_PORT'];
+		if ($_SERVER['SERVER_PORT'] != $defaultPort) {
+			$url .= ':' . $defaultPort;
 		}
 
-		$httpClient = new MOXMAN_Http_HttpClient($url);
+        $httpClient = new MOXMAN_Http_HttpClient($url);
 		$httpClient->setProxy($config->get("general.http_proxy", ""));
 
 		$authUrl = MOXMAN_Util_PathUtils::toAbsolute(dirname($_SERVER["REQUEST_URI"]) . '/plugins/ExternalAuthenticator', $authUrl);
@@ -89,32 +109,33 @@ class MOXMAN_ExternalAuthenticator_Plugin implements MOXMAN_Auth_IAuthenticator 
 			throw new MOXMAN_Exception("Did not get a proper http status code from Auth url: " . $url . $authUrl . ".", $response->getCode());
 		}
 
-		$json = json_decode($response->getBody(), true);
+		return $response->getBody();
+    }
 
-		if (!$json) {
-			throw new MOXMAN_Exception("Did not get a proper JSON response from Auth url.");
-		}
+    private function parseJson($json) {
+        $config = array();
+        $user = null;
+        $json = json_decode($json, true);
 
-		if (isset($json["result"])) {
-			foreach ($json["result"] as $key => $value) {
-				$config->put($key, $value);
-				$_SESSION["moxiemanager." . $key] = $value;
-			}
+        if (!$json) {
+            throw new MOXMAN_Exception("Generic unknown error, did not get a proper JSON response from Auth url.");
+        } else if (isset($json["error"])) {
+            throw new MOXMAN_Exception($json["error"]["message"] . " - ". $json["error"]["code"]);
+        }
 
-			if (isset($json["result"][$authUserKey])) {
-				$config->replaceVariable("user", $json["result"][$authUserKey]);
-				$user->setName($json["result"][$authUserKey]);
-			}
+        foreach ($json["result"] as $key => $value) {
+            $config[$key] = $value;
+        }
 
-			$_SESSION["moxiemanager.authtime"] = time();
+        if (isset($json["result"][self::AUTH_USER])) {
+            $user = $json["result"][self::AUTH_USER];
+        }
 
-			return true;
-		} else if (isset($json["error"])) {
-			throw new MOXMAN_Exception($json["error"]["message"] . " - ". $json["error"]["code"]);
-		} else {
-			throw new MOXMAN_Exception("Generic unknown error, did not get a proper JSON response from Auth url.");
-		}
-	}
+        return array(
+            "config" => $config,
+            "user" => $user
+        );
+    }
 }
 
 MOXMAN::getAuthManager()->add("ExternalAuthenticator", new MOXMAN_ExternalAuthenticator_Plugin());

@@ -63,14 +63,14 @@ class MOXMAN_Handlers_UploadHandler implements MOXMAN_Http_IHandler {
 			}
 
 			$filename = $request->get("name");
-			$id = $request->get("id");
+			$id = MOXMAN_Util_Sanitize::id($request->get("id"));
 			$loaded = intval($request->get("loaded", "0"));
 			$total = intval($request->get("total", "-1"));
 			$file = MOXMAN::getFile($file->getPath(), $filename);
 
 			// Generate unique id for first chunk
 			// TODO: We should cleanup orphan ID:s if upload fails etc
-			if ($loaded == 0) {
+			if (!$id || $loaded == 0) {
 				$id = uniqid();
 			}
 
@@ -202,10 +202,11 @@ class MOXMAN_Handlers_UploadHandler implements MOXMAN_Http_IHandler {
 
 				$args = new MOXMAN_Vfs_FileActionEventArgs("add", $file);
 				MOXMAN::getPluginManager()->get("core")->fire("FileAction", $args);
-				// In case file is modified
-				$file = $args->getFile();
 
-				$result = MOXMAN_CorePlugin::fileToJson($file, true);
+				$result = array(
+					"file" => MOXMAN_CorePlugin::fileToJson($args->getFile(), true),
+					"files" => MOXMAN_CorePlugin::filesToJson($args->getFileList(), true)
+				);
 			} else {
 				$result = $id;
 			}

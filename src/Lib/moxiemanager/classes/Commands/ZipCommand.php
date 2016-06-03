@@ -54,6 +54,13 @@ class MOXMAN_Commands_ZipCommand extends MOXMAN_Commands_BaseCommand {
 
 		$filter = MOXMAN_Vfs_BasicFileFilter::createFromConfig($config);
 
+		if (!$filter->accept($toFile, true)) {
+			throw new MOXMAN_Exception(
+				"Invalid file name for: " . $toFile->getPublicPath(),
+				MOXMAN_Exception::INVALID_FILE_NAME
+			);
+		}
+
 		$path = $params->path;
 		foreach ($params->names as $name) {
 			$fromFile = MOXMAN::getFile(MOXMAN_Util_PathUtils::combine($path, $name));

@@ -9,11 +9,15 @@ $zendLoaderPath = MOXMAN_Util_LibraryLocator::locate("ZendAuthenticator.library_
 	"vendor/zendframework"
 ));
 
-$cwd = getcwd();
-chdir($zendLoaderPath . '/../../');
-require 'init_autoloader.php';
-Zend\Mvc\Application::init(require 'config/application.config.php');
-chdir($cwd);
+if (file_exists($zendLoaderPath . '/../../init_autoloader.php')) {
+	$cwd = getcwd();
+	chdir($zendLoaderPath . '/../../');
+	require 'init_autoloader.php';
+	Zend\Mvc\Application::init(require 'config/application.config.php');
+	chdir($cwd);
+} else {
+	require $zendLoaderPath . "/../autoload.php";
+}
 
 /*
  * This class handles authentication for the Zend 2 framework.

@@ -26,6 +26,8 @@ class MOXMAN_Exception extends Exception {
 	const METHOD_NOT_FOUND = 107;
 	const INVALID_FILE_TYPE = 108;
 	const NO_ACCESS_EXTERNAL_AUTH = 1009;
+	const TO_LONG_PATH = 1010;
+	const QUOTA_EXCEEDED = 1011;
 
 	/**
 	 * Sets the current file where the exception was thrown.

@@ -46,7 +46,8 @@ class MOXMAN_Handlers_AuthHandler implements MOXMAN_Http_IHandler {
 				"installed" => $installed,
 				"loggedin" => MOXMAN::getAuthManager()->isAuthenticated(),
 				"loginurl" => $config->get("authenticator.login_page", ""),
-				"standalone" => MOXMAN::getAuthManager()->hasStandalone()
+				"standalone" => MOXMAN::getAuthManager()->hasStandalone(),
+				"overwrite_action" => $config->get("filesystem.overwrite_action", ""),
 			);
 
 			$args = new MOXMAN_Auth_AuthInfoEventArgs();

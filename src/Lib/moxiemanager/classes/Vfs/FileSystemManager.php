@@ -133,9 +133,8 @@ class MOXMAN_Vfs_FileSystemManager {
 	 */
 	public function getFile($path, $childPath = "") {
 		// Verfiy that the path doesn't have any abnormalities
-		if (preg_match('/\x00-\x19]/', $path) || preg_match('/[\x00-\x19]/', $childPath)) {
-			throw new MOXMAN_Exception("Specified path has invalid characters.", MOXMAN_Exception::INVALID_FILE_NAME);
-		}
+		$path = MOXMAN_Util_Sanitize::path($path);
+		$childPath = MOXMAN_Util_Sanitize::childPath($childPath);
 
 		if ($this->fileSystems) {
 			$this->createFileSystems();

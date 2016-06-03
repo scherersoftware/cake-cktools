@@ -42,7 +42,7 @@ class MOXMAN_Commands_AlterImageCommand extends MOXMAN_Commands_BaseCommand {
 		}
 
 		// Create temp name if not specified
-		$tempname = isset($params->tempname) ? $params->tempname : "";
+		$tempname = isset($params->tempname) ? MOXMAN_Util_Sanitize::fileName($params->tempname) : "";
 		if (!$tempname) {
 			$ext = MOXMAN_Util_PathUtils::getExtension($file->getName());
 			$tempname = "mcic_" . md5(session_id() . $file->getName()) . "." . $ext;
@@ -120,7 +120,7 @@ class MOXMAN_Commands_AlterImageCommand extends MOXMAN_Commands_BaseCommand {
 
 		// Import temp file as target file
 		if (isset($params->tempname)) {
-			$tempFilePath = MOXMAN_Util_PathUtils::combine(MOXMAN_Util_PathUtils::getTempDir(), $params->tempname);
+			$tempFilePath = MOXMAN_Util_PathUtils::combine(MOXMAN_Util_PathUtils::getTempDir(), MOXMAN_Util_Sanitize::fileName($params->tempname));
 			$size = filesize($tempFilePath);
 			$file->importFrom($tempFilePath);
 		}

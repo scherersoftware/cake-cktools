@@ -31,7 +31,7 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 		switch ($args->getAction()) {
 			case MOXMAN_Vfs_FileActionEventArgs::ADD:
 				if (!isset($args->getData()->format) && !isset($args->getData()->thumb)) {
-					$this->applyFormat($args->getFile());
+					$args->setFileList(array_merge($args->getFileList(), $this->applyFormat($args->getFile())));
 				}
 				break;
 		}
@@ -41,7 +41,7 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 		switch ($args->getAction()) {
 			case MOXMAN_Vfs_FileActionEventArgs::DELETE:
 				if (!isset($args->getData()->format) && !isset($args->getData()->thumb)) {
-					$this->removeFormat($args->getFile());
+					$args->setFileList(array_merge($args->getFileList(), $this->removeFormat($args->getFile())));
 				}
 				break;
 		}
@@ -53,19 +53,15 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 	 * @param MOXMAN_Vfs_IFile $file File to generate images for.
 	 */
 	public function applyFormat(MOXMAN_Vfs_IFile $file) {
-		if (!$file->exists() || !MOXMAN_Media_ImageAlter::canEdit($file)) {
-			return;
-		}
-
+		$files = array();
 		$config = $file->getConfig();
 		$format = $config->get("autoformat.rules", "");
-		$quality = $config->get("autoformat.jpeg_quality", 90);
 
-		// @codeCoverageIgnoreStart
-		if (!$format) {
-			return;
+		if (!$format || !$file->exists() || !MOXMAN_Media_ImageAlter::canEdit($file)) {
+			return $files;
 		}
-		// @codeCoverageIgnoreEnd
+
+		$quality = $config->get("autoformat.jpeg_quality", 90);
 
 		// Export to temp file
 		$tempFilePath = MOXMAN::getFileSystemManager()->getLocalTempPath($file);
@@ -153,6 +149,7 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 				$args = new MOXMAN_Vfs_FileActionEventArgs(MOXMAN_Vfs_FileActionEventArgs::ADD, $parents[$i]);
 				$args->getData()->format = true;
 				MOXMAN::getPluginManager()->get("core")->fire("FileAction", $args);
+				$files[] = $parents[$i];
 			}
 
 			if (count($actions) > 0) {
@@ -170,6 +167,7 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 							$args = new MOXMAN_Vfs_FileActionEventArgs(MOXMAN_Vfs_FileActionEventArgs::ADD, $outFile);
 							$args->getData()->format = true;
 							MOXMAN::getPluginManager()->get("core")->fire("FileAction", $args);
+							$files[] = $outFile;
 							break;
 					}
 				}
@@ -184,8 +182,11 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 				$args = new MOXMAN_Vfs_FileActionEventArgs(MOXMAN_Vfs_FileActionEventArgs::ADD, $outFile);
 				$args->getData()->format = true;
 				MOXMAN::getPluginManager()->get("core")->fire("FileAction", $args);
+				$files[] = $outFile;
 			}
 		}
+
+		return $files;
 	}
 
 	/**
@@ -194,22 +195,17 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 	 * @param MOXMAN_Vfs_IFile $file File to generate images for.
 	 */
 	public function removeFormat(MOXMAN_Vfs_IFile $file) {
-		if (!$file->exists() || !MOXMAN_Media_ImageAlter::canEdit($file)) {
-			return;
-		}
-
+		$files = array();
 		$config = $file->getConfig();
 		$format = $config->get("autoformat.rules", "");
 
-		if ($config->get("autoformat.delete_format_images", true) === false) {
-			return;
+		if (!$format || !$file->exists() || !MOXMAN_Media_ImageAlter::canEdit($file)) {
+			return $files;
 		}
 
-		// @codeCoverageIgnoreStart
-		if (!$format) {
-			return;
+		if ($config->get("autoformat.delete_format_images", true) === false) {
+			return $files;
 		}
-		// @codeCoverageIgnoreEnd
 
 		// Export to temp file
 		$tempFilePath = MOXMAN::getFileSystemManager()->getLocalTempPath($file);
@@ -279,10 +275,12 @@ class MOXMAN_AutoFormat_Plugin implements MOXMAN_IPlugin {
 
 			if ($outFile->exists()) {
 				$outFile->delete();
+				$files[] = $outFile;
 			}
 		}
-	}
 
+		return $files;
+	}
 }
 
 // Add plugin

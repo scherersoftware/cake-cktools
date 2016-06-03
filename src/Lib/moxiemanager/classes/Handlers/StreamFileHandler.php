@@ -58,7 +58,7 @@ class MOXMAN_Handlers_StreamFileHandler implements MOXMAN_Http_IHandler {
 		$file = $args->getFile();
 
 		// Stream temp file if it exists
-		if ($tempName = $request->get("tempname")) {
+		if ($tempName = MOXMAN_Util_Sanitize::fileName($request->get("tempname"))) {
 			$ext = MOXMAN_Util_PathUtils::getExtension($file->getName());
 			$tempName = "mcic_" . md5(session_id() . $file->getName()) . "." . $ext;
 			$tempFilePath = MOXMAN_Util_PathUtils::combine(MOXMAN_Util_PathUtils::getTempDir(), $tempName);

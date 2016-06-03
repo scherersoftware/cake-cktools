@@ -22,6 +22,10 @@ class MOXMAN_Commands_DeleteCommand extends MOXMAN_Commands_BaseCommand {
 		$result = array();
 
 		foreach ($paths as $path) {
+			if ($this->hasPath($result, $path)) {
+				continue;
+			}
+
 			$file = MOXMAN::getFile($path);
 			$config = $file->getConfig();
 
@@ -58,13 +62,28 @@ class MOXMAN_Commands_DeleteCommand extends MOXMAN_Commands_BaseCommand {
 			$result[] = $this->fileToJson($file);
 
 			if ($file->exists()) {
-				$this->fireBeforeFileAction(MOXMAN_Vfs_FileActionEventArgs::DELETE, $file);
+				$args = $this->fireBeforeFileAction(MOXMAN_Vfs_FileActionEventArgs::DELETE, $file);
+				$result = array_merge($result, $this->filesToJson($args->getFileList()));
+
 				$file->delete(true);
-				$this->fireFileAction(MOXMAN_Vfs_FileActionEventArgs::DELETE, $file);
+
+				$args = $this->fireFileAction(MOXMAN_Vfs_FileActionEventArgs::DELETE, $file);
+				$result = array_merge($result, $this->filesToJson($args->getFileList()));
 			}
 		}
 
 		return $result;
+	}
+
+	private function hasPath($result, $path) {
+		foreach ($result as $fileJson) {
+			echo $fileJson->name . "," . basename($path) . "<br>";
+			if ($fileJson->name === basename($path)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
 

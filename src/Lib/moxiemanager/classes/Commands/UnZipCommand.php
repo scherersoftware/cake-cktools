@@ -43,6 +43,15 @@ class MOXMAN_Commands_UnZipCommand extends MOXMAN_Commands_BaseCommand {
 			);
 		}
 
+		$filter = MOXMAN_Vfs_BasicFileFilter::createFromConfig($config);
+
+		if (!$filter->accept($fromFile, true)) {
+			throw new MOXMAN_Exception(
+				"Invalid file name for: " . $fromFile->getPublicPath(),
+				MOXMAN_Exception::INVALID_FILE_NAME
+			);
+		}
+
 		$paths = array();
 		$fileSystemManager = MOXMAN::getFileSystemManager();
 		$zipArchive = new ZipArchive();
@@ -62,8 +71,6 @@ class MOXMAN_Commands_UnZipCommand extends MOXMAN_Commands_BaseCommand {
 				$stat = $zipArchive->statIndex($i);
 				$paths[] = $stat["name"];
 			}
-
-			$filter = MOXMAN_Vfs_BasicFileFilter::createFromConfig($config);
 
 			foreach ($paths as $path) {
 				$isFile = !preg_match('/\/$/', $path);

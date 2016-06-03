@@ -99,6 +99,18 @@ abstract class MOXMAN_Commands_BaseCommand implements MOXMAN_ICommand {
 	}
 
 	/**
+	 * Converts a list of files to a JSON serializable object.
+	 *
+	 * @param Array $files Files array to convert into JSON format.
+	 * @param Boolean $meta State if the meta data should be returned or not.
+	 * @return Array JSON serializable object.
+	 */
+	protected function filesToJson($files, $meta = false) {
+		// TODO: Maybe move to something else?
+		return MOXMAN_CorePlugin::filesToJson($files, $meta);
+	}
+
+	/**
 	 * Converts a file instance to a JSON serializable object.
 	 *
 	 * @param MOXMAN_Vfs_IFile $file File to convert into JSON format.

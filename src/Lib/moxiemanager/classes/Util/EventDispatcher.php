@@ -115,7 +115,7 @@ class MOXMAN_Util_EventDispatcher {
 			$args->setSender($sender);
 
 			for ($i = 0, $l = count($observers); $i < $l; $i++) {
-				$value = $observers[$i][1]->$observers[$i][0]($args);
+				$value = $observers[$i][1]->{$observers[$i][0]}($args);
 
 				// Is stopped then break the loop
 				if ($value === false || $args->isStopped()) {

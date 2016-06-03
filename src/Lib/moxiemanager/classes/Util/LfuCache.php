@@ -141,6 +141,7 @@ class MOXMAN_Util_LfuCache {
 	 * Converts the item into a string value.
 	 *
 	 * @return String Value with the items currently in cache.
+	 * @SuppressWarnings(PHPMD)
 	 */
 	public function __toString() {
 		// @codingStandardsIgnoreStart

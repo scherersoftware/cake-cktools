@@ -416,6 +416,12 @@ class MOXMAN_Vfs_Local_File extends MOXMAN_Vfs_BaseFile {
 	}
 
 	private function toUtf($path) {
+		if (DIRECTORY_SEPARATOR == "\\") {
+			if (strlen($path) >= 255) {
+				throw new MOXMAN_Exception("File path is too long. Maximum length is 255.", MOXMAN_Exception::TO_LONG_PATH);
+			}
+		}
+
 		if (DIRECTORY_SEPARATOR == "\\" && function_exists("mb_convert_encoding")) {
 			return mb_convert_encoding($path, "UTF-8", "Windows-1252");
 		}

@@ -17,24 +17,8 @@ class MOXMAN_Util_Config extends MOXMAN_Util_NameValueCollection {
 	 * @param array $items Array with the internal items to set.
 	 */
 	public function __construct(array $items = array()) {
-		// Flatten sub arrays as items
-		foreach ($items as $key => $value) {
-			if (is_array($value)) {
-				$iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($value));
-
-				foreach ($iterator as $value) {
-					$keys = array($key);
-
-					foreach (range(0, $iterator->getDepth()) as $depth) {
-						$keys[] = $iterator->getSubIterator($depth)->key();
-					}
-
-					$items[join('.', $keys)] = $value;
-				}
-			}
-		}
-
-		$this->items = $items;
+		$this->items = array();
+		$this->extend($items);
 	}
 
 	/**
@@ -78,6 +62,16 @@ class MOXMAN_Util_Config extends MOXMAN_Util_NameValueCollection {
 		}
 
 		return $outputConfig;
+	}
+
+	/**
+	 * Extends the current collection with another collection or array.
+	 *
+	 * @param Mixed $items Name/Value array or other instance to extend with.
+	 * @return MOXMAN_Util_NameValueCollection Returns the current extended instance.
+	 */
+	public function extend($items) {
+		return parent::extend($this->flatten($items));
 	}
 
 	/**
@@ -188,6 +182,28 @@ class MOXMAN_Util_Config extends MOXMAN_Util_NameValueCollection {
 		foreach ($this->items as $key => $value) {
 			if (strpos($key, $prefix) === 0) {
 				$items[substr($key, strlen($prefix))] = $value;
+			}
+		}
+
+		return $items;
+	}
+
+	private function flatten($items) {
+		if (is_array($items)) {
+			foreach ($items as $key => $value) {
+				if (is_array($value)) {
+					$iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($value));
+
+					foreach ($iterator as $value) {
+						$keys = array($key);
+
+						foreach (range(0, $iterator->getDepth()) as $depth) {
+							$keys[] = $iterator->getSubIterator($depth)->key();
+						}
+
+						$items[join('.', $keys)] = $value;
+					}
+				}
 			}
 		}
 

@@ -33,7 +33,8 @@ class MOXMAN_Vfs_FileActionEventArgs extends MOXMAN_Util_EventArgs {
 	protected $targetFile;
 
 	/**
-	 * Array with files. Used for list_files actions.
+	 * Array with files contains the action file or a list of files
+	 * that got updated by a file action. For example "add" might generate extra files.
 	 *
 	 * @var array
 	 */
@@ -99,6 +100,7 @@ class MOXMAN_Vfs_FileActionEventArgs extends MOXMAN_Util_EventArgs {
 
 		$this->action = $action;
 		$this->file = $file;
+		$this->files = array();
 		$this->data = new stdClass();
 	}
 

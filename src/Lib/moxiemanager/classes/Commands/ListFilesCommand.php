@@ -53,8 +53,11 @@ class MOXMAN_Commands_ListFilesCommand extends MOXMAN_Commands_BaseCommand {
 		}
 
 		if ($rootPath) {
-			if (!MOXMAN_Util_PathUtils::isChildOf($path, $rootPath)) {
-				$path = $rootPath;
+			$metaData = MOXMAN::getFile($path)->getMetaData();
+			if (!$metaData || !$metaData->get("linked")) {
+				if (!MOXMAN_Util_PathUtils::isChildOf($path, $rootPath)) {
+					$path = $rootPath;
+				}
 			}
 
 			if (!MOXMAN_Util_PathUtils::isChildOf($lastPath, $rootPath)) {
@@ -218,6 +221,7 @@ class MOXMAN_Commands_ListFilesCommand extends MOXMAN_Commands_BaseCommand {
 			$attrs .= $subFile->isFile() && $viewFilter->accept($subFile) ? "v" : "-";
 			$attrs .= $subFile->isFile() && MOXMAN_Media_ImageAlter::canEdit($subFile) ? "p" : "-";
 			$attrs .= isset($thumbnails[$thumbnailPrefix . $subFile->getName()]) ? "t" : "-";
+			$attrs .= 'v'; // Always visible since the list operation can't show other files
 
 			$args = $this->fireCustomInfo(MOXMAN_Vfs_CustomInfoEventArgs::LIST_TYPE, $subFile);
 			$custom = (object) $args->getInfo();

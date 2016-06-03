@@ -10,7 +10,7 @@
   vertical-align: top;
   background: transparent;
   text-decoration: none;
-  color: #333333;
+  color: #333;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   text-shadow: none;
@@ -29,6 +29,7 @@
   box-sizing: content-box;
   direction: ltr;
   max-width: none;
+  border-radius: 0;
 }
 .moxman-widget button {
   -moz-box-sizing: border-box;
@@ -53,10 +54,10 @@
   opacity: 1;
 }
 .moxman-upload-row {
-  border: 1px solid #cecece;
+  border: 1px solid rgba(228, 228, 228, 0.6);
 }
 .moxman-upload-drop-zone {
-  border: 1px dashed #9e9e9e;
+  border: 1px dashed rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 .moxman-overflow-y {
@@ -86,36 +87,31 @@ body .moxman-abs-layout-item,
 }
 .moxman-tooltip-inner {
   font-size: 11px;
-  background-color: #000000;
+  background-color: #000;
   color: white;
   max-width: 200px;
   padding: 5px 8px 4px 8px;
   text-align: center;
   white-space: normal;
 }
-.moxman-tooltip-inner {
-  -webkit-box-shadow: 0 0 5px #000000;
-  -moz-box-shadow: 0 0 5px #000000;
-  box-shadow: 0 0 5px #000000;
-}
 .moxman-tooltip-arrow {
   position: absolute;
   width: 0;
   height: 0;
   line-height: 0;
-  border: 5px dashed #000000;
+  border: 5px dashed #000;
 }
 .moxman-tooltip-arrow-n {
-  border-bottom-color: #000000;
+  border-bottom-color: #000;
 }
 .moxman-tooltip-arrow-s {
-  border-top-color: #000000;
+  border-top-color: #000;
 }
 .moxman-tooltip-arrow-e {
-  border-left-color: #000000;
+  border-left-color: #000;
 }
 .moxman-tooltip-arrow-w {
-  border-right-color: #000000;
+  border-right-color: #000;
 }
 .moxman-tooltip-nw,
 .moxman-tooltip-sw {
@@ -191,102 +187,43 @@ body .moxman-abs-layout-item,
 }
 .moxman-btn {
   border: 1px solid #b1b1b1;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.25);
+  border-color: transparent transparent transparent transparent;
   position: relative;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   display: inline-block;
   *display: inline;
   *zoom: 1;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   background-color: #f0f0f0;
-  background-image: -moz-linear-gradient(top, white, #d9d9d9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#d9d9d9));
-  background-image: -webkit-linear-gradient(top, white, #d9d9d9);
-  background-image: -o-linear-gradient(top, white, #d9d9d9);
-  background-image: linear-gradient(to bottom, white, #d9d9d9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffd9d9d9', GradientType=0);
-  zoom: 1;
 }
 .moxman-btn:hover,
 .moxman-btn:focus {
-  color: #333333;
+  color: #333;
   background-color: #e3e3e3;
-  background-image: -moz-linear-gradient(top, #f2f2f2, #cccccc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#cccccc));
-  background-image: -webkit-linear-gradient(top, #f2f2f2, #cccccc);
-  background-image: -o-linear-gradient(top, #f2f2f2, #cccccc);
-  background-image: linear-gradient(to bottom, #f2f2f2, #cccccc);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2', endColorstr='#ffcccccc', GradientType=0);
-  zoom: 1;
+  border-color: #cccccc;
 }
 .moxman-btn.moxman-disabled button,
 .moxman-btn.moxman-disabled:hover button {
   cursor: default;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   opacity: 0.4;
   filter: alpha(opacity=40);
   zoom: 1;
 }
 .moxman-btn.moxman-active,
 .moxman-btn.moxman-active:hover {
-  background-color: #d6d6d6;
-  background-image: -moz-linear-gradient(top, #e6e6e6, #c0c0c0);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6e6e6), to(#c0c0c0));
-  background-image: -webkit-linear-gradient(top, #e6e6e6, #c0c0c0);
-  background-image: -o-linear-gradient(top, #e6e6e6, #c0c0c0);
-  background-image: linear-gradient(to bottom, #e6e6e6, #c0c0c0);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe6e6e6', endColorstr='#ffc0c0c0', GradientType=0);
-  zoom: 1;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #dbdbdb;
+  border-color: #cccccc;
 }
 .moxman-btn:active {
-  background-color: #d6d6d6;
-  background-image: -moz-linear-gradient(top, #e6e6e6, #c0c0c0);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6e6e6), to(#c0c0c0));
-  background-image: -webkit-linear-gradient(top, #e6e6e6, #c0c0c0);
-  background-image: -o-linear-gradient(top, #e6e6e6, #c0c0c0);
-  background-image: linear-gradient(to bottom, #e6e6e6, #c0c0c0);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe6e6e6', endColorstr='#ffc0c0c0', GradientType=0);
-  zoom: 1;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-@media (min-device-width: 800px) and (max-device-width: 1280px), (min-device-width: 768px) and (max-device-width: 1024px) {
-  .moxman-btn:hover,
-  .moxman-btn:focus,
-  .moxman-btn:active {
-    background-color: #f0f0f0;
-    background-image: -moz-linear-gradient(top, white, #d9d9d9);
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#d9d9d9));
-    background-image: -webkit-linear-gradient(top, white, #d9d9d9);
-    background-image: -o-linear-gradient(top, white, #d9d9d9);
-    background-image: linear-gradient(to bottom, white, #d9d9d9);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffd9d9d9', GradientType=0);
-    zoom: 1;
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
+  background-color: #e0e0e0;
+  border-color: #cccccc;
 }
 .moxman-btn button {
-  padding: 4px 10px;
+  padding: 4px 8px;
   font-size: 14px;
   line-height: 20px;
   *line-height: 16px;
   cursor: pointer;
-  color: #333333;
+  color: #333;
   text-align: center;
   overflow: visible;
   -webkit-appearance: none;
@@ -296,41 +233,23 @@ body .moxman-abs-layout-item,
   padding: 0;
 }
 .moxman-btn i {
-  text-shadow: 1px 1px white;
+  text-shadow: 1px 1px none;
 }
 .moxman-primary {
   min-width: 50px;
-  color: #ffffff;
-  border: 1px solid #b1b1b1;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.25);
-  background-color: #006dcc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
-  zoom: 1;
+  color: #fff;
+  border: 1px solid transparent;
+  border-color: transparent;
+  background-color: #2d8ac7;
 }
 .moxman-primary:hover,
 .moxman-primary:focus {
-  background-color: #005fb3;
-  background-image: -moz-linear-gradient(top, #0077b3, #003cb3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0077b3), to(#003cb3));
-  background-image: -webkit-linear-gradient(top, #0077b3, #003cb3);
-  background-image: -o-linear-gradient(top, #0077b3, #003cb3);
-  background-image: linear-gradient(to bottom, #0077b3, #003cb3);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0077b3', endColorstr='#ff003cb3', GradientType=0);
-  zoom: 1;
+  background-color: #257cb6;
+  border-color: transparent;
 }
 .moxman-primary.moxman-disabled button,
 .moxman-primary.moxman-disabled:hover button {
   cursor: default;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   opacity: 0.4;
   filter: alpha(opacity=40);
   zoom: 1;
@@ -338,23 +257,17 @@ body .moxman-abs-layout-item,
 .moxman-primary.moxman-active,
 .moxman-primary.moxman-active:hover,
 .moxman-primary:not(.moxman-disabled):active {
-  background-color: #005299;
-  background-image: -moz-linear-gradient(top, #006699, #003399);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#006699), to(#003399));
-  background-image: -webkit-linear-gradient(top, #006699, #003399);
-  background-image: -o-linear-gradient(top, #006699, #003399);
-  background-image: linear-gradient(to bottom, #006699, #003399);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff006699', endColorstr='#ff003399', GradientType=0);
-  zoom: 1;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #206ea1;
 }
 .moxman-primary button,
 .moxman-primary button i {
-  color: #ffffff;
-  text-shadow: 1px 1px #333333;
+  color: #fff;
+  text-shadow: 1px 1px none;
+}
+.moxman-btn .moxman-txt {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 .moxman-btn-large button {
   padding: 9px 14px;
@@ -389,24 +302,21 @@ body .moxman-abs-layout-item,
   width: 0;
   height: 0;
   vertical-align: top;
-  border-top: 4px solid #333333;
+  border-top: 4px solid #333;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
   content: "";
 }
 .moxman-disabled .moxman-caret {
-  border-top-color: #aaaaaa;
+  border-top-color: #aaa;
 }
 .moxman-caret.moxman-up {
-  border-bottom: 4px solid #333333;
+  border-bottom: 4px solid #333;
   border-top: 0;
 }
 .moxman-btn-flat {
   border: 0;
   background: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   filter: none;
 }
 .moxman-btn-flat:hover,
@@ -416,9 +326,9 @@ body .moxman-abs-layout-item,
   border: 0;
   background: #e6e6e6;
   filter: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+}
+.moxman-btn-has-text .moxman-ico {
+  padding-right: 5px;
 }
 .moxman-rtl .moxman-btn button {
   direction: rtl;
@@ -431,19 +341,33 @@ body .moxman-abs-layout-item,
   overflow: hidden;
 }
 .moxman-btn-group .moxman-btn {
-  border-width: 1px 0 1px 0;
+  border-width: 1px;
   margin: 0;
+  margin-left: 2px;
+}
+.moxman-btn-group:not(:first-child) {
+  border-left: 1px solid #d9d9d9;
+  padding-left: 3px;
+  margin-left: 3px;
 }
 .moxman-btn-group .moxman-first {
-  border-left: 1px solid #b1b1b1;
-  border-left: 1px solid rgba(0, 0, 0, 0.25);
-}
-.moxman-btn-group .moxman-last {
-  border-right: 1px solid #b1b1b1;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  margin-left: 0;
 }
 .moxman-btn-group .moxman-btn.moxman-flow-layout-item {
   margin: 0;
+}
+.moxman-rtl .moxman-btn-group .moxman-btn {
+  margin-left: 0;
+  margin-right: 2px;
+}
+.moxman-rtl .moxman-btn-group .moxman-first {
+  margin-right: 0;
+}
+.moxman-rtl .moxman-btn-group:not(:first-child) {
+  border-left: none;
+  border-right: 1px solid #d9d9d9;
+  padding-right: 4px;
+  margin-right: 4px;
 }
 .moxman-carousel {
   background: black;
@@ -494,18 +418,7 @@ body .moxman-abs-layout-item,
 i.moxman-i-checkbox {
   margin: 0 3px 0 0;
   border: 1px solid #c5c5c5;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   background-color: #f0f0f0;
-  background-image: -moz-linear-gradient(top, white, #d9d9d9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#d9d9d9));
-  background-image: -webkit-linear-gradient(top, white, #d9d9d9);
-  background-image: -o-linear-gradient(top, white, #d9d9d9);
-  background-image: linear-gradient(to bottom, white, #d9d9d9);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffd9d9d9', GradientType=0);
-  zoom: 1;
   text-indent: -10em;
   *font-size: 0;
   *line-height: 0;
@@ -513,7 +426,7 @@ i.moxman-i-checkbox {
   overflow: hidden;
 }
 .moxman-checked i.moxman-i-checkbox {
-  color: #333333;
+  color: #333;
   font-size: 16px;
   line-height: 16px;
   text-indent: 0;
@@ -521,13 +434,13 @@ i.moxman-i-checkbox {
 .moxman-checkbox:focus i.moxman-i-checkbox,
 .moxman-checkbox.moxman-focus i.moxman-i-checkbox {
   border: 1px solid rgba(82, 168, 236, 0.8);
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.65);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.65);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.65);
 }
 .moxman-checkbox.moxman-disabled .moxman-label,
 .moxman-checkbox.moxman-disabled i.moxman-i-checkbox {
   color: #acacac;
+}
+.moxman-checkbox .moxman-label {
+  vertical-align: middle;
 }
 .moxman-rtl .moxman-checkbox {
   direction: rtl;
@@ -540,9 +453,6 @@ i.moxman-i-checkbox {
   display: inline-block;
   *display: inline;
   *zoom: 1;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   *height: 32px;
 }
 .moxman-combobox input {
@@ -554,6 +464,7 @@ i.moxman-i-checkbox {
   color: #adadad;
 }
 .moxman-combobox .moxman-btn {
+  border: 1px solid #c5c5c5;
   border-left: 0;
 }
 .moxman-combobox button {
@@ -562,9 +473,6 @@ i.moxman-i-checkbox {
 }
 .moxman-combobox.moxman-disabled .moxman-btn button {
   cursor: default;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   opacity: 0.4;
   filter: alpha(opacity=40);
   zoom: 1;
@@ -628,22 +536,12 @@ i.moxman-i-checkbox {
   position: relative;
 }
 .moxman-panel {
-  border: 0 solid #9e9e9e;
+  border: 0 solid #cacaca;
+  border: 0 solid rgba(0, 0, 0, 0.2);
   background-color: #f0f0f0;
-  background-image: -moz-linear-gradient(top, #fdfdfd, #dddddd);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdfdfd), to(#dddddd));
-  background-image: -webkit-linear-gradient(top, #fdfdfd, #dddddd);
-  background-image: -o-linear-gradient(top, #fdfdfd, #dddddd);
-  background-image: linear-gradient(to bottom, #fdfdfd, #dddddd);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdfdfd', endColorstr='#ffdddddd', GradientType=0);
-  zoom: 1;
 }
 .moxman-floatpanel {
   position: absolute;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .moxman-floatpanel.moxman-fixed {
   position: fixed;
@@ -667,13 +565,10 @@ i.moxman-i-checkbox {
 .moxman-floatpanel.moxman-popover {
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background: transparent;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   top: 0;
   left: 0;
-  background: #ffffff;
-  border: 1px solid #9e9e9e;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 .moxman-floatpanel.moxman-popover.moxman-bottom {
@@ -684,7 +579,7 @@ i.moxman-i-checkbox {
   left: 50%;
   margin-left: -11px;
   border-top-width: 0;
-  border-bottom-color: #9e9e9e;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
   border-bottom-color: rgba(0, 0, 0, 0.25);
   top: -11px;
 }
@@ -692,7 +587,7 @@ i.moxman-i-checkbox {
   top: 1px;
   margin-left: -10px;
   border-top-width: 0;
-  border-bottom-color: #ffffff;
+  border-bottom-color: #FFF;
 }
 .moxman-floatpanel.moxman-popover.moxman-bottom.moxman-start {
   margin-left: -22px;
@@ -735,7 +630,7 @@ i.moxman-i-checkbox {
   margin-left: 2px;
 }
 .moxman-iframe {
-  border: 0 solid #9e9e9e;
+  border: 0 solid rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100%;
 }
@@ -744,7 +639,6 @@ i.moxman-i-checkbox {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background: #ffffff;
   height: 100%;
 }
 div.moxman-fullscreen {
@@ -761,7 +655,7 @@ div.moxman-fullscreen {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #000000;
+  background: #000;
 }
 #moxman-modal-block.moxman-in {
   opacity: 0.3;
@@ -772,12 +666,9 @@ div.moxman-fullscreen {
   cursor: move;
 }
 .moxman-window {
-  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background: transparent;
-  background: #ffffff;
+  background: #FFF;
   position: fixed;
   top: 0;
   left: 0;
@@ -820,7 +711,7 @@ div.moxman-fullscreen {
 }
 .moxman-foot {
   display: block;
-  background-color: #ffffff;
+  background-color: #FFF;
   border-top: 1px solid #c5c5c5;
 }
 .moxman-window-head .moxman-dragh {
@@ -834,6 +725,9 @@ div.moxman-fullscreen {
 .moxman-window iframe {
   width: 100%;
   height: 100%;
+}
+.moxman-window-body .moxman-listbox {
+  border-color: #cccccc;
 }
 .moxman-rtl .moxman-window-head .moxman-close {
   position: absolute;
@@ -853,9 +747,6 @@ div.moxman-fullscreen {
 }
 .moxman-imagecanvas canvas,
 .moxman-imagecanvas img {
-  -webkit-box-shadow: 0px 2px 5px 3px #666666;
-  -moz-box-shadow: 0px 2px 5px 3px #666666;
-  box-shadow: 0px 2px 5px 3px #666666;
   display: block;
   max-width: none;
 }
@@ -886,7 +777,7 @@ div.moxman-fullscreen {
   zoom: 1;
   display: block;
   position: absolute;
-  background: url('img/ants.gif') #ffffff;
+  background: url('img/ants.gif') #FFF;
   width: 1px;
   height: 1px;
   z-index: 1001;
@@ -939,7 +830,7 @@ div.moxman-fullscreen {
   overflow: auto;
 }
 .moxman-label.moxman-disabled {
-  color: #aaaaaa;
+  color: #aaa;
 }
 .moxman-label.moxman-multiline {
   white-space: pre-wrap;
@@ -955,36 +846,30 @@ div.moxman-fullscreen {
 .moxman-menubar .moxman-menubtn {
   border-color: transparent;
   background: transparent;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
   filter: none;
 }
+.moxman-menubar .moxman-menubtn button {
+  color: #333;
+}
 .moxman-menubar {
-  border: 1px solid #c4c4c4;
+  border: 1px solid rgba(217, 217, 217, 0.52);
 }
 .moxman-menubar .moxman-menubtn button span {
-  color: #333333;
+  color: #333;
 }
 .moxman-menubar .moxman-caret {
-  border-top-color: #333333;
+  border-top-color: #333;
 }
 .moxman-menubar .moxman-menubtn:hover,
 .moxman-menubar .moxman-menubtn.moxman-active,
 .moxman-menubar .moxman-menubtn:focus {
-  border-color: transparent;
-  background: #e6e6e6;
+  border-color: #cccccc;
+  background: #fff;
   filter: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
 }
 /* MenuButton */
-.moxman-menubtn span {
-  color: #333333;
-  margin-right: 2px;
-  line-height: 20px;
-  *line-height: 16px;
+.moxman-menubtn button {
+  color: #333;
 }
 .moxman-menubtn.moxman-btn-small span {
   font-size: 12px;
@@ -1011,7 +896,7 @@ div.moxman-fullscreen {
   clear: both;
   font-weight: normal;
   line-height: 20px;
-  color: #333333;
+  color: #333;
   white-space: nowrap;
   cursor: pointer;
   line-height: normal;
@@ -1020,7 +905,7 @@ div.moxman-fullscreen {
 }
 .moxman-menu-item .moxman-ico,
 .moxman-menu-item .moxman-text {
-  color: #333333;
+  color: #333;
 }
 .moxman-menu-item.moxman-disabled .moxman-text,
 .moxman-menu-item.moxman-disabled .moxman-ico {
@@ -1037,7 +922,7 @@ div.moxman-fullscreen {
   color: white;
 }
 .moxman-menu-item.moxman-disabled:hover {
-  background: #cccccc;
+  background: #CCC;
 }
 .moxman-menu-shortcut {
   display: inline-block;
@@ -1060,7 +945,7 @@ div.moxman-fullscreen {
   margin-right: 6px;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
-  border-left: 4px solid #333333;
+  border-left: 4px solid #333;
 }
 .moxman-menu-item.moxman-selected .moxman-caret,
 .moxman-menu-item:focus .moxman-caret,
@@ -1079,13 +964,13 @@ div.moxman-fullscreen {
   visibility: visible;
 }
 .moxman-menu-item-normal.moxman-active {
-  background-color: #c8def4;
+  background-color: #3498db;
 }
 .moxman-menu-item-preview.moxman-active {
-  border-left: 5px solid #aaaaaa;
+  border-left: 5px solid #aaa;
 }
 .moxman-menu-item-normal.moxman-active .moxman-text {
-  color: #333333;
+  color: white;
 }
 .moxman-menu-item-normal.moxman-active:hover .moxman-text,
 .moxman-menu-item-normal.moxman-active:hover .moxman-ico {
@@ -1100,15 +985,7 @@ div.moxman-fullscreen {
 .moxman-menu-item:focus {
   text-decoration: none;
   color: white;
-  background-color: #0081c2;
-  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
-  zoom: 1;
+  background-color: #2d8ac7;
 }
 div.moxman-menu .moxman-menu-item-sep,
 .moxman-menu-item-sep:hover {
@@ -1117,8 +994,8 @@ div.moxman-menu .moxman-menu-item-sep,
   height: 1px;
   margin: 9px 1px;
   overflow: hidden;
-  background: #cbcbcb;
-  border-bottom: 1px solid #ffffff;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   cursor: default;
   filter: none;
 }
@@ -1138,7 +1015,7 @@ div.moxman-menu .moxman-menu-item-sep,
 .moxman-rtl .moxman-menu-item .moxman-caret {
   margin-left: 6px;
   margin-right: 0;
-  border-right: 4px solid #333333;
+  border-right: 4px solid #333;
   border-left: 0;
 }
 .moxman-rtl .moxman-menu-item.moxman-selected .moxman-caret,
@@ -1155,16 +1032,13 @@ div.moxman-menu .moxman-menu-item-sep,
   background: transparent;
   z-index: 1000;
   padding: 5px 0 5px 0;
-  margin: 2px 0 0;
+  margin: -1px 0 0;
   min-width: 160px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #989898;
   border: 1px solid rgba(0, 0, 0, 0.2);
   z-index: 1002;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  max-height: 420px;
+  max-height: 410px;
   overflow: auto;
   overflow-x: hidden;
 }
@@ -1210,10 +1084,9 @@ div.moxman-menu .moxman-menu-item-sep,
   position: absolute;
   bottom: 10px;
   right: 30px;
-  background: #fdfdfd;
+  background: #FDFDFD;
   padding: 10px;
-  border: 1px solid #b1b1b1;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   min-width: 250px;
   -webkit-transition: bottom 150ms ease-in, opacity 150ms ease-in;
   transition: bottom 150ms ease-in, opacity 150ms ease-in;
@@ -1258,20 +1131,20 @@ div.moxman-menu .moxman-menu-item-sep,
   *display: inline;
   *zoom: 1;
   cursor: pointer;
-  color: #333333;
+  color: #333;
 }
 .moxman-path-item:hover {
   text-decoration: underline;
 }
 .moxman-path-item:focus {
-  background: #666666;
-  color: #ffffff;
+  background: #666;
+  color: #fff;
 }
 .moxman-path .moxman-divider {
   display: inline;
 }
 .moxman-disabled .moxman-path-item {
-  color: #aaaaaa;
+  color: #aaa;
 }
 .moxman-rtl .moxman-path {
   direction: rtl;
@@ -1282,7 +1155,7 @@ div.moxman-menu .moxman-menu-item-sep,
   position: relative;
   width: 100px;
   height: 20px;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
 }
 .moxman-progress .moxman-text {
   position: absolute;
@@ -1292,28 +1165,20 @@ div.moxman-menu .moxman-menu-item-sep,
   margin-top: -8px;
   font-size: 12px;
   width: 100%;
-  color: #333333;
-  text-shadow: 1px 1px white;
+  color: #333;
+  text-shadow: 1px 1px none;
 }
 .moxman-bar {
   display: block;
   width: 0%;
   height: 100%;
   background-color: #d7d7d7;
-  background-image: -moz-linear-gradient(top, #dfdfdf, #cccccc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dfdfdf), to(#cccccc));
-  background-image: -webkit-linear-gradient(top, #dfdfdf, #cccccc);
-  background-image: -o-linear-gradient(top, #dfdfdf, #cccccc);
-  background-image: linear-gradient(to bottom, #dfdfdf, #cccccc);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffdfdfdf', endColorstr='#ffcccccc', GradientType=0);
-  zoom: 1;
   -webkit-transition: width 0.2s ease;
   transition: width 0.2s ease;
 }
 .moxman-slider {
-  border: 1px solid #aaaaaa;
-  background: #eeeeee;
+  border: 1px solid #AAA;
+  background: #EEE;
   width: 100px;
   height: 10px;
   position: relative;
@@ -1324,8 +1189,8 @@ div.moxman-menu .moxman-menu-item-sep,
   height: 100px;
 }
 .moxman-slider-handle {
-  border: 1px solid #bbbbbb;
-  background: #dddddd;
+  border: 1px solid #BBB;
+  background: #DDD;
   display: block;
   width: 13px;
   height: 13px;
@@ -1340,22 +1205,21 @@ div.moxman-menu .moxman-menu-item-sep,
 }
 .moxman-splitbtn .moxman-open {
   border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
 }
 .moxman-splitbtn:hover .moxman-open {
-  border-left-color: #bdbdbd;
-  border-right-color: #bdbdbd;
+  border-left-color: #cccccc;
 }
 .moxman-splitbtn button {
-  padding-right: 4px;
+  padding-right: 6px;
+  padding-left: 6px;
 }
 .moxman-splitbtn .moxman-open {
+  padding-right: 4px;
   padding-left: 4px;
 }
 .moxman-splitbtn .moxman-open.moxman-active {
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #dbdbdb;
+  outline: 1px solid #cccccc;
 }
 .moxman-splitbtn.moxman-btn-small .moxman-open {
   padding: 0 3px 0 3px;
@@ -1365,12 +1229,11 @@ div.moxman-menu .moxman-menu-item-sep,
   text-align: right;
 }
 .moxman-rtl .moxman-splitbtn button {
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 4px;
+  padding-left: 4px;
 }
 .moxman-rtl .moxman-splitbtn .moxman-open {
-  padding-left: 4px;
-  padding-right: 4px;
+  border-left: 0;
 }
 .moxman-stack-layout-item {
   display: block;
@@ -1379,23 +1242,27 @@ div.moxman-menu .moxman-menu-item-sep,
   display: block;
   border-bottom: 1px solid #c5c5c5;
 }
+.moxman-tabs,
+.moxman-tabs + .moxman-container-body {
+  background: #FFF;
+}
 .moxman-tab {
   display: inline-block;
   *display: inline;
   *zoom: 1;
   border: 1px solid #c5c5c5;
   border-width: 0 1px 0 0;
-  background: #e3e3e3;
+  background: #ffffff;
   padding: 8px;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   height: 13px;
   cursor: pointer;
 }
 .moxman-tab:hover {
-  background: #fdfdfd;
+  background: #FDFDFD;
 }
 .moxman-tab.moxman-active {
-  background: #fdfdfd;
+  background: #FDFDFD;
   border-bottom-color: transparent;
   margin-bottom: -1px;
   height: 14px;
@@ -1408,12 +1275,8 @@ div.moxman-menu .moxman-menu-item-sep,
   border-width: 0 0 0 1px;
 }
 .moxman-textbox {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #c5c5c5;
-  border-radius: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   display: inline-block;
   -webkit-transition: border linear .2s, box-shadow linear .2s;
   transition: border linear .2s, box-shadow linear .2s;
@@ -1422,20 +1285,18 @@ div.moxman-menu .moxman-menu-item-sep,
   padding: 0 4px 0 4px;
   white-space: pre-wrap;
   *white-space: pre;
-  color: #333333;
+  color: #333;
 }
 .moxman-textbox:focus,
 .moxman-textbox.moxman-focus {
-  border-color: rgba(82, 168, 236, 0.8);
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.65);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.65);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.65);
+  border-color: #3498db;
 }
 .moxman-placeholder .moxman-textbox {
-  color: #aaaaaa;
+  color: #aaa;
 }
 .moxman-textbox.moxman-multiline {
   padding: 4px;
+  height: auto;
 }
 .moxman-textbox.moxman-disabled {
   color: #adadad;
@@ -1453,7 +1314,7 @@ div.moxman-menu .moxman-menu-item-sep,
   opacity: 0.6;
   filter: alpha(opacity=60);
   zoom: 1;
-  background: #ffffff url('img/loader.gif') no-repeat center center;
+  background: #fff url('img/loader.gif') no-repeat center center;
 }
 .moxman-throbber-inline {
   position: static;
@@ -1468,7 +1329,7 @@ div.moxman-menu .moxman-menu-item-sep,
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  border: 1px solid #aaaaaa;
+  border: 1px solid #AAA;
   opacity: 70;
   filter: alpha(opacity=7000);
   zoom: 1;
@@ -1492,28 +1353,25 @@ div.moxman-menu .moxman-menu-item-sep,
   opacity: 100;
   filter: alpha(opacity=10000);
   zoom: 1;
-  outline: 2px solid #00709f;
+  outline: 2px solid #00709F;
 }
 .moxman-thumb:hover {
-  outline: 2px solid #00709f;
+  outline: 2px solid #00709F;
 }
 .moxman-thumb.moxman-active {
   border: 1px solid #52a8ec;
-  -webkit-box-shadow: 0 0 5px #52a8ec;
-  -moz-box-shadow: 0 0 5px #52a8ec;
-  box-shadow: 0 0 5px #52a8ec;
 }
 .moxman-thumb.moxman-active .moxman-info,
 .moxman-thumb.moxman-checked .moxman-info {
-  background: #333333;
+  background: #333;
 }
 .moxman-info {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #333333;
-  color: #ffffff;
+  background: #333;
+  color: #FFF;
   padding: 3px;
   opacity: 80;
   filter: alpha(opacity=8000);
@@ -1526,10 +1384,10 @@ div.moxman-menu .moxman-menu-item-sep,
   top: 1px;
   right: 6px;
   margin: 1px;
-  border: 1px solid #ffffff;
+  border: 1px solid #FFF;
   background: transparent;
-  background: #333333;
-  color: #ffffff;
+  background: #333;
+  color: #FFF;
 }
 .moxman-thumb .moxman-i-checkbox {
   display: none;
@@ -1539,10 +1397,10 @@ div.moxman-menu .moxman-menu-item-sep,
   display: block;
 }
 .moxman-info .moxman-i-checkbox:before {
-  color: #ffffff;
+  color: #FFF;
 }
 .moxman-thumb .moxman-ico {
-  color: #333333;
+  color: #333;
 }
 .moxman-treeitem .moxman-treeitem-title {
   display: block;
@@ -1569,7 +1427,7 @@ div.moxman-menu .moxman-menu-item-sep,
 }
 .moxman-treeitem-title .moxman-ico {
   display: inline-block;
-  color: #333333;
+  color: #333;
 }
 .moxman-treeitem-expanded {
   display: block;
@@ -1601,15 +1459,7 @@ div.moxman-menu .moxman-menu-item-sep,
   display: none;
 }
 .moxman-treeitem-title-selected {
-  background-color: #0081c2;
-  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
-  zoom: 1;
+  background-color: #2d8ac7;
 }
 .moxman-treeitem-title-selected .moxman-text {
   color: white;
@@ -1633,7 +1483,7 @@ div.moxman-viewport {
   left: 0;
 }
 .moxman-filelist {
-  border: 1px solid #9e9e9e;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 .moxman-filelist-cell .moxman-caret {
   display: none;
@@ -1645,15 +1495,7 @@ div.moxman-viewport {
 div.moxman-filelist-head {
   overflow: hidden;
   background-color: #f0f0f0;
-  background-image: -moz-linear-gradient(top, #fdfdfd, #dddddd);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdfdfd), to(#dddddd));
-  background-image: -webkit-linear-gradient(top, #fdfdfd, #dddddd);
-  background-image: -o-linear-gradient(top, #fdfdfd, #dddddd);
-  background-image: linear-gradient(to bottom, #fdfdfd, #dddddd);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdfdfd', endColorstr='#ffdddddd', GradientType=0);
-  zoom: 1;
-  border-bottom: 1px solid #9e9e9e;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .moxman-filelist-body {
   -webkit-overflow-scrolling: touch;
@@ -1662,7 +1504,7 @@ div.moxman-filelist-head {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background: #ffffff;
+  background: #fff;
   height: 1px;
   overflow-y: scroll;
 }
@@ -1671,11 +1513,11 @@ div.moxman-filelist-head {
 }
 .moxman-filelist td,
 .moxman-filelist th {
-  color: #333333;
+  color: #333;
   margin: 0;
 }
 .moxman-filelist .moxman-ico {
-  color: #333333;
+  color: #333;
 }
 .moxman-filelist td,
 .moxman-filelist th {
@@ -1699,7 +1541,7 @@ div.moxman-filelist-head {
   top: 12px;
 }
 .moxman-filelist-body tbody td {
-  border-bottom: 1px solid #cfcfcf;
+  border-bottom: 1px solid rgba(230, 230, 230, 0.6);
   height: 28px;
   vertical-align: middle;
 }
@@ -1733,7 +1575,7 @@ div.moxman-filelist-head {
   overflow: hidden;
 }
 .moxman-filelist .moxman-filelist-odd {
-  background-color: #f8f8f8;
+  background-color: rgba(253, 253, 253, 0.944);
 }
 .moxman-filelist-cell i {
   margin-right: 3px;
@@ -1743,15 +1585,7 @@ div.moxman-filelist-head {
 }
 .moxman-filelist tr.moxman-checked,
 .moxman-filelist tr.moxman-checked td {
-  background-color: #54a4cc;
-  background-image: -moz-linear-gradient(top, #54a4cc, #54a4cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#54a4cc), to(#54a4cc));
-  background-image: -webkit-linear-gradient(top, #54a4cc, #54a4cc);
-  background-image: -o-linear-gradient(top, #54a4cc, #54a4cc);
-  background-image: linear-gradient(to bottom, #54a4cc, #54a4cc);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff54a4cc', endColorstr='#ff54a4cc', GradientType=0);
-  zoom: 1;
+  background-color: #2d8ac7;
   color: white;
 }
 .moxman-checkbox-column {
@@ -1778,7 +1612,7 @@ div.moxman-filelist-head {
   opacity: 1;
   filter: alpha(opacity=100);
   zoom: 1;
-  color: #333333;
+  color: #333;
 }
 .moxman-filelist-cell .moxman-inter,
 .moxman-filelist-cell .moxman-checked {
@@ -1835,15 +1669,19 @@ div.moxman-filelist-head {
   font-family: 'moxman', Arial;
   font-style: normal;
   font-weight: normal;
+  font-variant: normal;
   font-size: 16px;
   line-height: 16px;
+  speak: none;
   vertical-align: text-top;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: inline-block;
   background: transparent center center;
+  background-size: cover;
   width: 16px;
   height: 16px;
-  color: #333333;
+  color: #333;
   zoom: 1;
 }
 .moxman-i-manage:before {
