@@ -48,7 +48,6 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
         merge = merge || true;
         if (merge) {
             $.extend(this.tinyMceConfig, config);
-            console.log('merged');
         } else {
             this.tinyMceConfig = config;
         }
