@@ -16,6 +16,9 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
         this._componentsInitialized = true;
     },
     setDefaultConfig: function() {
+        if (this.tinyMceConfig) {
+            return;
+        }
         this.tinyMceConfig = {
             script_url : '/ck_tools/js/vendor/tinymce/tinymce.min.js',
             language: this.locale,
@@ -37,6 +40,18 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
             remove_script_host: true,
             document_base_url: '/files/'
         };
+    },
+    setConfig: function (config, merge) {
+        if (!this.tinyMceConfig) {
+            this.setDefaultConfig();
+        }
+        merge = merge || true;
+        if (merge) {
+            $.extend(this.tinyMceConfig, config);
+            console.log('merged');
+        } else {
+            this.tinyMceConfig = config;
+        }
     },
     initEditors: function($dom) {
         $dom.find('textarea.tinymce').each(function(i, element) {

@@ -218,7 +218,8 @@ public $helpers =  [
 ```
 
 ####app_controller.js (using Frontend Bridge)
-If you chose to use the Frontend Bridge Plugin, here's how to configure it in a way that makes using MoxiePicker in a View file super easy. Of course, using another kind of PageController is possible as well.
+
+If you choose to use the Frontend Bridge Plugin, here's how to configure it in a way that makes using MoxiePicker in a View file super easy. Of course, using another kind of PageController is possible as well.
 
 **baseComponents:**
 
@@ -230,14 +231,25 @@ baseComponents: ['TinyMce', 'MoxmanPicker']
 
 ```
 initGlobalFunctionality: function() {
-	this.TinyMce.initComponents();
+    this.TinyMce.initEditors($('#wrapper'));
+```
+
+You can change TinyMce settings using the `setConfig` method. Make sure you call this before calling `initEditors()`.
+
+```
+this.TinyMce.setConfig({
+    toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link table",
+    plugins: 'table link',
+    menu: {},
+    elementpath: false
+});
 ```
 
 ####view.ctp
 
 The TinyMce helper provides a wrapper for FormHelper::input() and will generate an input field with a button to choose a file from Moxiemanager. The relative path of the chosen file will be set as the value of the text field.
 
-Include TinyMCE assts:
+Include TinyMCE assets:
 
 ```
 $this->TinyMce->includeAssets();
