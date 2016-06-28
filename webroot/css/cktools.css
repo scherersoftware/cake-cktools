@@ -13,6 +13,6 @@
 .sortable-list thead tr th:first-child {
     padding-left: 40px;
 }
-.sortable-list tbody i.fa {
+.sortable-list tbody td:first-child > i.fa {
     margin-right: 20px;
 }
