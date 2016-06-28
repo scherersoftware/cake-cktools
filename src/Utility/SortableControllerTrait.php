@@ -17,7 +17,8 @@ trait SortableControllerTrait {
      * endpoint for sorting ajax calls
      *
      * @return ServiceResponse
-     * @throws Cake\Network\Exception\NotFoundException if either not a post request or missing or wrong params
+     * @throws Cake\Network\Exception\NotFoundException if either not a post request
+     *         or missing/wrong params
      */
     public function sort()
     {
@@ -27,7 +28,10 @@ trait SortableControllerTrait {
             $entity = $table->get($this->request->data['foreignKey']);
             $entity->sort = $this->request->data['sort'];
             if ($table->save($entity)) {
-                return new ServiceResponse(ApiReturnCode::SUCCESS, [$entity->id, $this->request->data['sort']]);
+                return new ServiceResponse(ApiReturnCode::SUCCESS, [
+                    $entity->id,
+                    $this->request->data['sort']
+                ]);
             }
             return new ServiceResponse(ApiReturnCode::INTERNAL_ERROR, []);
         }

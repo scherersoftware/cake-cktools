@@ -17,7 +17,7 @@ App.Components.SortableComponent = Frontend.Component.extend({
         App.Main.request(
             {
                 plugin: this.Controller._frontendData.request.plugin,
-                controller: this.Controller._frontendData.request.controller,
+                controller: this.Controller._frontendData.request.controller.replace('_', '-'),
                 action: 'sort',
             }, {
                 foreignKey: foreignKey,
