@@ -4,6 +4,13 @@ $config = [
 		'SystemContents' => [
 			'layout' => 'default',
 			'beforeFilter' => function ($controller, $config) {}
-		]
+		],
+        'Security' => [
+            'HSTS' => false,
+            // 'HSTS' => 'max-age=31536000; includeSubDomains', # Only connect to this site and subdomains via HTTPS for the next year
+            'CSP' => false,
+            // 'CSP' => "default-src 'self' 'unsafe-inline'; frame-ancestors 'self'",
+            'denyFraming' => true
+        ]
 	]
 ];
