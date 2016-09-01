@@ -18,7 +18,7 @@
 Open a terminal in your project-folder and run these commands:
 
 	$ composer update
-	
+
 ####2. Configure `config/bootstrap.php`
 ```
 Plugin::load('CkTools', ['bootstrap' => false, 'routes' => true]);
@@ -87,7 +87,7 @@ Renders an add button for the current Model. For example, use this in a `Users` 
 @return string
 
 - `deleteButton(EntityInterface $entity, array $options = [])`  
-Renders an delete button for given database record `$entity`. You can define a custom confirm message in the `$options` array's `'confirm'` field. 
+Renders an delete button for given database record `$entity`. You can define a custom confirm message in the `$options` array's `'confirm'` field.
 @return string
 
 - `formButtons(array $options = [])`  
@@ -137,7 +137,7 @@ Processes the given menu config, structures it and checks for permissions. Check
 @return array
 
 - hasAllowedChildren(array $children)  
-Uses CakePHP's AuthComponent to check if given array of items 'children' contains at least one URL that is allowed to the current user. 
+Uses CakePHP's AuthComponent to check if given array of items 'children' contains at least one URL that is allowed to the current user.
 @return bool
 
 - isItemActive($item)  
@@ -193,7 +193,7 @@ Get them here:
 
 - [Moxiemanager](http://www.moxiemanager.com/getit/) - Note that you need to purchase a licence
 - [TinyMCE](https://www.tinymce.com/download/)
-  
+
 ###Setting up TinyMceHelper using Cake Frontend Bridge
 We strongly suggest to use our [Cake Frontend Bridge Plugin](https://github.com/scherersoftware/cake-frontend-bridge) to make using TinyMCE and MoxieManager as convenient as possible. Here's how to setup these features in your project using the Frontend Bridge.
 
@@ -347,7 +347,7 @@ In your Cake View file you can use the passed viewVars and the `$mpdf` variable 
 
 ```
 <?php $this->start('my_block') ?>
-    <div class="foo"><?= $foo ?></div> 
+    <div class="foo"><?= $foo ?></div>
 <?php $this->end() ?>
 
 <?php
@@ -363,6 +363,10 @@ $mpdf->WriteHTML("This is page 2");
 
 ##Sort table fields with SortableBehavior
 CkTools provides a behavior that allows manipulation of the (displayed) order of the records of a table. If you change the position of one field, the behavior will automatically change all the other fields' positions accordingly. To manipulate the positions you can use an ordinary form field or for example the Cake Frontend Bridge to enable js-based drag-and-drop interaction in the browser UI.
+
+##Strict Passwords with StrictPasswordBehavior
+Active the strict password requirements by setting the StrictPasswordBehavior in UsersTable
+$this->addBehavior('CkTools.StrictPassword');
 
 ####Usage
 Add the SortableBehavior to the Table you want to use it in:
@@ -433,7 +437,7 @@ class User extends Entity
 	/**
 	 * (optional) Overwrite the actions in TypeAwareTrait according to your needs.
 	 */
-	 
+
 	public static function typeDescriptions()
 	{
 	    return [
@@ -442,7 +446,7 @@ class User extends Entity
 	        self::ROLE_CUSTOMER => 'external customer, has R-only access',
 	    ];
 	}
-	
+
 	public static function getRoles()
 	{
 	    return self::getTypeMap(
@@ -491,7 +495,7 @@ $UserToken = new UserToken;
 
 Now you can access the following actions via the `$UserToken` object:
 
-- `getTokenForUser(User $user, $validForSeconds = null, array $additionalData = [])` 
+- `getTokenForUser(User $user, $validForSeconds = null, array $additionalData = [])`
 generates a base64-encoded token for given User Entity. Use the `$validForSeconds` parameter to determine how long the token is valid to use. Furthermore, you can (optionally) pass additional information in the `$additionalData` array.
 
 - isTokenExpired($token)  
