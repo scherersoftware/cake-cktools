@@ -24,6 +24,10 @@ class StrictPasswordBehavior extends Behavior
          'minPasswordLength' => 10,
          // fistname and surname are not allowed in password (case insensitive)
          'noUserName' => true,
+         'userNameFields' => [
+             'firstname' => 'firstname',
+             'lastname' => 'lastname',
+         ],
          // at least one special char is needed in password
          'specialChars' => true,
          // at least one char in upper case is needed in password
@@ -137,30 +141,34 @@ class StrictPasswordBehavior extends Behavior
     public function checkForUserName($value, $context)
     {
         // return true if config is not set
-        if (!$this->config('noUserName')) {
+        if (empty($this->config('noUserName'))) {
             return true;
         }
+        // Get Config
+        $firstNameField = $this->config('userNameFields.firstname');
+        $lastNameField = $this->config('userNameFields.lastname');
 
         // No Usernames in Context
-        if (empty($context['data']['firstname']) || $context['data']['lastname']) {
+        if (empty($context['data'][$firstNameField]) || $context['data'][$lastNameField]) {
             if (!empty($context['data']['id'])) {
                 $user = $this->_table->get($context['data']['id']);
-                $firstname = $user->firstname;
-                $lastname = $user->lastname;
+                $firstname = $user->$firstNameField;
+                $lastname = $user->$lastNameField;
 
             } else {
                 // no name to check
                 return true;
             }
         } else {
-            $firstname = $context['data']['firstname'];
-            $lastname = $context['data']['lastname'];
+            $firstname = $context['data'][$firstNameField];
+            $lastname = $context['data'][$lastNameField];
         }
+
         // validate password
-        if (strpos(strtolower($value), strtolower($firstname)) !== false) {
+        if (!empty($firstname) && strpos(strtolower($value), strtolower($firstname)) !== false) {
             return false;
         }
-        if (strpos(strtolower($value), strtolower($lastname)) !== false) {
+        if (!empty($lastname) && strpos(strtolower($value), strtolower($lastname)) !== false) {
             return false;
         }
 
@@ -187,9 +195,11 @@ class StrictPasswordBehavior extends Behavior
         }
         $user = $this->_table->get($context['data']['id']);
 
-        foreach ($user->last_passwords as $oldPasswordHash) {
-            if ((new DefaultPasswordHasher)->check($value, $oldPasswordHash)) {
-                return false;
+        if (is_array($user->last_passwords)) {
+            foreach ($user->last_passwords as $oldPasswordHash) {
+                if ((new DefaultPasswordHasher)->check($value, $oldPasswordHash)) {
+                    return false;
+                }
             }
         }
 
@@ -207,6 +217,10 @@ class StrictPasswordBehavior extends Behavior
     {
         if (empty($this->config('oldPasswordCount')) || !is_numeric($this->config('oldPasswordCount'))) {
             return true;
+        }
+
+        if (!is_array($entity->last_passwords)) {
+            $entity->last_passwords = [];
         }
 
         $lastPasswords = $entity->last_passwords;
