@@ -19,7 +19,22 @@ class StrictPasswordBehavior extends Behavior
      *
      * @var array
      */
-    protected $_defaultConfig = [];
+     protected $_defaultConfig = [
+         // minimal password length
+         'minPasswordLength' => 10,
+         // fistname and surname are not allowed in password (case insensitive)
+         'noUserName' => true,
+         // at least one special char is needed in password
+         'specialChars' => true,
+         // at least one char in upper case is needed in password
+         'upperCase' => true,
+         // at least one char in lower case is needed in password
+         'lowerCase' => true,
+         // at least one numeric value is needed in password
+         'numericValue' => true,
+         // reuse of old passwords is not allowed: number of old passwords to preserve
+         'oldPasswordCount' => 4
+     ];
 
     /**
      * initialize
@@ -56,9 +71,9 @@ class StrictPasswordBehavior extends Behavior
         $validator
             ->add('password', [
                 'minLength' => [
-                    'rule' => ['minLength', 10],
+                    'rule' => ['minLength', $this->config('minPasswordLength')],
                     'last' => true,
-                    'message' => __('validation.user.password_min_length_10')
+                    'message' => ('validation.user.password_min_length')
                 ],
             ])
             ->add('password', 'passwordFormat', [
@@ -93,19 +108,19 @@ class StrictPasswordBehavior extends Behavior
     public function validFormat($value, $context)
     {
         // one or more letter in upper case
-        if (!preg_match('/[A-Z]/', $value)) {
+        if ($this->config('upperCase') && !preg_match('/[A-Z]/', $value)) {
             return false;
         }
         // one or more letter in lower case
-        if (!preg_match('/[a-z]/', $value)) {
+        if ($this->config('lowerCase') && !preg_match('/[a-z]/', $value)) {
             return false;
         }
-        // one or more digit
-        if (!preg_match('/[0-9]/', $value)) {
+        // one or more numeric value
+        if ($this->config('numericValue') && !preg_match('/[0-9]/', $value)) {
             return false;
         }
         // one ore more special char (no digit or letter)
-        if (!preg_match('/[^äüößÄÜÖA-Za-z0-9]/', $value)) {
+        if ($this->config('specialChar') && !preg_match('/[^äüößÄÜÖA-Za-z0-9]/', $value)) {
             return false;
         }
 
@@ -121,6 +136,11 @@ class StrictPasswordBehavior extends Behavior
      */
     public function checkForUserName($value, $context)
     {
+        // return true if config is not set
+        if (!$this->config('noUserName')) {
+            return true;
+        }
+
         // No Usernames in Context
         if (empty($context['data']['firstname']) || $context['data']['lastname']) {
             if (!empty($context['data']['id'])) {
@@ -156,6 +176,11 @@ class StrictPasswordBehavior extends Behavior
      */
     public function checkLastPasswords($value, $context)
     {
+        // return true if config is not set
+        if (empty($this->config('oldPasswordCount'))) {
+            return true;
+        }
+
         // ignore on new user
         if (empty($context['data']['id'])) {
             return true;
@@ -180,8 +205,12 @@ class StrictPasswordBehavior extends Behavior
      */
     public function beforeSave(Event $event, EntityInterface $entity)
     {
+        if (empty($this->config('oldPasswordCount')) || !is_numeric($this->config('oldPasswordCount'))) {
+            return true;
+        }
+
         $lastPasswords = $entity->last_passwords;
-        if (count($lastPasswords) == 4) {
+        if (count($lastPasswords) == $this->config('oldPasswordCount')) {
             array_shift($lastPasswords);
         }
         $lastPasswords[] = $entity->password;

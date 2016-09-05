@@ -361,12 +361,31 @@ $mpdf->WriteHTML("This is page 2");
 ?>
 ```
 
-##Sort table fields with SortableBehavior
+## Sort table fields with SortableBehavior
 CkTools provides a behavior that allows manipulation of the (displayed) order of the records of a table. If you change the position of one field, the behavior will automatically change all the other fields' positions accordingly. To manipulate the positions you can use an ordinary form field or for example the Cake Frontend Bridge to enable js-based drag-and-drop interaction in the browser UI.
 
-##Strict Passwords with StrictPasswordBehavior
-Active the strict password requirements by setting the StrictPasswordBehavior in UsersTable
-$this->addBehavior('CkTools.StrictPassword');
+## Strict Passwords with StrictPasswordBehavior
+Activate the strict password requirements by setting the StrictPasswordBehavior in UsersTable; default Configuration is set in this example
+
+$this->addBehavior('CkTools.StrictPassword', [
+    // minimal password length
+    'minPasswordLength' => 10,
+    // fistname and surname are not allowed in password (case insensitive)
+    'noUserName' => true,
+    // at least one special char is needed in password
+    'specialChars' => true,
+    // at least one char in upper case is needed in password
+    'upperCase' => true,
+    // at least one char in lower case is needed in password
+    'lowerCase' => true,
+    // at least one numeric value is needed in password
+    'numericValue' => true,
+    // reuse of old passwords is not allowed: number of old passwords to preserve
+    'oldPasswordCount' => 4
+]);
+
+
+
 
 ####Usage
 Add the SortableBehavior to the Table you want to use it in:
