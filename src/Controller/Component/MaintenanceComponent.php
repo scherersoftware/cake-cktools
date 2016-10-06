@@ -73,7 +73,7 @@ class MaintenanceComponent extends Component
         $password = Environment::read('MAINTENANCE_PASSWORD');
         if ($currentUrl == $passwordUrl) {
             if (!isset($_SERVER['PHP_AUTH_USER'])) {
-                header('WWW-Authenticate: Basic realm="My Realm"');
+                header('WWW-Authenticate: Basic realm="Maintenance Realm"');
                 header('HTTP/1.0 401 Unauthorized');
                 echo 'Unauthorized';
                 exit;
