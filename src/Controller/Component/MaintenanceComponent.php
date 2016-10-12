@@ -32,6 +32,16 @@ class MaintenanceComponent extends Component
     }
 
     /**
+     * Returns if the maintenance mode is currently active
+     *
+     * @return bool
+     */
+    public static function isMaintenanceActive()
+    {
+        return !!Environment::read('MAINTENANCE');
+    }
+
+    /**
      * maintenance redirect logic
      *
      * @return mixed|void
@@ -41,10 +51,20 @@ class MaintenanceComponent extends Component
         if (defined('PHPUNIT_TESTSUITE')) {
             return;
         }
-        $activated = Environment::read('MAINTENANCE');
-        if (!$activated) {
+        $maintenancePage = Environment::read('MAINTENANCE_PAGE_REDIRECT_URL');
+        $currentUrl = $this->request->here;
+        $accessibleUrls = explode('|', Environment::read('MAINTENANCE_ACCESSIBLE_URLS'));
+        $accessibleUrls[] = $maintenancePage;
+
+        if (!self::isMaintenanceActive()) {
+            // if maintenance is not active but maintenance page is requested -> redirect to default page
+            if (in_array($currentUrl, $accessibleUrls) && (substr($maintenancePage, -strlen($currentUrl))) === $currentUrl) {
+                $maintenanceBasePage = Environment::read('MAINTENANCE_BASE_URL');
+                return $this->_controller->redirect($maintenanceBasePage);
+            }
             return;
         }
+
         $cookieName = Environment::read('MAINTENANCE_COOKIE_NAME');
         $cookieExists = ($this->_controller->Cookie->read($cookieName) != null);
         if ($cookieExists) {
@@ -58,10 +78,6 @@ class MaintenanceComponent extends Component
             $this->_controller->Cookie->write($cookieName, true);
             return $this->_controller->redirect($successUrl);
         }
-        $currentUrl = $this->request->here;
-        $accessibleUrls = explode('|', Environment::read('MAINTENANCE_ACCESSIBLE_URLS'));
-        $maintenancePage = Environment::read('MAINTENANCE_PAGE_REDIRECT_URL');
-        $accessibleUrls[] = $maintenancePage;
         $passwordUrl = Environment::read('MAINTENANCE_PASSWORD_URL');
         $accessibleUrls[] = $passwordUrl;
         if (!in_array($currentUrl, $accessibleUrls)) {
