@@ -415,8 +415,20 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'expanded' => true,
-            'expandLinkText' => __d('cktools', 'utility.toggle_content')
+            'expandLinkText' => __d('cktools', 'utility.toggle_content'),
+            'type' => 'array'
         ], $options);
+
+
+        switch ($options['type']) {
+            case 'table':
+                $list = $this->arrayToTable($data, $options);
+                break;
+            case 'array':
+            default:
+                $list = $this->arrayToUnorderedList($data);
+                break;
+        }
 
         if (!$options['expanded']) {
             $id = 'dsd-' . uniqid();
@@ -427,9 +439,9 @@ class CkToolsHelper extends Helper
                 'aria-controls' => $id,
                 'data-target' => '#' . $id
             ]);
-            $out .= '<div class="collapse" id="' . $id . '">' . $this->arrayToUnorderedList($data) . '</div>';
+            $out .= '<div class="collapse" id="' . $id . '">' . $list . '</div>';
         } else {
-            $out = $this->arrayToUnorderedList($data);
+            $out = $list;
         }
         return $out;
     }
@@ -452,5 +464,37 @@ class CkToolsHelper extends Helper
         }
         $out = $out . '</ul>';
         return $out;
+    }
+
+    /**
+     * Converts an array to a <table>, recursively
+     *
+     * @param array  $array    Data
+     * @param array  $options  Optional options
+     * @return string
+     */
+    public function arrayToTable(array $array, array $options = [])
+    {
+        $table = '<table class="table table-condensed';
+        if (isset($options['class'])) {
+            $table .= ' ' . $options['class'] . ' ';
+        }
+        $table .= '">';
+
+        foreach ($array as $field => $value) {
+            $table .= '<tr>';
+                $table .= '<td>' . $field . '</td>';
+                if (is_array($value)) {
+                    $table .= '<td>' . $this->arrayToTable($value, $options) . '</td>';
+                } else {
+                    if ($value === null) {
+                        $value = 'NULL';
+                    }
+                    $table .= '<td>' . $value . '</td>';
+                }
+            $table .= '</tr>';
+        }
+        $table .= '</table>';
+        return $table;
     }
 }
