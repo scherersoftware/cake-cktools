@@ -527,3 +527,29 @@ decrypts given token, allowing you to access all the data that was passed while 
 decrypts given token and only returns the encrypted user_id.
 
 See `cake-cktools/src/Utility/UserToken.php` for further information about these actions.
+
+##I18nShell
+
+CkTools provides a helper shell for i18n related tasks.
+
+###Update .po and .mo files from catalog
+
+To automate the updating of .po/.mo files from available translation strings from the catalog (.pot) file, use the `updateFromCatalog` command.
+
+Example usage:
+
+1. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
+    
+        bin/cake CkTools.I18n updateFromCatalog
+
+2. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will overwrite files without interaction.
+
+        bin/cake CkTools.I18n updateFromCatalog --overwrite
+
+3. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will overwrite files without interaction. Also, it will strip all references, meaning the filenames and lines where the translation was used from the resulting .po and .mo files.
+
+        bin/cake CkTools.I18n updateFromCatalog --overwrite --strip-references
+    
+4. Update all cake.po and cake.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
+    
+        bin/cake CkTools.I18n updateFromCatalog --domain cake
