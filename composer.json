@@ -9,7 +9,8 @@
     "require": {
         "cakephp/plugin-installer": "*",
         "facebook/php-sdk-v4": "4.0.*",
-        "mpdf/mpdf": "6.1.0"
+        "mpdf/mpdf": "6.1.0",
+        "gettext/gettext": "^4.1"
     },
     "require-dev": {
         "cakephp/cakephp": "3.0.x-dev"

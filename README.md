@@ -536,6 +536,8 @@ CkTools provides a helper shell for i18n related tasks.
 
 To automate the updating of .po/.mo files from available translation strings from the catalog (.pot) file, use the `updateFromCatalog` command.
 
+This is done using the excellent [oscarotero/Gettext](https://github.com/oscarotero/Gettext) library.
+
 Example usage:
 
 1. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
