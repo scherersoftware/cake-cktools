@@ -108,7 +108,7 @@ class I18nShell extends Shell
         foreach ($poFiles as $poFile) {
             $moFile = str_replace('.po', '.mo', $poFile);
             $translationEntries = Translations::fromPoFile($poFile);
-            $translationEntries->mergeWith($catalogEntries, Merge::REFERENCES_THEIRS);
+            $translationEntries = $catalogEntries->mergeWith($translationEntries, Merge::REFERENCES_THEIRS);
 
             if ($this->params['strip-references']) {
                 foreach ($translationEntries as $translation) {
