@@ -103,21 +103,27 @@ class I18nShell extends Shell
             }
         }
         
-        $catalogEntries = Translations::fromPoFile($catalogFile);
         
         foreach ($poFiles as $poFile) {
+            $catalogEntries = Translations::fromPoFile($catalogFile);
             $moFile = str_replace('.po', '.mo', $poFile);
             $translationEntries = Translations::fromPoFile($poFile);
-            $translationEntries = $catalogEntries->mergeWith($translationEntries, Merge::REFERENCES_THEIRS);
+
+            $newTranslationEntries = $catalogEntries->mergeWith($translationEntries, Merge::REFERENCES_THEIRS);
+
+            $newTranslationEntries->deleteHeaders();
+            foreach ($translationEntries->getHeaders() as $key => $value) {
+                $newTranslationEntries->setHeader($key, $value);
+            }
 
             if ($this->params['strip-references']) {
-                foreach ($translationEntries as $translation) {
+                foreach ($newTranslationEntries as $translation) {
                     $translation->deleteReferences();
                 }
             }
 
-            $translationEntries->toPoFile($poFile);
-            $translationEntries->toMoFile($moFile);
+            $newTranslationEntries->toPoFile($poFile);
+            $newTranslationEntries->toMoFile($moFile);
             $this->out('Updated ' . $poFile);
             $this->out('Updated ' . $moFile);
         }
