@@ -409,6 +409,7 @@ class CkToolsHelper extends Helper
      * @param array $options Options:
      *                       - expanded: Whether the data should be shown by default
      *                       - expandLinkText: Link text for toggling the content
+     *                       - callback: A callback used on every entry
      * @return string
      */
     public function displayStructuredData(array $data, array $options = [])
@@ -482,6 +483,11 @@ class CkToolsHelper extends Helper
         $table .= '">';
 
         foreach ($array as $field => $value) {
+            if (is_callable($options['callback'])) {
+                $callback = $options['callback'];
+                $field = $callback($field);
+            }
+
             $table .= '<tr>';
                 $table .= '<td>' . $field . '</td>';
                 if (is_array($value)) {
