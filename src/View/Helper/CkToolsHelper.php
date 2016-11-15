@@ -482,14 +482,14 @@ class CkToolsHelper extends Helper
         }
         $table .= '">';
 
-        foreach ($array as $field => $value) {
-            if (is_callable($options['callback'])) {
-                $callback = $options['callback'];
-                $field = $callback($field);
+        foreach ($array as $fieldname => $value) {
+            if (is_callable($options['fieldnameCallback'])) {
+                $callback = $options['fieldnameCallback'];
+                $fieldname = $callback($fieldname);
             }
 
             $table .= '<tr>';
-                $table .= '<td>' . $field . '</td>';
+                $table .= '<td>' . $fieldname . '</td>';
                 if (is_array($value)) {
                     $table .= '<td>' . $this->arrayToTable($value, $options) . '</td>';
                 } else {
