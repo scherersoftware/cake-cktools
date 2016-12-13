@@ -25,8 +25,8 @@ class MenuHelper extends Helper
         'templates' => [
             'icon' => '<i class="fa fa-:icon fa-fw"></i>',
             'item' => '<li class=":liclass"><a href=":href" class=":class">:icon :title :childrenArrow</a>:childrenContainer</li>',
-            'childrenArrow' => '<span class="fa arrow"></span>',
-            'childrenContainer' => '<ul class="nav nav-second-level">:children</ul>'
+            'childrenArrow' => '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+            'childrenContainer' => '<ul class="treeview-menu">:children</ul>'
         ]
     ];
 
@@ -77,28 +77,29 @@ class MenuHelper extends Helper
         $out = '';
         foreach ($config as $mainItem => $mainData) {
             $childrenContainer = '';
+            $liclass = $mainData['active'] ? 'active' : '';
 
             if (!empty($mainData['children'])) {
                 $children = '';
                 foreach ($mainData['children'] as $child) {
                     $children .= Text::insert($this->_defaultConfig['templates']['item'], [
-                        'class' => $child['active'] ? 'active' : '',
                         'title' => $child['title'],
                         'icon' => isset($child['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $child['icon']]) : '',
                         'href' => isset($child['url']) ? Router::url($child['url']) : '',
                         'childrenArrow' => '',
                         'childrenContainer' => '',
-                        'liclass' => ''
+                        'liclass' => $child['active'] ? 'active' : '',
                     ]);
                 }
                 $childrenContainer = Text::insert($this->_defaultConfig['templates']['childrenContainer'], [
                     'children' => $children
                 ]);
+                $liclass .= ' treeview';
             }
             $out .= Text::insert($this->_defaultConfig['templates']['item'], [
                 'class' => $mainData['active'] ? 'active' : '',
-                'liclass' => $mainData['active'] ? 'active' : '',
-                'title' => '<span class="mm-text">' . $mainData['title'] . '</span>',
+                'liclass' => $liclass,
+                'title' => '<span>' . $mainData['title'] . '</span>',
                 'icon' => isset($mainData['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $mainData['icon']]) : '',
                 'href' => isset($mainData['url']) ? Router::url($mainData['url']) : '',
                 'childrenArrow' => !empty($mainData['children']) ? $this->_defaultConfig['templates']['childrenArrow'] : '',
