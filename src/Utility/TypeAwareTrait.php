@@ -35,13 +35,11 @@ trait TypeAwareTrait
 
     /**
      * Get a map of [type => typeDescription] from the passed arguments
-     *
+    * @param string $types types
      * @return array
      */
-    public static function getTypeMap()
+    public static function getTypeMap(...$types)
     {
-        $types = func_get_args();
-
         $map = [];
         foreach ($types as $type) {
             $map[$type] = self::getTypeDescription($type);
