@@ -32,7 +32,11 @@ class ToolsComponent extends Component
             $requestedBackAction = $this->request->query['back_action'];
             $requestedAction = preg_replace('/(\\?|&)back_action=.*?(&|$)/', '', $this->request->here(false));
 
-            if (!$this->request->session()->check('back_action.' . $requestedBackAction) || ($this->request->session()->check('back_action.' . $requestedBackAction) && $this->request->session()->read('back_action.' . $requestedBackAction) != $requestedAction)) {
+            if (!$this->request->session()->check('back_action.' . $requestedBackAction)
+                || ($this->request->session()->check('back_action.' . $requestedBackAction) 
+                    && $this->request->session()->read('back_action.' . $requestedBackAction) != $requestedAction
+                )
+            ) {
                 $this->request->session()->write('back_action.' . $requestedAction, $requestedBackAction);
             }
         }

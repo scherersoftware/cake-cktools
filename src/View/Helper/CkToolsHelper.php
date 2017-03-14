@@ -189,7 +189,7 @@ class CkToolsHelper extends Helper
     /**
      * Adds a back action get param to an url array
      *
-     * @param array $url URL
+     * @param array $url URL array
      * @return array
      */
     public function augmentUrlByBackParam(array $url)
@@ -200,13 +200,7 @@ class CkToolsHelper extends Helper
         }
         $backAction = preg_replace('/(\\?|&)back_action=.*?(&|$)/', '', $backAction);
 
-        if (is_array($url)) {
-            if (empty($url['?'])) {
-                $url['?'] = ['back_action' => $backAction];
-            } else {
-                $url['?']['back_action'] = $backAction;
-            }
-        }
+        $url['?']['back_action'] = $backAction;
 
         return $url;
     }
