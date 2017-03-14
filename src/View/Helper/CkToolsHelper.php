@@ -140,6 +140,7 @@ class CkToolsHelper extends Helper
                 'action' => 'edit',
                 $entity->id
             ];
+            $url = $this->augmentUrlByBackParam($url);
         }
         if ($icon) {
             $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
@@ -174,14 +175,40 @@ class CkToolsHelper extends Helper
                 'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'view',
-                $entity->id
+                $entity->id,
             ];
+            $url = $this->augmentUrlByBackParam($url);
         }
         if ($icon) {
             $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
         return $this->Html->link($title, $url, $options);
+    }
+
+    /**
+     * Adds a back action get param to an url array
+     *
+     * @param array $url URL
+     * @return array
+     */
+    public function augmentUrlByBackParam(array $url)
+    {
+        $backAction = $this->request->here(false);
+        if ($this->request->is('ajax')) {
+            $backAction = $this->request->referer(true);
+        }
+        $backAction = preg_replace('/(\\?|&)back_action=.*?(&|$)/', '', $backAction);
+
+        if (is_array($url)) {
+            if (empty($url['?'])) {
+                $url['?'] = ['back_action' => $backAction];
+            } else {
+                $url['?']['back_action'] = $backAction;
+            }
+        }
+
+        return $url;
     }
 
     /**
@@ -204,6 +231,7 @@ class CkToolsHelper extends Helper
         $url = $options['url'];
         if (!$url) {
             $url = ['action' => 'add'];
+            $url = $this->augmentUrlByBackParam($url);
         }
         $icon = $options['icon'];
         unset($options['url'], $options['icon']);
@@ -279,7 +307,7 @@ class CkToolsHelper extends Helper
         $formButtons .= '<hr>';
         $formButtons .= $this->Form->button($options['saveButtonTitle'], ['class' => 'btn-success']);
         if ($options['cancelButton']) {
-            $formButtons .= $this->Html->link($options['cancelButtonTitle'], $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+            $formButtons .= $this->backButton($options['cancelButtonTitle'], null, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
         }
         $formButtons .= '</div>';
         return $formButtons;
@@ -308,6 +336,38 @@ class CkToolsHelper extends Helper
         }
         unset($options['additionalClasses'], $options['icon']);
         return $this->Html->link($title, $url, $options);
+    }
+
+    /**
+     * Renders a back button using the back actions within the session
+     *
+     * @param string $title button caption
+     * @param array $url url to link to
+     * @param array $options link() config
+     * @return string
+     */
+    public function backButton($title = null, array $url = null, array $options = [])
+    {
+        $options = Hash::merge([
+            'icon' => 'arrow-left',
+            'escape' => false
+        ], $options);
+
+        if (!$title) {
+            $title = '<span class="button-text">' . __('Back') . '</span>';
+        }
+
+        $here = preg_replace('/(\\?|&)back_action=.*?(&|$)/', '', $this->request->here(false));
+        if ($this->request->session()->check('back_action.' . $here)) {
+            $url = $this->request->session()->read('back_action.' . $here);
+        }
+        if (empty($url)) {
+            $url = [
+                'action' => 'index'
+            ];
+        }
+
+        return $this->button($title, $url, $options);
     }
 
     /**
