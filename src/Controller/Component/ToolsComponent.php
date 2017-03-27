@@ -36,6 +36,7 @@ class ToolsComponent extends Component
                 || ($this->request->session()->check('back_action.' . $requestedBackAction) 
                     && $this->request->session()->read('back_action.' . $requestedBackAction) != $requestedAction
                 )
+                && (!$this->request->session()->check('back_action.' . $requestedAction))
             ) {
                 $this->request->session()->write('back_action.' . $requestedAction, $requestedBackAction);
             }
