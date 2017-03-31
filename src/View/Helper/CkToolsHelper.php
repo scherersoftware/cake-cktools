@@ -198,9 +198,9 @@ class CkToolsHelper extends Helper
         if ($this->request->is('ajax')) {
             $backAction = $this->request->referer(true);
         }
-        $backAction = preg_replace('/(\\?|&)back_action=.*?(&|$)/', '', $backAction);
+        $backAction = preg_replace('/back_action=.*?(&|$)/', '', $backAction);
 
-        $url['?']['back_action'] = $backAction;
+        $url['?']['back_action'] = preg_replace('/\\?$/', '', $backAction);
 
         return $url;
     }
