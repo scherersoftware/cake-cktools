@@ -351,7 +351,7 @@ class CkToolsHelper extends Helper
             $title = '<span class="button-text">' . __('Back') . '</span>';
         }
 
-        $here = preg_replace('/(\\?|&)back_action=.*?(&|$)/', '', $this->request->here(false));
+        $here = $this->_getRequestedAction();
         if ($this->request->session()->check('back_action.' . $here)) {
             $url = $this->request->session()->read('back_action.' . $here);
         }
@@ -362,6 +362,24 @@ class CkToolsHelper extends Helper
         }
 
         return $this->button($title, $url, $options);
+    }
+
+    /**
+     * Returns the requested action excluding the back action.
+     *
+     * @return string
+     */
+    protected function _getRequestedAction()
+    {
+        /*
+         * Remove back_action from query string but keep the `?` if it is the first query param and there are additional query params following.
+         */
+        $requestedAction = preg_replace('/back_action=.*?(&|$)/', '', $this->request->here(false));
+
+        /*
+         * If `?` is the last char in the url we can remove it.
+         */
+        return preg_replace('/\\?$/', '', $requestedAction);
     }
 
     /**
