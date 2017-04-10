@@ -7,9 +7,12 @@ use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Cake\Utility\Text;
 use Cake\View\Helper;
+use CkTools\Utility\BackButtonTrait;
 
 class CkToolsHelper extends Helper
 {
+    use BackButtonTrait;
+
     public $helpers = ['Html', 'Form'];
 
     /**
@@ -187,25 +190,6 @@ class CkToolsHelper extends Helper
     }
 
     /**
-     * Adds a back action get param to an url array
-     *
-     * @param array $url URL array
-     * @return array
-     */
-    public function augmentUrlByBackParam(array $url)
-    {
-        $backAction = $this->request->here(false);
-        if ($this->request->is('ajax')) {
-            $backAction = $this->request->referer(true);
-        }
-        $backAction = preg_replace('/back_action=.*?(&|$)/', '', $backAction);
-
-        $url['?']['back_action'] = preg_replace('/\\?$/', '', $backAction);
-
-        return $url;
-    }
-
-    /**
      * Renders an add button
      *
      * @param string $title Link Caption
@@ -351,7 +335,7 @@ class CkToolsHelper extends Helper
             $title = '<span class="button-text">' . __('Back') . '</span>';
         }
 
-        $here = $this->_getRequestedAction();
+        $here = $this->getRequestedAction();
         if ($this->request->session()->check('back_action.' . $here)) {
             $url = $this->request->session()->read('back_action.' . $here);
         }
@@ -362,24 +346,6 @@ class CkToolsHelper extends Helper
         }
 
         return $this->button($title, $url, $options);
-    }
-
-    /**
-     * Returns the requested action excluding the back action.
-     *
-     * @return string
-     */
-    protected function _getRequestedAction()
-    {
-        /*
-         * Remove back_action from query string but keep the `?` if it is the first query param and there are additional query params following.
-         */
-        $requestedAction = preg_replace('/back_action=.*?(&|$)/', '', $this->request->here(false));
-
-        /*
-         * If `?` is the last char in the url we can remove it.
-         */
-        return preg_replace('/\\?$/', '', $requestedAction);
     }
 
     /**
