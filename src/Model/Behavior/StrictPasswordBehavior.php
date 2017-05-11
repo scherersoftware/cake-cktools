@@ -77,7 +77,7 @@ class StrictPasswordBehavior extends Behavior
                 'minLength' => [
                     'rule' => ['minLength', $this->config('minPasswordLength')],
                     'last' => true,
-                    'message' => ('validation.user.password_min_length')
+                    'message' => __('validation.user.password_min_length')
                 ],
             ])
             ->add('password', 'passwordFormat', [
