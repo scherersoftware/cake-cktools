@@ -272,6 +272,7 @@ class CkToolsHelper extends Helper
         $url = ['action' => 'index'];
         $options = Hash::merge([
             'useReferer' => false,
+            'horizontalLine' => true,
             'cancelButton' => true,
             'saveButtonTitle' => __d('cktools', 'save'),
             'cancelButtonTitle' => __d('cktools', 'cancel')
@@ -282,7 +283,9 @@ class CkToolsHelper extends Helper
         }
 
         $formButtons = '<div class="submit-group">';
-        $formButtons .= '<hr>';
+        if ($options['horizontalLine']) {
+            $formButtons .= '<hr>';
+        }
         $formButtons .= $this->Form->button($options['saveButtonTitle'], ['class' => 'btn-success']);
         if ($options['cancelButton']) {
             $formButtons .= $this->backButton($options['cancelButtonTitle'], null, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
