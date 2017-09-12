@@ -1,15 +1,15 @@
-#CakePHP 3 cake-cktools
+# CakePHP 3 cake-cktools
 
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.txt)
 
-##Requirements
+## Requirements
 
 - [cake-frontend-bridge](https://github.com/scherersoftware/cake-frontend-bridge) for easy js-based interaction with the backend
 - [Font Awesome](https://fortawesome.github.io/Font-Awesome/) for icons
 
-##Installation
+## Installation
 
-####1. require the plugin in your `composer.json`
+#### 1. require the plugin in your `composer.json`
 ```
 "require": {
     "codekanzlei/cake-cktools": "dev-master"
@@ -19,7 +19,7 @@ Open a terminal in your project-folder and run these commands:
 
 	$ composer update
 
-####2. Configure `config/bootstrap.php`
+#### 2. Configure `config/bootstrap.php`
 ```
 Plugin::load('CkTools', ['bootstrap' => false, 'routes' => true]);
 
@@ -29,7 +29,7 @@ Configure::load('CkTools.currencies');
 Type::map('json', 'CkTools\Database\Type\JsonType');
 ```
 
-####4. Setup Appcontroller.php
+#### 3. Setup Appcontroller.php
 
 **`$helpers`**
 
@@ -52,9 +52,9 @@ public $components = [
 ]
 ```
 
-##Usage
+## Usage
 
-###1. CkToolsHelper
+### 1. CkToolsHelper
 
 Being one of CkTools' core features, CkToolsHelper provides many useful functionalities, most of them aimed at generating powerful view elements such as form- and navigation buttons, often with as much as one line of code. Here's an overview of its actions. See `CkToolsHelper.php` for further details.
 
@@ -75,11 +75,11 @@ Creates a mailto link to the email address given in `$email`. `$options` include
 @return string
 
 - `editButton(EntityInterface $entity, array $options = [])`  
-Renders an edit button for given database record `$entity`. By defailt, this button will link to the entity's Controller's edit action but this can be overwritten using the `'url'` field of the `$options` array.  
+Renders an edit button for given database record `$entity`. By default, this button will link to the entity's Controller's edit action but this can be overwritten using the `'url'` field of the `$options` array.  
 @return string
 
 - `viewButton(EntityInterface $entity, array $options = [])`  
-Renders a details button for given database record `$entity`. By defailt, this button will link to the entity's Controller's view action but this can be overwritten using the `'url'` field of the `$options` array.  
+Renders a details button for given database record `$entity`. By default, this button will link to the entity's Controller's view action but this can be overwritten using the `'url'` field of the `$options` array.  
 @return string
 
 - `addButton($title = null, array $options = [])`  
@@ -111,7 +111,7 @@ Renders a nested list. The param `$data` holds the data to be displayed in assoc
 @return string
 
 - `historyBackButton(array $options = [])`  
-Renders a div with an onclick-hanlder which uses the history API of the Browser.  
+Renders a div with an onclick handler which uses the history API of the Browser.  
 @return string
 
 - `displayStructuredData(array $data, array $options = [])`  
@@ -122,7 +122,7 @@ Display an array in human-readable format. The `'$options'` array includes a fie
 Rercursively converts an array to an unordered list.  
 @return string
 
-###2. MenuHelper
+### 2. MenuHelper
 
 The MenuHelper aims at config-based rendering of hierarchical navigation menus in the UI. Here's an overview of its actions. See `MenuHelper.php` for further details.
 
@@ -144,7 +144,7 @@ Uses CakePHP's AuthComponent to check if given array of items 'children' contain
 Compares the current URL with given menu item to determine wether it should be highlighted or not.  
 @return bool
 
-####`config.php` - a closer look  
+#### `config.php` - a closer look  
 Here's an example of what `config.php` could look like, explaining more possibilities:
 
 ```
@@ -181,23 +181,23 @@ $config = [
                         'action' => 'actionBar'
                     ]
                 ],
-                // furhter sub-items for menu item 'examples'
+                // further sub-items for menu item 'examples'
             ]
         ],
-        // furter menu items
+        // further menu items
 ```
 
-##Manage files with TinyMCE and Moxiemanager  
+## Manage files with TinyMCE and Moxiemanager  
 Moxiemanager is a powerful media manager which can be used in combination with the web-based JavaScript editor TinyMCE. CkTools provides a CakePHP-friendly integration for these features.  
 Get them here:  
 
-- [Moxiemanager](http://www.moxiemanager.com/getit/) - Note that you need to purchase a licence
+- [Moxiemanager](http://www.moxiemanager.com/getit/) - Note that you need to purchase a license
 - [TinyMCE](https://www.tinymce.com/download/)
 
-###Setting up TinyMceHelper using Cake Frontend Bridge
+### Setting up TinyMceHelper using Cake Frontend Bridge
 We strongly suggest to use our [Cake Frontend Bridge Plugin](https://github.com/scherersoftware/cake-frontend-bridge) to make using TinyMCE and MoxieManager as convenient as possible. Here's how to setup these features in your project using the Frontend Bridge.
 
-####app.php
+#### app.php
 ```
 'CkTools' => [
     'moxiemanager' => [
@@ -208,7 +208,7 @@ We strongly suggest to use our [Cake Frontend Bridge Plugin](https://github.com/
 ]
 ```
 
-####Appcontroller.php
+#### Appcontroller.php
 **`$helpers`**
 
 ```
@@ -217,7 +217,7 @@ public $helpers =  [
 ]
 ```
 
-####app_controller.js (using Frontend Bridge)
+#### app_controller.js (using Frontend Bridge)
 
 If you choose to use the Frontend Bridge Plugin, here's how to configure it in a way that makes using MoxiePicker in a View file super easy. Of course, using another kind of PageController is possible as well.
 
@@ -245,7 +245,7 @@ this.TinyMce.setConfig({
 });
 ```
 
-####view.ctp
+#### view.ctp
 
 The TinyMce helper provides a wrapper for FormHelper::input() and will generate an input field with a button to choose a file from Moxiemanager. The relative path of the chosen file will be set as the value of the text field.
 
@@ -261,13 +261,13 @@ Add an input element using MoxiePicker:
 $this->TinyMce->picker('field_name', ['label' => 'My File Picker']);
 ```
 
-##Set up an API with ApiComponent
+## Set up an API with ApiComponent
 
 You can create a plugin, e.g. "Api" to include all your API controller code. Using an API greatly simplifies backend-communication using JavaScript. If you have an Api plugin, make sure you set 'bootstrap' => true when loading the plugin in your bootstrap.
 
 Use the following configuration to make sure errors in the api are always returned as JSON.
 
-####bootstrap.php
+#### bootstrap.php
 
 ```
 if (substr(env('REQUEST_URI'), 0, 5) === '/api/') {
@@ -278,7 +278,7 @@ if (substr(env('REQUEST_URI'), 0, 5) === '/api/') {
 }
 ```
 
-####AppController.php
+#### AppController.php
 
 **`initialize()`**  
 
@@ -294,7 +294,7 @@ $this->Api->setup();
 ```
 
 **`ApiComponent.php`:**  
-This class provides the **`response()`** action which you can use to create and send custom JSON responses. It requires the folloling parameters:  
+This class provides the **`response()`** action which you can use to create and send custom JSON responses. It requires the following parameters:  
 
 - `$returnCode = ApiReturnCode::SUCCESS`: Return code
 - `$array $data`: Data for the `'data'` key of the response
@@ -320,11 +320,11 @@ This call will return an `application/json` response with the HTTP Status Code `
 {"code": "success","data":{"hello":"world"}}
 ```
 
-##Create a PDF using CakePHP Views
+## Create a PDF using CakePHP Views
 
 CkTools includes a simple wrapper for the [MPDF library](http://www.mpdf1.com/mpdf/index.php). For detailed instructions on how to use it, see the github repository here: [https://github.com/mpdf/mpdf](https://github.com/mpdf/mpdf)
 
-####Usage
+#### Usage
 Here's an example use in a Cake Controller but you can use this feature wherever you want. See `/cake-cktools/src/Lib/PdfGenerator.php` for a closer look at the functionalities used.
 
 ```
@@ -362,7 +362,7 @@ $mpdf->WriteHTML("This is page 2");
 ```
 
 ## Sort table fields with SortableBehavior
-CkTools provides a behavior that allows manipulation of the (displayed) order of the records of a table. If you change the position of one field, the behavior will automatically change all the other fields' positions accordingly. To manipulate the positions you can use an ordinary form field or for example the Cake Frontend Bridge to enable js-based drag-and-drop interaction in the browser UI.
+CkTools provides a behavior that allows manipulation of the (displayed) order of the records of a table. If you change the position of one field, the behavior will automatically change all the other fields' positions accordingly. To manipulate the positions you can use an ordinary form field or for example the Cake Frontend Bridge to enable JavaScript-based drag-and-drop interaction in the browser UI.
 
 ## Strict Passwords with StrictPasswordBehavior
 Activate the strict password requirements by setting the StrictPasswordBehavior in UsersTable; default Configuration is set in this example
@@ -387,7 +387,7 @@ $this->addBehavior('CkTools.StrictPassword', [
 
 
 
-####Usage
+#### Usage
 Add the SortableBehavior to the Table you want to use it in:
 
 ```
@@ -408,10 +408,10 @@ Here's what the table field you wish to allow sorting by could look like in Cake
 'sort' => ['type' => 'integer', 'length' => 6, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
 ```
 
-##Manipulate database records with TableUtilitiesTrait
+## Manipulate database records with TableUtilitiesTrait
 The TableUtilitiesTrait contains an action that allows for manually updating the value of a field in a table. Using `updateField()` bypasses cake validation and patching of the object. The given value is directly written to the database via a SQL query.
 
-####Setting up a Model
+#### Setting up a Model
 Add the Trait in **`YourTable.php`**:
 
 ```
@@ -432,10 +432,10 @@ Now you can use the `updateField()` action to directly manipulate a record. Let'
 - `$field`: the name of the field you want to change
 - `$value = null`: the new value you want to save to the database
 
-##Handle type constants with TypeAwareTrait
-Entities with type constants can be very useful, for example if you wish to grant different rights to different kinds of users such as Admins, regular Users, External users etc. With CkTools' TypeAwareTrait, setting up and using such constants becames fast and simple.
+## Handle type constants with TypeAwareTrait
+Entities with type constants can be very useful, for example if you wish to grant different rights to different kinds of users such as Admins, regular Users, External users etc. With CkTools' TypeAwareTrait, setting up and using such constants becomes fast and simple.
 
-####Setting up a Model:
+#### Setting up a Model:
 Let's prepare an example use case where you want to assign different roles to different groups of users in your application. Set up your **User.php** like so:
 
 ```
@@ -494,10 +494,10 @@ Example: in a Cake View file for Model **Cars**:
 <?php endif; ?>
 ```
 
-##Identify users with UserToken
+## Identify users with UserToken
 CkTools provides a utility class that generates serialized, encrypted and base64-encoded for identifying users, usually for usage in an URL. This is very handy for 'forgot password' links so if you have a LoginController, using UserToken there is most advisable.
 
-####Usage
+#### Usage
 Here's how to use **UserToken** in any class you like:
 
 ```
@@ -528,11 +528,11 @@ decrypts given token and only returns the encrypted user_id.
 
 See `cake-cktools/src/Utility/UserToken.php` for further information about these actions.
 
-##I18nShell
+## I18nShell
 
 CkTools provides a helper shell for i18n related tasks.
 
-###Update .po and .mo files from catalog
+### Update .po and .mo files from catalog
 
 To automate the updating of .po/.mo files from available translation strings from the catalog (.pot) file, use the `updateFromCatalog` command.
 
@@ -541,7 +541,7 @@ This is done using the excellent [oscarotero/Gettext](https://github.com/oscarot
 Example usage:
 
 1. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
-    
+
         bin/cake CkTools.I18n updateFromCatalog
 
 2. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will overwrite files without interaction.
@@ -551,7 +551,7 @@ Example usage:
 3. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will overwrite files without interaction. Also, it will strip all references, meaning the filenames and lines where the translation was used from the resulting .po and .mo files.
 
         bin/cake CkTools.I18n updateFromCatalog --overwrite --strip-references
-    
+
 4. Update all cake.po and cake.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
-    
+
         bin/cake CkTools.I18n updateFromCatalog --domain cake
