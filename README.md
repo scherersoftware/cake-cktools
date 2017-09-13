@@ -538,7 +538,7 @@ To automate the updating of .po/.mo files from available translation strings fro
 
 This is done using the excellent [oscarotero/Gettext](https://github.com/oscarotero/Gettext) library.
 
-Example usage:
+#### Usage
 
 1. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
 
@@ -555,3 +555,58 @@ Example usage:
 4. Update all cake.po and cake.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
 
         bin/cake CkTools.I18n updateFromCatalog --domain cake
+
+## SecurityComponent
+
+CkTools provides a component to set multiple security enhancing headers.
+
+### Security headers
+
+Loading the `SecurityComponent` in your AppController, the Component will hook into the beforeFilter event and by default set the
+- `X-XSS-Protection` header to `1; mode=block`
+- `X-Content-Type-Options` header to `nosniff`
+
+At the moment these two headers are neither configurable nor can you deactivate them, as they seem to be reasonable in every case.
+
+Furthermore, you can configure multiple additional headers in your `app.php`.
+
+#### Usage
+
+Here is how a complete configuration of all additional security headers could look like in your `app.php`:
+
+```
+'CkTools' => [
+    'Security' => [
+        // Strict-Transport-Security header
+        'HSTS' => 'max-age=31536000; includeSubDomains',
+
+        // Content-Security-Policy, you could set a string like so
+        'CSP' => "img-src 'self' blob: data:; default-src 'self' https:;"
+
+        // or if it gets to long, as array
+        'CSP' => [
+            'font-src' => "'self' data:",
+            'frame-ancestors' => "'self'",
+            'connect-src' => "'self'",
+            'img-src' => [
+                "'self'",
+                'blob:',
+                'data:',
+                'https://*.some-domain.com',
+            ],
+            'default-src' => [
+                "'self'",
+                'https:',
+                'blob:'
+            ]
+        ],
+
+        // bool config value to set X-Frame-Options header to "DENY" if true
+        'denyFraming' => true
+    ]
+],
+```
+
+The X-Frame-Options header set by 'denyFraming' is superceded by the Content Security Policy's frame-ancestors directive, but as frame-ancestors is not yet supported in IE11 and older, Edge, Safari 9.1 (desktop), and Safari 9.2 (iOS), it is recommended that sites employ X-Frame-Options in addition to using CSP.
+
+If you wish to exclude any header, simply set its value to something falsy or omit the array key completely.
