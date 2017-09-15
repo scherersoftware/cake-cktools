@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Utility;
 
 trait TableUtilitiesTrait
@@ -12,7 +13,7 @@ trait TableUtilitiesTrait
      * @param string $value string value
      * @return bool True if the row was affected
      */
-    public function updateField($primaryKey, $field, $value = null)
+    public function updateField($primaryKey, $field, $value = null): bool
     {
         $query = $this->query()
             ->update()
@@ -26,6 +27,7 @@ trait TableUtilitiesTrait
         $statement = $query->execute();
         $success = $statement->rowCount() > 0;
         $statement->closeCursor();
+
         return $success;
     }
 }

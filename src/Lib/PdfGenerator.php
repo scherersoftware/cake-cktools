@@ -1,7 +1,7 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Lib;
 
-use Cake\Core\Configure;
 use Cake\Core\InstanceConfigTrait;
 use Cake\Utility\Hash;
 use Cake\View\View;
@@ -31,6 +31,11 @@ class PdfGenerator
     // Will download the file to the browser
     const TARGET_DOWNLOAD = 'download';
 
+    /**
+     * Defaut config
+     *
+     * @var array
+     */
     protected $_defaultConfig = [
         'helpers' => ['Html'],
         'viewParams' => [],
@@ -57,6 +62,7 @@ class PdfGenerator
      * Constructor
      *
      * @param array $config Instance Config
+     * @return void
      */
     public function __construct(array $config = [])
     {
@@ -70,14 +76,15 @@ class PdfGenerator
      * Prepares a View instance with which the given view file
      * will be rendered.
      *
-     * @return View
+     * @return \Cake\View\View
      */
-    protected function _getView()
+    protected function _getView(): View
     {
         $view = new View();
         foreach ($this->config('helpers') as $helper) {
             $view->loadHelper($helper);
         }
+
         return $view;
     }
 
@@ -86,9 +93,9 @@ class PdfGenerator
      *
      * @param string|array $viewFile    One or more view files
      * @param array        $viewVars    View variables
-     * @return MPDF
+     * @return mPDF
      */
-    protected function _preparePdf($viewFile, $viewVars)
+    protected function _preparePdf($viewFile, $viewVars): mPDF
     {
         $c = $this->_config['mpdfSettings'];
         $mpdf = new mPDF($c['mode'], $c['format'], $c['font_size'], $c['font'], $c['margin_left'], $c['margin_right'], $c['margin_top'], $c['margin_bottom'], $c['margin_header'], $c['margin_footer']);
@@ -146,9 +153,9 @@ class PdfGenerator
      *                          - TARGET_FILE: Save the PDF to the given file
      *                      - viewVars: Variables to pass to the $viewFile
      *                      - filename: Used with TARGET_BROWSER and TARGET_FILE
-     * @return void
+     * @return mPDF
      */
-    public function render($viewFile, array $options = [])
+    public function render($viewFile, array $options = []): mPDF
     {
         $options = Hash::merge([
             'target' => self::TARGET_RETURN,
@@ -169,6 +176,7 @@ class PdfGenerator
         switch ($options['target']) {
             case self::TARGET_RETURN:
                 error_reporting($oldErrorReporing);
+
                 return $mpdf;
                 break;
             case self::TARGET_DOWNLOAD:

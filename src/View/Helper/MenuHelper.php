@@ -1,22 +1,27 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\View\Helper;
 
 use Cake\Core\Configure;
 use Cake\Routing\Router;
 use Cake\Utility\Text;
 use Cake\View\Helper;
-use Cake\View\View;
 
 /**
- * Menu helper
+ * @property \AuthActions\View\Helper\AuthHelper $Auth
  */
 class MenuHelper extends Helper
 {
 
+    /**
+     * Used helpers
+     *
+     * @var array
+     */
     public $helpers = ['AuthActions.Auth'];
 
     /**
-     * Default configuration.
+     * Default configuration
      *
      * @var array
      */
@@ -36,7 +41,6 @@ class MenuHelper extends Helper
      * @var array
      */
     protected $_currentUrl;
-
 
     /**
      * flag indicating active status of a controller item
@@ -70,7 +74,7 @@ class MenuHelper extends Helper
      * @param string|array $config Either the config file to load or the menu config as an array
      * @return string   rendered HTML
      */
-    public function renderSidebarMenuItems($config)
+    public function renderSidebarMenuItems($config): string
     {
         $config = $this->prepareMenuConfig($config);
         $this->setPageTitle($config);
@@ -106,6 +110,7 @@ class MenuHelper extends Helper
                 'childrenContainer' => $childrenContainer
             ]);
         }
+
         return $out;
     }
 
@@ -115,7 +120,7 @@ class MenuHelper extends Helper
      * @param array $config Menu Config
      * @return void
      */
-    public function setPageTitle(array $config)
+    public function setPageTitle(array $config): void
     {
         foreach ($config as $item) {
             if (isset($item['active']) && $item['active']) {
@@ -131,7 +136,7 @@ class MenuHelper extends Helper
      * @param string|array $config Either the config file to load or the menu config as an array
      * @return array
      */
-    public function prepareMenuConfig($config)
+    public function prepareMenuConfig($config): array
     {
         if (is_string($config)) {
             Configure::load($config);
@@ -191,7 +196,7 @@ class MenuHelper extends Helper
             }
         }
         unset($mainData, $subData);
-        
+
         //set active status
         if (empty($this->_controllerActive)) {
             $this->_controllerActive = $this->_currentUrl['controller'];
@@ -202,8 +207,7 @@ class MenuHelper extends Helper
                 if ($mainData['url']['controller'] == $this->_controllerActive && $mainData['url']['action'] == $this->_actionActive) {
                     $mainData['active'] = true;
                 }
-            } 
-            elseif (!empty($mainData['url']) && $mainData['url']['controller'] == $this->_controllerActive) {
+            } elseif (!empty($mainData['url']) && $mainData['url']['controller'] == $this->_controllerActive) {
                 $mainData['active'] = true;
             }
             if (!empty($mainData['children'])) {
@@ -214,13 +218,13 @@ class MenuHelper extends Helper
                             $subData['active'] = true;
                             $mainData['active'] = true;
                         }
-                    } 
-                    elseif (!empty($subData['url']) && $subData['url']['controller'] == $this->_controllerActive) {
+                    } elseif (!empty($subData['url']) && $subData['url']['controller'] == $this->_controllerActive) {
                         $mainData['active'] = true;
                     }
                 }
             }
         }
+
         return $config;
     }
 
@@ -231,13 +235,14 @@ class MenuHelper extends Helper
      * @param array $children item children
      * @return bool
      */
-    protected function _hasAllowedChildren(array $children)
+    protected function _hasAllowedChildren(array $children): bool
     {
         foreach ($children as $child) {
             if ($this->Auth->urlAllowed($child['url'])) {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -247,7 +252,7 @@ class MenuHelper extends Helper
      * @param array $item Item to check
      * @return bool
      */
-    protected function _isItemActive($item)
+    protected function _isItemActive(array $item): bool
     {
         if (empty($item['url'])) {
             return false;
@@ -261,12 +266,15 @@ class MenuHelper extends Helper
         if ($item['url']['controller'] == $current['controller'] && $item['url']['action'] == $current['action']) {
             $this->_controllerActive = $current['controller'];
             $this->_actionActive = $item['url']['action'];
+
             return true;
         }
         if ($item['url']['controller'] == $current['controller'] && !empty($this->_actionActive)) {
             $this->_controllerActive = $current['controller'];
+
             return true;
         }
+
         return false;
     }
 }

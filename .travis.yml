@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 7.1
+
+services:
+  - mysql
+
+before_script:
+  - composer self-update
+  - composer install --prefer-dist
+
+script:
+  - vendor/bin/phpunit
+  - vendor/bin/phpcs -pn --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config
+  - vendor/bin/phpcs --colors -p --standard=vendor/scherersoftware/coding-standard/scherersoftware ./src ./tests ./config
+  - php -d memory_limit=-1 vendor/bin/phpstan analyse -c phpstan.neon -l 1 ./src
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

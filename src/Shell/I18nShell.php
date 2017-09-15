@@ -1,9 +1,9 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Shell;
 
-use Cake\Cache\Cache;
+use Cake\Console\ConsoleOptionParser;
 use Cake\Console\Shell;
-use Cake\Core\App;
 use Cake\Filesystem\Folder;
 use Gettext\Merge;
 use Gettext\Translations;
@@ -18,13 +18,12 @@ class I18nShell extends Shell
      * Manage the available sub-commands along with their arguments and help
      *
      * @see http://book.cakephp.org/3.0/en/console-and-shells.html#configuring-options-and-generating-help
-     *
      * @return \Cake\Console\ConsoleOptionParser
      */
-    public function getOptionParser()
+    public function getOptionParser(): ConsoleOptionParser
     {
         $parser = parent::getOptionParser();
-        
+
         $updateFromCatalogParser = parent::getOptionParser();
         $updateFromCatalogParser->addOption('domain', [
             'default' => 'default',
@@ -39,7 +38,7 @@ class I18nShell extends Shell
             'boolean' => true,
             'help' => 'Whether to remove file usage references from resulting po and mo files.'
         ]);
-        
+
         return $parser->description([
             'CkTools Shell',
             '',
@@ -48,15 +47,16 @@ class I18nShell extends Shell
             'help' => 'Updates the PO file from the given catalog',
             'parser' => $updateFromCatalogParser
         ]);
+
         return $parser;
     }
 
     /**
      * main() method.
      *
-     * @return bool|int Success or error code.
+     * @return void
      */
-    public function main()
+    public function main(): void
     {
         $this->out($this->OptionParser->help());
     }
@@ -66,22 +66,21 @@ class I18nShell extends Shell
      *
      * @return void
      */
-    public function updateFromCatalog()
+    public function updateFromCatalog(): void
     {
         $domain = $this->params['domain'];
-        #$localePaths = App::path('Locale');
 
         $localePath = ROOT . '/src/Locale/';
 
         $catalogFile = $localePath . $domain . '.pot';
         if (!file_exists($catalogFile)) {
-            return $this->abort(sprintf('Catalog File %s not found.', $catalogFile));
+            $this->abort(sprintf('Catalog File %s not found.', $catalogFile));
         }
 
         $poFiles = [];
         $folder = new Folder($localePath);
         $tree = $folder->tree();
-        
+
         foreach ($tree[1] as $file) {
             $basename = basename($file);
             if ($domain . '.po' === $basename) {
@@ -89,7 +88,7 @@ class I18nShell extends Shell
             }
         }
         if (empty($poFiles)) {
-            return $this->abort('I could not find any matching po files in the given locale path (%s) for the domain (%s)', $localePath, $domain);
+            $this->abort(sprintf('I could not find any matching po files in the given locale path (%s) for the domain (%s)', $localePath, $domain));
         }
 
         if (!$this->params['overwrite']) {
@@ -99,11 +98,10 @@ class I18nShell extends Shell
             }
             $response = $this->in('Would you like to continue?', ['y', 'n'], 'n');
             if ($response !== 'y') {
-                return $this->abort('Aborted');
+                $this->abort('Aborted');
             }
         }
-        
-        
+
         foreach ($poFiles as $poFile) {
             $catalogEntries = Translations::fromPoFile($catalogFile);
             $moFile = str_replace('.po', '.mo', $poFile);
@@ -134,7 +132,7 @@ class I18nShell extends Shell
      *
      * @return void
      */
-    protected function _welcome()
+    protected function _welcome(): void
     {
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Controller\Component;
 
 use Cake\Controller\Component;
@@ -15,9 +16,8 @@ class ToolsComponent extends Component
     /**
      * {@inheritDoc}
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(Event $event): void
     {
         $this->handleBackActions();
     }
-
 }

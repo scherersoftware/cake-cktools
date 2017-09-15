@@ -1,19 +1,25 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\View\Helper;
 
 use Cake\Utility\Hash;
 use Cake\View\Helper;
 use Cake\View\Helper\IdGeneratorTrait;
-use Cake\View\View;
 
 /**
- * TinyMce helper
+ * @property \Cake\View\Helper\HtmlHelper $Html
+ * @property \Cake\View\Helper\FormHelper $Form
  */
 class TinyMceHelper extends Helper
 {
 
     use IdGeneratorTrait;
 
+    /**
+     * Used helpers
+     *
+     * @var array
+     */
     public $helpers = ['Html', 'Form'];
 
     /**
@@ -28,7 +34,7 @@ class TinyMceHelper extends Helper
      *
      * @return void
      */
-    public function includeAssets()
+    public function includeAssets(): void
     {
         $this->Html->script('CkTools.vendor/tinymce/jquery.tinymce.min.js', ['block' => true]);
         $this->Html->script('CkTools.vendor/moxiemanager/js/moxman.loader.min.js', ['block' => true]);
@@ -37,9 +43,11 @@ class TinyMceHelper extends Helper
     /**
      * Create filepicker input
      *
+     * @param string $fieldName The name of the input field
+     * @param array $options options
      * @return string
      */
-    public function picker($fieldName, array $options = [])
+    public function picker(string $fieldName, array $options = []): string
     {
         if (!isset($options['class'])) {
             $options['class'] = '';
@@ -51,6 +59,7 @@ class TinyMceHelper extends Helper
         ], $options);
 
         $picker = $this->Form->input($fieldName, $options);
+
         return $picker;
     }
 }

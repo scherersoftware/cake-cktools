@@ -1,6 +1,5 @@
 <?php
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
+declare(strict_types = 1);
 
 /*Configure::write('App.paths.locales', array_merge(
     Configure::read('App.paths.locales'),

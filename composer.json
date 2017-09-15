@@ -3,22 +3,30 @@
     "description": "codekanzlei Tools & Utilities collection",
     "license": "MIT",
     "type": "cakephp-plugin",
+    "homepage": "https://github.com/scherersoftware/cake-cktools",
     "extra": {
         "installer-name": "CkTools"
     },
     "require": {
-        "cakephp/plugin-installer": "*",
+        "php": ">=7.1",
+        "cakephp/cakephp": "3.4.*",
         "mpdf/mpdf": "6.1.0",
-        "gettext/gettext": "^4.1"
+        "gettext/gettext": "^4.1",
+        "scherersoftware/cake-api-baselayer": "^1.0",
+        "codekanzlei/cake-frontend-bridge": "^1.4"
     },
     "require-dev": {
-        "cakephp/cakephp": "3.0.x-dev"
+        "phpunit/phpunit": "^6.0",
+        "phpstan/phpstan": "^0.8",
+        "cakephp/cakephp-codesniffer": "^3.0",
+        "scherersoftware/coding-standard": "^3.0"
     },
     "autoload": {
         "psr-4": {
-        "CkTools\\": "src"
+            "CkTools\\": "src",
+            "CkTools\\Test\\": "tests"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

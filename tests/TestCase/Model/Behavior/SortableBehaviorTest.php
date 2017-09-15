@@ -1,9 +1,9 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Test\TestCase\Model\Behavior;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use CkTools\Model\Behavior\SortableBehavior;
 
 /**
  * CkTools\Model\Behavior\SortableBehavior Test Case
@@ -11,6 +11,11 @@ use CkTools\Model\Behavior\SortableBehavior;
 class SortableBehaviorTest extends TestCase
 {
 
+    /**
+     * Fxitures
+     *
+     * @var array
+     */
     public $fixtures = [
         'plugin.CkTools.News'
     ];
@@ -20,7 +25,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->News = TableRegistry::get('CkTools.News');
@@ -31,7 +36,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->News);
         TableRegistry::remove('CkTools.News');
@@ -43,7 +48,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testRestoreSorting()
+    public function testRestoreSorting(): void
     {
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
@@ -71,7 +76,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testGetNextSortValue()
+    public function testGetNextSortValue(): void
     {
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
@@ -87,7 +92,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testNewRecord()
+    public function testNewRecord(): void
     {
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
@@ -118,7 +123,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testOverrideSortingInBetween()
+    public function testOverrideSortingInBetween(): void
     {
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
@@ -161,7 +166,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testOverrideSortingBegin()
+    public function testOverrideSortingBegin(): void
     {
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
@@ -204,7 +209,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testOverrideSortingEnd()
+    public function testOverrideSortingEnd(): void
     {
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
@@ -247,7 +252,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testIncrementSortingEndOnExistingRecord()
+    public function testIncrementSortingEndOnExistingRecord(): void
     {
         $this->__createRecords(5);
 
@@ -269,7 +274,6 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(4, $this->News->get(5)->sorting);
         $this->assertEquals(5, $this->News->get(2)->sorting);
 
-
         $secondRecord = $this->News->get(3);
         $secondRecord->sorting = 4;
         $this->News->save($secondRecord);
@@ -289,7 +293,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testDecrementSortingEndOnExistingRecord()
+    public function testDecrementSortingEndOnExistingRecord(): void
     {
         $this->__createRecords(5);
 
@@ -314,7 +318,7 @@ class SortableBehaviorTest extends TestCase
      *
      * @return void
      */
-    public function testDecrementSortingEndOnLastRecord()
+    public function testDecrementSortingEndOnLastRecord(): void
     {
         $this->__createRecords(5);
 
@@ -333,7 +337,6 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(4, $this->News->get(4)->sorting);
         $this->assertEquals(5, $this->News->get(5)->sorting);
 
-
         $secondRecord = $this->News->get(4);
         $secondRecord->sorting = 2;
         $this->News->save($secondRecord);
@@ -345,13 +348,12 @@ class SortableBehaviorTest extends TestCase
         $this->assertEquals(5, $this->News->get(5)->sorting);
     }
 
-
     /**
      * testColumnScoping
      *
      * @return void
      */
-    public function testColumnScoping()
+    public function testColumnScoping(): void
     {
         // Both scopes have their own sorting
         $this->__createRecords(2, 'scope1');
@@ -408,10 +410,11 @@ class SortableBehaviorTest extends TestCase
     /**
      * Create $count test records
      *
-     * @param int $count
+     * @param int $count Count
+     * @param string $field1 Field
      * @return void
      */
-    private function __createRecords($count, $field1 = 'scope1')
+    private function __createRecords(int $count, string $field1 = 'scope1'): void
     {
         for ($i = 0; $i < $count; $i++) {
             $sort = $i + 1;

@@ -1,11 +1,11 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Model\Behavior;
 
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\Event;
 use Cake\ORM\Behavior;
-use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
@@ -19,7 +19,7 @@ class StrictPasswordBehavior extends Behavior
      *
      * @var array
      */
-     protected $_defaultConfig = [
+    protected $_defaultConfig = [
          // minimal password length
          'minPasswordLength' => 10,
          // fistname and surname are not allowed in password (case insensitive)
@@ -41,75 +41,76 @@ class StrictPasswordBehavior extends Behavior
      ];
 
     /**
-     * initialize
+     * Initialize
+     *
      * @param  array  $config config
      * @return void
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         // set json type to last_passwords field
         $this->_table->schema()->columnType('last_passwords', 'json');
     }
 
     /**
-     * set strict validation
+     * Set strict validation
      *
-     * @param  Event $event Event
-     * @param  Validator $validator Validator
-     * @param  string  $name name
+     * @param \Cake\Event\Event $event Event
+     * @param \Cake\Validation\Validator $validator Validator
+     * @param string $name Name
      * @return void
      */
-    public function buildValidator(Event $event, Validator $validator, $name)
+    public function buildValidator(Event $event, Validator $validator, string $name): void
     {
         $this->validationStrictPassword($validator);
     }
 
     /**
-     * strict password validation rules.
+     * Strict password validation rules.
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationStrictPassword(Validator $validator)
+    public function validationStrictPassword(Validator $validator): Validator
     {
         $validator
             ->add('password', [
                 'minLength' => [
                     'rule' => ['minLength', $this->config('minPasswordLength')],
                     'last' => true,
-                    'message' => __('validation.user.password_min_length')
+                    'message' => __d('ck_tools', 'validation.user.password_min_length')
                 ],
             ])
             ->add('password', 'passwordFormat', [
-                'rule' => function($value, $context) {
+                'rule' => function ($value, $context) {
                     return $this->validFormat($value, $context);
                 },
-                'message' => __('validation.user.password_invalid_format')
+                'message' => __d('ck_tools', 'validation.user.password_invalid_format')
             ])
             ->add('password', 'passwordNoUserName', [
-                'rule' => function($value, $context) {
+                'rule' => function ($value, $context) {
                     return $this->checkForUserName($value, $context);
                 },
-                'message' => __('validation.user.password_user_name_not_allowed')
+                'message' => __d('ck_tools', 'validation.user.password_user_name_not_allowed')
             ])
             ->add('password', 'passwordUsedBefore', [
-                'rule' => function($value, $context) {
+                'rule' => function ($value, $context) {
                     return $this->checkLastPasswords($value, $context);
                 },
-                'message' => __('validation.user.password_used_before')
+                'message' => __d('ck_tools', 'validation.user.password_used_before')
             ]);
 
         return $validator;
     }
 
     /**
-     * check password format
+     * Check password format
      *
-     * @param  string $value   password
-     * @param  array $context context data
+     * @param string $value   password
+     * @param array $context context data
      * @return bool
      */
-    public function validFormat($value, $context)
+    public function validFormat(string $value, bool $context): bool
     {
         // one or more letter in upper case
         if ($this->config('upperCase') && !preg_match('/[A-Z]/', $value)) {
@@ -132,13 +133,13 @@ class StrictPasswordBehavior extends Behavior
     }
 
     /**
-     * check for username used in password
+     * Check for username used in password
      *
      * @param  string $value   password
      * @param  array $context context data
      * @return bool
      */
-    public function checkForUserName($value, $context)
+    public function checkForUserName(string $value, array $context): bool
     {
         // return true if config is not set
         if (empty($this->config('noUserName'))) {
@@ -154,7 +155,6 @@ class StrictPasswordBehavior extends Behavior
                 $user = $this->_table->get($context['data']['id']);
                 $firstname = $user->$firstNameField;
                 $lastname = $user->$lastNameField;
-
             } else {
                 // no name to check
                 return true;
@@ -176,13 +176,13 @@ class StrictPasswordBehavior extends Behavior
     }
 
     /**
-     * check for reusage of old passwords
+     * Check for reusage of old passwords
      *
      * @param  string $value   password
      * @param  array $context context data
      * @return bool
      */
-    public function checkLastPasswords($value, $context)
+    public function checkLastPasswords(string $value, array $context): bool
     {
         // return true if config is not set
         if (empty($this->config('oldPasswordCount'))) {
@@ -209,11 +209,11 @@ class StrictPasswordBehavior extends Behavior
     /**
      * BeforeSave Event to update last passwords
      *
-     * @param  Event $event Event
-     * @param  EntityInterface $entity  Entity
-     * @return void
+     * @param \Cake\Event\Event $event Event
+     * @param \Cake\Datasource\EntityInterface $entity  Entity
+     * @return bool
      */
-    public function beforeSave(Event $event, EntityInterface $entity)
+    public function beforeSave(Event $event, EntityInterface $entity): bool
     {
         if (empty($this->config('oldPasswordCount')) || !is_numeric($this->config('oldPasswordCount'))) {
             return true;

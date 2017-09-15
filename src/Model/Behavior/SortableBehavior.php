@@ -1,10 +1,10 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Model\Behavior;
 
 use Cake\Event\Event;
 use Cake\ORM\Behavior;
 use Cake\ORM\Entity;
-use Cake\ORM\Table;
 use Cake\Utility\Hash;
 
 /**
@@ -41,7 +41,7 @@ class SortableBehavior extends Behavior
      *
      * @return void
      */
-    public function restoreSorting(array $scope = [])
+    public function restoreSorting(array $scope = []): void
     {
         $records = $this->_table->find()
             ->select($this->_table->primaryKey(), $this->config('sortField'))
@@ -67,7 +67,7 @@ class SortableBehavior extends Behavior
      * @param Entity $entity Record
      * @return void
      */
-    public function beforeSave(Event $event, Entity $entity)
+    public function beforeSave(Event $event, Entity $entity): void
     {
         $this->__originalSortValue = $entity->getOriginal($this->config('sortField'));
     }
@@ -79,7 +79,7 @@ class SortableBehavior extends Behavior
      * @param Entity $entity Record
      * @return void
      */
-    public function afterSave(Event $event, Entity $entity)
+    public function afterSave(Event $event, Entity $entity): void
     {
         $fields = array_merge([
             $this->_table->primaryKey(),
@@ -118,7 +118,6 @@ class SortableBehavior extends Behavior
                     $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
                 ]);
                 $query->execute();
-
             } elseif ($entitySort > $this->__originalSortValue) {
                 $currentScope = $scope;
                 $currentScope[] = "{$this->config('sortField')} >" . $this->__originalSortValue;
@@ -133,7 +132,6 @@ class SortableBehavior extends Behavior
                     $this->config('sortField') => $query->newExpr($this->config('sortField') . ' - 1')
                 ]);
                 $query->execute();
-                
             } elseif ($entitySort == $this->__originalSortValue) {
                 $currentScope = $scope;
                 $currentScope[] = "{$this->config('sortField')} >=" . $entitySort;
@@ -158,7 +156,7 @@ class SortableBehavior extends Behavior
      * @param array $scope Optional conditions
      * @return int
      */
-    public function getNextSortValue(array $scope = [])
+    public function getNextSortValue(array $scope = []): int
     {
         $query = $this->_table->query();
         $scope = Hash::merge($this->config('scope'), $scope);
@@ -172,6 +170,7 @@ class SortableBehavior extends Behavior
         if (empty($res)) {
             return 1;
         }
+
         return ($res['maxSort'] + 1);
     }
 }

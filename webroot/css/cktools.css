@@ -2,13 +2,11 @@
     margin-left: 10px;
 }
 
-
 @media (max-width: 479px) {
     .button-text {
         display: none;
     }
 }
-
 
 .sortable-list thead tr th:first-child {
     padding-left: 40px;

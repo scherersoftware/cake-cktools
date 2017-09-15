@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Database\Type;
 
 use Cake\Database\Driver;
@@ -22,15 +23,18 @@ class JsonType extends Type
     /**
      * from database to PHP conversion
      *
-     * @param string $value     the value
-     * @param Driver $driver    the driver
-     * @return array
+     * @param string $value The value
+     * @param \Cake\Database\Driver $driver The driver
+     * @return array|null
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      */
     public function toPHP($value, Driver $driver)
     {
         if ($value === null) {
             return null;
         }
+
         return json_decode($value, true);
     }
 
@@ -45,15 +49,18 @@ class JsonType extends Type
         if (is_array($value) || $value === null) {
             return $value;
         }
+
         return json_decode($value, true);
     }
 
     /**
      * from PHP to database conversion
      *
-     * @param array|string $value   the value
-     * @param Driver $driver        the driver
+     * @param array|string $value The value
+     * @param \Cake\Database\Driver $driver The driver
      * @return array
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingParameterTypeHint
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
      */
     public function toDatabase($value, Driver $driver)
     {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Utility;
 
 /**
@@ -13,7 +14,7 @@ trait TypeAwareTrait
      *
      * @return array
      */
-    public static function typeDescriptions()
+    public static function typeDescriptions(): array
     {
         return [];
     }
@@ -21,29 +22,32 @@ trait TypeAwareTrait
     /**
      * Get the description for the given type
      *
-     * @param string $type type to get description of
+     * @param string|null $type type to get description of
      * @return string
      */
-    public static function getTypeDescription($type)
+    public static function getTypeDescription(?string $type): ?string
     {
         $descriptions = self::typeDescriptions();
         if (isset($descriptions[$type])) {
             return $descriptions[$type];
         }
+
         return $type;
     }
 
     /**
-     * Get a map of [type => typeDescription] from the passed arguments
-    * @param string $types types
+     * Get a map of [type => typeDescription] from the passed arguments.
+     *
+     * @param string|array $types types
      * @return array
      */
-    public static function getTypeMap(...$types)
+    public static function getTypeMap(...$types): array
     {
         $map = [];
         foreach ($types as $type) {
             $map[$type] = self::getTypeDescription($type);
         }
+
         return $map;
     }
 }

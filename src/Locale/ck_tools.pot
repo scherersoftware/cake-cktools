@@ -1,0 +1,115 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2017-09-15 12:09+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "crud.save_successful"
+msgstr ""
+
+msgid "crud.validation_failed"
+msgstr ""
+
+msgid "validation.user.password_min_length"
+msgstr ""
+
+msgid "validation.user.password_invalid_format"
+msgstr ""
+
+msgid "validation.user.password_user_name_not_allowed"
+msgstr ""
+
+msgid "validation.user.password_used_before"
+msgstr ""
+
+msgid "system_contents.form"
+msgstr ""
+
+msgid "system_content.identifier"
+msgstr ""
+
+msgid "system_content.notes"
+msgstr ""
+
+msgid "system_content.title"
+msgstr ""
+
+msgid "system_content.content"
+msgstr ""
+
+msgid "forms.actions"
+msgstr ""
+
+msgid "delete"
+msgstr ""
+
+msgid "really_delete"
+msgstr ""
+
+msgid "back_to_list"
+msgstr ""
+
+msgid "system_contents.headline"
+msgstr ""
+
+msgid "system_content.created"
+msgstr ""
+
+msgid "system_content.modified"
+msgstr ""
+
+msgid "actions"
+msgstr ""
+
+msgid "edit"
+msgstr ""
+
+msgid "system_contents.add"
+msgstr ""
+
+msgid "system_contents.view"
+msgstr ""
+
+msgid "system_content.id"
+msgstr ""
+
+msgid "system_contents.edit"
+msgstr ""
+
+msgid "system_contents.delete"
+msgstr ""
+
+msgid "view"
+msgstr ""
+
+msgid "add"
+msgstr ""
+
+msgid "delete_confirmation"
+msgstr ""
+
+msgid "save"
+msgstr ""
+
+msgid "cancel"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "history_back_button"
+msgstr ""
+
+msgid "utility.toggle_content"
+msgstr ""
+
