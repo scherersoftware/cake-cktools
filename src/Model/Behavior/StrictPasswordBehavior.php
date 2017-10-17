@@ -110,7 +110,7 @@ class StrictPasswordBehavior extends Behavior
      * @param array $context context data
      * @return bool
      */
-    public function validFormat(string $value, bool $context): bool
+    public function validFormat(string $value, array $context): bool
     {
         // one or more letter in upper case
         if ($this->config('upperCase') && !preg_match('/[A-Z]/', $value)) {
