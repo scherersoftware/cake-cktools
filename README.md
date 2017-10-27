@@ -11,24 +11,13 @@
 
 ## Installation
 
-#### 1. require the plugin in your `composer.json`
-```
-"require": {
-    "codekanzlei/cake-cktools": "dev-master"
-}
-```
+#### 1. require the plugin
+
+    $ composer install codekanzlei/cake-cktools
+
 Open a terminal in your project-folder and run these commands:
 
 	$ composer update
-
-#### 2. Configure `config/bootstrap.php`
-```
-Plugin::load('CkTools');
-
-Configure::load('CkTools.countries');
-
-Type::map('json', 'CkTools\Database\Type\JsonType');
-```
 
 #### 3. Setup Appcontroller.php
 
