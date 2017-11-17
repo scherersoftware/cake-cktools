@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-        "CkTools\\": "src"
+            "CkTools\\": "src"
         }
     },
     "minimum-stability": "dev",
