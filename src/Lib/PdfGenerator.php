@@ -5,7 +5,7 @@ namespace CkTools\Lib;
 use Cake\Core\InstanceConfigTrait;
 use Cake\Utility\Hash;
 use Cake\View\View;
-use mPDF;
+use Mpdf\Mpdf;
 
 /**
  * Wrapper for generating PDF files with MPDF using CakePHP's view files.
@@ -97,8 +97,8 @@ class PdfGenerator
      */
     protected function _preparePdf($viewFile, $viewVars): mPDF
     {
-        $c = $this->_config['mpdfSettings'];
-        $mpdf = new mPDF($c['mode'], $c['format'], $c['font_size'], $c['font'], $c['margin_left'], $c['margin_right'], $c['margin_top'], $c['margin_bottom'], $c['margin_header'], $c['margin_footer']);
+        $mpdf = new Mpdf($this->_config['mpdfSettings']);
+
         if (is_callable($this->_config['mpdfConfigurationCallback'])) {
             $this->_config['mpdfConfigurationCallback']($mpdf);
         }
@@ -162,10 +162,6 @@ class PdfGenerator
             'filename' => 'pdf.pdf'
         ], $options);
 
-        // mPDF throws lots of notices, sadly. There is no way around this.
-        $oldErrorReporing = error_reporting();
-        error_reporting(0);
-
         $mpdf = $this->_preparePdf($viewFile, $options['viewVars']);
         $options['viewVars']['mpdf'] = $mpdf;
 
@@ -175,28 +171,22 @@ class PdfGenerator
 
         switch ($options['target']) {
             case self::TARGET_RETURN:
-                error_reporting($oldErrorReporing);
 
                 return $mpdf;
                 break;
             case self::TARGET_DOWNLOAD:
                 $mpdf->Output($options['filename'], 'D');
-                error_reporting($oldErrorReporing);
                 break;
             case self::TARGET_BROWSER:
                 $mpdf->Output($options['filename'], 'I');
-                error_reporting($oldErrorReporing);
                 break;
             case self::TARGET_FILE:
                 $mpdf->Output($options['filename'], 'F');
-                error_reporting($oldErrorReporing);
                 break;
             case self::TARGET_BINARY:
                 return $mpdf->Output('', 'S');
-                error_reporting($oldErrorReporing);
                 break;
             default:
-                error_reporting($oldErrorReporing);
                 throw new \InvalidArgumentException("{$options['target']} is not a valid target");
                 break;
         }
