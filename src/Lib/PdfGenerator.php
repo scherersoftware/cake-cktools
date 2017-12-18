@@ -55,7 +55,8 @@ class PdfGenerator
         'pdfSourceFile' => null,
         'cssFile' => null,
         'cssStyles' => null,
-        'mpdfConfigurationCallback' => null
+        'mpdfConfigurationCallback' => null,
+        'view' => null
     ];
 
     /**
@@ -80,12 +81,16 @@ class PdfGenerator
      */
     protected function _getView(): View
     {
-        $view = new View();
-        foreach ($this->config('helpers') as $helper) {
-            $view->loadHelper($helper);
+        if (!$this->config('view')) {
+            $view = new View();
+            foreach ($this->config('helpers') as $helper) {
+                $view->loadHelper($helper);
+            }
+
+            $this->config('view', $view);
         }
 
-        return $view;
+        return $this->config('view');
     }
 
     /**
@@ -153,9 +158,9 @@ class PdfGenerator
      *                          - TARGET_FILE: Save the PDF to the given file
      *                      - viewVars: Variables to pass to the $viewFile
      *                      - filename: Used with TARGET_BROWSER and TARGET_FILE
-     * @return mPDF
+     * @return mixed
      */
-    public function render($viewFile, array $options = []): mPDF
+    public function render($viewFile, array $options = [])
     {
         $options = Hash::merge([
             'target' => self::TARGET_RETURN,
