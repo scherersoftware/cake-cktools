@@ -98,9 +98,9 @@ class PdfGenerator
      *
      * @param string|array $viewFile    One or more view files
      * @param array        $viewVars    View variables
-     * @return mPDF
+     * @return \Mpdf\Mpdf
      */
-    protected function _preparePdf($viewFile, $viewVars): mPDF
+    protected function _preparePdf($viewFile, $viewVars): Mpdf
     {
         $mpdf = new Mpdf($this->_config['mpdfSettings']);
 
@@ -176,7 +176,6 @@ class PdfGenerator
 
         switch ($options['target']) {
             case self::TARGET_RETURN:
-
                 return $mpdf;
                 break;
             case self::TARGET_DOWNLOAD:
