@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Utility;
 
 use App\Model\Entity\User;
@@ -12,12 +13,12 @@ class UserToken
      * Generates a serialized, encrypted and base64-encoded for identifying a user,
      * usually for using it in an URL
      *
-     * @param User $user The user Entity
+     * @param \App\Model\Entity\User $user The user Entity
      * @param int $validForSeconds how long the token should be valid
      * @param array $additionalData Optional additional data for storage in the encrypted token
      * @return string
      */
-    public function getTokenForUser(User $user, $validForSeconds = null, array $additionalData = [])
+    public function getTokenForUser(User $user, int $validForSeconds = null, array $additionalData = []): string
     {
         $tokenData = [
             'user_id' => $user->id,
@@ -27,6 +28,7 @@ class UserToken
         ];
         $tokenDataString = serialize($tokenData);
         $encrypted = Security::encrypt($tokenDataString, Configure::read('Security.cryptKey'));
+
         return base64_encode($encrypted);
     }
 
@@ -37,13 +39,14 @@ class UserToken
      * @param string $token The string token
      * @return bool
      */
-    public function isTokenValid($token)
+    public function isTokenValid(string $token): bool
     {
         $tokenData = $this->decryptToken($token);
 
         if (is_array($tokenData) && isset($tokenData['user_id']) && isset($tokenData['generated']) && isset($tokenData['validForSeconds'])) {
             return true;
         }
+
         return false;
     }
 
@@ -54,13 +57,14 @@ class UserToken
      * @return bool
      * @throws InvalidArgumentException
      */
-    public function isTokenExpired($token)
+    public function isTokenExpired(string $token): bool
     {
         if (!$this->isTokenValid($token)) {
             throw new \InvalidArgumentException('This token is invalid');
         }
         $tokenData = $this->decryptToken($token);
         $tokenExpiration = $tokenData['generated'] + $tokenData['validForSeconds'];
+
         return $tokenExpiration < time();
     }
 
@@ -71,12 +75,13 @@ class UserToken
      * @return string
      * @throws InvalidArgumentException
      */
-    public function getUserIdFromToken($token)
+    public function getUserIdFromToken(string $token): string
     {
         if (!$this->isTokenValid($token)) {
             throw new \InvalidArgumentException('This token is invalid');
         }
         $tokenData = $this->decryptToken($token);
+
         return $tokenData['user_id'];
     }
 
@@ -87,7 +92,7 @@ class UserToken
      * @param string $token The string token
      * @return array|false
      */
-    public function decryptToken($token)
+    public function decryptToken(string $token)
     {
         $tokenData = false;
         $encrypted = base64_decode($token);
@@ -96,6 +101,7 @@ class UserToken
             $serialized = Security::decrypt($encrypted, Configure::read('Security.cryptKey'));
             $tokenData = unserialize($serialized);
         }
+
         return $tokenData;
     }
 }

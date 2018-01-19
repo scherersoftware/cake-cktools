@@ -1,9 +1,10 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Utility;
 
+use CakeApiBaselayer\Lib\ApiReturnCode;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Orm\TableRegistry;
-use CkTools\Lib\ApiReturnCode;
 use FrontendBridge\Lib\ServiceResponse;
 
 /**
@@ -11,16 +12,17 @@ use FrontendBridge\Lib\ServiceResponse;
  * The controller using this trait MUST set a property $sortModelName with the name of the table to
  * get and save the entity in question
  */
-trait SortableControllerTrait {
+trait SortableControllerTrait
+{
 
     /**
      * endpoint for sorting ajax calls
      *
-     * @return ServiceResponse
+     * @return \FrontendBridge\Lib\ServiceResponse
      * @throws Cake\Network\Exception\NotFoundException if either not a post request
      *         or missing/wrong params
      */
-    public function sort()
+    public function sort(): ServiceResponse
     {
         $this->request->allowMethod('post');
         if (!empty($this->request->data['foreignKey']) && !empty($this->sortModelName)) {
@@ -33,6 +35,7 @@ trait SortableControllerTrait {
                     $this->request->data['sort']
                 ]);
             }
+
             return new ServiceResponse(ApiReturnCode::INTERNAL_ERROR, []);
         }
         throw new NotFoundException();

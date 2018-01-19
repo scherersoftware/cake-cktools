@@ -1,17 +1,19 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Utility;
 
 /**
  * This trait provides functionality for back buttons.
  */
-trait BackButtonTrait {
+trait BackButtonTrait
+{
 
     /**
      * Returns the requested action excluding the back action.
      *
      * @return string
      */
-    public function getRequestedAction()
+    public function getRequestedAction(): string
     {
         /*
          * Remove back_action from query string but keep the `?` if it is the first query param and there are additional query params following.
@@ -24,13 +26,12 @@ trait BackButtonTrait {
         return preg_replace('/\\?$/', '', $requestedAction);
     }
 
-
     /**
      * persists requested back actions with their context in session
      *
      * @return void
      */
-    public function handleBackActions()
+    public function handleBackActions(): void
     {
         if (!$this->request->session()->check('back_action')) {
             $this->request->session()->write('back_action', []);
@@ -50,14 +51,13 @@ trait BackButtonTrait {
         }
     }
 
-
     /**
      * Adds a back action get param to an url array
      *
      * @param array $url URL array
      * @return array
      */
-    public function augmentUrlByBackParam(array $url)
+    public function augmentUrlByBackParam(array $url): array
     {
         $backAction = $this->request->here(false);
         if ($this->request->is('ajax')) {

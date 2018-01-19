@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Shell;
 
 use Cake\Cache\Cache;
@@ -17,9 +18,10 @@ class CkToolsShell extends Shell
      *
      * @return \Cake\Console\ConsoleOptionParser
      */
-    public function getOptionParser()
+    public function getOptionParser(): \Cake\Console\ConsoleOptionParser
     {
         $parser = parent::getOptionParser();
+
         return $parser->description([
             'CkTools Shell',
             '',
@@ -27,6 +29,7 @@ class CkToolsShell extends Shell
         ])->addSubcommand('clearCache', [
             'help' => 'Clears data of all configured Cache engines.'
         ]);
+
         return $parser;
     }
 
@@ -45,7 +48,7 @@ class CkToolsShell extends Shell
      *
      * @return void
      */
-    public function clearCache()
+    public function clearCache(): void
     {
         Cache::clearAll();
         $this->out('All caches cleared');

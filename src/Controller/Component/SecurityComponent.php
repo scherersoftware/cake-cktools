@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Controller\Component;
 
 use Cake\Controller\Component;
@@ -15,7 +16,7 @@ class SecurityComponent extends Component
     /**
      * {@inheritDoc}
      */
-    public function beforeFilter(Event $event)
+    public function beforeFilter(Event $event): void
     {
         $securityConfig = Configure::read('CkTools.Security');
         if (isset($securityConfig['HSTS']) && $securityConfig['HSTS']) {

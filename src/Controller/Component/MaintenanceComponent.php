@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\Controller\Component;
 
 use App\Lib\Environment;
@@ -7,6 +8,8 @@ use Cake\Controller\ComponentRegistry;
 
 /**
  * Maintenance component
+ *
+ * @property \App\Lib\Environment
  */
 class MaintenanceComponent extends Component
 {
@@ -15,12 +18,11 @@ class MaintenanceComponent extends Component
      */
     protected $_controller;
 
-
     /**
      * Constructor
      *
-     * @param ComponentRegistry $registry A ComponentRegistry object.
-     * @param array             $config   Array of configuration settings.
+     * @param \Cake\Controller\ComponentRegistry; $registry A ComponentRegistry object.
+     * @param string:mixed[] $config Array of configuration settings.
      */
     public function __construct(ComponentRegistry $registry, array $config = [])
     {
@@ -36,21 +38,22 @@ class MaintenanceComponent extends Component
      *
      * @return bool
      */
-    public static function isMaintenanceActive()
+    public static function isMaintenanceActive(): bool
     {
-        return !!Environment::read('MAINTENANCE');
+        return (bool)Environment::read('MAINTENANCE');
     }
 
     /**
-     * maintenance redirect logic
+     * Maintenance redirect logic
      *
-     * @return mixed|void
+     * @return mixed
      */
     public function beforeFilter()
     {
         if (defined('PHPUNIT_TESTSUITE')) {
             return;
         }
+
         $maintenancePage = Environment::read('MAINTENANCE_PAGE_REDIRECT_URL');
         $currentUrl = $this->request->here;
         $accessibleUrls = explode('|', Environment::read('MAINTENANCE_ACCESSIBLE_URLS'));
@@ -60,8 +63,10 @@ class MaintenanceComponent extends Component
             // if maintenance is not active but maintenance page is requested -> redirect to default page
             if (in_array($currentUrl, $accessibleUrls) && (substr($maintenancePage, -strlen($currentUrl))) === $currentUrl) {
                 $maintenanceBasePage = Environment::read('MAINTENANCE_BASE_URL');
+
                 return $this->_controller->redirect($maintenanceBasePage);
             }
+
             return;
         }
 
@@ -76,6 +81,7 @@ class MaintenanceComponent extends Component
         $successUrl = Environment::read('MAINTENANCE_PASSWORD_SUCCESS_URL');
         if ($headerActive && !empty($this->request->header($headerName)) && $this->request->header($headerName) == $headerValue) {
             $this->_controller->Cookie->write($cookieName, true);
+
             return $this->_controller->redirect($successUrl);
         }
         $passwordUrl = Environment::read('MAINTENANCE_PASSWORD_URL');
@@ -96,11 +102,14 @@ class MaintenanceComponent extends Component
             } else {
                 if ($_SERVER['PHP_AUTH_USER'] == $user && $_SERVER['PHP_AUTH_PW'] == $password) {
                     $this->_controller->Cookie->write($cookieName, true);
+
                     return $this->_controller->redirect($successUrl);
                 }
+
                 return $this->_controller->redirect($maintenancePage);
             }
         }
+
         return $this->_controller->redirect($maintenancePage);
     }
 }

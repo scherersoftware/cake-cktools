@@ -1,0 +1,6 @@
+parameters:
+    autoload_files:
+        - %rootDir%/../../../tests/bootstrap.php
+    ignoreErrors:
+        - '#Call to static method read\(\) on an unknown class App\\Lib\\Environment.#'
+        - '#Parameter \$user of method CkTools\\Utility\\UserToken::getTokenForUser\(\) has invalid typehint type App\\Model\\Entity\\User.#'

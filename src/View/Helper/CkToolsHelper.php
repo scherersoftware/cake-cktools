@@ -1,18 +1,26 @@
 <?php
+declare(strict_types = 1);
 namespace CkTools\View\Helper;
 
 use Cake\Core\Configure;
 use Cake\Datasource\EntityInterface;
-use Cake\Routing\Router;
 use Cake\Utility\Hash;
-use Cake\Utility\Text;
 use Cake\View\Helper;
 use CkTools\Utility\BackButtonTrait;
 
+/**
+ * @property \Cake\View\Helper\HtmlHelper $Html
+ * @property \Cake\View\Helper\FormHelper $Form
+ */
 class CkToolsHelper extends Helper
 {
     use BackButtonTrait;
 
+    /**
+     * Used heleprs
+     *
+     * @var array
+     */
     public $helpers = ['Html', 'Form'];
 
     /**
@@ -22,7 +30,7 @@ class CkToolsHelper extends Helper
      *                            a map of just these will be returned
      * @return array
      */
-    public function countries(array $countryCodes = null)
+    public function countries(array $countryCodes = null): array
     {
         if (!Configure::read('countries')) {
             Configure::load('CkTools.countries');
@@ -33,8 +41,10 @@ class CkToolsHelper extends Helper
             foreach ($countryCodes as $countryCode) {
                 $subset[$countryCode] = isset($countries[$countryCode]) ? $countries[$countryCode] : $countryCode;
             }
+
             return $subset;
         }
+
         return Configure::read('countries');
     }
 
@@ -44,12 +54,13 @@ class CkToolsHelper extends Helper
      * @param string $country E.g. "de", "en"
      * @return string
      */
-    public function country($country)
+    public function country(string $country): string
     {
         if (!Configure::read('countries')) {
             Configure::load('CkTools.countries');
         }
         $countries = Configure::read('countries');
+
         return isset($countries[$country]) ? $countries[$country] : $country;
     }
 
@@ -60,7 +71,7 @@ class CkToolsHelper extends Helper
      * @param array $options Options
      * @return string
      */
-    public function datepickerInput($field, array $options = [])
+    public function datepickerInput(string $field, array $options = []): string
     {
         $options = Hash::merge([
             'type' => 'date'
@@ -68,7 +79,6 @@ class CkToolsHelper extends Helper
 
         return $this->Form->input($field, $options);
     }
-
 
     /**
      * Creates a mailto link.
@@ -81,7 +91,7 @@ class CkToolsHelper extends Helper
      *                          - subject - will be urlencoded into the link
      * @return string
      */
-    public function mailtoLink($email, array $options = [])
+    public function mailtoLink(string $email, array $options = []): string
     {
         $options = Hash::merge([
             'body' => null,
@@ -111,6 +121,7 @@ class CkToolsHelper extends Helper
         if (!$caption) {
             $caption = $email;
         }
+
         return $this->Html->link($caption, $href, $options);
     }
 
@@ -121,11 +132,11 @@ class CkToolsHelper extends Helper
      * @param array $options Config options
      * @return string
      */
-    public function editButton(EntityInterface $entity, array $options = [])
+    public function editButton(EntityInterface $entity, array $options = []): string
     {
         $options = Hash::merge([
             'url' => null,
-            'title' => __d('cktools', 'edit'),
+            'title' => __d('ck_tools', 'edit'),
             'icon' => 'fa fa-pencil',
             'escape' => false,
             'class' => 'btn btn-default btn-xs btn-edit'
@@ -149,6 +160,7 @@ class CkToolsHelper extends Helper
             $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
+
         return $this->Html->link($title, $url, $options);
     }
 
@@ -159,11 +171,11 @@ class CkToolsHelper extends Helper
      * @param array $options Config options
      * @return string
      */
-    public function viewButton(EntityInterface $entity, array $options = [])
+    public function viewButton(EntityInterface $entity, array $options = []): string
     {
         $options = Hash::merge([
             'url' => null,
-            'title' => __d('cktools', 'view'),
+            'title' => __d('ck_tools', 'view'),
             'icon' => 'fa fa-eye',
             'class' => 'btn btn-default btn-xs btn-edit'
         ], $options);
@@ -186,6 +198,7 @@ class CkToolsHelper extends Helper
             $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
+
         return $this->Html->link($title, $url, $options);
     }
 
@@ -196,10 +209,10 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-    public function addButton($title = null, array $options = [])
+    public function addButton(string $title = null, array $options = []): string
     {
         if (!$title) {
-            $title = __d('cktools', 'add');
+            $title = __d('ck_tools', 'add');
         }
         $options = Hash::merge([
             'url' => null,
@@ -217,6 +230,7 @@ class CkToolsHelper extends Helper
             $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
         }
+
         return $this->Html->link($title, $url, $options);
     }
 
@@ -227,14 +241,14 @@ class CkToolsHelper extends Helper
      * @param array $options Config options
      * @return string
      */
-    public function deleteButton(EntityInterface $entity, array $options = [])
+    public function deleteButton(EntityInterface $entity, array $options = []): string
     {
         $options = Hash::merge([
             'url' => null,
-            'title' => __d('cktools', 'delete'),
+            'title' => __d('ck_tools', 'delete'),
             'icon' => 'fa fa-trash-o',
             'class' => 'btn btn-danger btn-xs',
-            'confirm' => __d('cktools', 'delete_confirmation'),
+            'confirm' => __d('ck_tools', 'delete_confirmation'),
             'usePostLink' => false
         ], $options);
 
@@ -265,17 +279,17 @@ class CkToolsHelper extends Helper
     /**
      * Renders form buttons
      *
-     * @return void
+     * @return string
      */
-    public function formButtons(array $options = [])
+    public function formButtons(array $options = []): string
     {
         $url = ['action' => 'index'];
         $options = Hash::merge([
             'useReferer' => false,
             'horizontalLine' => true,
             'cancelButton' => true,
-            'saveButtonTitle' => __d('cktools', 'save'),
-            'cancelButtonTitle' => __d('cktools', 'cancel')
+            'saveButtonTitle' => __d('ck_tools', 'save'),
+            'cancelButtonTitle' => __d('ck_tools', 'cancel')
         ], $options);
 
         if (!empty($options['useReferer']) && $this->request->referer() != '/') {
@@ -291,6 +305,7 @@ class CkToolsHelper extends Helper
             $formButtons .= $this->backButton($options['cancelButtonTitle'], null, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
         }
         $formButtons .= '</div>';
+
         return $formButtons;
     }
 
@@ -302,7 +317,7 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-    public function button($title, $url = false, array $options = [])
+    public function button(string $title, $url = false, array $options = []): string
     {
         $options = Hash::merge([
             'icon' => 'arrow-right',
@@ -316,6 +331,7 @@ class CkToolsHelper extends Helper
             $options['escape'] = false;
         }
         unset($options['additionalClasses'], $options['icon']);
+
         return $this->Html->link($title, $url, $options);
     }
 
@@ -327,7 +343,7 @@ class CkToolsHelper extends Helper
      * @param array $options link() config
      * @return string
      */
-    public function backButton($title = null, array $url = null, array $options = [])
+    public function backButton(string $title = null, array $url = null, array $options = []): string
     {
         $options = Hash::merge([
             'icon' => 'arrow-left',
@@ -335,7 +351,7 @@ class CkToolsHelper extends Helper
         ], $options);
 
         if (!$title) {
-            $title = '<span class="button-text">' . __('Back') . '</span>';
+            $title = '<span class="button-text">' . __d('ck_tools', 'Back') . '</span>';
         }
 
         $here = $this->getRequestedAction();
@@ -358,7 +374,7 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-    public function definitionList($data, array $options = [])
+    public function definitionList(array $data, array $options = []): string
     {
         $options = Hash::merge([
             'class' => 'dl-horizontal',
@@ -370,6 +386,7 @@ class CkToolsHelper extends Helper
             $ret .= '<dd>' . (empty($value) ? '&nbsp;' : ($options['escape'] ? h($value) : $value)) . '</dd>';
         }
         $ret .= '</dl>';
+
         return $ret;
     }
 
@@ -386,7 +403,7 @@ class CkToolsHelper extends Helper
      * @param array $isActiveCallback Will be passed the record
      * @return string
      */
-    public function nestedList($data, $content, $level = 0, $isActiveCallback = null)
+    public function nestedList(array $data, string $content, int $level = 0, array $isActiveCallback = null): string
     {
         $tabs = "\n" . str_repeat("	", ($level * 2));
         $liTabs = $tabs . "	";
@@ -424,6 +441,7 @@ class CkToolsHelper extends Helper
             }
         }
         $output .= $tabs . '</ul>';
+
         return $output;
     }
 
@@ -432,14 +450,15 @@ class CkToolsHelper extends Helper
      *
      * @return string
      */
-    public function historyBackButton(array $options = [])
+    public function historyBackButton(array $options = []): string
     {
         //FIXME: Add detection for IE8 & IE9 and create fallback
         $options = Hash::merge([
             'icon' => 'fa fa-arrow-left',
             'class' => 'btn btn-default btn-xs'
         ], $options);
-        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('cktools', 'history_back_button') . '</div>';
+
+        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('ck_tools', 'history_back_button') . '</div>';
     }
 
     /**
@@ -453,14 +472,13 @@ class CkToolsHelper extends Helper
      *                       - callback: A callback used on every entry
      * @return string
      */
-    public function displayStructuredData(array $data, array $options = [])
+    public function displayStructuredData(array $data, array $options = []): string
     {
         $options = Hash::merge([
             'expanded' => true,
-            'expandLinkText' => __d('cktools', 'utility.toggle_content'),
+            'expandLinkText' => __d('ck_tools', 'utility.toggle_content'),
             'type' => 'array'
         ], $options);
-
 
         switch ($options['type']) {
             case 'table':
@@ -485,6 +503,7 @@ class CkToolsHelper extends Helper
         } else {
             $out = $list;
         }
+
         return $out;
     }
 
@@ -494,7 +513,7 @@ class CkToolsHelper extends Helper
      * @param array $array Data
      * @return string
      */
-    public function arrayToUnorderedList(array $array)
+    public function arrayToUnorderedList(array $array): string
     {
         $out = '<ul>';
         foreach ($array as $key => $elem) {
@@ -505,6 +524,7 @@ class CkToolsHelper extends Helper
             }
         }
         $out = $out . '</ul>';
+
         return $out;
     }
 
@@ -515,7 +535,7 @@ class CkToolsHelper extends Helper
      * @param array  $options  Optional options
      * @return string
      */
-    public function arrayToTable(array $array, array $options = [])
+    public function arrayToTable(array $array, array $options = []): string
     {
         $table = '<table class="table table-condensed';
         if (isset($options['class'])) {
@@ -531,17 +551,18 @@ class CkToolsHelper extends Helper
 
             $table .= '<tr>';
                 $table .= '<td>' . $fieldname . '</td>';
-                if (is_array($value)) {
-                    $table .= '<td>' . $this->arrayToTable($value, $options) . '</td>';
-                } else {
-                    if ($value === null) {
-                        $value = 'NULL';
-                    }
-                    $table .= '<td>' . $value . '</td>';
+            if (is_array($value)) {
+                $table .= '<td>' . $this->arrayToTable($value, $options) . '</td>';
+            } else {
+                if ($value === null) {
+                    $value = 'NULL';
                 }
+                $table .= '<td>' . $value . '</td>';
+            }
             $table .= '</tr>';
         }
         $table .= '</table>';
+
         return $table;
     }
 }
