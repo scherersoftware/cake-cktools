@@ -151,13 +151,13 @@ class PdfGenerator
      * Render a view file
      *
      * @param string|array  $viewFile Path to the View file to render or array with multiple
-     * @param array         $options Options
-     *                      - target
-     *                          - TARGET_RETURN: Return the MPDF instance
-     *                          - TARGET_BROWSER: Send the rendered PDF file to the browser
-     *                          - TARGET_FILE: Save the PDF to the given file
-     *                      - viewVars: Variables to pass to the $viewFile
-     *                      - filename: Used with TARGET_BROWSER and TARGET_FILE
+     * @param array $options Options
+     *               - target
+     *                   - TARGET_RETURN: Return the MPDF instance
+     *                   - TARGET_BROWSER: Send the rendered PDF file to the browser
+     *                   - TARGET_FILE: Save the PDF to the given file
+     *               - viewVars: Variables to pass to the $viewFile
+     *               - filename: Used with TARGET_BROWSER and TARGET_FILE
      * @return mixed
      */
     public function render($viewFile, array $options = [])

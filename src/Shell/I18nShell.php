@@ -9,9 +9,9 @@ use Gettext\Merge;
 use Gettext\Translations;
 
 /**
- * I18n Helper Shell
+ * Internationalization Helper Shell
  */
-class I18nShell extends Shell
+class InternationalizationShell extends Shell
 {
 
     /**
