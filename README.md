@@ -228,9 +228,6 @@ $this->addBehavior('CkTools.StrictPassword', [
     'oldPasswordCount' => 4
 ]);
 
-
-
-
 #### Usage
 Add the SortableBehavior to the Table you want to use it in:
 
@@ -372,7 +369,7 @@ decrypts given token and only returns the encrypted user_id.
 
 See `cake-cktools/src/Utility/UserToken.php` for further information about these actions.
 
-## I18nShell
+## InternationalizationShell
 
 CkTools provides a helper shell for i18n related tasks.
 
@@ -386,19 +383,19 @@ This is done using the excellent [oscarotero/Gettext](https://github.com/oscarot
 
 1. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
 
-        bin/cake CkTools.I18n updateFromCatalog
+        bin/cake CkTools.Internationalization updateFromCatalog
 
 2. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will overwrite files without interaction.
 
-        bin/cake CkTools.I18n updateFromCatalog --overwrite
+        bin/cake CkTools.Internationalization updateFromCatalog --overwrite
 
 3. Update all default.po and default.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will overwrite files without interaction. Also, it will strip all references, meaning the filenames and lines where the translation was used from the resulting .po and .mo files.
 
-        bin/cake CkTools.I18n updateFromCatalog --overwrite --strip-references
+        bin/cake CkTools.Internationalization updateFromCatalog --overwrite --strip-references
 
 4. Update all cake.po and cake.mo files found in `src/Locale/*` with translation strings from `src/Locale/default.pot`. The shell will list the files it will touch and asks for confirmation.
 
-        bin/cake CkTools.I18n updateFromCatalog --domain cake
+        bin/cake CkTools.Internationalization updateFromCatalog --domain cake
 
 ## PasswordHasher Shell
 
