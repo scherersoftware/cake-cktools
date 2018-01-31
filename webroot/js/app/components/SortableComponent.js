@@ -3,8 +3,8 @@ App.Components.SortableComponent = Frontend.Component.extend({
     startup: function() {
     },
     initSortableLists: function($dom) {
-        $dom.find('table.sortable-list tbody').sortable().disableSelection();
-        $dom.find('table.sortable-list tbody').on("sortupdate", this._onSortUpdate.bind(this));
+        $dom.find('tbody.sortable-list').sortable({helper: this._fixWidthHelper}).disableSelection();
+        $dom.find('tbody.sortable-list').on("sortupdate", this._onSortUpdate.bind(this));
     },
     _onSortUpdate: function(e, ui) {
         var foreignKey = ui.item.data('entity-id');
@@ -30,5 +30,11 @@ App.Components.SortableComponent = Frontend.Component.extend({
                     alert("Error on update sort order! Please reload page.");
                 }
             }.bind(this));
+    },
+    _fixWidthHelper:function(e, ui) {
+        ui.children().each(function() {
+            $(this).width($(this).width());
+        });
+        return ui;
     }
 });
