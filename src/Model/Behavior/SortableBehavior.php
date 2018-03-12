@@ -44,14 +44,26 @@ class SortableBehavior extends Behavior
     public function restoreSorting(array $scope = []): void
     {
         $records = $this->_table->find()
-            ->select($this->_table->getPrimaryKey(), $this->getConfig('sortField'))
+            ->select([$this->_table->getPrimaryKey(), $this->getConfig('sortField')])
+            ->select($this->getConfig('columnScope'))
             ->order($this->getConfig('defaultOrder'));
+
         if (!empty($scope)) {
             $records->where($scope);
         }
 
+        $sorts = [];
         foreach ($records as $n => $entity) {
-            $sort = ($n + 1);
+            $individualScope = '';
+            foreach ($this->getConfig('columnScope') as $column) {
+                $individualScope .= $entity->get($column);
+            }
+
+            if (!isset($sorts[$individualScope])) {
+                $sorts[$individualScope] = 0;
+            }
+
+            $sort = ++$sorts[$individualScope];
             $this->_table->updateAll([
                 $this->getConfig('sortField') => $sort
             ], [
