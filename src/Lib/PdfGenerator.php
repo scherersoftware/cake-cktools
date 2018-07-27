@@ -67,7 +67,7 @@ class PdfGenerator
      */
     public function __construct(array $config = [])
     {
-        $this->config($config);
+        $this->setConfig($config);
         if ($this->_config['pdfSourceFile'] && !is_readable($this->_config['pdfSourceFile'])) {
             throw new \Exception("pdfSourceFile {$this->_config['pdfSourceFile']} is not readable.");
         }
@@ -81,16 +81,16 @@ class PdfGenerator
      */
     protected function _getView(): View
     {
-        if (!$this->config('view')) {
+        if (!$this->getConfig('view')) {
             $view = new View();
-            foreach ($this->config('helpers') as $helper) {
+            foreach ($this->getConfig('helpers') as $helper) {
                 $view->loadHelper($helper);
             }
 
-            $this->config('view', $view);
+            $this->setConfig('view', $view);
         }
 
-        return $this->config('view');
+        return $this->getConfig('view');
     }
 
     /**
@@ -171,7 +171,13 @@ class PdfGenerator
         $options['viewVars']['mpdf'] = $mpdf;
 
         if (!is_array($viewFile)) {
-            $mpdf->WriteHTML($this->_getView()->element($viewFile, $options['viewVars']));
+            $wholeString = $this->_getView()->element($viewFile, $options['viewVars']);
+            // use 10% less than pcre.backtrack_limit to account for multibyte characters
+            $splitLength = ini_get('pcre.backtrack_limit') - (ini_get('pcre.backtrack_limit') / 10);
+            $splitString = str_split($wholeString, $splitLength);
+            foreach ($splitString as $string) {
+                $mpdf->WriteHTML($string);
+            }
         }
 
         switch ($options['target']) {
