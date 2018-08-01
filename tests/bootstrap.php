@@ -35,8 +35,9 @@ Configure::write('App', [
         'templates' => [ROOT . 'App' . DS . 'Template' . DS]
     ]
 ]);
+Configure::write('Error.errorLevel', E_ALL & ~E_USER_DEPRECATED);
 
-Cache::config([
+Cache::setConfig([
     '_cake_core_' => [
         'engine' => 'File',
         'prefix' => 'cake_core_',
@@ -52,4 +53,4 @@ Cache::config([
 if (!getenv('db_dsn')) {
     putenv('db_dsn=sqlite:///:memory:');
 }
-ConnectionManager::config('test', ['url' => getenv('db_dsn')]);
+ConnectionManager::setConfig('test', ['url' => getenv('db_dsn')]);

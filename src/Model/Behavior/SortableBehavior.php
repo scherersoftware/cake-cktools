@@ -44,9 +44,9 @@ class SortableBehavior extends Behavior
     public function restoreSorting(array $scope = []): void
     {
         $records = $this->_table->find()
-            ->select([$this->_table->primaryKey(), $this->config('sortField')])
-            ->select($this->config('columnScope'))
-            ->order($this->config('defaultOrder'));
+            ->select([$this->_table->getPrimaryKey(), $this->getConfig('sortField')])
+            ->select($this->getConfig('columnScope'))
+            ->order($this->getConfig('defaultOrder'));
 
         if (!empty($scope)) {
             $records->where($scope);
@@ -55,7 +55,7 @@ class SortableBehavior extends Behavior
         $sorts = [];
         foreach ($records as $n => $entity) {
             $individualScope = '';
-            foreach ($this->config('columnScope') as $column) {
+            foreach ($this->getConfig('columnScope') as $column) {
                 $individualScope .= $entity->get($column);
             }
 
@@ -65,9 +65,9 @@ class SortableBehavior extends Behavior
 
             $sort = ++$sorts[$individualScope];
             $this->_table->updateAll([
-                $this->config('sortField') => $sort
+                $this->getConfig('sortField') => $sort
             ], [
-                $this->_table->primaryKey() => $entity->get($this->_table->primaryKey())
+                $this->_table->getPrimaryKey() => $entity->get($this->_table->getPrimaryKey())
             ]);
         }
     }
@@ -81,7 +81,7 @@ class SortableBehavior extends Behavior
      */
     public function beforeSave(Event $event, Entity $entity): void
     {
-        $this->__originalSortValue = $entity->getOriginal($this->config('sortField'));
+        $this->__originalSortValue = $entity->getOriginal($this->getConfig('sortField'));
     }
 
     /**
@@ -94,67 +94,67 @@ class SortableBehavior extends Behavior
     public function afterSave(Event $event, Entity $entity): void
     {
         $fields = array_merge([
-            $this->_table->primaryKey(),
-            $this->config('sortField')
-        ], $this->config('columnScope'));
-        $savedEntity = $this->_table->get($entity->get($this->_table->primaryKey()), [
+            $this->_table->getPrimaryKey(),
+            $this->getConfig('sortField')
+        ], $this->getConfig('columnScope'));
+        $savedEntity = $this->_table->get($entity->get($this->_table->getPrimaryKey()), [
             'fields' => $fields
         ]);
-        $scope = $this->config('scope');
+        $scope = $this->getConfig('scope');
 
-        foreach ($this->config('columnScope') as $column) {
+        foreach ($this->getConfig('columnScope') as $column) {
             $scope[$column] = $savedEntity->get($column);
         }
-        $entitySort = $savedEntity->{$this->config('sortField')};
-        $entityId = $entity->get($this->_table->primaryKey());
+        $entitySort = $savedEntity->{$this->getConfig('sortField')};
+        $entityId = $entity->get($this->_table->getPrimaryKey());
 
         if (empty($entitySort)) {
             $nextSortValue = $this->getNextSortValue($scope);
             $this->_table->updateAll([
-                $this->config('sortField') => $nextSortValue
+                $this->getConfig('sortField') => $nextSortValue
             ], [
-                $this->_table->primaryKey() => $entityId
+                $this->_table->getPrimaryKey() => $entityId
             ]);
         } else {
             if ($entitySort < $this->__originalSortValue) {
                 $currentScope = $scope;
-                $currentScope[] = "{$this->config('sortField')} <" . $this->__originalSortValue;
-                $currentScope[] = "{$this->config('sortField')} >=" . $entitySort;
+                $currentScope[] = "{$this->getConfig('sortField')} <" . $this->__originalSortValue;
+                $currentScope[] = "{$this->getConfig('sortField')} >=" . $entitySort;
                 $currentScope[] = [
-                    $this->_table->primaryKey() . ' !=' => $entity->id
+                    $this->_table->getPrimaryKey() . ' !=' => $entity->id
                 ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
                 $query->set([
-                    $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
+                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' + 1')
                 ]);
                 $query->execute();
             } elseif ($entitySort > $this->__originalSortValue) {
                 $currentScope = $scope;
-                $currentScope[] = "{$this->config('sortField')} >" . $this->__originalSortValue;
-                $currentScope[] = "{$this->config('sortField')} <=" . $entitySort;
+                $currentScope[] = "{$this->getConfig('sortField')} >" . $this->__originalSortValue;
+                $currentScope[] = "{$this->getConfig('sortField')} <=" . $entitySort;
                 $currentScope[] = [
-                    $this->_table->primaryKey() . ' !=' => $entity->id
+                    $this->_table->getPrimaryKey() . ' !=' => $entity->id
                 ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
                 $query->set([
-                    $this->config('sortField') => $query->newExpr($this->config('sortField') . ' - 1')
+                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' - 1')
                 ]);
                 $query->execute();
             } elseif ($entitySort == $this->__originalSortValue) {
                 $currentScope = $scope;
-                $currentScope[] = "{$this->config('sortField')} >=" . $entitySort;
+                $currentScope[] = "{$this->getConfig('sortField')} >=" . $entitySort;
                 $currentScope[] = [
-                    $this->_table->primaryKey() . ' !=' => $entity->id
+                    $this->_table->getPrimaryKey() . ' !=' => $entity->id
                 ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
                 $query->set([
-                    $this->config('sortField') => $query->newExpr($this->config('sortField') . ' + 1')
+                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' + 1')
                 ]);
                 $query->execute();
             }
@@ -171,14 +171,14 @@ class SortableBehavior extends Behavior
     public function getNextSortValue(array $scope = []): int
     {
         $query = $this->_table->query();
-        $scope = Hash::merge($this->config('scope'), $scope);
+        $scope = Hash::merge($this->getConfig('scope'), $scope);
         if (!empty($scope)) {
             $query->where($scope);
         }
         $query->select([
-            'maxSort' => $query->func()->max($this->config('sortField'))
+            'maxSort' => $query->func()->max($this->getConfig('sortField'))
         ]);
-        $res = $query->hydrate(false)->first();
+        $res = $query->enableHydration(false)->first();
         if (empty($res)) {
             return 1;
         }
