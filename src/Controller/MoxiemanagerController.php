@@ -44,6 +44,8 @@ class MoxiemanagerController extends AppController
         } catch (Exception $e) {
             \MOXMAN_Exception::printException($e);
         }
+        $this->response->type('application/javascript');
+
         return $this->render(false, false);
     }
 }
