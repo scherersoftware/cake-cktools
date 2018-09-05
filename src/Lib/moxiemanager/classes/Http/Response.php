@@ -50,6 +50,7 @@ class MOXMAN_Http_Response {
 	 */
 	public function sendContent($content) {
 		echo $content;
+		exit;
 	}
 
 	/**
