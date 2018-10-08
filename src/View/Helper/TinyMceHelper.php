@@ -2,7 +2,6 @@
 declare(strict_types = 1);
 namespace CkTools\View\Helper;
 
-use Cake\Utility\Hash;
 use Cake\View\Helper;
 use Cake\View\Helper\IdGeneratorTrait;
 
