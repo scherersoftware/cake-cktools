@@ -5,13 +5,10 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
     startup: function() {
     },
     initComponents: function() {
-        if (this._componentsInitialized || !window.moxman) {
+        if (this._componentsInitialized) {
             return;
         }
-        moxman.Env.apiPageName = '/../../../../moxiemanager/api';
         this.locale = this.Controller.getVar('locale');
-        this._initMoxmanLocale();
-        this.Controller.MoxmanPicker.initPickers();
         this.setDefaultConfig();
         this._componentsInitialized = true;
     },
@@ -33,9 +30,6 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
             },
             toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
             toolbar2: "print preview media | forecolor backcolor emoticons",
-            external_plugins: {
-                'moxiemanager': '/ck_tools/js/vendor/moxiemanager/plugin.js'
-            },
             relative_urls: false,
             remove_script_host: true,
             document_base_url: '/files/'
@@ -76,10 +70,5 @@ App.Components.TinyMceComponent = Frontend.Component.extend({
         }
         $element.tinymce(this.tinyMceConfig);
         $element.data('tinyMceApplied', true);
-    },
-    _initMoxmanLocale: function() {
-        if (this.locale == 'de') {
-            $.getScript('/ck_tools/js/vendor/moxiemanager/langs/moxman_de.js');
-        }
     }
 });
