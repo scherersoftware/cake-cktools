@@ -1,6 +1,6 @@
 App.Components.DatePickerComponent = Frontend.Component.extend({
-    setup: function($elements) {
-        $elements.each(function(i, element) {
+    setup: function ($elements) {
+        $elements.each(function (i, element) {
             var $container = $(element);
 
             if ($container.data('datePickerApplied')) {
@@ -21,7 +21,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
 
             var type = $container.hasClass('dateTime') ? 'dateTime' : 'date';
             var format = 'DD.MM.YYYY';
-            if(type === 'dateTime') {
+            if (type === 'dateTime') {
                 format = 'DD.MM.YYYY HH:mm';
             }
 
@@ -58,7 +58,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             });
 
             // Update the selects to the correct values after a datepicker change
-            $picker.on('dp.change', function(e) {
+            $picker.on('dp.change', function (e) {
                 var $container = $(e.currentTarget).parents('.form-group');
                 this._updateSelects($container, e.date, $(e.currentTarget));
             }.bind(this));
@@ -66,29 +66,29 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             $container.data('datePickerApplied', true);
         }.bind(this));
     },
-    _updateSelects: function($selectContainer, date, input) {
+    _updateSelects: function ($selectContainer, date, input) {
         if (input.find('input').val().length == 0) {
-            $selectContainer.find('select option[selected="selected"]').each(function(i, el) {
+            $selectContainer.find('select option[selected="selected"]').each(function (i, el) {
                 $(el).removeAttr("selected");
             });
             return null;
         }
-        $selectContainer.find('select').each(function(i, el) {
+        $selectContainer.find('select').each(function (i, el) {
             var $select = $(el);
             var previousValue = $select.val();
-            if($select.attr('name').indexOf('[year]') > -1) {
+            if ($select.attr('name').indexOf('[year]') > -1) {
                 $select.val(date.year());
             }
-            if($select.attr('name').indexOf('[month]') > -1) {
+            if ($select.attr('name').indexOf('[month]') > -1) {
                 $select.val(date.format('MM'));
             }
-            if($select.attr('name').indexOf('[day]') > -1) {
+            if ($select.attr('name').indexOf('[day]') > -1) {
                 $select.val(date.format('DD'));
             }
-            if($select.attr('name').indexOf('[hour]') > -1) {
+            if ($select.attr('name').indexOf('[hour]') > -1) {
                 $select.val(date.format('HH'));
             }
-            if($select.attr('name').indexOf('[minute]') > -1) {
+            if ($select.attr('name').indexOf('[minute]') > -1) {
                 $select.val(date.format('mm'));
             }
             if (previousValue != $select.val()) {
@@ -96,25 +96,27 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             }
         });
     },
-    _getDateFromSelects: function($selectContainer) {
+    _getDateFromSelects: function ($selectContainer) {
         var date = new Date();
-        
-        $selectContainer.find('select').each(function(i, el) {
+
+        $selectContainer.find('select').each(function (i, el) {
             var $select = $(el);
             var val = parseInt($select.val(), 10);
-            if($select.attr('name').indexOf('[year]') > -1) {
+            if ($select.attr('name').indexOf('[year]') > -1) {
                 date.setFullYear(val);
             }
-            if($select.attr('name').indexOf('[month]') > -1) {
-                date.setMonth(val - 1);
+            if ($select.attr('name').indexOf('[month]') > -1) {
+                // set day of month (second argument) manually to first to prevent current day influencing the month in date
+                // (if current day is 31 and the month val-1 has less days, the month of date after setMonth will be val)
+                date.setMonth(val - 1, 1);
             }
-            if($select.attr('name').indexOf('[day]') > -1) {
+            if ($select.attr('name').indexOf('[day]') > -1) {
                 date.setDate(val);
             }
-            if($select.attr('name').indexOf('[hour]') > -1) {
+            if ($select.attr('name').indexOf('[hour]') > -1) {
                 date.setHours(val);
             }
-            if($select.attr('name').indexOf('[minute]') > -1) {
+            if ($select.attr('name').indexOf('[minute]') > -1) {
                 date.setMinutes(val);
             }
         });
