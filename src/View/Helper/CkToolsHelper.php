@@ -14,6 +14,7 @@ use CkTools\Utility\BackButtonTrait;
  */
 class CkToolsHelper extends Helper
 {
+
     use BackButtonTrait;
 
     /**
@@ -74,7 +75,7 @@ class CkToolsHelper extends Helper
     public function datepickerInput(string $field, array $options = []): string
     {
         $options = Hash::merge([
-            'type' => 'date'
+            'type' => 'date',
         ], $options);
 
         return $this->Form->input($field, $options);
@@ -96,7 +97,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'body' => null,
             'subject' => null,
-            'caption' => null
+            'caption' => null,
         ], $options);
 
         $body = $options['body'];
@@ -128,7 +129,7 @@ class CkToolsHelper extends Helper
     /**
      * Renders an edit button
      *
-     * @param EntityInterface $entity Entity to take the ID from
+     * @param \Cake\Datasource\EntityInterface $entity Entity to take the ID from
      * @param array $options Config options
      * @return string
      */
@@ -139,7 +140,7 @@ class CkToolsHelper extends Helper
             'title' => __d('ck_tools', 'edit'),
             'icon' => 'fa fa-pencil',
             'escape' => false,
-            'class' => 'btn btn-default btn-xs btn-edit'
+            'class' => 'btn btn-default btn-xs btn-edit',
         ], $options);
 
         $url = $options['url'];
@@ -147,12 +148,13 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
+            // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
                 'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'edit',
-                $entity->id
+                $entity->id,
             ];
             $url = $this->augmentUrlByBackParam($url);
         }
@@ -167,7 +169,7 @@ class CkToolsHelper extends Helper
     /**
      * Renders a details button
      *
-     * @param EntityInterface $entity Entity to take the ID from
+     * @param \Cake\Datasource\EntityInterface $entity Entity to take the ID from
      * @param array $options Config options
      * @return string
      */
@@ -177,7 +179,7 @@ class CkToolsHelper extends Helper
             'url' => null,
             'title' => __d('ck_tools', 'view'),
             'icon' => 'fa fa-eye',
-            'class' => 'btn btn-default btn-xs btn-edit'
+            'class' => 'btn btn-default btn-xs btn-edit',
         ], $options);
 
         $url = $options['url'];
@@ -185,6 +187,7 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
+            // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
                 'plugin' => $this->_View->request->plugin,
@@ -217,7 +220,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'icon' => 'fa fa-plus',
-            'class' => 'btn btn-default btn-xs btn-add'
+            'class' => 'btn btn-default btn-xs btn-add',
         ], $options);
         $url = $options['url'];
         if (!$url) {
@@ -237,7 +240,7 @@ class CkToolsHelper extends Helper
     /**
      * Renders an delete button
      *
-     * @param EntityInterface $entity Entity to take the ID from
+     * @param \Cake\Datasource\EntityInterface $entity Entity to take the ID from
      * @param array $options Config options
      * @return string
      */
@@ -249,7 +252,7 @@ class CkToolsHelper extends Helper
             'icon' => 'fa fa-trash-o',
             'class' => 'btn btn-danger btn-xs',
             'confirm' => __d('ck_tools', 'delete_confirmation'),
-            'usePostLink' => false
+            'usePostLink' => false,
         ], $options);
 
         $url = $options['url'];
@@ -257,12 +260,13 @@ class CkToolsHelper extends Helper
         $icon = $options['icon'];
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
+            // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
                 'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'delete',
-                $entity->id
+                $entity->id,
             ];
         }
         if ($icon) {
@@ -289,7 +293,7 @@ class CkToolsHelper extends Helper
             'horizontalLine' => true,
             'cancelButton' => true,
             'saveButtonTitle' => __d('ck_tools', 'save'),
-            'cancelButtonTitle' => __d('ck_tools', 'cancel')
+            'cancelButtonTitle' => __d('ck_tools', 'cancel'),
         ], $options);
 
         if (!empty($options['useReferer']) && $this->request->referer() != '/') {
@@ -302,7 +306,7 @@ class CkToolsHelper extends Helper
         }
         $formButtons .= $this->Form->button($options['saveButtonTitle'], ['class' => 'btn-success']);
         if ($options['cancelButton']) {
-            $formButtons .= $this->backButton($options['cancelButtonTitle'], null, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+            $formButtons .= $this->backButton($options['cancelButtonTitle'], $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
         }
         $formButtons .= '</div>';
 
@@ -322,7 +326,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'icon' => 'arrow-right',
             'class' => 'btn btn-default btn-xs',
-            'additionalClasses' => ''
+            'additionalClasses' => '',
         ], $options);
 
         $options['class'] .= ' ' . $options['additionalClasses'];
@@ -347,7 +351,7 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'icon' => 'arrow-left',
-            'escape' => false
+            'escape' => false,
         ], $options);
 
         if (!$title) {
@@ -360,7 +364,7 @@ class CkToolsHelper extends Helper
         }
         if (empty($url)) {
             $url = [
-                'action' => 'index'
+                'action' => 'index',
             ];
         }
 
@@ -378,7 +382,7 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'class' => 'dl-horizontal',
-            'escape' => true
+            'escape' => true,
         ], $options);
         $ret = '<dl class="' . $options['class'] . '">';
         foreach ($data as $key => $value) {
@@ -409,7 +413,7 @@ class CkToolsHelper extends Helper
         $liTabs = $tabs . "	";
 
         $output = $tabs . '<ul>';
-        foreach ($data as $n => $record) {
+        foreach ($data as $record) {
             $liClasses = [];
             $liContent = $content;
             if ($isActiveCallback != null) {
@@ -424,7 +428,7 @@ class CkToolsHelper extends Helper
             preg_match_all("/\{\{([a-z0-9\._]+)\}\}/i", $liContent, $matches);
             if (!empty($matches)) {
                 $variables = array_unique($matches[1]);
-                foreach ($variables as $n => $modelField) {
+                foreach ($variables as $modelField) {
                     $liContent = str_replace('{{' . $modelField . '}}', $record[$modelField], $liContent);
                 }
             }
@@ -455,7 +459,7 @@ class CkToolsHelper extends Helper
         //FIXME: Add detection for IE8 & IE9 and create fallback
         $options = Hash::merge([
             'icon' => 'fa fa-arrow-left',
-            'class' => 'btn btn-default btn-xs'
+            'class' => 'btn btn-default btn-xs',
         ], $options);
 
         return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('ck_tools', 'history_back_button') . '</div>';
@@ -477,7 +481,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'expanded' => true,
             'expandLinkText' => __d('ck_tools', 'utility.toggle_content'),
-            'type' => 'array'
+            'type' => 'array',
         ], $options);
 
         switch ($options['type']) {
@@ -497,7 +501,7 @@ class CkToolsHelper extends Helper
                 'data-toggle' => 'collapse',
                 'aria-expanded' => 'false',
                 'aria-controls' => $id,
-                'data-target' => '#' . $id
+                'data-target' => '#' . $id,
             ]);
             $out .= '<div class="collapse" id="' . $id . '">' . $list . '</div>';
         } else {

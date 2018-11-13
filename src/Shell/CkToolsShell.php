@@ -25,9 +25,9 @@ class CkToolsShell extends Shell
         return $parser->description([
             'CkTools Shell',
             '',
-            'Utilities'
+            'Utilities',
         ])->addSubcommand('clearCache', [
-            'help' => 'Clears data of all configured Cache engines.'
+            'help' => 'Clears data of all configured Cache engines.',
         ]);
 
         return $parser;

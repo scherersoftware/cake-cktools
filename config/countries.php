@@ -290,5 +290,5 @@ $config = [
         'al' => __d('countries', 'al'),
         'dz' => __d('countries', 'dz'),
         'as' => __d('countries', 'as'),
-    ]
+    ],
 ];

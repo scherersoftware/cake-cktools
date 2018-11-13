@@ -27,25 +27,25 @@ class InternationalizationShell extends Shell
         $updateFromCatalogParser = parent::getOptionParser();
         $updateFromCatalogParser->addOption('domain', [
             'default' => 'default',
-            'help' => 'The domain to use'
+            'help' => 'The domain to use',
         ]);
         $updateFromCatalogParser->addOption('overwrite', [
             'default' => false,
             'help' => 'If set, there will be no interactive question whether to continue.',
-            'boolean' => true
+            'boolean' => true,
         ]);
         $updateFromCatalogParser->addOption('strip-references', [
             'boolean' => true,
-            'help' => 'Whether to remove file usage references from resulting po and mo files.'
+            'help' => 'Whether to remove file usage references from resulting po and mo files.',
         ]);
 
         return $parser->description([
             'CkTools Shell',
             '',
-            'Utilities'
+            'Utilities',
         ])->addSubcommand('updateFromCatalog', [
             'help' => 'Updates the PO file from the given catalog',
-            'parser' => $updateFromCatalogParser
+            'parser' => $updateFromCatalogParser,
         ]);
 
         return $parser;

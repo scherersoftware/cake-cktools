@@ -11,6 +11,7 @@ use CkTools\Utility\BackButtonTrait;
  */
 class ToolsComponent extends Component
 {
+
     use BackButtonTrait;
 
     /**

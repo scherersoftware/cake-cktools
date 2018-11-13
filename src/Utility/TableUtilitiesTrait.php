@@ -18,10 +18,10 @@ trait TableUtilitiesTrait
         $query = $this->query()
             ->update()
             ->set([
-                $field => $value
+                $field => $value,
             ])
             ->where([
-                $this->primaryKey() => $primaryKey
+                $this->primaryKey() => $primaryKey,
             ]);
 
         $statement = $query->execute();

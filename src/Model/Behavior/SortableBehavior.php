@@ -33,7 +33,7 @@ class SortableBehavior extends Behavior
         // Array of columns which must be equal between records to sort inside
         'columnScope' => [],
         // If restoreSorting is called, this will be used to order the records
-        'defaultOrder' => []
+        'defaultOrder' => [],
     ];
 
     /**
@@ -53,7 +53,7 @@ class SortableBehavior extends Behavior
         }
 
         $sorts = [];
-        foreach ($records as $n => $entity) {
+        foreach ($records as $entity) {
             $individualScope = '';
             foreach ($this->getConfig('columnScope') as $column) {
                 $individualScope .= $entity->get($column);
@@ -65,9 +65,9 @@ class SortableBehavior extends Behavior
 
             $sort = ++$sorts[$individualScope];
             $this->_table->updateAll([
-                $this->getConfig('sortField') => $sort
+                $this->getConfig('sortField') => $sort,
             ], [
-                $this->_table->getPrimaryKey() => $entity->get($this->_table->getPrimaryKey())
+                $this->_table->getPrimaryKey() => $entity->get($this->_table->getPrimaryKey()),
             ]);
         }
     }
@@ -75,8 +75,8 @@ class SortableBehavior extends Behavior
     /**
      * beforeSave Event
      *
-     * @param Event $event Event
-     * @param Entity $entity Record
+     * @param \Cake\Event\Event $event Event
+     * @param \Cake\ORM\Entity $entity Record
      * @return void
      */
     public function beforeSave(Event $event, Entity $entity): void
@@ -87,18 +87,18 @@ class SortableBehavior extends Behavior
     /**
      * afterSave Event
      *
-     * @param Event $event Event
-     * @param Entity $entity Record
+     * @param \Cake\Event\Event $event Event
+     * @param \Cake\ORM\Entity $entity Record
      * @return void
      */
     public function afterSave(Event $event, Entity $entity): void
     {
         $fields = array_merge([
             $this->_table->getPrimaryKey(),
-            $this->getConfig('sortField')
+            $this->getConfig('sortField'),
         ], $this->getConfig('columnScope'));
         $savedEntity = $this->_table->get($entity->get($this->_table->getPrimaryKey()), [
-            'fields' => $fields
+            'fields' => $fields,
         ]);
         $scope = $this->getConfig('scope');
 
@@ -111,9 +111,9 @@ class SortableBehavior extends Behavior
         if (empty($entitySort)) {
             $nextSortValue = $this->getNextSortValue($scope);
             $this->_table->updateAll([
-                $this->getConfig('sortField') => $nextSortValue
+                $this->getConfig('sortField') => $nextSortValue,
             ], [
-                $this->_table->getPrimaryKey() => $entityId
+                $this->_table->getPrimaryKey() => $entityId,
             ]);
         } else {
             if ($entitySort < $this->__originalSortValue) {
@@ -121,13 +121,13 @@ class SortableBehavior extends Behavior
                 $currentScope[] = "{$this->getConfig('sortField')} <" . $this->__originalSortValue;
                 $currentScope[] = "{$this->getConfig('sortField')} >=" . $entitySort;
                 $currentScope[] = [
-                    $this->_table->getPrimaryKey() . ' !=' => $entity->id
+                    $this->_table->getPrimaryKey() . ' !=' => $entity->id,
                 ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
                 $query->set([
-                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' + 1')
+                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' + 1'),
                 ]);
                 $query->execute();
             } elseif ($entitySort > $this->__originalSortValue) {
@@ -135,26 +135,26 @@ class SortableBehavior extends Behavior
                 $currentScope[] = "{$this->getConfig('sortField')} >" . $this->__originalSortValue;
                 $currentScope[] = "{$this->getConfig('sortField')} <=" . $entitySort;
                 $currentScope[] = [
-                    $this->_table->getPrimaryKey() . ' !=' => $entity->id
+                    $this->_table->getPrimaryKey() . ' !=' => $entity->id,
                 ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
                 $query->set([
-                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' - 1')
+                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' - 1'),
                 ]);
                 $query->execute();
             } elseif ($entitySort == $this->__originalSortValue) {
                 $currentScope = $scope;
                 $currentScope[] = "{$this->getConfig('sortField')} >=" . $entitySort;
                 $currentScope[] = [
-                    $this->_table->getPrimaryKey() . ' !=' => $entity->id
+                    $this->_table->getPrimaryKey() . ' !=' => $entity->id,
                 ];
 
                 $query = $this->_table->query()->update();
                 $query->where($currentScope);
                 $query->set([
-                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' + 1')
+                    $this->getConfig('sortField') => $query->newExpr($this->getConfig('sortField') . ' + 1'),
                 ]);
                 $query->execute();
             }
@@ -176,7 +176,7 @@ class SortableBehavior extends Behavior
             $query->where($scope);
         }
         $query->select([
-            'maxSort' => $query->func()->max($this->getConfig('sortField'))
+            'maxSort' => $query->func()->max($this->getConfig('sortField')),
         ]);
         $res = $query->enableHydration(false)->first();
         if (empty($res)) {

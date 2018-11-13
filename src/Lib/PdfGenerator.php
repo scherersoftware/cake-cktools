@@ -14,6 +14,7 @@ use Mpdf\Mpdf;
  */
 class PdfGenerator
 {
+
     use InstanceConfigTrait;
 
     // Return the MPDF instance
@@ -49,14 +50,14 @@ class PdfGenerator
             'margin_top' => 25,
             'margin_bottom' => 16,
             'margin_header' => 9,
-            'margin_footer' => 9
+            'margin_footer' => 9,
         ],
         // Path to a PDF file to render the view on
         'pdfSourceFile' => null,
         'cssFile' => null,
         'cssStyles' => null,
         'mpdfConfigurationCallback' => null,
-        'view' => null
+        'view' => null,
     ];
 
     /**
@@ -164,7 +165,7 @@ class PdfGenerator
     {
         $options = Hash::merge([
             'target' => self::TARGET_RETURN,
-            'filename' => 'pdf.pdf'
+            'filename' => 'pdf.pdf',
         ], $options);
 
         $mpdf = $this->_preparePdf($viewFile, $options['viewVars']);

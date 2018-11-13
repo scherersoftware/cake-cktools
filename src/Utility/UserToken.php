@@ -24,7 +24,7 @@ class UserToken
             'user_id' => $user->id,
             'generated' => time(),
             'validForSeconds' => $validForSeconds,
-            'additionalData' => $additionalData
+            'additionalData' => $additionalData,
         ];
         $tokenDataString = serialize($tokenData);
         $encrypted = Security::encrypt($tokenDataString, Configure::read('Security.cryptKey'));
@@ -55,7 +55,7 @@ class UserToken
      *
      * @param string $token String token
      * @return bool
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function isTokenExpired(string $token): bool
     {
@@ -73,7 +73,7 @@ class UserToken
      *
      * @param string $token The string token
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function getUserIdFromToken(string $token): string
     {

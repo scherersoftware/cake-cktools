@@ -6,10 +6,8 @@ use Cake\Core\Configure;
 use Cake\Routing\Router;
 use Cake\Utility\Text;
 use Cake\View\Helper;
+use Cake\View\View;
 
-/**
- * @property \AuthActions\View\Helper\AuthHelper $Auth
- */
 class MenuHelper extends Helper
 {
 
@@ -31,8 +29,8 @@ class MenuHelper extends Helper
             'icon' => '<i class="fa fa-:icon fa-fw"></i>',
             'item' => '<li class=":liclass"><a href=":href" class=":class">:icon :title :childrenArrow</a>:childrenContainer</li>',
             'childrenArrow' => '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
-            'childrenContainer' => '<ul class="treeview-menu">:children</ul>'
-        ]
+            'childrenContainer' => '<ul class="treeview-menu">:children</ul>',
+        ],
     ];
 
     /**
@@ -59,10 +57,10 @@ class MenuHelper extends Helper
     /**
      * Configures the instance
      *
-     * @param View $View CakePHP View instance
+     * @param \Cake\View\View $View CakePHP View instance
      * @param array $config helper config
      */
-    public function __construct(\Cake\View\View $View, array $config = [])
+    public function __construct(View $View, array $config = [])
     {
         parent::__construct($View, $config);
         $this->_currentUrl = Router::parse(Router::url());
@@ -79,7 +77,7 @@ class MenuHelper extends Helper
         $config = $this->prepareMenuConfig($config);
         $this->setPageTitle($config);
         $out = '';
-        foreach ($config as $mainItem => $mainData) {
+        foreach ($config as $mainData) {
             $childrenContainer = '';
             $liclass = $mainData['active'] ? 'active' : '';
 
@@ -96,7 +94,7 @@ class MenuHelper extends Helper
                     ]);
                 }
                 $childrenContainer = Text::insert($this->_defaultConfig['templates']['childrenContainer'], [
-                    'children' => $children
+                    'children' => $children,
                 ]);
                 $liclass .= ' treeview';
             }
@@ -107,7 +105,7 @@ class MenuHelper extends Helper
                 'icon' => isset($mainData['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $mainData['icon']]) : '',
                 'href' => isset($mainData['url']) ? Router::url($mainData['url']) : '',
                 'childrenArrow' => !empty($mainData['children']) ? $this->_defaultConfig['templates']['childrenArrow'] : '',
-                'childrenContainer' => $childrenContainer
+                'childrenContainer' => $childrenContainer,
             ]);
         }
 
@@ -201,7 +199,7 @@ class MenuHelper extends Helper
         if (empty($this->_controllerActive)) {
             $this->_controllerActive = $this->_currentUrl['controller'];
         }
-        foreach ($config as $mainItem => &$mainData) {
+        foreach ($config as &$mainData) {
             $mainData['active'] = '';
             if (!empty($mainData['url']) && !empty($this->_actionActive)) {
                 if ($mainData['url']['controller'] == $this->_controllerActive && $mainData['url']['action'] == $this->_actionActive) {
@@ -211,7 +209,7 @@ class MenuHelper extends Helper
                 $mainData['active'] = true;
             }
             if (!empty($mainData['children'])) {
-                foreach ($mainData['children'] as $subItem => &$subData) {
+                foreach ($mainData['children'] as &$subData) {
                     $subData['active'] = '';
                     if (!empty($subData['url']) && !empty($this->_actionActive)) {
                         if ($subData['url']['controller'] == $this->_controllerActive && $subData['url']['action'] == $this->_actionActive) {

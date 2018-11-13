@@ -37,7 +37,7 @@ class StrictPasswordBehavior extends Behavior
          // at least one numeric value is needed in password
          'numericValue' => true,
          // reuse of old passwords is not allowed: number of old passwords to preserve
-         'oldPasswordCount' => 4
+         'oldPasswordCount' => 4,
      ];
 
     /**
@@ -78,26 +78,26 @@ class StrictPasswordBehavior extends Behavior
                 'minLength' => [
                     'rule' => ['minLength', $this->config('minPasswordLength')],
                     'last' => true,
-                    'message' => __d('ck_tools', 'validation.user.password_min_length')
+                    'message' => __d('ck_tools', 'validation.user.password_min_length'),
                 ],
             ])
             ->add('password', 'passwordFormat', [
                 'rule' => function ($value, $context) {
                     return $this->validFormat($value, $context);
                 },
-                'message' => __d('ck_tools', 'validation.user.password_invalid_format')
+                'message' => __d('ck_tools', 'validation.user.password_invalid_format'),
             ])
             ->add('password', 'passwordNoUserName', [
                 'rule' => function ($value, $context) {
                     return $this->checkForUserName($value, $context);
                 },
-                'message' => __d('ck_tools', 'validation.user.password_user_name_not_allowed')
+                'message' => __d('ck_tools', 'validation.user.password_user_name_not_allowed'),
             ])
             ->add('password', 'passwordUsedBefore', [
                 'rule' => function ($value, $context) {
                     return $this->checkLastPasswords($value, $context);
                 },
-                'message' => __d('ck_tools', 'validation.user.password_used_before')
+                'message' => __d('ck_tools', 'validation.user.password_used_before'),
             ]);
 
         return $validator;
@@ -230,7 +230,7 @@ class StrictPasswordBehavior extends Behavior
         $lastPasswords[] = $entity->password;
         $entity->accessible('last_passwords', true);
         $this->_table->patchEntity($entity, [
-            'last_passwords' => $lastPasswords
+            'last_passwords' => $lastPasswords,
         ]);
 
         return true;

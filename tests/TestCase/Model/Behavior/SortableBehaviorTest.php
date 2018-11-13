@@ -17,7 +17,7 @@ class SortableBehaviorTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.CkTools.News'
+        'plugin.CkTools.News',
     ];
 
     /**
@@ -53,7 +53,7 @@ class SortableBehaviorTest extends TestCase
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
 
         // create a gap in sorting
@@ -80,7 +80,7 @@ class SortableBehaviorTest extends TestCase
     {
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
         $this->assertEquals($this->News->getNextSortValue(), 1);
         $this->__createRecords(3);
@@ -97,11 +97,11 @@ class SortableBehaviorTest extends TestCase
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
-            'field1' => 'scope1'
+            'field1' => 'scope1',
         ]);
         $this->News->save($entity);
 
@@ -110,7 +110,7 @@ class SortableBehaviorTest extends TestCase
 
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
-            'field1' => 'scope1'
+            'field1' => 'scope1',
         ]);
         $this->News->save($entity);
 
@@ -128,12 +128,12 @@ class SortableBehaviorTest extends TestCase
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
-            'sorting' => 2
+            'sorting' => 2,
         ]);
         $this->News->save($entity);
 
@@ -171,12 +171,12 @@ class SortableBehaviorTest extends TestCase
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
-            'sorting' => 1
+            'sorting' => 1,
         ]);
         $this->News->save($entity);
 
@@ -214,12 +214,12 @@ class SortableBehaviorTest extends TestCase
         $this->__createRecords(5);
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
-            'sorting' => 5
+            'sorting' => 5,
         ]);
         $this->News->save($entity);
 
@@ -258,7 +258,7 @@ class SortableBehaviorTest extends TestCase
 
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
 
         $secondRecord = $this->News->get(2);
@@ -299,7 +299,7 @@ class SortableBehaviorTest extends TestCase
 
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
 
         $secondRecord = $this->News->get(2);
@@ -324,7 +324,7 @@ class SortableBehaviorTest extends TestCase
 
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'defaultOrder' => ['sorting ASC']
+            'defaultOrder' => ['sorting ASC'],
         ]);
 
         $secondRecord = $this->News->get(3);
@@ -361,13 +361,13 @@ class SortableBehaviorTest extends TestCase
 
         $this->News->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
-            'columnScope' => ['field1']
+            'columnScope' => ['field1'],
         ]);
 
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope2',
-            'sorting' => 2
+            'sorting' => 2,
         ]);
         $this->News->save($entity);
 
@@ -391,7 +391,7 @@ class SortableBehaviorTest extends TestCase
         // Test the same with a new entity without sorting info
         $entity = $this->News->newEntity([
             'name' => 'New Entry',
-            'field1' => 'scope1'
+            'field1' => 'scope1',
         ]);
         $this->News->save($entity);
         $savedEntity = $this->News->get($entity->id);
@@ -423,7 +423,7 @@ class SortableBehaviorTest extends TestCase
             $query->values([
                 'name' => 'Entry ' . $sort,
                 'field1' => $field1,
-                'sorting' => $sort
+                'sorting' => $sort,
             ]);
             $query->execute();
         }
