@@ -8,6 +8,9 @@ use Cake\Utility\Text;
 use Cake\View\Helper;
 use Cake\View\View;
 
+/**
+ * @property \AuthActions\View\Helper\AuthHelper $Auth
+ */
 class MenuHelper extends Helper
 {
 

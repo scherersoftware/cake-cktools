@@ -13,7 +13,8 @@
         "mpdf/mpdf": "7.0.*",
         "gettext/gettext": "^4.1",
         "scherersoftware/cake-api-baselayer": "^1.0",
-        "codekanzlei/cake-frontend-bridge": "^1.4"
+        "codekanzlei/cake-frontend-bridge": "^1.4",
+        "codekanzlei/cake-auth-actions": "v2.0.0-rc3"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
