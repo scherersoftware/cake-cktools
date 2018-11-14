@@ -18,7 +18,7 @@ class CkToolsHelper extends Helper
     use BackButtonTrait;
 
     /**
-     * Used heleprs
+     * Used helpers
      *
      * @var array
      */
@@ -129,8 +129,8 @@ class CkToolsHelper extends Helper
     /**
      * Renders an edit button
      *
-     * @param \Cake\Datasource\EntityInterface $entity Entity to take the ID from
-     * @param array $options Config options
+     * @param \Cake\Datasource\EntityInterface $entity  Entity to take the ID from
+     * @param array                            $options Config options
      * @return string
      */
     public function editButton(EntityInterface $entity, array $options = []): string
@@ -169,8 +169,8 @@ class CkToolsHelper extends Helper
     /**
      * Renders a details button
      *
-     * @param \Cake\Datasource\EntityInterface $entity Entity to take the ID from
-     * @param array $options Config options
+     * @param \Cake\Datasource\EntityInterface $entity  Entity to take the ID from
+     * @param array                            $options Config options
      * @return string
      */
     public function viewButton(EntityInterface $entity, array $options = []): string
@@ -208,8 +208,8 @@ class CkToolsHelper extends Helper
     /**
      * Renders an add button
      *
-     * @param string $title Link Caption
-     * @param array $options Additional Options
+     * @param string $title   Link Caption
+     * @param array  $options Additional Options
      * @return string
      */
     public function addButton(string $title = null, array $options = []): string
@@ -240,8 +240,8 @@ class CkToolsHelper extends Helper
     /**
      * Renders an delete button
      *
-     * @param \Cake\Datasource\EntityInterface $entity Entity to take the ID from
-     * @param array $options Config options
+     * @param \Cake\Datasource\EntityInterface $entity  Entity to take the ID from
+     * @param array                            $options Config options
      * @return string
      */
     public function deleteButton(EntityInterface $entity, array $options = []): string
@@ -316,9 +316,9 @@ class CkToolsHelper extends Helper
     /**
      * Renders a button
      *
-     * @param string $title Title to display
-     * @param string|array $url URL to point to
-     * @param array $options Additional Options
+     * @param string       $title   Title to display
+     * @param string|array $url     URL to point to
+     * @param array        $options Additional Options
      * @return string
      */
     public function button(string $title, $url = false, array $options = []): string
@@ -342,12 +342,12 @@ class CkToolsHelper extends Helper
     /**
      * Renders a back button using the back actions within the session
      *
-     * @param string $title button caption
-     * @param array $url url to link to
-     * @param array $options link() config
+     * @param string       $title   button caption
+     * @param string|array $url     url to link to
+     * @param array        $options link() config
      * @return string
      */
-    public function backButton(string $title = null, array $url = null, array $options = []): string
+    public function backButton(string $title = null, $url = null, array $options = []): string
     {
         $options = Hash::merge([
             'icon' => 'arrow-left',
