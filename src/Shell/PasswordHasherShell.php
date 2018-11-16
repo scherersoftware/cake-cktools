@@ -21,9 +21,7 @@ class PasswordHasherShell extends Shell
      */
     public function getOptionParser(): ConsoleOptionParser
     {
-        $parser = parent::getOptionParser();
-
-        return $parser;
+        return parent::getOptionParser();
     }
 
     /**

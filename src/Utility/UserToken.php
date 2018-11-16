@@ -43,11 +43,12 @@ class UserToken
     {
         $tokenData = $this->decryptToken($token);
 
-        if (is_array($tokenData) && isset($tokenData['user_id']) && isset($tokenData['generated']) && isset($tokenData['validForSeconds'])) {
-            return true;
-        }
-
-        return false;
+        return is_array($tokenData)
+            && isset(
+                $tokenData['user_id'],
+                $tokenData['generated'],
+                $tokenData['validForSeconds']
+            );
     }
 
     /**

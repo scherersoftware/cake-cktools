@@ -165,10 +165,10 @@ class StrictPasswordBehavior extends Behavior
         }
 
         // validate password
-        if (!empty($firstname) && strpos(strtolower($value), strtolower($firstname)) !== false) {
+        if (!empty($firstname) && stripos($value, $firstname) !== false) {
             return false;
         }
-        if (!empty($lastname) && strpos(strtolower($value), strtolower($lastname)) !== false) {
+        if (!empty($lastname) && stripos($value, $lastname) !== false) {
             return false;
         }
 

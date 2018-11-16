@@ -5,6 +5,7 @@ namespace CkTools\Controller\Component;
 use App\Lib\Environment;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
+use Cake\Controller\Controller;
 
 /**
  * Maintenance component
@@ -28,7 +29,7 @@ class MaintenanceComponent extends Component
     {
         parent::__construct($registry, $config);
 
-        if ($registry->getController() instanceof \Cake\Controller\Controller) {
+        if ($registry->getController() instanceof Controller) {
             $this->_controller = $registry->getController();
         }
     }
@@ -61,7 +62,7 @@ class MaintenanceComponent extends Component
 
         if (!self::isMaintenanceActive()) {
             // if maintenance is not active but maintenance page is requested -> redirect to default page
-            if (in_array($currentUrl, $accessibleUrls) && (substr($maintenancePage, -strlen($currentUrl))) === $currentUrl) {
+            if (in_array($currentUrl, $accessibleUrls) && substr($maintenancePage, -strlen($currentUrl)) === $currentUrl) {
                 $maintenanceBasePage = Environment::read('MAINTENANCE_BASE_URL');
 
                 return $this->_controller->redirect($maintenanceBasePage);
@@ -88,9 +89,11 @@ class MaintenanceComponent extends Component
         $accessibleUrls[] = $passwordUrl;
         if (!in_array($currentUrl, $accessibleUrls)) {
             return $this->_controller->redirect($maintenancePage);
-        } elseif ($currentUrl != $passwordUrl) {
+        }
+        if ($currentUrl != $passwordUrl) {
             return;
         }
+
         $user = Environment::read('MAINTENANCE_USER');
         $password = Environment::read('MAINTENANCE_PASSWORD');
         if ($currentUrl == $passwordUrl) {
@@ -99,15 +102,15 @@ class MaintenanceComponent extends Component
                 header('HTTP/1.0 401 Unauthorized');
                 echo 'Unauthorized';
                 exit;
-            } else {
-                if ($_SERVER['PHP_AUTH_USER'] == $user && $_SERVER['PHP_AUTH_PW'] == $password) {
-                    $this->_controller->Cookie->write($cookieName, true);
-
-                    return $this->_controller->redirect($successUrl);
-                }
-
-                return $this->_controller->redirect($maintenancePage);
             }
+
+            if ($_SERVER['PHP_AUTH_USER'] == $user && $_SERVER['PHP_AUTH_PW'] == $password) {
+                $this->_controller->Cookie->write($cookieName, true);
+
+                return $this->_controller->redirect($successUrl);
+            }
+
+            return $this->_controller->redirect($maintenancePage);
         }
 
         return $this->_controller->redirect($maintenancePage);
