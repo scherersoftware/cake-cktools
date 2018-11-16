@@ -39,16 +39,16 @@ class InternationalizationShell extends Shell
             'help' => 'Whether to remove file usage references from resulting po and mo files.',
         ]);
 
-        return $parser->description([
-            'CkTools Shell',
-            '',
-            'Utilities',
-        ])->addSubcommand('updateFromCatalog', [
-            'help' => 'Updates the PO file from the given catalog',
-            'parser' => $updateFromCatalogParser,
-        ]);
-
-        return $parser;
+        return $parser
+            ->setDescription([
+                'CkTools Shell',
+                '',
+                'Utilities',
+            ])
+            ->addSubcommand('updateFromCatalog', [
+                'help' => 'Updates the PO file from the given catalog',
+                'parser' => $updateFromCatalogParser,
+            ]);
     }
 
     /**

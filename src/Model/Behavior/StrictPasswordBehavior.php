@@ -49,7 +49,7 @@ class StrictPasswordBehavior extends Behavior
     public function initialize(array $config): void
     {
         // set json type to last_passwords field
-        $this->_table->schema()->columnType('last_passwords', 'json');
+        $this->_table->getSchema()->setColumnType('last_passwords', 'json');
     }
 
     /**
@@ -113,19 +113,19 @@ class StrictPasswordBehavior extends Behavior
     public function validFormat(string $value, array $context): bool
     {
         // one or more letter in upper case
-        if ($this->config('upperCase') && !preg_match('/[A-Z]/', $value)) {
+        if ($this->getConfig('upperCase') && !preg_match('/[A-Z]/', $value)) {
             return false;
         }
         // one or more letter in lower case
-        if ($this->config('lowerCase') && !preg_match('/[a-z]/', $value)) {
+        if ($this->getConfig('lowerCase') && !preg_match('/[a-z]/', $value)) {
             return false;
         }
         // one or more numeric value
-        if ($this->config('numericValue') && !preg_match('/[0-9]/', $value)) {
+        if ($this->getConfig('numericValue') && !preg_match('/[0-9]/', $value)) {
             return false;
         }
         // one ore more special char (no digit or letter)
-        if ($this->config('specialChar') && !preg_match('/[^äüößÄÜÖA-Za-z0-9]/', $value)) {
+        if ($this->getConfig('specialChar') && !preg_match('/[^äüößÄÜÖA-Za-z0-9]/u', $value)) {
             return false;
         }
 
@@ -142,14 +142,14 @@ class StrictPasswordBehavior extends Behavior
     public function checkForUserName(string $value, array $context): bool
     {
         // return true if config is not set
-        if (empty($this->config('noUserName'))) {
+        if (empty($this->getConfig('noUserName'))) {
             return true;
         }
         // Get Config
-        $firstNameField = $this->config('userNameFields.firstname');
-        $lastNameField = $this->config('userNameFields.lastname');
+        $firstNameField = $this->getConfig('userNameFields.firstname');
+        $lastNameField = $this->getConfig('userNameFields.lastname');
 
-        // No Usernames in Context
+        // No usernames in Context
         if (empty($context['data'][$firstNameField]) || $context['data'][$lastNameField]) {
             if (!empty($context['data']['id'])) {
                 $user = $this->_table->get($context['data']['id']);
@@ -185,7 +185,7 @@ class StrictPasswordBehavior extends Behavior
     public function checkLastPasswords(string $value, array $context): bool
     {
         // return true if config is not set
-        if (empty($this->config('oldPasswordCount'))) {
+        if (empty($this->getConfig('oldPasswordCount'))) {
             return true;
         }
 
@@ -215,7 +215,7 @@ class StrictPasswordBehavior extends Behavior
      */
     public function beforeSave(Event $event, EntityInterface $entity): bool
     {
-        if (empty($this->config('oldPasswordCount')) || !is_numeric($this->config('oldPasswordCount'))) {
+        if (empty($this->getConfig('oldPasswordCount')) || !is_numeric($this->getConfig('oldPasswordCount'))) {
             return true;
         }
 
@@ -224,11 +224,11 @@ class StrictPasswordBehavior extends Behavior
         }
 
         $lastPasswords = $entity->last_passwords;
-        if (count($lastPasswords) == $this->config('oldPasswordCount')) {
+        if (count($lastPasswords) == $this->getConfig('oldPasswordCount')) {
             array_shift($lastPasswords);
         }
         $lastPasswords[] = $entity->password;
-        $entity->accessible('last_passwords', true);
+        $entity->setAccess('last_passwords', true);
         $this->_table->patchEntity($entity, [
             'last_passwords' => $lastPasswords,
         ]);
