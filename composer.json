@@ -10,7 +10,7 @@
     "require": {
         "php": ">=7.1",
         "cakephp/cakephp": "~3.4",
-        "mpdf/mpdf": "7.0.*",
+        "mpdf/mpdf": "^7.0",
         "gettext/gettext": "^4.1",
         "scherersoftware/cake-api-baselayer": "^1.0",
         "codekanzlei/cake-frontend-bridge": "^1.4",
