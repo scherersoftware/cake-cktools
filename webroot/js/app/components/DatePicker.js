@@ -68,8 +68,9 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
     },
     _updateSelects: function ($selectContainer, date, input) {
         if (input.find('input').val().length === 0) {
-            $selectContainer.find('select option[selected="selected"]').each(function (i, el) {
-                $(el).removeAttr("selected");
+            $selectContainer.find('select').each(function (i, el) {
+                $(el).val('');
+                $(el).find('option[selected="selected"]').removeAttr("selected");
             });
             return null;
         }

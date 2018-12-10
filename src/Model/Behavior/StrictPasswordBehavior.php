@@ -76,7 +76,7 @@ class StrictPasswordBehavior extends Behavior
         $validator
             ->add('password', [
                 'minLength' => [
-                    'rule' => ['minLength', $this->config('minPasswordLength')],
+                    'rule' => ['minLength', $this->getConfig('minPasswordLength')],
                     'last' => true,
                     'message' => __d('ck_tools', 'validation.user.password_min_length'),
                 ],
@@ -125,7 +125,7 @@ class StrictPasswordBehavior extends Behavior
             return false;
         }
         // one ore more special char (no digit or letter)
-        if ($this->getConfig('specialChar') && !preg_match('/[^äüößÄÜÖA-Za-z0-9]/u', $value)) {
+        if ($this->getConfig('specialChars') && !preg_match('/[^äüößÄÜÖA-Za-z0-9]/', $value)) {
             return false;
         }
 
@@ -149,8 +149,8 @@ class StrictPasswordBehavior extends Behavior
         $firstNameField = $this->getConfig('userNameFields.firstname');
         $lastNameField = $this->getConfig('userNameFields.lastname');
 
-        // No usernames in Context
-        if (empty($context['data'][$firstNameField]) || $context['data'][$lastNameField]) {
+        // No Usernames in Context
+        if (empty($context['data'][$firstNameField]) || empty($context['data'][$lastNameField])) {
             if (!empty($context['data']['id'])) {
                 $user = $this->_table->get($context['data']['id']);
                 $firstname = $user->$firstNameField;
@@ -165,10 +165,10 @@ class StrictPasswordBehavior extends Behavior
         }
 
         // validate password
-        if (!empty($firstname) && stripos($value, $firstname) !== false) {
+        if (!empty($firstname) && strpos(strtolower($value), strtolower($firstname)) !== false) {
             return false;
         }
-        if (!empty($lastname) && stripos($value, $lastname) !== false) {
+        if (!empty($lastname) && strpos(strtolower($value), strtolower($lastname)) !== false) {
             return false;
         }
 
