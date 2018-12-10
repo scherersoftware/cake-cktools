@@ -4,8 +4,9 @@ namespace CkTools\Utility;
 
 /**
  * This trait provides functionality for back buttons.
+ * Usable wherever `$this->request` exists (Components, Helpers, Controllers)
  *
- * @property \Cake\Network\Request $request
+ * @property \Cake\Http\ServerRequest $request
  */
 trait BackButtonTrait
 {
