@@ -10,6 +10,7 @@ use Cake\View\View;
 
 /**
  * @property \AuthActions\View\Helper\AuthHelper $Auth
+ * @property \Cake\Http\ServerRequest            $request
  */
 class MenuHelper extends Helper
 {
@@ -66,7 +67,13 @@ class MenuHelper extends Helper
     public function __construct(View $View, array $config = [])
     {
         parent::__construct($View, $config);
-        $this->_currentUrl = Router::parse(Router::url());
+        $this->_currentUrl = [
+            'controller' => $this->request->getParam('controller'),
+            'action' => $this->request->getParam('action'),
+            'pass' => $this->request->getParam('pass'),
+            'prefix' => $this->request->getParam('prefix'),
+            'plugin' => $this->request->getParam('plugin'),
+        ];
     }
 
     /**

@@ -28,7 +28,7 @@ trait SortableControllerTrait
     {
         $this->request->allowMethod('post');
         if (!empty($this->sortModelName) && !empty($this->request->getData('foreignKey'))) {
-            $table = TableRegistry::get($this->sortModelName);
+            $table = TableRegistry::getTableLocator()->get($this->sortModelName);
             $entity = $table->get($this->request->getData('foreignKey'));
             $entity->sort = $this->request->getData('sort');
             if ($table->save($entity)) {

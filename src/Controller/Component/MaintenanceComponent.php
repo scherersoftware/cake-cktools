@@ -29,9 +29,7 @@ class MaintenanceComponent extends Component
     {
         parent::__construct($registry, $config);
 
-        if ($registry->getController() instanceof Controller) {
-            $this->_controller = $registry->getController();
-        }
+        $this->_controller = $this->getController();
     }
 
     /**
@@ -56,7 +54,7 @@ class MaintenanceComponent extends Component
         }
 
         $maintenancePage = Environment::read('MAINTENANCE_PAGE_REDIRECT_URL');
-        $currentUrl = $this->request->here;
+        $currentUrl = $this->_controller->getRequest()->here;
         $accessibleUrls = explode('|', Environment::read('MAINTENANCE_ACCESSIBLE_URLS'));
         $accessibleUrls[] = $maintenancePage;
 
@@ -72,7 +70,7 @@ class MaintenanceComponent extends Component
         }
 
         $cookieName = Environment::read('MAINTENANCE_COOKIE_NAME');
-        $cookieExists = ($this->_controller->Cookie->read($cookieName) != null);
+        $cookieExists = ($this->_controller->Cookie->read($cookieName) !== null);
         if ($cookieExists) {
             return;
         }
@@ -80,7 +78,9 @@ class MaintenanceComponent extends Component
         $headerName = Environment::read('MAINTENANCE_HEADER_NAME');
         $headerValue = Environment::read('MAINTENANCE_HEADER_VALUE');
         $successUrl = Environment::read('MAINTENANCE_PASSWORD_SUCCESS_URL');
-        if ($headerActive && !empty($this->request->header($headerName)) && $this->request->header($headerName) == $headerValue) {
+        if ($headerActive && !empty($this->_controller->request->getHeader($headerName))
+            && $this->_controller->request->getHeader($headerName) === $headerValue
+        ) {
             $this->_controller->Cookie->write($cookieName, true);
 
             return $this->_controller->redirect($successUrl);

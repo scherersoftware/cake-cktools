@@ -190,7 +190,7 @@ class CkToolsHelper extends Helper
             // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->_View->getRequest()->plugin,
                 'controller' => $controller,
                 'action' => 'view',
                 $entity->id,
@@ -263,7 +263,7 @@ class CkToolsHelper extends Helper
             // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->_View->getRequest()->plugin,
                 'controller' => $controller,
                 'action' => 'delete',
                 $entity->id,
@@ -359,8 +359,8 @@ class CkToolsHelper extends Helper
         }
 
         $here = $this->getRequestedAction();
-        if ($this->request->session()->check('back_action.' . $here)) {
-            $url = $this->request->session()->read('back_action.' . $here);
+        if ($this->request->getSession()->check('back_action.' . $here)) {
+            $url = $this->request->getSession()->read('back_action.' . $here);
         }
         if (empty($url)) {
             $url = [
@@ -462,7 +462,10 @@ class CkToolsHelper extends Helper
             'class' => 'btn btn-default btn-xs',
         ], $options);
 
-        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('ck_tools', 'history_back_button') . '</div>';
+        $div = '<div class="' . $options['class'] . '" onclick="history.back()">';
+        $i = '<i class="' . $options['icon'] . '"></i>';
+
+        return $div . $i . ' ' . __d('ck_tools', 'history_back_button') . '</div>';
     }
 
     /**
