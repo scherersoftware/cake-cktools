@@ -63,6 +63,15 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                 this._updateSelects($container, e.date, $(e.currentTarget));
             }.bind(this));
 
+            // Since dp.change is only called on blur, we need to make sure the selects are
+            // updated as soon as the input is cleared.
+            $picker.on('change', function (e) {
+                if ($(e.currentTarget).find('input').val().length === 0) {
+                    var $container = $(e.currentTarget).parents('.form-group');
+                    this._updateSelects($container, null, $(e.currentTarget));
+                }
+            }.bind(this));
+
             $container.data('datePickerApplied', true);
         }.bind(this));
     },
