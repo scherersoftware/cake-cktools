@@ -67,13 +67,7 @@ class MenuHelper extends Helper
     public function __construct(View $View, array $config = [])
     {
         parent::__construct($View, $config);
-        $this->_currentUrl = [
-            'controller' => $this->request->getParam('controller'),
-            'action' => $this->request->getParam('action'),
-            'pass' => $this->request->getParam('pass'),
-            'prefix' => $this->request->getParam('prefix'),
-            'plugin' => $this->request->getParam('plugin'),
-        ];
+        $this->_currentUrl = $this->request->getAttribute('params');
     }
 
     /**
