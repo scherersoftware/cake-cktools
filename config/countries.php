@@ -6,7 +6,7 @@ declare(strict_types = 1);
     [Plugin::path('CkTools') . 'src/Locale/']
 ));*/
 
-$config = [
+return [
     'eu_countries' => [
         'be',
         'bg',
@@ -284,11 +284,5 @@ $config = [
         'cy' => __d('countries', 'cy'),
         'hu' => __d('countries', 'hu'),
         'me' => __d('countries', 'me'),
-        'af' => __d('countries', 'af'),
-        'eg' => __d('countries', 'eg'),
-        'ax' => __d('countries', 'ax'),
-        'al' => __d('countries', 'al'),
-        'dz' => __d('countries', 'dz'),
-        'as' => __d('countries', 'as'),
     ],
 ];

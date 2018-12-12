@@ -10,6 +10,7 @@ use Cake\View\View;
 
 /**
  * @property \AuthActions\View\Helper\AuthHelper $Auth
+ * @property \Cake\Http\ServerRequest            $request
  */
 class MenuHelper extends Helper
 {
@@ -66,7 +67,13 @@ class MenuHelper extends Helper
     public function __construct(View $View, array $config = [])
     {
         parent::__construct($View, $config);
-        $this->_currentUrl = Router::parse(Router::url());
+        $this->_currentUrl = [
+            'controller' => $this->request->getParam('controller'),
+            'action' => $this->request->getParam('action'),
+            'pass' => $this->request->getParam('pass'),
+            'prefix' => $this->request->getParam('prefix'),
+            'plugin' => $this->request->getParam('plugin'),
+        ];
     }
 
     /**
@@ -183,11 +190,13 @@ class MenuHelper extends Helper
                         $visibleChildCount--;
                     }
                 }
+                unset($subData);
 
                 if ($activeChildCount > 1) {
                     foreach ($mainData['children'] as $subItem => &$subData) {
                         $subData['active'] = false;
                     }
+                    unset($subData);
                 }
             }
 
@@ -204,7 +213,7 @@ class MenuHelper extends Helper
         }
         foreach ($config as &$mainData) {
             $mainData['active'] = '';
-            if (!empty($mainData['url']) && !empty($this->_actionActive)) {
+            if (!empty($this->_actionActive) && !empty($mainData['url'])) {
                 if ($mainData['url']['controller'] == $this->_controllerActive && $mainData['url']['action'] == $this->_actionActive) {
                     $mainData['active'] = true;
                 }
@@ -214,7 +223,7 @@ class MenuHelper extends Helper
             if (!empty($mainData['children'])) {
                 foreach ($mainData['children'] as &$subData) {
                     $subData['active'] = '';
-                    if (!empty($subData['url']) && !empty($this->_actionActive)) {
+                    if (!empty($this->_actionActive) && !empty($subData['url'])) {
                         if ($subData['url']['controller'] == $this->_controllerActive && $subData['url']['action'] == $this->_actionActive) {
                             $subData['active'] = true;
                             $mainData['active'] = true;
@@ -259,10 +268,8 @@ class MenuHelper extends Helper
             return false;
         }
         $current = $this->_currentUrl;
-        if (!empty($item['url']['plugin'])) {
-            if ($item['url']['plugin'] != $current['plugin']) {
-                return false;
-            }
+        if (!empty($item['url']['plugin']) && $item['url']['plugin'] != $current['plugin']) {
+            return false;
         }
         if ($item['url']['controller'] == $current['controller'] && $item['url']['action'] == $current['action']) {
             $this->_controllerActive = $current['controller'];
@@ -270,7 +277,7 @@ class MenuHelper extends Helper
 
             return true;
         }
-        if ($item['url']['controller'] == $current['controller'] && !empty($this->_actionActive)) {
+        if (!empty($this->_actionActive) && $item['url']['controller'] == $current['controller']) {
             $this->_controllerActive = $current['controller'];
 
             return true;

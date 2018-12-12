@@ -18,9 +18,10 @@ class SecurityComponent extends Component
      */
     public function beforeFilter(Event $event): void
     {
+        $response = $this->getController()->getResponse();
         $securityConfig = Configure::read('CkTools.Security');
         if (isset($securityConfig['HSTS']) && $securityConfig['HSTS']) {
-            $this->response->header('Strict-Transport-Security', $securityConfig['HSTS']);
+            $response = $response->withHeader('Strict-Transport-Security', $securityConfig['HSTS']);
         }
         if (isset($securityConfig['CSP']) && $securityConfig['CSP']) {
             $headerValue = '';
@@ -37,18 +38,20 @@ class SecurityComponent extends Component
             }
 
             if (!empty($headerValue)) {
-                $this->response->header('Content-Security-Policy', $headerValue);
+                $response = $response->withHeader('Content-Security-Policy', $headerValue);
             }
         }
         if (isset($securityConfig['denyFraming']) && $securityConfig['denyFraming'] === true) {
             // Superceded by the Content Security Policy's frame-ancestors directive, but as frame-ancestors
             // is not yet supported in IE11 and older, Edge, Safari 9.1 (desktop), and Safari 9.2 (iOS),
             // it is recommended that sites employ X-Frame-Options in addition to using CSP.
-            $this->response->header('X-Frame-Options', 'DENY');
+            $response = $response->withHeader('X-Frame-Options', 'DENY');
         }
 
         // Prevent browsers from incorrectly detecting non-scripts as scripts
-        $this->response->header('X-Content-Type-Options', 'nosniff');
-        $this->response->header('X-XSS-Protection', '1; mode=block');
+        $response = $response->withHeader('X-Content-Type-Options', 'nosniff');
+        $response = $response->withHeader('X-XSS-Protection', '1; mode=block');
+
+        $this->getController()->setResponse($response);
     }
 }

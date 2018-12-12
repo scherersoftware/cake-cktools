@@ -40,7 +40,7 @@ class CkToolsHelper extends Helper
             $countries = Configure::read('countries');
             $subset = [];
             foreach ($countryCodes as $countryCode) {
-                $subset[$countryCode] = isset($countries[$countryCode]) ? $countries[$countryCode] : $countryCode;
+                $subset[$countryCode] = $countries[$countryCode] ?? $countryCode;
             }
 
             return $subset;
@@ -62,7 +62,7 @@ class CkToolsHelper extends Helper
         }
         $countries = Configure::read('countries');
 
-        return isset($countries[$country]) ? $countries[$country] : $country;
+        return $countries[$country] ?? $country;
     }
 
     /**
@@ -190,7 +190,7 @@ class CkToolsHelper extends Helper
             // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->_View->getRequest()->plugin,
                 'controller' => $controller,
                 'action' => 'view',
                 $entity->id,
@@ -263,7 +263,7 @@ class CkToolsHelper extends Helper
             // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->_View->getRequest()->plugin,
                 'controller' => $controller,
                 'action' => 'delete',
                 $entity->id,
@@ -275,9 +275,9 @@ class CkToolsHelper extends Helper
         }
         if ($options['usePostLink']) {
             return $this->Form->postLink($title, $url, $options);
-        } else {
-            return $this->Html->link($title, $url, $options);
         }
+
+        return $this->Html->link($title, $url, $options);
     }
 
     /**
@@ -296,7 +296,7 @@ class CkToolsHelper extends Helper
             'cancelButtonTitle' => __d('ck_tools', 'cancel'),
         ], $options);
 
-        if (!empty($options['useReferer']) && $this->request->referer() != '/') {
+        if (!empty($options['useReferer']) && $this->request->referer() !== '/') {
             $url = $this->request->referer();
         }
 
@@ -359,8 +359,8 @@ class CkToolsHelper extends Helper
         }
 
         $here = $this->getRequestedAction();
-        if ($this->request->session()->check('back_action.' . $here)) {
-            $url = $this->request->session()->read('back_action.' . $here);
+        if ($this->request->getSession()->check('back_action.' . $here)) {
+            $url = $this->request->getSession()->read('back_action.' . $here);
         }
         if (empty($url)) {
             $url = [
@@ -409,14 +409,14 @@ class CkToolsHelper extends Helper
      */
     public function nestedList(array $data, string $content, int $level = 0, array $isActiveCallback = null): string
     {
-        $tabs = "\n" . str_repeat("	", ($level * 2));
-        $liTabs = $tabs . "	";
+        $tabs = "\n" . str_repeat('	', $level * 2);
+        $liTabs = $tabs . '	';
 
         $output = $tabs . '<ul>';
         foreach ($data as $record) {
             $liClasses = [];
             $liContent = $content;
-            if ($isActiveCallback != null) {
+            if ($isActiveCallback !== null) {
                 $additionalArguments = !empty($isActiveCallback['arguments']) ? $isActiveCallback['arguments'] : [];
                 $isActive = call_user_func_array($isActiveCallback['callback'], [&$record, $additionalArguments]);
                 if ($isActive) {
@@ -438,7 +438,7 @@ class CkToolsHelper extends Helper
 
             $output .= $liTabs . '<li class="' . implode(' ', $liClasses) . '">' . $liContent;
             if (isset($record['children'][0])) {
-                $output .= $this->nestedList($record['children'], $content, ($level + 1), $isActiveCallback);
+                $output .= $this->nestedList($record['children'], $content, $level + 1, $isActiveCallback);
                 $output .= $liTabs . '</li>';
             } else {
                 $output .= '</li>';
@@ -462,7 +462,10 @@ class CkToolsHelper extends Helper
             'class' => 'btn btn-default btn-xs',
         ], $options);
 
-        return '<div class="' . $options['class'] . '" onclick="history.back()"><i class="' . $options['icon'] . '"></i> ' . __d('ck_tools', 'history_back_button') . '</div>';
+        $div = '<div class="' . $options['class'] . '" onclick="history.back()">';
+        $i = '<i class="' . $options['icon'] . '"></i>';
+
+        return $div . $i . ' ' . __d('ck_tools', 'history_back_button') . '</div>';
     }
 
     /**
@@ -522,12 +525,12 @@ class CkToolsHelper extends Helper
         $out = '<ul>';
         foreach ($array as $key => $elem) {
             if (!is_array($elem)) {
-                $out = $out . "<li><span>{$key}: " . h($elem) . "</span></li>";
+                $out = $out . "<li><span>{$key}: " . h($elem) . '</span></li>';
             } else {
                 $out = $out . "<li><span>{$key}</span>" . $this->arrayToUnorderedList($elem) . '</li>';
             }
         }
-        $out = $out . '</ul>';
+        $out .= '</ul>';
 
         return $out;
     }

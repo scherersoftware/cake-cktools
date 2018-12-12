@@ -21,9 +21,7 @@ class PasswordHasherShell extends Shell
      */
     public function getOptionParser(): ConsoleOptionParser
     {
-        $parser = parent::getOptionParser();
-
-        return $parser;
+        return parent::getOptionParser();
     }
 
     /**
@@ -31,12 +29,12 @@ class PasswordHasherShell extends Shell
      *
      * @return bool|int|null Success or error code.
      */
-    public function main(): void
+    public function main()
     {
         if (empty($this->args[0])) {
             $this->err('Please provide a password string.', 2);
 
-            return;
+            return false;
         }
 
         $hasher = new DefaultPasswordHasher;
@@ -44,6 +42,8 @@ class PasswordHasherShell extends Shell
         $hashedPassword = $hasher->hash($passwordToHash);
 
         $this->out('Your password: ' . $hashedPassword, 2);
+
+        return true;
     }
 
     /**

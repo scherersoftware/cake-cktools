@@ -11,6 +11,8 @@ use FrontendBridge\Lib\ServiceResponse;
  * This trait provides the endpoint for sortable lists.
  * The controller using this trait MUST set a property $sortModelName with the name of the table to
  * get and save the entity in question
+ *
+ * @property \Cake\Network\Request $request
  */
 trait SortableControllerTrait
 {
@@ -25,14 +27,14 @@ trait SortableControllerTrait
     public function sort(): ServiceResponse
     {
         $this->request->allowMethod('post');
-        if (!empty($this->request->data['foreignKey']) && !empty($this->sortModelName)) {
-            $table = TableRegistry::get($this->sortModelName);
-            $entity = $table->get($this->request->data['foreignKey']);
-            $entity->sort = $this->request->data['sort'];
+        if (!empty($this->sortModelName) && !empty($this->request->getData('foreignKey'))) {
+            $table = TableRegistry::getTableLocator()->get($this->sortModelName);
+            $entity = $table->get($this->request->getData('foreignKey'));
+            $entity->sort = $this->request->getData('sort');
             if ($table->save($entity)) {
                 return new ServiceResponse(ApiReturnCode::SUCCESS, [
                     $entity->id,
-                    $this->request->data['sort'],
+                    $this->request->getData('sort'),
                 ]);
             }
 
