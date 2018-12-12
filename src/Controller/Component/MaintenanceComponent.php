@@ -103,7 +103,7 @@ class MaintenanceComponent extends Component
                 exit;
             }
 
-            if ($_SERVER['PHP_AUTH_USER'] == $user && $_SERVER['PHP_AUTH_PW'] == $password) {
+            if ($_SERVER['PHP_AUTH_USER'] === $user && $_SERVER['PHP_AUTH_PW'] === $password) {
                 $this->_controller->Cookie->write($cookieName, true);
 
                 return $this->_controller->redirect($successUrl);
