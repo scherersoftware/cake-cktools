@@ -5,7 +5,6 @@ namespace CkTools\Controller\Component;
 use App\Lib\Environment;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
-use Cake\Controller\Controller;
 
 /**
  * Maintenance component
