@@ -190,7 +190,7 @@ class CkToolsHelper extends Helper
             // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $this->_View->getRequest()->plugin,
+                'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'view',
                 $entity->id,
@@ -263,7 +263,7 @@ class CkToolsHelper extends Helper
             // phpcs:ignore
             list($plugin, $controller) = pluginSplit($entity->source());
             $url = [
-                'plugin' => $this->_View->getRequest()->plugin,
+                'plugin' => $this->_View->request->plugin,
                 'controller' => $controller,
                 'action' => 'delete',
                 $entity->id,
