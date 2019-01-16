@@ -112,4 +112,4 @@ msgid "history_back_button"
 msgstr "Zurück"
 
 msgid "utility.toggle_content"
-msgstr ""
+msgstr "Ein-/Ausblenden"
