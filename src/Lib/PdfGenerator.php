@@ -201,6 +201,5 @@ class PdfGenerator
                 throw new \InvalidArgumentException("{$options['target']} is not a valid target");
                 break;
         }
-
     }
 }
