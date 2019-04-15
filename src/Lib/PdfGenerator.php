@@ -197,8 +197,10 @@ class PdfGenerator
             case self::TARGET_BINARY:
                 return $mpdf->Output('', 'S');
                 break;
+            default:
+                throw new \InvalidArgumentException("{$options['target']} is not a valid target");
+                break;
         }
 
-        throw new \InvalidArgumentException("{$options['target']} is not a valid target");
     }
 }
