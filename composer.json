@@ -8,11 +8,11 @@
     },
     "require": {
         "cakephp/plugin-installer": "*",
-        "mpdf/mpdf": "6.1.0",
+        "mpdf/mpdf": "^7",
         "gettext/gettext": "^4.1"
     },
     "require-dev": {
-        "cakephp/cakephp": "3.0.x-dev"
+        "cakephp/cakephp": "3.*"
     },
     "autoload": {
         "psr-4": {
