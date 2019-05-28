@@ -12,7 +12,7 @@
         "cakephp/cakephp": "~3.6",
         "mpdf/mpdf": "^7.0",
         "gettext/gettext": "^4.1",
-        "scherersoftware/cake-api-baselayer": "^1.0",
+        "scherersoftware/cake-api-baselayer": "^2.0",
         "codekanzlei/cake-frontend-bridge": "^1.4",
         "codekanzlei/cake-auth-actions": "v2.0.0-rc3"
     },
