@@ -21,7 +21,7 @@ trait TableUtilitiesTrait
                 $field => $value,
             ])
             ->where([
-                $this->primaryKey() => $primaryKey,
+                $this->getPrimaryKey() => $primaryKey,
             ]);
 
         $statement = $query->execute();

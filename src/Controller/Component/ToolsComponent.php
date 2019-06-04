@@ -14,6 +14,13 @@ class ToolsComponent extends Component
 
     use BackButtonTrait;
 
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+
+        $this->serverRequest = $this->getController()->getRequest();
+    }
+
     /**
      * {@inheritDoc}
      */

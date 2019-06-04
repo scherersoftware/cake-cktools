@@ -2,15 +2,16 @@
 declare(strict_types = 1);
 namespace CkTools\Utility;
 
+use Cake\Http\Exception\InternalErrorException;
+
 /**
- * This trait provides functionality for back buttons.
- * Usable wherever `$this->request` exists (Components, Helpers, Controllers)
+ * This trait provides functionality for back buttons for Controllers, Components, Helpers and so on
+ * `$this->serverRequest` MUST be manually set to contain the request object.
  *
- * @property \Cake\Http\ServerRequest $request
+ * @property \Cake\Http\ServerRequest $serverRequest
  */
 trait BackButtonTrait
 {
-
     /**
      * Returns the requested action excluding the back action.
      *
@@ -21,11 +22,12 @@ trait BackButtonTrait
         /*
          * Remove back_action from query string but keep the `?` if it is the first query param and there are additional query params following.
          */
-        $requestedAction = preg_replace('/back_action=.*?(&|$)/', '', $this->request->getRequestTarget());
+        $requestedAction = preg_replace('/back_action=.*?(&|$)/', '', $this->serverRequest->getRequestTarget());
 
         /*
          * If `?` is the last char in the url we can remove it.
          */
+
         return preg_replace('/\\?$/', '', $requestedAction);
     }
 
@@ -36,20 +38,24 @@ trait BackButtonTrait
      */
     public function handleBackActions(): void
     {
-        if (!$this->request->getSession()->check('back_action')) {
-            $this->request->getSession()->write('back_action', []);
+        if (empty($this->serverRequest)) {
+            throw new InternalErrorException('$serverRequest must contain the request object to use BackButtonTrait in ' . self::class);
         }
-        if (!empty($this->request->getQuery('back_action'))) {
-            $requestedBackAction = $this->request->getQuery('back_action');
+
+        if (!$this->serverRequest->getSession()->check('back_action')) {
+            $this->serverRequest->getSession()->write('back_action', []);
+        }
+        if (!empty($this->serverRequest->getQuery('back_action'))) {
+            $requestedBackAction = $this->serverRequest->getQuery('back_action');
             $requestedAction = $this->getRequestedAction();
 
-            if (!$this->request->getSession()->check('back_action.' . $requestedBackAction)
-                || ($this->request->getSession()->check('back_action.' . $requestedBackAction)
-                    && $this->request->getSession()->read('back_action.' . $requestedBackAction) != $requestedAction
+            if (!$this->serverRequest->getSession()->check('back_action.' . $requestedBackAction)
+                || ($this->serverRequest->getSession()->check('back_action.' . $requestedBackAction)
+                    && $this->serverRequest->getSession()->read('back_action.' . $requestedBackAction) != $requestedAction
                 )
-                && !$this->request->getSession()->check('back_action.' . $requestedAction)
+                && !$this->serverRequest->getSession()->check('back_action.' . $requestedAction)
             ) {
-                $this->request->getSession()->write('back_action.' . $requestedAction, $requestedBackAction);
+                $this->serverRequest->getSession()->write('back_action.' . $requestedAction, $requestedBackAction);
             }
         }
     }
@@ -62,9 +68,9 @@ trait BackButtonTrait
      */
     public function augmentUrlByBackParam(array $url): array
     {
-        $backAction = $this->request->getRequestTarget();
-        if ($this->request->is('ajax')) {
-            $backAction = $this->request->referer(true);
+        $backAction = $this->serverRequest->getRequestTarget();
+        if ($this->serverRequest->is('ajax')) {
+            $backAction = $this->serverRequest->referer(true);
         }
         $backAction = preg_replace('/back_action=.*?(&|$)/', '', $backAction);
 

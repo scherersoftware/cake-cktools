@@ -26,15 +26,15 @@ trait SortableControllerTrait
      */
     public function sort(): ServiceResponse
     {
-        $this->request->allowMethod('post');
-        if (!empty($this->sortModelName) && !empty($this->request->getData('foreignKey'))) {
+        $this->getRequest()->allowMethod('post');
+        if (!empty($this->sortModelName) && !empty($this->getRequest()->getData('foreignKey'))) {
             $table = TableRegistry::getTableLocator()->get($this->sortModelName);
-            $entity = $table->get($this->request->getData('foreignKey'));
-            $entity->sort = $this->request->getData('sort');
+            $entity = $table->get($this->getRequest()->getData('foreignKey'));
+            $entity->sort = $this->getRequest()->getData('sort');
             if ($table->save($entity)) {
                 return new ServiceResponse(ApiReturnCode::SUCCESS, [
                     $entity->id,
-                    $this->request->getData('sort'),
+                    $this->getRequest()->getData('sort'),
                 ]);
             }
 

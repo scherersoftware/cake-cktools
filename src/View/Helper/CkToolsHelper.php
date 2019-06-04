@@ -17,12 +17,15 @@ class CkToolsHelper extends Helper
 
     use BackButtonTrait;
 
-    /**
-     * Used helpers
-     *
-     * @var array
-     */
-    public $helpers = ['Html', 'Form'];
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+
+        $this->loadHelper('Html');
+        $this->loadHelper('Form');
+
+        $this->serverRequest = $this->getView()->getRequest();
+    }
 
     /**
      * Returns a map of countries with their translations
@@ -68,8 +71,8 @@ class CkToolsHelper extends Helper
     /**
      * Render a datepicker input to be processed by DatePicker.js
      *
-     * @param string $field Field Name
-     * @param array $options Options
+     * @param string $field   Field Name
+     * @param array  $options Options
      * @return string
      */
     public function datepickerInput(string $field, array $options = []): string
@@ -84,9 +87,9 @@ class CkToolsHelper extends Helper
     /**
      * Creates a mailto link.
      *
-     * @param string $email Address to send to
-     * @param array $options Aside from the standard HtmlHelper::link() options, the
-     *                       following keys are accepted:
+     * @param string $email     Address to send to
+     * @param array  $options   Aside from the standard HtmlHelper::link() options, the
+     *                          following keys are accepted:
      *                          - caption - if the display text should differ from the $email parameter
      *                          - body - will be urlencoded into the link
      *                          - subject - will be urlencoded into the link
@@ -374,7 +377,7 @@ class CkToolsHelper extends Helper
     /**
      * Render a <dl>
      *
-     * @param array $data Keys and Values
+     * @param array $data    Keys and Values
      * @param array $options Additional Options
      * @return string
      */
@@ -401,10 +404,10 @@ class CkToolsHelper extends Helper
      *     $tree = $this->Posts->find('threaded');
      *     echo $this->CkTools->nestedList($tree, '<a href="{{url}}">{{title}}</a>');
      *
-     * @param array $data Nested array
-     * @param string $content String template for each node
-     * @param int $level Depth
-     * @param array $isActiveCallback Will be passed the record
+     * @param array  $data             Nested array
+     * @param string $content          String template for each node
+     * @param int    $level            Depth
+     * @param array  $isActiveCallback Will be passed the record
      * @return string
      */
     public function nestedList(array $data, string $content, int $level = 0, array $isActiveCallback = null): string
@@ -472,7 +475,7 @@ class CkToolsHelper extends Helper
      * Display an array in human-readable format and provide options to toggle
      * its display
      *
-     * @param array $data Data to display
+     * @param array $data    Data to display
      * @param array $options Options:
      *                       - expanded: Whether the data should be shown by default
      *                       - expandLinkText: Link text for toggling the content
@@ -538,8 +541,8 @@ class CkToolsHelper extends Helper
     /**
      * Converts an array to a <table>, recursively
      *
-     * @param array  $array    Data
-     * @param array  $options  Optional options
+     * @param array $array   Data
+     * @param array $options Optional options
      * @return string
      */
     public function arrayToTable(array $array, array $options = []): string
@@ -557,7 +560,7 @@ class CkToolsHelper extends Helper
             }
 
             $table .= '<tr>';
-                $table .= '<td>' . $fieldname . '</td>';
+            $table .= '<td>' . $fieldname . '</td>';
             if (is_array($value)) {
                 $table .= '<td>' . $this->arrayToTable($value, $options) . '</td>';
             } else {
