@@ -53,7 +53,7 @@ class MaintenanceComponent extends Component
         }
 
         $maintenancePage = Environment::read('MAINTENANCE_PAGE_REDIRECT_URL');
-        $currentUrl = $this->_controller->getRequest()->here;
+        $currentUrl = $this->_controller->getRequest()->getAttribute('here');
         $accessibleUrls = explode('|', Environment::read('MAINTENANCE_ACCESSIBLE_URLS'));
         $accessibleUrls[] = $maintenancePage;
 

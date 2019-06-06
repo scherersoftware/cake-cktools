@@ -28,7 +28,7 @@ class SortableBehaviorTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->News = TableRegistry::get('CkTools.News');
+        $this->News = TableRegistry::getTableLocator()->get('CkTools.News');
     }
 
     /**
@@ -39,7 +39,7 @@ class SortableBehaviorTest extends TestCase
     public function tearDown(): void
     {
         unset($this->News);
-        TableRegistry::remove('CkTools.News');
+        TableRegistry::getTableLocator()->remove('CkTools.News');
         parent::tearDown();
     }
 

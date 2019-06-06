@@ -17,12 +17,16 @@ class CkToolsHelper extends Helper
 
     use BackButtonTrait;
 
+    /**
+     * Used helpers
+     *
+     * @var array
+     */
+    public $helpers = ['Html', 'Form'];
+
     public function initialize(array $config)
     {
         parent::initialize($config);
-
-        $this->loadHelper('Html');
-        $this->loadHelper('Form');
 
         $this->serverRequest = $this->getView()->getRequest();
     }
@@ -81,7 +85,7 @@ class CkToolsHelper extends Helper
             'type' => 'date',
         ], $options);
 
-        return $this->Form->input($field, $options);
+        return $this->Form->control($field, $options);
     }
 
     /**
@@ -152,9 +156,9 @@ class CkToolsHelper extends Helper
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
             // phpcs:ignore
-            list($plugin, $controller) = pluginSplit($entity->source());
+            list($plugin, $controller) = pluginSplit($entity->getSource());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->getView()->getRequest()->getParam('plugin'),
                 'controller' => $controller,
                 'action' => 'edit',
                 $entity->id,
@@ -191,9 +195,9 @@ class CkToolsHelper extends Helper
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
             // phpcs:ignore
-            list($plugin, $controller) = pluginSplit($entity->source());
+            list($plugin, $controller) = pluginSplit($entity->getSource());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->getView()->getRequest()->getParam('plugin'),
                 'controller' => $controller,
                 'action' => 'view',
                 $entity->id,
@@ -264,9 +268,9 @@ class CkToolsHelper extends Helper
         unset($options['url'], $options['title'], $options['icon']);
         if (!$url) {
             // phpcs:ignore
-            list($plugin, $controller) = pluginSplit($entity->source());
+            list($plugin, $controller) = pluginSplit($entity->getSource());
             $url = [
-                'plugin' => $this->_View->request->plugin,
+                'plugin' => $this->getView()->getRequest()->getParam('plugin'),
                 'controller' => $controller,
                 'action' => 'delete',
                 $entity->id,
@@ -299,8 +303,8 @@ class CkToolsHelper extends Helper
             'cancelButtonTitle' => __d('ck_tools', 'cancel'),
         ], $options);
 
-        if (!empty($options['useReferer']) && $this->request->referer() !== '/') {
-            $url = $this->request->referer();
+        if (!empty($options['useReferer']) && $this->getView()->getRequest()->referer() !== '/') {
+            $url = $this->getView()->getRequest()->referer();
         }
 
         $formButtons = '<div class="submit-group">';
@@ -362,8 +366,8 @@ class CkToolsHelper extends Helper
         }
 
         $here = $this->getRequestedAction();
-        if ($this->request->getSession()->check('back_action.' . $here)) {
-            $url = $this->request->getSession()->read('back_action.' . $here);
+        if ($this->getView()->getRequest()->getSession()->check('back_action.' . $here)) {
+            $url = $this->getView()->getRequest()->getSession()->read('back_action.' . $here);
         }
         if (empty($url)) {
             $url = [
