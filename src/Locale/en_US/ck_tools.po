@@ -25,10 +25,10 @@ msgid "validation.user.password_min_length"
 msgstr "Your password is to short."
 
 msgid "validation.user.password_invalid_format"
-msgstr "You password format is invalid."
+msgstr "Your password format is invalid."
 
 msgid "validation.user.password_user_name_not_allowed"
-msgstr "This username is not valid."
+msgstr "Your password should not contain your username."
 
 msgid "validation.user.password_used_before"
 msgstr "You used that password before."
