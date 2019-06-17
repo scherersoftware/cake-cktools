@@ -31,7 +31,7 @@ msgid "validation.user.password_user_name_not_allowed"
 msgstr "Das Passwort darf nicht Ihren Benutzernamen enthalten."
 
 msgid "validation.user.password_used_before"
-msgstr "Das neue Passwort darf nicht mit Ihrem alten Passwort übereinstimmen."
+msgstr "Das neue Passwort darf nicht mit Ihren alten Passwörtern übereinstimmen."
 
 msgid "system_contents.form"
 msgstr ""
