@@ -22,12 +22,14 @@ class StrictPasswordBehavior extends Behavior
     protected $_defaultConfig = [
          // minimal password length
          'minPasswordLength' => 10,
-         // fistname and surname are not allowed in password (case insensitive)
+         // firstname and surname are not allowed in password (case insensitive)
          'noUserName' => true,
          'userNameFields' => [
              'firstname' => 'firstname',
              'lastname' => 'lastname',
          ],
+         // minimum length of firstname / surname to apply validation with password
+         'minUserNameLength' => 3,
          // at least one special char is needed in password
          'specialChars' => true,
          // at least one char in upper case is needed in password
@@ -163,12 +165,14 @@ class StrictPasswordBehavior extends Behavior
             $firstname = $context['data'][$firstNameField];
             $lastname = $context['data'][$lastNameField];
         }
+        // Get configured username min length
+        $minUserNameLength = $this->getConfig('minUserNameLength');
 
         // validate password
-        if (!empty($firstname) && strpos(strtolower($value), strtolower($firstname)) !== false) {
+        if (!empty($firstname) && strlen($firstname) >= $minUserNameLength && strpos(strtolower($value), strtolower($firstname)) !== false) {
             return false;
         }
-        if (!empty($lastname) && strpos(strtolower($value), strtolower($lastname)) !== false) {
+        if (!empty($lastname) && strlen($lastname) >= $minUserNameLength && strpos(strtolower($value), strtolower($lastname)) !== false) {
             return false;
         }
 

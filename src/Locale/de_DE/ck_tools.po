@@ -28,10 +28,10 @@ msgid "validation.user.password_invalid_format"
 msgstr "Ihr Passwort entspricht nicht dem vorgegebenen Format."
 
 msgid "validation.user.password_user_name_not_allowed"
-msgstr "Dieser Benutzername ist nicht erlaubt."
+msgstr "Das Passwort darf nicht Ihren Benutzernamen enthalten."
 
 msgid "validation.user.password_used_before"
-msgstr "Dieses Passwort wurde bereits verwendet."
+msgstr "Das neue Passwort darf nicht mit Ihren alten Passwörtern übereinstimmen."
 
 msgid "system_contents.form"
 msgstr ""
