@@ -8,7 +8,7 @@ use Cake\TestSuite\Fixture\TestFixture;
  * NewsFixture
  *
  */
-class NewsFixture extends TestFixture
+class CkTestNewsFixture extends TestFixture
 {
 
     /**

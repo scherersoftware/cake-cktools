@@ -7,6 +7,8 @@ use Cake\TestSuite\TestCase;
 
 /**
  * CkTools\Model\Behavior\SortableBehavior Test Case
+ *
+ * @property \Cake\ORM\Table $CkTestNews
  */
 class SortableBehaviorTest extends TestCase
 {
@@ -17,7 +19,7 @@ class SortableBehaviorTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.CkTools.News',
+        'plugin.CkTools.CkTestNews',
     ];
 
     /**
@@ -28,7 +30,7 @@ class SortableBehaviorTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->News = TableRegistry::getTableLocator()->get('CkTools.News');
+        $this->CkTestNews = TableRegistry::getTableLocator()->get('CkTools.CkTestNews');
     }
 
     /**
@@ -38,8 +40,8 @@ class SortableBehaviorTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->News);
-        TableRegistry::getTableLocator()->remove('CkTools.News');
+        unset($this->CkTestNews);
+        TableRegistry::getTableLocator()->remove('CkTools.CkTestNews');
         parent::tearDown();
     }
 
@@ -51,19 +53,19 @@ class SortableBehaviorTest extends TestCase
     public function testRestoreSorting(): void
     {
         $this->__createRecords(5);
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
 
         // create a gap in sorting
-        $entity = $this->News->get(5);
+        $entity = $this->CkTestNews->get(5);
         $entity->sort = 8;
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $this->News->restoreSorting();
+        $this->CkTestNews->restoreSorting();
 
-        $records = $this->News->find()->order(['sorting' => 'ASC'])->toArray();
+        $records = $this->CkTestNews->find()->order(['sorting' => 'ASC'])->toArray();
         $this->assertEquals(1, $records[0]->sorting);
         $this->assertEquals(2, $records[1]->sorting);
         $this->assertEquals(3, $records[2]->sorting);
@@ -78,13 +80,13 @@ class SortableBehaviorTest extends TestCase
      */
     public function testGetNextSortValue(): void
     {
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
-        $this->assertEquals($this->News->getNextSortValue(), 1);
+        $this->assertEquals($this->CkTestNews->getNextSortValue(), 1);
         $this->__createRecords(3);
-        $this->assertEquals($this->News->getNextSortValue(), 4);
+        $this->assertEquals($this->CkTestNews->getNextSortValue(), 4);
     }
 
     /**
@@ -95,26 +97,26 @@ class SortableBehaviorTest extends TestCase
     public function testNewRecord(): void
     {
         $this->__createRecords(5);
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
         ]);
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $savedEntity = $this->News->get($entity->id);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(6, $savedEntity->sorting);
 
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
         ]);
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $savedEntity = $this->News->get($entity->id);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(7, $savedEntity->sorting);
     }
 
@@ -126,21 +128,21 @@ class SortableBehaviorTest extends TestCase
     public function testOverrideSortingInBetween(): void
     {
         $this->__createRecords(5);
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
             'sorting' => 2,
         ]);
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $savedEntity = $this->News->get($entity->id);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(2, $savedEntity->sorting);
 
-        $records = $this->News->find()->order(['sorting' => 'ASC'])->toArray();
+        $records = $this->CkTestNews->find()->order(['sorting' => 'ASC'])->toArray();
 
         $this->assertEquals(1, $records[0]->id);
         $this->assertEquals(1, $records[0]->sorting);
@@ -169,21 +171,21 @@ class SortableBehaviorTest extends TestCase
     public function testOverrideSortingBegin(): void
     {
         $this->__createRecords(5);
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
             'sorting' => 1,
         ]);
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $savedEntity = $this->News->get($entity->id);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(1, $savedEntity->sorting);
 
-        $records = $this->News->find()->order(['sorting' => 'ASC'])->toArray();
+        $records = $this->CkTestNews->find()->order(['sorting' => 'ASC'])->toArray();
 
         $this->assertEquals(1, $records[1]->id);
         $this->assertEquals(2, $records[1]->sorting);
@@ -212,21 +214,21 @@ class SortableBehaviorTest extends TestCase
     public function testOverrideSortingEnd(): void
     {
         $this->__createRecords(5);
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
             'sorting' => 5,
         ]);
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $savedEntity = $this->News->get($entity->id);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(5, $savedEntity->sorting);
 
-        $records = $this->News->find()->order(['sorting' => 'ASC'])->toArray();
+        $records = $this->CkTestNews->find()->order(['sorting' => 'ASC'])->toArray();
 
         $this->assertEquals(1, $records[0]->id);
         $this->assertEquals(1, $records[0]->sorting);
@@ -256,36 +258,36 @@ class SortableBehaviorTest extends TestCase
     {
         $this->__createRecords(5);
 
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
 
-        $secondRecord = $this->News->get(2);
+        $secondRecord = $this->CkTestNews->get(2);
         $secondRecord->sorting = 5;
-        $this->News->save($secondRecord);
+        $this->CkTestNews->save($secondRecord);
 
-        $savedRecord = $this->News->get(2);
+        $savedRecord = $this->CkTestNews->get(2);
         $this->assertEquals(5, $savedRecord->sorting);
 
-        $this->assertEquals(1, $this->News->get(1)->sorting);
-        $this->assertEquals(2, $this->News->get(3)->sorting);
-        $this->assertEquals(3, $this->News->get(4)->sorting);
-        $this->assertEquals(4, $this->News->get(5)->sorting);
-        $this->assertEquals(5, $this->News->get(2)->sorting);
+        $this->assertEquals(1, $this->CkTestNews->get(1)->sorting);
+        $this->assertEquals(2, $this->CkTestNews->get(3)->sorting);
+        $this->assertEquals(3, $this->CkTestNews->get(4)->sorting);
+        $this->assertEquals(4, $this->CkTestNews->get(5)->sorting);
+        $this->assertEquals(5, $this->CkTestNews->get(2)->sorting);
 
-        $secondRecord = $this->News->get(3);
+        $secondRecord = $this->CkTestNews->get(3);
         $secondRecord->sorting = 4;
-        $this->News->save($secondRecord);
+        $this->CkTestNews->save($secondRecord);
 
-        $savedRecord = $this->News->get(3);
+        $savedRecord = $this->CkTestNews->get(3);
         $this->assertEquals(4, $savedRecord->sorting);
 
-        $this->assertEquals(1, $this->News->get(1)->sorting);
-        $this->assertEquals(5, $this->News->get(2)->sorting);
-        $this->assertEquals(4, $this->News->get(3)->sorting);
-        $this->assertEquals(2, $this->News->get(4)->sorting);
-        $this->assertEquals(3, $this->News->get(5)->sorting);
+        $this->assertEquals(1, $this->CkTestNews->get(1)->sorting);
+        $this->assertEquals(5, $this->CkTestNews->get(2)->sorting);
+        $this->assertEquals(4, $this->CkTestNews->get(3)->sorting);
+        $this->assertEquals(2, $this->CkTestNews->get(4)->sorting);
+        $this->assertEquals(3, $this->CkTestNews->get(5)->sorting);
     }
 
     /**
@@ -297,20 +299,20 @@ class SortableBehaviorTest extends TestCase
     {
         $this->__createRecords(5);
 
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
 
-        $secondRecord = $this->News->get(2);
+        $secondRecord = $this->CkTestNews->get(2);
         $secondRecord->sorting = 1;
-        $this->News->save($secondRecord);
+        $this->CkTestNews->save($secondRecord);
 
-        $this->assertEquals(1, $this->News->get(2)->sorting);
-        $this->assertEquals(2, $this->News->get(1)->sorting);
-        $this->assertEquals(3, $this->News->get(3)->sorting);
-        $this->assertEquals(4, $this->News->get(4)->sorting);
-        $this->assertEquals(5, $this->News->get(5)->sorting);
+        $this->assertEquals(1, $this->CkTestNews->get(2)->sorting);
+        $this->assertEquals(2, $this->CkTestNews->get(1)->sorting);
+        $this->assertEquals(3, $this->CkTestNews->get(3)->sorting);
+        $this->assertEquals(4, $this->CkTestNews->get(4)->sorting);
+        $this->assertEquals(5, $this->CkTestNews->get(5)->sorting);
     }
 
     /**
@@ -322,30 +324,30 @@ class SortableBehaviorTest extends TestCase
     {
         $this->__createRecords(5);
 
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'defaultOrder' => ['sorting ASC'],
         ]);
 
-        $secondRecord = $this->News->get(3);
+        $secondRecord = $this->CkTestNews->get(3);
         $secondRecord->sorting = 1;
-        $this->News->save($secondRecord);
+        $this->CkTestNews->save($secondRecord);
 
-        $this->assertEquals(1, $this->News->get(3)->sorting);
-        $this->assertEquals(2, $this->News->get(1)->sorting);
-        $this->assertEquals(3, $this->News->get(2)->sorting);
-        $this->assertEquals(4, $this->News->get(4)->sorting);
-        $this->assertEquals(5, $this->News->get(5)->sorting);
+        $this->assertEquals(1, $this->CkTestNews->get(3)->sorting);
+        $this->assertEquals(2, $this->CkTestNews->get(1)->sorting);
+        $this->assertEquals(3, $this->CkTestNews->get(2)->sorting);
+        $this->assertEquals(4, $this->CkTestNews->get(4)->sorting);
+        $this->assertEquals(5, $this->CkTestNews->get(5)->sorting);
 
-        $secondRecord = $this->News->get(4);
+        $secondRecord = $this->CkTestNews->get(4);
         $secondRecord->sorting = 2;
-        $this->News->save($secondRecord);
+        $this->CkTestNews->save($secondRecord);
 
-        $this->assertEquals(1, $this->News->get(3)->sorting);
-        $this->assertEquals(3, $this->News->get(1)->sorting);
-        $this->assertEquals(4, $this->News->get(2)->sorting);
-        $this->assertEquals(2, $this->News->get(4)->sorting);
-        $this->assertEquals(5, $this->News->get(5)->sorting);
+        $this->assertEquals(1, $this->CkTestNews->get(3)->sorting);
+        $this->assertEquals(3, $this->CkTestNews->get(1)->sorting);
+        $this->assertEquals(4, $this->CkTestNews->get(2)->sorting);
+        $this->assertEquals(2, $this->CkTestNews->get(4)->sorting);
+        $this->assertEquals(5, $this->CkTestNews->get(5)->sorting);
     }
 
     /**
@@ -359,46 +361,46 @@ class SortableBehaviorTest extends TestCase
         $this->__createRecords(2, 'scope1');
         $this->__createRecords(2, 'scope2');
 
-        $this->News->addBehavior('CkTools.Sortable', [
+        $this->CkTestNews->addBehavior('CkTools.Sortable', [
             'sortField' => 'sorting',
             'columnScope' => ['field1'],
         ]);
 
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope2',
             'sorting' => 2,
         ]);
-        $this->News->save($entity);
+        $this->CkTestNews->save($entity);
 
-        $savedEntity = $this->News->get($entity->id);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(2, $savedEntity->sorting);
 
         // Make sure scope1 is untouched
-        $scope1Records = $this->News->find()->where(['field1' => 'scope1'])->order(['sorting' => 'ASC'])->toArray();
+        $scope1Records = $this->CkTestNews->find()->where(['field1' => 'scope1'])->order(['sorting' => 'ASC'])->toArray();
         $this->assertEquals(1, $scope1Records[0]->id);
         $this->assertEquals(1, $scope1Records[0]->sorting);
         $this->assertEquals(2, $scope1Records[1]->id);
         $this->assertEquals(2, $scope1Records[1]->sorting);
 
         // Make sure scope2 is as expected
-        $scope2Records = $this->News->find()->where(['field1' => 'scope2'])->order(['sorting' => 'ASC'])->toArray();
+        $scope2Records = $this->CkTestNews->find()->where(['field1' => 'scope2'])->order(['sorting' => 'ASC'])->toArray();
         $this->assertEquals(3, $scope2Records[0]->id);
         $this->assertEquals(1, $scope2Records[0]->sorting);
         $this->assertEquals(4, $scope2Records[2]->id);
         $this->assertEquals(3, $scope2Records[2]->sorting);
 
         // Test the same with a new entity without sorting info
-        $entity = $this->News->newEntity([
+        $entity = $this->CkTestNews->newEntity([
             'name' => 'New Entry',
             'field1' => 'scope1',
         ]);
-        $this->News->save($entity);
-        $savedEntity = $this->News->get($entity->id);
+        $this->CkTestNews->save($entity);
+        $savedEntity = $this->CkTestNews->get($entity->id);
         $this->assertEquals(3, $savedEntity->sorting);
 
         // Make sure scope2 is as expected
-        $scope2Records = $this->News->find()->where(['field1' => 'scope2'])->order(['sorting' => 'ASC'])->toArray();
+        $scope2Records = $this->CkTestNews->find()->where(['field1' => 'scope2'])->order(['sorting' => 'ASC'])->toArray();
         $this->assertEquals(3, $scope2Records[0]->id);
         $this->assertEquals(1, $scope2Records[0]->sorting);
         $this->assertEquals(5, $scope2Records[1]->id);
@@ -418,7 +420,7 @@ class SortableBehaviorTest extends TestCase
     {
         for ($i = 0; $i < $count; $i++) {
             $sort = $i + 1;
-            $query = $this->News->query();
+            $query = $this->CkTestNews->query();
             $query->insert(['name', 'field1', 'sorting']);
             $query->values([
                 'name' => 'Entry ' . $sort,
