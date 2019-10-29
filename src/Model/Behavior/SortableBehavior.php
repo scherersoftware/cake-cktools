@@ -39,6 +39,7 @@ class SortableBehavior extends Behavior
     /**
      * Restores the sorting based on defaultOrder
      *
+     * @param array $scope Scope condition
      * @return void
      */
     public function restoreSorting(array $scope = []): void

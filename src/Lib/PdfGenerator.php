@@ -184,7 +184,6 @@ class PdfGenerator
         switch ($options['target']) {
             case self::TARGET_RETURN:
                 return $mpdf;
-                break;
             case self::TARGET_DOWNLOAD:
                 $mpdf->Output($options['filename'], 'D');
                 break;
@@ -196,10 +195,8 @@ class PdfGenerator
                 break;
             case self::TARGET_BINARY:
                 return $mpdf->Output('', 'S');
-                break;
             default:
                 throw new \InvalidArgumentException("{$options['target']} is not a valid target");
-                break;
         }
     }
 }

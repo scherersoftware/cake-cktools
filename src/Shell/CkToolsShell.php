@@ -37,9 +37,9 @@ class CkToolsShell extends Shell
     /**
      * main() method.
      *
-     * @return bool|int Success or error code.
+     * @return void
      */
-    public function main()
+    public function main(): void
     {
         $this->out($this->OptionParser->help());
     }

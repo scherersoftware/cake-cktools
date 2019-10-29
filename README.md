@@ -13,11 +13,7 @@
 
 #### 1. require the plugin
 
-    $ composer install codekanzlei/cake-cktools
-
-Open a terminal in your project-folder and run these commands:
-
-	$ composer update
+    $ composer require codekanzlei/cake-cktools
 
 #### 3. Setup Appcontroller.php
 
