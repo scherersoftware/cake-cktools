@@ -24,6 +24,9 @@ class CkToolsHelper extends Helper
      */
     public $helpers = ['Html', 'Form'];
 
+    /**
+     * {@inheritDoc}
+     */
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -248,7 +251,7 @@ class CkToolsHelper extends Helper
      * Renders an delete button
      *
      * @param \Cake\Datasource\EntityInterface $entity  Entity to take the ID from
-     * @param array                            $options Config options
+     * @param array $options Config options
      * @return string
      */
     public function deleteButton(EntityInterface $entity, array $options = []): string
@@ -290,6 +293,7 @@ class CkToolsHelper extends Helper
     /**
      * Renders form buttons
      *
+     * @param array $options Config options
      * @return string
      */
     public function formButtons(array $options = []): string
@@ -323,9 +327,9 @@ class CkToolsHelper extends Helper
     /**
      * Renders a button
      *
-     * @param string       $title   Title to display
-     * @param string|array $url     URL to point to
-     * @param array        $options Additional Options
+     * @param string $title Title to display
+     * @param string|array $url URL to point to
+     * @param array $options Additional Options
      * @return string
      */
     public function button(string $title, $url = false, array $options = []): string
@@ -349,9 +353,9 @@ class CkToolsHelper extends Helper
     /**
      * Renders a back button using the back actions within the session
      *
-     * @param string       $title   button caption
-     * @param string|array $url     url to link to
-     * @param array        $options link() config
+     * @param string $title button caption
+     * @param string|array $url url to link to
+     * @param array $options link() config
      * @return string
      */
     public function backButton(string $title = null, $url = null, array $options = []): string
@@ -381,7 +385,7 @@ class CkToolsHelper extends Helper
     /**
      * Render a <dl>
      *
-     * @param array $data    Keys and Values
+     * @param array $data Keys and Values
      * @param array $options Additional Options
      * @return string
      */
@@ -408,10 +412,10 @@ class CkToolsHelper extends Helper
      *     $tree = $this->Posts->find('threaded');
      *     echo $this->CkTools->nestedList($tree, '<a href="{{url}}">{{title}}</a>');
      *
-     * @param array  $data             Nested array
-     * @param string $content          String template for each node
-     * @param int    $level            Depth
-     * @param array  $isActiveCallback Will be passed the record
+     * @param array  $data Nested array
+     * @param string $content String template for each node
+     * @param int $level Depth
+     * @param array $isActiveCallback Will be passed the record
      * @return string
      */
     public function nestedList(array $data, string $content, int $level = 0, array $isActiveCallback = null): string
@@ -459,6 +463,7 @@ class CkToolsHelper extends Helper
     /**
      * Renders a div with an onclick-hanlder, which uses the history API of the Browser
      *
+     * @param array $options Config options
      * @return string
      */
     public function historyBackButton(array $options = []): string

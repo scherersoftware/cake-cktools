@@ -14,6 +14,9 @@ class ToolsComponent extends Component
 
     use BackButtonTrait;
 
+    /**
+     * {@inheritDoc}
+     */
     public function initialize(array $config)
     {
         parent::initialize($config);
