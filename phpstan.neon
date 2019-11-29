@@ -4,3 +4,6 @@ parameters:
     ignoreErrors:
         - '#Call to static method read\(\) on an unknown class App\\Lib\\Environment.#'
         - '#Parameter \$user of method CkTools\\Utility\\UserToken::getTokenForUser\(\) has invalid typehint type App\\Model\\Entity\\User.#'
+        - '#Constant ROOT not found#'
+        - '#Access to an undefined property Cake\\Datasource\\EntityInterface::\$(last_|)password#'
+        - '#App\\Model\\Entity\\User#'

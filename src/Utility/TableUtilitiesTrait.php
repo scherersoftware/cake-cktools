@@ -8,12 +8,12 @@ trait TableUtilitiesTrait
     /**
      * Updates a single field for the given primaryKey
      *
-     * @param mixed $primaryKey The primary key
-     * @param string $field field name
-     * @param string $value string value
+     * @param mixed  $primaryKey The primary key
+     * @param string $field      field name
+     * @param mixed  $value      new value
      * @return bool True if the row was affected
      */
-    public function updateField($primaryKey, $field, $value = null): bool
+    public function updateField($primaryKey, string $field, $value = null): bool
     {
         $query = $this->query()
             ->update()

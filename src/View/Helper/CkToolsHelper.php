@@ -27,7 +27,7 @@ class CkToolsHelper extends Helper
     /**
      * {@inheritDoc}
      */
-    public function initialize(array $config)
+    public function initialize(array $config): void
     {
         parent::initialize($config);
 
@@ -317,7 +317,11 @@ class CkToolsHelper extends Helper
         }
         $formButtons .= $this->Form->button($options['saveButtonTitle'], ['class' => 'btn-success']);
         if ($options['cancelButton']) {
-            $formButtons .= $this->backButton($options['cancelButtonTitle'], $url, ['class' => 'btn btn-default cancel-button', 'icon' => null]);
+            $formButtons .= $this->backButton(
+                $options['cancelButtonTitle'],
+                $url,
+                ['class' => 'btn btn-default cancel-button', 'icon' => null]
+            );
         }
         $formButtons .= '</div>';
 
@@ -332,7 +336,7 @@ class CkToolsHelper extends Helper
      * @param array $options Additional Options
      * @return string
      */
-    public function button(string $title, $url = false, array $options = []): string
+    public function button(string $title, $url = null, array $options = []): string
     {
         $options = Hash::merge([
             'icon' => 'arrow-right',

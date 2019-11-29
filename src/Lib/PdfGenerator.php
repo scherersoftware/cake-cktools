@@ -5,7 +5,9 @@ namespace CkTools\Lib;
 use Cake\Core\InstanceConfigTrait;
 use Cake\Utility\Hash;
 use Cake\View\View;
+use InvalidArgumentException;
 use Mpdf\Mpdf;
+use RuntimeException;
 
 /**
  * Wrapper for generating PDF files with MPDF using CakePHP's view files.
@@ -18,19 +20,19 @@ class PdfGenerator
     use InstanceConfigTrait;
 
     // Return the MPDF instance
-    const TARGET_RETURN = 'return';
+    public const TARGET_RETURN = 'return';
 
     // send the file to the browser
-    const TARGET_BROWSER = 'browser';
+    public const TARGET_BROWSER = 'browser';
 
     // write the PDF to a file
-    const TARGET_FILE = 'file';
+    public const TARGET_FILE = 'file';
 
     // Will return the rendered PDF's binary data
-    const TARGET_BINARY = 'binary';
+    public const TARGET_BINARY = 'binary';
 
     // Will download the file to the browser
-    const TARGET_DOWNLOAD = 'download';
+    public const TARGET_DOWNLOAD = 'download';
 
     /**
      * Defaut config
@@ -64,13 +66,12 @@ class PdfGenerator
      * Constructor
      *
      * @param array $config Instance Config
-     * @return void
      */
     public function __construct(array $config = [])
     {
         $this->setConfig($config);
         if ($this->_config['pdfSourceFile'] && !is_readable($this->_config['pdfSourceFile'])) {
-            throw new \Exception("pdfSourceFile {$this->_config['pdfSourceFile']} is not readable.");
+            throw new RuntimeException("pdfSourceFile {$this->_config['pdfSourceFile']} is not readable.");
         }
     }
 
@@ -101,7 +102,7 @@ class PdfGenerator
      * @param array        $viewVars    View variables
      * @return \Mpdf\Mpdf
      */
-    protected function _preparePdf($viewFile, $viewVars): Mpdf
+    protected function _preparePdf($viewFile, array $viewVars): Mpdf
     {
         $mpdf = new Mpdf($this->_config['mpdfSettings']);
 
@@ -121,7 +122,6 @@ class PdfGenerator
         }
 
         if ($this->_config['pdfSourceFile']) {
-            $mpdf->SetImportUse();
             $pagecount = $mpdf->SetSourceFile($this->_config['pdfSourceFile']);
             if ($pagecount > 1) {
                 for ($i = 0; $i <= $pagecount; ++$i) {
@@ -196,7 +196,7 @@ class PdfGenerator
             case self::TARGET_BINARY:
                 return $mpdf->Output('', 'S');
             default:
-                throw new \InvalidArgumentException("{$options['target']} is not a valid target");
+                throw new InvalidArgumentException("{$options['target']} is not a valid target");
         }
     }
 }

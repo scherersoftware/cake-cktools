@@ -169,10 +169,18 @@ class StrictPasswordBehavior extends Behavior
         $minUserNameLength = $this->getConfig('minUserNameLength');
 
         // validate password
-        if (!empty($firstname) && strlen($firstname) >= $minUserNameLength && strpos(strtolower($value), strtolower($firstname)) !== false) {
+        if (
+            !empty($firstname)
+            && strlen($firstname) >= $minUserNameLength
+            && strpos(strtolower($value), strtolower($firstname)) !== false
+        ) {
             return false;
         }
-        if (!empty($lastname) && strlen($lastname) >= $minUserNameLength && strpos(strtolower($value), strtolower($lastname)) !== false) {
+        if (
+            !empty($lastname)
+            && strlen($lastname) >= $minUserNameLength
+            && strpos(strtolower($value), strtolower($lastname)) !== false
+        ) {
             return false;
         }
 
@@ -201,7 +209,7 @@ class StrictPasswordBehavior extends Behavior
 
         if (is_array($user->last_passwords)) {
             foreach ($user->last_passwords as $oldPasswordHash) {
-                if ((new DefaultPasswordHasher)->check($value, $oldPasswordHash)) {
+                if ((new DefaultPasswordHasher())->check($value, $oldPasswordHash)) {
                     return false;
                 }
             }

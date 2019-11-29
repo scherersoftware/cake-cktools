@@ -88,11 +88,17 @@ class InternationalizationShell extends Shell
             }
         }
         if (empty($poFiles)) {
-            $this->abort(sprintf('I could not find any matching po files in the given locale path (%s) for the domain (%s)', $localePath, $domain));
+            $this->abort(sprintf(
+                'I could not find any matching po files in the given locale path (%s) for the domain (%s)',
+                $localePath,
+                $domain
+            ));
         }
 
         if (!$this->params['overwrite']) {
-            $this->out('I will update the following .po files and their corresponding .mo file with the keys from catalog: ' . $catalogFile);
+            $this->out(
+                'I will update the following .po files and their .mo file with the keys from catalog: ' . $catalogFile
+            );
             foreach ($poFiles as $poFile) {
                 $this->out('    - ' . $poFile);
             }

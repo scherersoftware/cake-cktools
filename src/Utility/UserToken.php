@@ -3,6 +3,7 @@ declare(strict_types = 1);
 namespace CkTools\Utility;
 
 use App\Model\Entity\User;
+use Cake\Cache\InvalidArgumentException;
 use Cake\Core\Configure;
 use Cake\Utility\Security;
 
@@ -56,12 +57,12 @@ class UserToken
      *
      * @param string $token String token
      * @return bool
-     * @throws \InvalidArgumentException
+     * @throws \Cake\Cache\InvalidArgumentException
      */
     public function isTokenExpired(string $token): bool
     {
         if (!$this->isTokenValid($token)) {
-            throw new \InvalidArgumentException('This token is invalid');
+            throw new InvalidArgumentException('This token is invalid');
         }
         $tokenData = $this->decryptToken($token);
         $tokenExpiration = $tokenData['generated'] + $tokenData['validForSeconds'];
@@ -74,12 +75,12 @@ class UserToken
      *
      * @param string $token The string token
      * @return string
-     * @throws \InvalidArgumentException
+     * @throws \Cake\Cache\InvalidArgumentException
      */
     public function getUserIdFromToken(string $token): string
     {
         if (!$this->isTokenValid($token)) {
-            throw new \InvalidArgumentException('This token is invalid');
+            throw new InvalidArgumentException('This token is invalid');
         }
         $tokenData = $this->decryptToken($token);
 

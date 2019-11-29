@@ -5,11 +5,10 @@ namespace CkTools\Controller\Component;
 use App\Lib\Environment;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
+use Cake\Http\Cookie\Cookie;
 
 /**
  * Maintenance component
- *
- * @property \App\Lib\Environment
  */
 class MaintenanceComponent extends Component
 {
@@ -21,8 +20,8 @@ class MaintenanceComponent extends Component
     /**
      * Constructor
      *
-     * @param \Cake\Controller\ComponentRegistry; $registry A ComponentRegistry object.
-     * @param string:mixed[] $config Array of configuration settings.
+     * @param \Cake\Controller\ComponentRegistry $registry A ComponentRegistry object.
+     * @param array                              $config   Array of configuration settings.
      */
     public function __construct(ComponentRegistry $registry, array $config = [])
     {
@@ -59,7 +58,10 @@ class MaintenanceComponent extends Component
 
         if (!self::isMaintenanceActive()) {
             // if maintenance is not active but maintenance page is requested -> redirect to default page
-            if (in_array($currentUrl, $accessibleUrls) && substr($maintenancePage, -strlen($currentUrl)) === $currentUrl) {
+            if (
+                in_array($currentUrl, $accessibleUrls)
+                && substr($maintenancePage, -strlen($currentUrl)) === $currentUrl
+            ) {
                 $maintenanceBasePage = Environment::read('MAINTENANCE_BASE_URL');
 
                 return $this->_controller->redirect($maintenanceBasePage);
@@ -69,7 +71,7 @@ class MaintenanceComponent extends Component
         }
 
         $cookieName = Environment::read('MAINTENANCE_COOKIE_NAME');
-        $cookieExists = ($this->_controller->Cookie->read($cookieName) !== null);
+        $cookieExists = ($this->_controller->getRequest()->getCookie($cookieName) !== null);
         if ($cookieExists) {
             return;
         }
@@ -77,10 +79,13 @@ class MaintenanceComponent extends Component
         $headerName = Environment::read('MAINTENANCE_HEADER_NAME');
         $headerValue = Environment::read('MAINTENANCE_HEADER_VALUE');
         $successUrl = Environment::read('MAINTENANCE_PASSWORD_SUCCESS_URL');
-        if ($headerActive && !empty($this->_controller->request->getHeader($headerName))
-            && $this->_controller->request->getHeader($headerName) === $headerValue
+        $cookie = new Cookie($cookieName, '1');
+        if (
+            $headerActive
+            && !empty($this->_controller->getRequest()->getHeader($headerName))
+            && $this->_controller->getRequest()->getHeader($headerName) === $headerValue
         ) {
-            $this->_controller->Cookie->write($cookieName, true);
+            $this->_controller->getRequest()->getCookieCollection()->add($cookie);
 
             return $this->_controller->redirect($successUrl);
         }
@@ -104,7 +109,7 @@ class MaintenanceComponent extends Component
             }
 
             if ($_SERVER['PHP_AUTH_USER'] === $user && $_SERVER['PHP_AUTH_PW'] === $password) {
-                $this->_controller->Cookie->write($cookieName, true);
+                $this->_controller->getRequest()->getCookieCollection()->add($cookie);
 
                 return $this->_controller->redirect($successUrl);
             }

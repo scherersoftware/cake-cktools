@@ -22,7 +22,11 @@ trait BackButtonTrait
         /*
          * Remove back_action from query string but keep the `?` if it is the first query param and there are additional query params following.
          */
-        $requestedAction = preg_replace('/back_action=.*?(&|$)/', '', $this->serverRequest->getRequestTarget());
+        $requestedAction = preg_replace(
+            '/back_action=.*?(&|$)/',
+            '',
+            $this->serverRequest->getRequestTarget()
+        );
 
         /*
          * If `?` is the last char in the url we can remove it.
@@ -39,23 +43,27 @@ trait BackButtonTrait
     public function handleBackActions(): void
     {
         if (empty($this->serverRequest)) {
-            throw new InternalErrorException('$serverRequest must contain the request object to use BackButtonTrait in ' . self::class);
+            throw new InternalErrorException(
+                '$serverRequest must contain the request object to use BackButtonTrait in ' . self::class
+            );
         }
 
-        if (!$this->serverRequest->getSession()->check('back_action')) {
-            $this->serverRequest->getSession()->write('back_action', []);
+        $session = $this->serverRequest->getSession();
+        if (!$session->check('back_action')) {
+            $session->write('back_action', []);
         }
         if (!empty($this->serverRequest->getQuery('back_action'))) {
             $requestedBackAction = $this->serverRequest->getQuery('back_action');
             $requestedAction = $this->getRequestedAction();
 
-            if (!$this->serverRequest->getSession()->check('back_action.' . $requestedBackAction)
-                || ($this->serverRequest->getSession()->check('back_action.' . $requestedBackAction)
-                    && $this->serverRequest->getSession()->read('back_action.' . $requestedBackAction) != $requestedAction
+            if (
+                !$session->check('back_action.' . $requestedBackAction)
+                || ($session->check('back_action.' . $requestedBackAction)
+                    && $session->read('back_action.' . $requestedBackAction) != $requestedAction
                 )
-                && !$this->serverRequest->getSession()->check('back_action.' . $requestedAction)
+                && !$session->check('back_action.' . $requestedAction)
             ) {
-                $this->serverRequest->getSession()->write('back_action.' . $requestedAction, $requestedBackAction);
+                $session->write('back_action.' . $requestedAction, $requestedBackAction);
             }
         }
     }

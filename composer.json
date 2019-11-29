@@ -5,19 +5,19 @@
     "type": "cakephp-plugin",
     "homepage": "https://github.com/scherersoftware/cake-cktools",
     "require": {
-        "php": ">=7.1.0",
-        "cakephp/cakephp": ">= 3.8",
-        "mpdf/mpdf": "^7.0",
+        "php": ">=7.2.0",
+        "cakephp/cakephp": "^4.0.0-RC1",
+        "mpdf/mpdf": "^8.0",
         "gettext/gettext": "^4.1",
-        "scherersoftware/cake-api-baselayer": "^2.0",
-        "codekanzlei/cake-frontend-bridge": "3.0.*",
-        "codekanzlei/cake-auth-actions": "3.0.*"
+        "scherersoftware/cake-api-baselayer": "dev-cake-3.8",
+        "codekanzlei/cake-frontend-bridge": "4.x-dev",
+        "codekanzlei/cake-auth-actions": "^4.0.0-rc5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0",
+        "phpunit/phpunit": "^8.3.3|^8.4",
         "phpstan/phpstan": "^0.11",
-        "cakephp/cakephp-codesniffer": "^3.1",
-        "scherersoftware/coding-standard": "^3.1"
+        "cakephp/cakephp-codesniffer": "^4.0.0-beta4",
+        "scherersoftware/coding-standard": "4.0.x-dev"
     },
     "autoload": {
         "psr-4": {
@@ -28,11 +28,13 @@
     "scripts": {
         "check": [
             "@php-check",
-            "@php-check-strict",
-            "@phpstan"
+            "@phpstan",
+            "@test"
         ],
-        "php-check": "vendor/bin/phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./config",
-        "php-check-strict": "vendor/bin/phpcs -p --standard=vendor/scherersoftware/coding-standard/scherersoftware ./src ./config",
-        "phpstan": "php -d memory_limit=-1 vendor/bin/phpstan analyse -c phpstan.neon -l 5 ./src"
-    }
+        "php-check": "vendor/bin/phpcs -p --standard=vendor/scherersoftware/coding-standard/scherersoftware ./src ./config",
+        "phpstan": "php -d memory_limit=-1 vendor/bin/phpstan analyse -c phpstan.neon -l 5 ./src",
+        "test": "vendor/bin/phpunit --colors=always"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -16,7 +16,7 @@ class SortableBehavior extends Behavior
     /**
      * Stores the original value of sortField in beforeSave for later comparisons.
      *
-     * @var string|int
+     * @var string|int|null
      */
     private $__originalSortValue;
 
@@ -184,6 +184,6 @@ class SortableBehavior extends Behavior
             return 1;
         }
 
-        return ($res['maxSort'] + 1);
+        return $res['maxSort'] + 1;
     }
 }

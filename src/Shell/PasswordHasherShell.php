@@ -37,7 +37,7 @@ class PasswordHasherShell extends Shell
             return false;
         }
 
-        $hasher = new DefaultPasswordHasher;
+        $hasher = new DefaultPasswordHasher();
         $passwordToHash = $this->args[0];
         $hashedPassword = $hasher->hash($passwordToHash);
 
@@ -55,6 +55,6 @@ class PasswordHasherShell extends Shell
     {
         $this->out('This shell generates a hashed password by a given string.');
         $this->hr();
-        $this->out();
+        $this->out('');
     }
 }

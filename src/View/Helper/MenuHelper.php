@@ -31,7 +31,8 @@ class MenuHelper extends Helper
         'configKey' => 'menu',
         'templates' => [
             'icon' => '<i class="fa fa-:icon fa-fw"></i>',
-            'item' => '<li class=":liclass"><a href=":href" class=":class">:icon :title :childrenArrow</a>:childrenContainer</li>',
+            'item' => '<li class=":liclass"><a href=":href" class=":class">:icon :title :childrenArrow</a>'
+                . ':childrenContainer</li>',
             'childrenArrow' => '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
             'childrenContainer' => '<ul class="treeview-menu">:children</ul>',
         ],
@@ -88,9 +89,12 @@ class MenuHelper extends Helper
             if (!empty($mainData['children'])) {
                 $children = '';
                 foreach ($mainData['children'] as $child) {
+                    $icon = isset($child['icon'])
+                        ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $child['icon']])
+                        : '';
                     $children .= Text::insert($this->_defaultConfig['templates']['item'], [
                         'title' => $child['title'],
-                        'icon' => isset($child['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $child['icon']]) : '',
+                        'icon' => $icon,
                         'href' => isset($child['url']) ? Router::url($child['url']) : '',
                         'childrenArrow' => '',
                         'childrenContainer' => '',
@@ -102,13 +106,17 @@ class MenuHelper extends Helper
                 ]);
                 $liclass .= ' treeview';
             }
+            $icon = isset($mainData['icon'])
+                ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $mainData['icon']])
+                : '';
+            $childrenArrow = !empty($mainData['children']) ? $this->_defaultConfig['templates']['childrenArrow'] : '';
             $out .= Text::insert($this->_defaultConfig['templates']['item'], [
                 'class' => $mainData['active'] ? 'active' : '',
                 'liclass' => $liclass,
                 'title' => '<span>' . $mainData['title'] . '</span>',
-                'icon' => isset($mainData['icon']) ? Text::insert($this->_defaultConfig['templates']['icon'], ['icon' => $mainData['icon']]) : '',
+                'icon' => $icon,
                 'href' => isset($mainData['url']) ? Router::url($mainData['url']) : '',
-                'childrenArrow' => !empty($mainData['children']) ? $this->_defaultConfig['templates']['childrenArrow'] : '',
+                'childrenArrow' => $childrenArrow,
                 'childrenContainer' => $childrenContainer,
             ]);
         }
@@ -174,7 +182,8 @@ class MenuHelper extends Helper
                         continue;
                     }
 
-                    $allowed = (!isset($subData['url']) || (isset($subData['url']) && $this->Auth->urlAllowed($subData['url'])));
+                    $allowed = (!isset($subData['url'])
+                        || (isset($subData['url']) && $this->Auth->urlAllowed($subData['url'])));
 
                     if ($allowed) {
                         if ($this->_isItemActive($subData)) {
@@ -208,7 +217,10 @@ class MenuHelper extends Helper
         foreach ($config as &$mainData) {
             $mainData['active'] = '';
             if (!empty($this->_actionActive) && !empty($mainData['url'])) {
-                if ($mainData['url']['controller'] == $this->_controllerActive && $mainData['url']['action'] == $this->_actionActive) {
+                if (
+                    $mainData['url']['controller'] == $this->_controllerActive
+                    && $mainData['url']['action'] == $this->_actionActive
+                ) {
                     $mainData['active'] = true;
                 }
             } elseif (!empty($mainData['url']) && $mainData['url']['controller'] == $this->_controllerActive) {
@@ -218,7 +230,10 @@ class MenuHelper extends Helper
                 foreach ($mainData['children'] as &$subData) {
                     $subData['active'] = '';
                     if (!empty($this->_actionActive) && !empty($subData['url'])) {
-                        if ($subData['url']['controller'] == $this->_controllerActive && $subData['url']['action'] == $this->_actionActive) {
+                        if (
+                            $subData['url']['controller'] == $this->_controllerActive
+                            && $subData['url']['action'] == $this->_actionActive
+                        ) {
                             $subData['active'] = true;
                             $mainData['active'] = true;
                         }
