@@ -6,18 +6,17 @@
     "homepage": "https://github.com/scherersoftware/cake-cktools",
     "require": {
         "php": ">=7.2.0",
-        "cakephp/cakephp": "^4.0.0-RC1",
+        "cakephp/cakephp": "^4.0.0",
         "mpdf/mpdf": "^8.0",
         "gettext/gettext": "^4.1",
-        "scherersoftware/cake-api-baselayer": "dev-cake-3.8",
-        "codekanzlei/cake-frontend-bridge": "4.x-dev",
+        "scherersoftware/cake-api-baselayer": "^3.0.0-rc1",
+        "codekanzlei/cake-frontend-bridge": "^4.0.0-rc1",
         "codekanzlei/cake-auth-actions": "^4.0.0-rc5"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.3.3|^8.4",
         "phpstan/phpstan": "^0.11",
-        "cakephp/cakephp-codesniffer": "^4.0.0-beta4",
-        "scherersoftware/coding-standard": "4.0.x-dev"
+        "scherersoftware/coding-standard": "^4.0.0"
     },
     "autoload": {
         "psr-4": {
