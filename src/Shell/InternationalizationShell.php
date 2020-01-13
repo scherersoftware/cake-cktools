@@ -70,7 +70,7 @@ class InternationalizationShell extends Shell
     {
         $domain = $this->params['domain'];
 
-        $localePath = ROOT . '/src/Locale/';
+        $localePath = RESOURCES . 'locales' . DS;
 
         $catalogFile = $localePath . $domain . '.pot';
         if (!file_exists($catalogFile)) {
