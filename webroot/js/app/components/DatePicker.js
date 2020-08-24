@@ -45,6 +45,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
                 sideBySide: true,
                 locale: this.Controller.getVar('locale') || 'en',
                 date: this._getDateFromSelects($container),
+                daysOfWeekDisabled: this.Controller.getVar('daysOfWeekDisabled') || [],
                 icons: {
                     time: 'fa fa-clock',
                     date: 'fa fa-calendar',
