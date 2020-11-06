@@ -74,7 +74,7 @@ App.Components.DatePickerComponent = Frontend.Component.extend({
             }.bind(this));
 
             // Initially update selects
-            this._updateSelects($($selectContainer).parents('.form-group'), $picker.data('DateTimePicker').getMoment(), $picker);
+            this._updateSelects($($selectContainer).parents('.form-group'), $picker.data('DateTimePicker').date(), $picker);
 
             $container.data('datePickerApplied', true);
         }.bind(this));
