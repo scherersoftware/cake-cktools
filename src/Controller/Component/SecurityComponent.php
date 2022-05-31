@@ -14,7 +14,7 @@ class SecurityComponent extends Component
 {
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function beforeFilter(Event $event): void
     {

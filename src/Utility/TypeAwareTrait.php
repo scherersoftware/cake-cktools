@@ -4,7 +4,6 @@ namespace CkTools\Utility;
 
 /**
  * Add-in trait for handling type constants and their descriptions
- *
  */
 trait TypeAwareTrait
 {

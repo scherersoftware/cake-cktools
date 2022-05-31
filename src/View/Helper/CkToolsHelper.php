@@ -25,7 +25,7 @@ class CkToolsHelper extends Helper
     public $helpers = ['Html', 'Form'];
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function initialize(array $config): void
     {
