@@ -15,7 +15,7 @@ class ToolsComponent extends Component
     use BackButtonTrait;
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function initialize(array $config): void
     {
@@ -25,7 +25,7 @@ class ToolsComponent extends Component
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function beforeFilter(Event $event): void
     {

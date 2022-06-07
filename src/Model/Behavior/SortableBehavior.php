@@ -177,7 +177,7 @@ class SortableBehavior extends Behavior
             $query->where($scope);
         }
         $query->select([
-            'maxSort' => $query->func()->max($this->getConfig('sortField')),
+            'maxSort' => $query->func()->max($this->getConfig('sortField'), ['integer']),
         ]);
         $res = $query->enableHydration(false)->first();
         if (empty($res)) {
