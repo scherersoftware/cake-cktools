@@ -207,6 +207,7 @@ CkTools provides a behavior that allows manipulation of the (displayed) order of
 ## Strict Passwords with StrictPasswordBehavior
 Activate the strict password requirements by setting the StrictPasswordBehavior in UsersTable; default Configuration is set in this example
 
+```
 $this->addBehavior('CkTools.StrictPassword', [
     // minimal password length
     'minPasswordLength' => 10,
@@ -223,6 +224,7 @@ $this->addBehavior('CkTools.StrictPassword', [
     // reuse of old passwords is not allowed: number of old passwords to preserve
     'oldPasswordCount' => 4
 ]);
+```
 
 #### Usage
 Add the SortableBehavior to the Table you want to use it in:
