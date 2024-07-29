@@ -4,10 +4,8 @@ namespace CkTools\Test\TestCase\View\Helper;
 
 use Cake\Http\ServerRequest;
 use Cake\ORM\TableRegistry;
-use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
-use Cake\View\View;
 use CkTools\View\Helper\CkToolsHelper;
 
 class CkToolsHelperTest extends TestCase

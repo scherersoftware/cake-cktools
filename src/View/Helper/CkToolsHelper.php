@@ -24,6 +24,9 @@ class CkToolsHelper extends Helper
      */
     public $helpers = ['Html', 'Form'];
 
+    /**
+     * @var array
+     */
     protected $_defaultConfig = [
         'iconStyle' => 'fa',
     ];
