@@ -152,10 +152,10 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'title' => __d('ck_tools', 'edit'),
-            'icon' => $this->getConfig('iconStyle') . ' fa-pencil',
             'escape' => false,
             'class' => 'btn btn-default btn-xs btn-edit',
         ], $options);
+        $options = $this->_enhanceWithDefaultIcon($options, 'fa-pencil');
 
         $url = $options['url'];
         $title = $options['title'];
@@ -173,8 +173,8 @@ class CkToolsHelper extends Helper
             $url = $this->augmentUrlByBackParam($url);
         }
         if ($icon) {
-            $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
             $options['escape'] = false;
+            $title = '<i class="' . $icon . '"></i> ' . '<span class="button-text">' . $title . '</span>';
         }
 
         return $this->Html->link($title, $url, $options);
@@ -192,9 +192,9 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'title' => __d('ck_tools', 'view'),
-            'icon' => $this->getConfig('iconStyle') . ' fa-eye',
             'class' => 'btn btn-default btn-xs btn-edit',
         ], $options);
+        $options = $this->_enhanceWithDefaultIcon($options, 'fa-eye');
 
         $url = $options['url'];
         $title = $options['title'];
@@ -233,9 +233,10 @@ class CkToolsHelper extends Helper
         }
         $options = Hash::merge([
             'url' => null,
-            'icon' => $this->getConfig('iconStyle') . ' fa-plus',
             'class' => 'btn btn-default btn-xs btn-add',
         ], $options);
+        $options = $this->_enhanceWithDefaultIcon($options, 'fa-plus');
+
         $url = $options['url'];
         if (!$url) {
             $url = ['action' => 'add'];
@@ -263,11 +264,11 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'title' => __d('ck_tools', 'delete'),
-            'icon' => $this->getConfig('iconStyle') . ' fa-trash-o',
             'class' => 'btn btn-danger btn-xs',
             'confirm' => __d('ck_tools', 'delete_confirmation'),
             'usePostLink' => false,
         ], $options);
+        $options = $this->_enhanceWithDefaultIcon($options, 'fa-trash-o');
 
         $url = $options['url'];
         $title = $options['title'];
@@ -343,16 +344,14 @@ class CkToolsHelper extends Helper
     public function button(string $title, $url = null, array $options = []): string
     {
         $options = Hash::merge([
-            'icon' => 'arrow-right',
-            'iconStyle' => null,
             'class' => 'btn btn-default btn-xs',
             'additionalClasses' => '',
         ], $options);
+        $options = $this->_enhanceWithDefaultIcon($options, 'fa-arrow-right');
 
         $options['class'] .= ' ' . $options['additionalClasses'];
         if ($options['icon']) {
-            $iconStyle = $options['iconStyle'] ?? $this->getConfig('iconStyle');
-            $title = '<i class="' . $iconStyle . ' fa-' . $options['icon'] . '"></i> ' . $title;
+            $title = '<i class="' . $options['icon'] . '"></i> ' . $title;
             $options['escape'] = false;
         }
         unset($options['additionalClasses'], $options['icon']);
@@ -593,5 +592,27 @@ class CkToolsHelper extends Helper
         $table .= '</table>';
 
         return $table;
+    }
+
+    /**
+     * If no 'icon' present in $options, sets default icon and configured icon style into 'icon' key.
+     * If 'icon' present, but contains no space, prepends its value with configured icon style.
+     * Does nothing if the given $options array contains 'icon' with a value containing a space (for example "fal fa-pencil").
+     * Then returns whole $options array.
+     *
+     * @param array $options options array for multiple button functions
+     * @param string $defaultIcon default icon to use if no value for 'icon' given at all
+     * @return array
+     */
+    protected function _enhanceWithDefaultIcon(array $options, string $defaultIcon): array
+    {
+        if (empty($options['icon'])) {
+            $options['icon'] = $defaultIcon;
+        }
+        if (\strpos($options['icon'], ' ') === false) {
+            $options['icon'] = $this->getConfig('iconStyle') . ' ' . $options['icon'];
+        }
+
+        return $options;
     }
 }
