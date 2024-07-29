@@ -24,6 +24,10 @@ class CkToolsHelper extends Helper
      */
     public $helpers = ['Html', 'Form'];
 
+    protected $_defaultConfig = [
+        'iconStyle' => 'fa',
+    ];
+
     /**
      * @inheritDoc
      */
@@ -148,7 +152,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'title' => __d('ck_tools', 'edit'),
-            'icon' => 'fa fa-pencil',
+            'icon' => $this->getConfig('iconStyle') . ' fa-pencil',
             'escape' => false,
             'class' => 'btn btn-default btn-xs btn-edit',
         ], $options);
@@ -188,7 +192,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'title' => __d('ck_tools', 'view'),
-            'icon' => 'fa fa-eye',
+            'icon' => $this->getConfig('iconStyle') . ' fa-eye',
             'class' => 'btn btn-default btn-xs btn-edit',
         ], $options);
 
@@ -229,7 +233,7 @@ class CkToolsHelper extends Helper
         }
         $options = Hash::merge([
             'url' => null,
-            'icon' => 'fa fa-plus',
+            'icon' => $this->getConfig('iconStyle') . ' fa-plus',
             'class' => 'btn btn-default btn-xs btn-add',
         ], $options);
         $url = $options['url'];
@@ -259,7 +263,7 @@ class CkToolsHelper extends Helper
         $options = Hash::merge([
             'url' => null,
             'title' => __d('ck_tools', 'delete'),
-            'icon' => 'fa fa-trash-o',
+            'icon' => $this->getConfig('iconStyle') . ' fa-trash-o',
             'class' => 'btn btn-danger btn-xs',
             'confirm' => __d('ck_tools', 'delete_confirmation'),
             'usePostLink' => false,
@@ -340,13 +344,15 @@ class CkToolsHelper extends Helper
     {
         $options = Hash::merge([
             'icon' => 'arrow-right',
+            'iconStyle' => null,
             'class' => 'btn btn-default btn-xs',
             'additionalClasses' => '',
         ], $options);
 
         $options['class'] .= ' ' . $options['additionalClasses'];
         if ($options['icon']) {
-            $title = '<i class="fa fa-' . $options['icon'] . '"></i> ' . $title;
+            $iconStyle = $options['iconStyle'] ?? $this->getConfig('iconStyle');
+            $title = '<i class="' . $iconStyle . ' fa-' . $options['icon'] . '"></i> ' . $title;
             $options['escape'] = false;
         }
         unset($options['additionalClasses'], $options['icon']);
