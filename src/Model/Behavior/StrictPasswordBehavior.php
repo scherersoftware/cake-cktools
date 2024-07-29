@@ -188,7 +188,7 @@ class StrictPasswordBehavior extends Behavior
     }
 
     /**
-     * Check for reusage of old passwords
+     * Check for re-usage of old passwords
      *
      * @param  string $value   password
      * @param  array $context context data
@@ -235,15 +235,17 @@ class StrictPasswordBehavior extends Behavior
             $entity->last_passwords = [];
         }
 
-        $lastPasswords = $entity->last_passwords;
-        if (count($lastPasswords) == $this->getConfig('oldPasswordCount')) {
-            array_shift($lastPasswords);
+        if ($entity->isDirty('password')) {
+            $lastPasswords = $entity->last_passwords;
+            if (count($lastPasswords) === $this->getConfig('oldPasswordCount')) {
+                array_shift($lastPasswords);
+            }
+            $lastPasswords[] = $entity->password;
+            $entity->setAccess('last_passwords', true);
+            $this->_table->patchEntity($entity, [
+                'last_passwords' => $lastPasswords,
+            ]);
         }
-        $lastPasswords[] = $entity->password;
-        $entity->setAccess('last_passwords', true);
-        $this->_table->patchEntity($entity, [
-            'last_passwords' => $lastPasswords,
-        ]);
 
         return true;
     }

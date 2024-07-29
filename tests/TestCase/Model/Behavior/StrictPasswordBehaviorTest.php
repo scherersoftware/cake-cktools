@@ -320,4 +320,43 @@ class StrictPasswordBehaviorTest extends TestCase
         ]);
         $this->assertEmpty($newUser->getErrors());
     }
+
+    public function testLeaveLastPasswordsFieldAloneWhenUpdatingOtherFieldsThanPassword()
+    {
+        $hasher = new DefaultPasswordHasher();
+        $this->Users->addBehavior('CkTools.StrictPassword', [
+            'minPasswordLength' => 8,
+        ]);
+
+        $newUser = $this->Users->newEntity([
+            'firstname' => 'Mike',
+            'lastname' => 'Jagger',
+            'password' => $hasher->hash('Password1?'),
+        ]);
+
+        $result = $this->Users->save($newUser);
+        $this->assertEmpty($result->getErrors());
+        $this->assertSame(1, \count($result->last_passwords));
+
+        $data = [
+            'id' => $newUser->id,
+            'password' => $hasher->hash('Password2?'),
+        ];
+
+        $this->Users->patchEntity($newUser, $data);
+        $result = $this->Users->save($newUser);
+        $this->assertEmpty($result->getErrors());
+        $this->assertSame(2, \count($result->last_passwords));
+
+        $data = [
+            'id' => $newUser->id,
+            'lastname' => 'Bauer',
+        ];
+
+        $this->Users->patchEntity($newUser, $data);
+        $result = $this->Users->save($newUser);
+        $this->assertEmpty($result->getErrors());
+        // not changing password should not (re)add password hash to the list of last passwords
+        $this->assertSame(2, \count($result->last_passwords));
+    }
 }
