@@ -598,6 +598,21 @@ class CkToolsHelper extends Helper
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function setConfig($key, $value = null, $merge = true): void
+    {
+        // sets default iconStyle if iconStyle is set to NULL
+        if ($value === null && $key === 'iconStyle') {
+            parent::setConfig($key, $this->_defaultConfig['iconStyle']);
+
+            return;
+        }
+
+        parent::setConfig($key, $value, $merge);
+    }
+
+    /**
      * If no 'icon' present in $options, sets default icon and configured icon style into 'icon' key.
      * If 'icon' present, but contains no space, prepends its value with configured icon style.
      * Does nothing if the given $options array contains 'icon' with a value containing a space (for example "fal fa-pencil").
@@ -613,6 +628,9 @@ class CkToolsHelper extends Helper
             $options['icon'] = $defaultIcon;
         }
         if (\strpos($options['icon'], ' ') === false) {
+            if (\mb_strpos($options['icon'], 'fa-') !== 0) {
+                $options['icon'] = 'fa-' . $options['icon'];
+            }
             $options['icon'] = $this->getConfig('iconStyle') . ' ' . $options['icon'];
         }
 

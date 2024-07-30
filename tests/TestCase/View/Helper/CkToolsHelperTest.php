@@ -123,6 +123,7 @@ class CkToolsHelperTest extends TestCase
             ],
         ]);
         $this->assertTextContains('<i class="fal ' . $defaultIcon . '"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
 
         // style by config, icon manual overwrite
         $this->CkToolsHelper->setConfig('iconStyle', 'fal');
@@ -135,6 +136,7 @@ class CkToolsHelperTest extends TestCase
             ],
         ]);
         $this->assertTextContains('<i class="fal fa-airplane"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
 
         // style by config, icon & style manual overwrite
         $this->CkToolsHelper->setConfig('iconStyle', 'fal');
@@ -147,6 +149,7 @@ class CkToolsHelperTest extends TestCase
             ],
         ]);
         $this->assertTextContains('<i class="far fa-airplane"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
     }
 
     public function testIconInButton()
@@ -180,6 +183,7 @@ class CkToolsHelperTest extends TestCase
         $this->CkToolsHelper->setConfig('iconStyle', 'fal');
         $button = $this->CkToolsHelper->button('title', $url);
         $this->assertTextContains('<i class="fal ' . $defaultIcon . '"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
 
         // style by config, icon manual overwrite
         $this->CkToolsHelper->setConfig('iconStyle', 'fal');
@@ -187,6 +191,7 @@ class CkToolsHelperTest extends TestCase
             'icon' => 'fa-airplane'
         ]);
         $this->assertTextContains('<i class="fal fa-airplane"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
 
         // style by config, icon & style manual overwrite
         $this->CkToolsHelper->setConfig('iconStyle', 'fal');
@@ -194,5 +199,23 @@ class CkToolsHelperTest extends TestCase
             'icon' => 'far fa-airplane'
         ]);
         $this->assertTextContains('<i class="far fa-airplane"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
+
+        /**
+         * legacy way of setting the icon, omitting 'fa-' from the beginning of every icon
+         */
+        // without configured icon style
+        $button = $this->CkToolsHelper->button('title', $url, [
+            'icon' => 'airplane'
+        ]);
+        $this->assertTextContains('<i class="fa fa-airplane"></i>', $button);
+
+        // with configured icon style
+        $this->CkToolsHelper->setConfig('iconStyle', 'fal');
+        $button = $this->CkToolsHelper->button('title', $url, [
+            'icon' => 'airplane'
+        ]);
+        $this->assertTextContains('<i class="fal fa-airplane"></i>', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
     }
 }
