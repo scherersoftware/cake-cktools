@@ -150,6 +150,33 @@ class CkToolsHelperTest extends TestCase
         ]);
         $this->assertTextContains('<i class="far fa-airplane"></i>', $button);
         $this->CkToolsHelper->setConfig('iconStyle', null);
+
+        /*
+         * respect wish for no icon at all
+         */
+        // without configured icon style
+        $button = $this->CkToolsHelper->$buttonFunctionName($newUser, [
+            'icon' => false,
+            // url necessary for Router to find a route when creating the link URL
+            'url' => [
+                'controller' => 'tests_apps',
+                'action' => 'some_method',
+            ],
+        ]);
+        $this->assertTextNotContains('<i class="fa', $button);
+
+        // with configured icon style
+        $this->CkToolsHelper->setConfig('iconStyle', 'fal');
+        $button = $this->CkToolsHelper->$buttonFunctionName($newUser, [
+            'icon' => false,
+            // url necessary for Router to find a route when creating the link URL
+            'url' => [
+                'controller' => 'tests_apps',
+                'action' => 'some_method',
+            ],
+        ]);
+        $this->assertTextNotContains('<i class="fa', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
     }
 
     public function testIconInButton()
@@ -201,7 +228,24 @@ class CkToolsHelperTest extends TestCase
         $this->assertTextContains('<i class="far fa-airplane"></i>', $button);
         $this->CkToolsHelper->setConfig('iconStyle', null);
 
-        /**
+        /*
+         * respect wish for no icon at all
+         */
+        // without configured icon style
+        $button = $this->CkToolsHelper->button('title', $url, [
+            'icon' => false,
+        ]);
+        $this->assertTextNotContains('<i class="fa', $button);
+
+        // with configured icon style
+        $this->CkToolsHelper->setConfig('iconStyle', 'fal');
+        $button = $this->CkToolsHelper->button('title', $url, [
+            'icon' => false,
+        ]);
+        $this->assertTextNotContains('<i class="fa', $button);
+        $this->CkToolsHelper->setConfig('iconStyle', null);
+
+        /*
          * legacy way of setting the icon, omitting 'fa-' from the beginning of every icon
          */
         // without configured icon style

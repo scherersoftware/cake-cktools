@@ -615,7 +615,8 @@ class CkToolsHelper extends Helper
     /**
      * If no 'icon' present in $options, sets default icon and configured icon style into 'icon' key.
      * If 'icon' present, but contains no space, prepends its value with configured icon style.
-     * Does nothing if the given $options array contains 'icon' with a value containing a space (for example "fal fa-pencil").
+     * Does nothing if the given $options array contains 'icon' with a value containing a space (for example "fal fa-pencil")
+     * or false.
      * Then returns whole $options array.
      *
      * @param array $options options array for multiple button functions
@@ -624,6 +625,10 @@ class CkToolsHelper extends Helper
      */
     protected function _enhanceWithDefaultIcon(array $options, string $defaultIcon): array
     {
+        if (isset($options['icon']) && $options['icon'] === false) {
+            return $options;
+        }
+
         if (empty($options['icon'])) {
             $options['icon'] = $defaultIcon;
         }
