@@ -4,6 +4,8 @@ namespace CkTools\Test\TestCase\View\Helper;
 
 use Cake\Http\ServerRequest;
 use Cake\ORM\TableRegistry;
+use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 use CkTools\View\Helper\CkToolsHelper;
@@ -27,7 +29,19 @@ class CkToolsHelperTest extends TestCase
             'webroot' => '',
         ]);
         Router::reload();
-        Router::setRequestContext($request);
+        Router::setRequest($request);
+
+        $this->routeBuilder = Router::createRouteBuilder('/');
+        $this->routeBuilder->scope('/', function (RouteBuilder $routes) {
+            $routes->setRouteClass(DashedRoute::class);
+            $routes->get(
+                '/some_alias',
+                [
+                    'controller' => 'tests_apps',
+                    'action' => 'some_method'
+                ]
+            );
+        });
 
         $this->View = $this->getMockBuilder('Cake\View\View')
             ->setMethods(['append'])
