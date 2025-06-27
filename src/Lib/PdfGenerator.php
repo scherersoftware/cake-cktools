@@ -29,6 +29,9 @@ class PdfGenerator
     // Will return the rendered PDF's binary data
     const TARGET_BINARY = 'binary';
 
+    // Will return the hydrated HTML string before rendering it to PDF
+    const TARGET_HTML = 'html';
+
     // Will download the file to the browser
     const TARGET_DOWNLOAD = 'download';
 
@@ -193,6 +196,9 @@ class PdfGenerator
                 break;
             case self::TARGET_FILE:
                 $mpdf->Output($options['filename'], 'F');
+                break;
+            case self::TARGET_HTML:
+                return $wholeString ?? '';
                 break;
             case self::TARGET_BINARY:
                 return $mpdf->Output('', 'S');
